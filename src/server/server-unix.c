@@ -80,6 +80,8 @@ void shutdown_with_msg(char* msg) {
        close(((pclient) clients->data[i])->fd);
      }
   }
+  kill_all_processes();
+  unlink(socketname);
   logging_shutdown(msg);
 }
 
@@ -160,7 +162,6 @@ void server_accept_client() {
 
 // Handling of termination
 void sigterm_handler(int sig) {
-  kill_all_processes();
   shutdown_with_msg("");
 }
 
@@ -590,7 +591,6 @@ void handle_msg(pclient client, int key) {
 }
 
 void shutdown_server() {
-  unlink(socketname);
   shutdown_with_msg("last client disconnected");
 }
 
