@@ -185,3 +185,24 @@ end
 theory bool.Ite
   syntax function ite "(ite %1 %2 %3)"
 end
+
+theory HighOrd
+  syntax type     (->) "(Array %1 %2)"
+  syntax function (@)  "(select %1 %2)"
+
+  meta "encoding:lskept" function (@)
+  meta "encoding:ignore_polymorphism_ts" type (->)
+  meta "encoding:ignore_polymorphism_ls" function (@)
+end
+
+theory map.Map
+  syntax function get "(select %1 %2)"
+  syntax function set "(store %1 %2 %3)"
+
+  meta "encoding:lskept" function get
+  meta "encoding:lskept" function set
+  meta "encoding:ignore_polymorphism_ls" function get
+  meta "encoding:ignore_polymorphism_ls" function ([])
+  meta "encoding:ignore_polymorphism_ls" function set
+  meta "encoding:ignore_polymorphism_ls" function ([<-])
+end
