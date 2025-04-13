@@ -206,3 +206,5 @@ theory map.Map
   meta "encoding:ignore_polymorphism_ls" function set
   meta "encoding:ignore_polymorphism_ls" function ([<-])
 end
+
+import "smt-libv2-floats.gen"
