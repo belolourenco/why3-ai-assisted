@@ -8,7 +8,7 @@
 (*  on linking described in file LICENSE.                           *)
 (********************************************************************)
 
-val keyword_tokens: (string * Parser.token) list
+val keyword_tokens: (string * Parser_tokens.token) list
 
 (* does not include contextual tokens *)
 val keywords: string list

@@ -8,7 +8,7 @@
 (*  on linking described in file LICENSE.                           *)
 (********************************************************************)
 
-open Itp_server
+open Itp_communication
 
 module Protocol_why3ide : sig
 

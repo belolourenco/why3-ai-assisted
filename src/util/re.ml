@@ -8,5 +8,4 @@
 (*  on linking described in file LICENSE.                           *)
 (********************************************************************)
 
-#13 "src/util/recompat.ml"
-module Str = Str
+include Why3deps.Myre

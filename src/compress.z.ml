@@ -8,7 +8,7 @@
 (*  on linking described in file LICENSE.                           *)
 (********************************************************************)
 
-#13 "src/session/compress_z.ml"
+#13 "src/compress.z.ml"
 let compression_supported = true
 
 module type S = sig

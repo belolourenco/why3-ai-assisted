@@ -1,0 +1,13 @@
+(library
+ (name why3webserver)
+ (modules wserver why3web)
+ (libraries unix why3))
+
+(executable
+ (name why3ide)
+ (modes plugin)
+ (libraries why3 lablgtk3 lablgtk3-sourceview3)
+ (embed_in_plugin_libraries lablgtk3 lablgtk3-sourceview3)
+ (modules gconfig ide_utils why3ide))
+
+(include_subdirs no)

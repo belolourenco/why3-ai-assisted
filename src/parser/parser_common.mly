@@ -179,7 +179,7 @@
 
   let re_pat pat d = { pat with pat_desc = d }
 
-  let rec simplify_let_pattern ?loc kind d pat e =
+  let simplify_let_pattern ?loc kind d pat e =
     let cast e ty = { e with expr_desc = Ecast (e,ty) } in
     let rec unfold gh d p = match p.pat_desc with
       | Pparen p | Pscope (_,p) -> unfold gh d p

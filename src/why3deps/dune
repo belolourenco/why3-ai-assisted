@@ -1,0 +1,9 @@
+(library
+ (name why3deps)
+ (package why3)
+ (libraries
+  (select myre.ml from
+   (re  -> myre.real.ml)
+   (str -> myre.dummy.ml))))
+
+(include_subdirs no)

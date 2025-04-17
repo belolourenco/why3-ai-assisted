@@ -1,0 +1,18 @@
+(library
+ (public_name why3)
+ (modules_without_implementation driver_ast protocol)
+ (flags :standard -linkall)
+ (libraries why3deps str dynlink unix zarith menhirLib
+  (select mlmpfr_wrapper.ml from
+   (mlmpfr -> mlmpfr_wrapper.real.ml)
+   (       -> mlmpfr_wrapper.dummy.ml))
+  (select mysexplib.ml from
+   (sexplib -> mysexplib.real.ml)
+   (        -> mysexplib.dummy.ml))
+  (select compress.ml from
+   (camlzip -> compress.z.ml)
+   (        -> compress.none.ml))))
+
+(dirs :standard \ infer bddinfer)
+
+(include_subdirs unqualified)
