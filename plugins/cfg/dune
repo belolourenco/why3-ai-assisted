@@ -10,5 +10,10 @@
  (name cfg)
  (modules_without_implementation cfg_ast)
  (flags (:standard -open Why3))
- (libraries why3 menhirLib)
- (modules :standard \ stackify cfg_stackify))
+ (libraries why3 menhirLib
+  (select stackify.ml from
+   (ocamlgraph -> stackify.real.ml)
+   (           -> stackify.dummy.ml))
+  (select cfg_stackify.ml from
+   (ocamlgraph -> cfg_stackify.real.ml)
+   (           -> cfg_stackify.dummy.ml))))

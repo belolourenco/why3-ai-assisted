@@ -4,6 +4,9 @@
  (libraries
   (select myre.ml from
    (re  -> myre.real.ml)
-   (str -> myre.dummy.ml))))
+   (str -> myre.dummy.ml))
+  (select mygraph.ml from
+   (ocamlgraph -> mygraph.real.ml)
+   (           -> mygraph.dummy.ml))))
 
 (include_subdirs no)
