@@ -32,11 +32,8 @@ let expand_dprintf =
            (Exp.pexp_apply ~loc (test_flag ~loc) [flag])
            (Exp.pexp_apply ~loc (debug_no_expansion ~loc) args)
            None)
-      | other -> None)
+      | _other -> None)
 
 let () =
   Ppxlib.Driver.register_transformation "Debug hook"
     ~rules:[expand_dprintf]
-
-let () =
-  Ppxlib.Driver.run_as_ppx_rewriter ()

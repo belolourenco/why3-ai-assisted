@@ -384,11 +384,13 @@ else
 fi
 
 # ppx
+DEBUGOPTIMPPX="(no_preprocessing)"
 if test "$enable_ocamlfind" = yes; then
   AC_MSG_CHECKING([for ppxlib using ocamlfind])
   PPXLIB=$($OCAMLFIND query ppxlib 2> /dev/null | tr -d '\r')
   if test -n "$PPXLIB"; then
     AC_MSG_RESULT([yes])
+    DEBUGOPTIMPPX="(pps ppx_debug_optim)"
     enable_ppx=yes
   else
     AC_MSG_RESULT([no])
@@ -887,6 +889,7 @@ if test "$enable_statmemprof" = yes; then
 fi
 
 # ppx_sexp_conv (only with ocamlfind)
+SEXPLIBPPXDUNE="(no_preprocessing)"
 SEXPLIBPPX=
 SEXPLIB=
 if test "$enable_sexp" = no; then
@@ -913,6 +916,7 @@ else
         done
     fi
     if test "$enable_sexp" = yes; then
+        SEXPLIBPPXDUNE="(pps ppx_sexp_conv)"
         SEXPLIBPPX="ppx_sexp_conv"
         SEXPLIB="sexplib"
     fi
@@ -1189,6 +1193,8 @@ AC_SUBST(enable_ppx)
 AC_SUBST(enable_sexp)
 AC_SUBST(SEXPLIB)
 AC_SUBST(SEXPLIBPPX)
+AC_SUBST(SEXPLIBPPXDUNE)
+AC_SUBST(DEBUGOPTIMPPX)
 
 AC_SUBST(MLMPFR)
 AC_SUBST(enable_mpfr)
@@ -1265,6 +1271,7 @@ AC_SUBST(JAVA)
 # Finally create the Makefile from Makefile.in
 AC_CONFIG_FILES(Makefile)
 AC_CONFIG_FILES(src/config.sh)
+AC_CONFIG_FILES(src/dune)
 AC_CONFIG_FILES(lib/why3/META)
 AC_CONFIG_FILES(.merlin)
 AC_CONFIG_FILES(src/jessie/Makefile)
@@ -1275,6 +1282,7 @@ AC_CONFIG_FILES(doc/javaexamples/Makefile)
 AC_CONFIG_COMMANDS([chmod],
 chmod a-w Makefile src/jessie/Makefile;
 chmod a-w src/config.sh;
+chmod a-w src/dune;
 chmod a-w lib/why3/META;
 chmod a-w .merlin;
 chmod a-w src/jessie/Makefile;

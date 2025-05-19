@@ -2,6 +2,10 @@
  (public_name why3)
  (modules_without_implementation driver_ast protocol)
  (flags :standard -linkall)
+ (preprocess
+  (per_module
+   (@DEBUGOPTIMPPX@ reflection mlinterp)
+   (@SEXPLIBPPXDUNE@ ptree dterm ident decl expr ity loc constant number bigInt)))
  (libraries why3deps str dynlink unix zarith menhirLib
   (select mlmpfr_wrapper.ml from
    (mlmpfr -> mlmpfr_wrapper.real.ml)

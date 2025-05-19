@@ -234,7 +234,7 @@ GENERATED =
 .PHONY: dune.install_local dune.install dune.byte dune.opt
 
 # Files created by this Makefile which must exists before calling dune
-DUNEDEPS = src/util/config.ml src/parser/parser_messages.ml
+DUNEDEPS = src/dune src/util/config.ml src/parser/parser_messages.ml
 
 FORCE:
 
@@ -1678,6 +1678,7 @@ AUTOCONF_FILES = \
 	Makefile \
 	src/jessie/Makefile \
 	src/config.sh \
+	src/dune \
 	.merlin \
 	src/jessie/.merlin \
 	lib/why3/META \
