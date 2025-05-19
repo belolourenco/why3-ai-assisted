@@ -6,7 +6,7 @@
   (per_module
    (@DEBUGOPTIMPPX@ reflection mlinterp)
    (@SEXPLIBPPXDUNE@ ptree dterm ident decl expr ity loc constant number bigInt)))
- (libraries why3deps str dynlink unix zarith menhirLib
+ (libraries why3deps str dynlink unix zarith menhirLib @INFERLIBDUNE@
   (select mlmpfr_wrapper.ml from
    (mlmpfr -> mlmpfr_wrapper.real.ml)
    (       -> mlmpfr_wrapper.dummy.ml))
@@ -17,6 +17,6 @@
    (camlzip -> compress.z.ml)
    (        -> compress.none.ml))))
 
-(dirs :standard \ infer bddinfer)
+(dirs (:standard \ infer bddinfer) @BDDINFER@)
 
 (include_subdirs unqualified)

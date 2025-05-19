@@ -468,6 +468,8 @@ if test "$enable_bddinfer" = yes; then
       echo "ocamlfind found apron in $INFERINCLUDE"
       INFERLIB="apron"
       INFERPKG="zarith apron apron.polkaMPQ"
+      INFERLIBDUNE="apron apron.polkaMPQ"
+      BDDINFER="bddinfer"
    else
       enable_bddinfer=no
       reason_bddinfer=" (apron not found)"
@@ -1207,6 +1209,8 @@ AC_SUBST(enable_bddinfer)
 AC_SUBST(INFERINCLUDE)
 AC_SUBST(INFERLIB)
 AC_SUBST(INFERPKG)
+AC_SUBST(INFERLIBDUNE)
+AC_SUBST(BDDINFER)
 
 AC_SUBST(enable_zip)
 AC_SUBST(ZIPINCLUDE)
