@@ -10,4 +10,19 @@
  (embed_in_plugin_libraries lablgtk3 lablgtk3-sourceview3)
  (modules gconfig ide_utils why3ide))
 
+(executable
+ (name why3_js)
+ (modes js)
+ (flags :standard -w -32-38 -linkall)
+ (preprocess (pps js_of_ocaml-ppx))
+ (js_of_ocaml
+  (flags --Werror)
+  (compilation_mode whole_program))
+ (libraries why3 js_of_ocaml zarith_stubs_js)
+ (modules why3_js))
+
+(rule
+ (mode (promote (until-clean)))
+ (action (copy why3_js.bc.js why3_js.js)))
+
 (include_subdirs no)

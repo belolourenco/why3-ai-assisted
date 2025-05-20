@@ -1191,24 +1191,6 @@ install_local:: bin/why3doc.$(SHAREDBEST)
 # trywhy3
 #########
 
-ifeq ($(DEBUGJS),yes)
- JSOO_DEBUG=--pretty --debug-info --source-map
- JS_MAPS=trywhy3.map why3_worker.map
-else
- JSOO_DEBUG=
- JS_MAPS=
-endif
-
-TRYWHY3_FILES = json_base json_parser json_lexer bindings shortener trywhy3 why3_worker worker_proto
-
-TRYWHY3MODULES = $(addprefix src/trywhy3/, $(TRYWHY3_FILES))
-
-TRYWHY3DEP = $(addsuffix .dep, $(TRYWHY3MODULES))
-TRYWHY3CMO = $(addsuffix .cmo, $(TRYWHY3MODULES))
-TRYWHY3CMI = $(addsuffix .cmi, $(TRYWHY3MODULES))
-
-$(TRYWHY3DEP) $(TRYWHY3CMO) $(TRYWHY3CMI): INCLUDES += -I src/trywhy3
-
 TRYWHY3_COMMON_PACK = \
 	trywhy3.js trywhy3.html trywhy3.css trywhy3_custom.css \
 	help_whyml.html help_python.html help_micro-C.html \
@@ -1237,50 +1219,14 @@ trywhy3-full.tar.gz: $(addprefix src/trywhy3/, $(TRYWHY3_FULL_PACK))
 
 trywhy3: src/trywhy3/trywhy3.js src/trywhy3/why3_worker.js
 
-src/trywhy3/trywhy3.js: src/trywhy3/trywhy3.byte
-	$(SHOW) 'Js_of_ocaml $<'
-	$(HIDE)js_of_ocaml $(JSOO_DEBUG) --Werror $<
-
-src/trywhy3/trywhy3.byte: $(addprefix src/trywhy3/, json_base.cmo json_parser.cmo json_lexer.cmo bindings.cmo worker_proto.cmo shortener.cmo trywhy3.cmo)
-	$(SHOW) 'Linking  $@'
-	$(HIDE)$(OCAMLFIND) ocamlc -o $@ -package js_of_ocaml -package menhirLib -linkpkg $^
-
-src/trywhy3/why3_worker.js: src/trywhy3/why3_worker.byte src/trywhy3/trywhy3.conf src/trywhy3/try_alt_ergo.drv
-	$(SHOW) 'Js_of_ocaml $<'
-	$(HIDE)js_of_ocaml $(JSOO_DEBUG) --Werror -I . -I src/trywhy3 \
-	  --extern-fs --file=trywhy3.conf:/ --file=try_alt_ergo.drv:/ \
-	  `find stdlib -name "*.mlw" -exec printf " --file=%s:/%s" {} {} ";"` \
-	  +dynlink.js +toplevel.js +zarith_stubs_js/biginteger.js +zarith_stubs_js/runtime.js $<
-
-src/trywhy3/why3_worker.byte: $(WHY3CMA) $(PYTHONCMO) $(MICROCCMO) \
-		$(addprefix src/trywhy3/, bindings.cmo worker_proto.cmo why3_worker.cmo)
-	$(SHOW) 'Linking  $@'
-	$(HIDE)$(OCAMLFIND) ocamlc $(filter-out -thread,$(BFLAGS)) -package js_of_ocaml -o $@ -linkpkg $^
-
-$(addprefix src/trywhy3/, worker_proto.cmo why3_worker.cmo): BFLAGS += -package js_of_ocaml
-
-$(addprefix src/trywhy3/, bindings.cmo trywhy3.cmo): BFLAGS += -package js_of_ocaml -package js_of_ocaml-ppx
-
-TRYWHY3JSON_FILES = json_base json_parser json_lexer
-TRYWHY3JSON = $(TRYWHY3JSON_FILES:%=src/trywhy3/%.ml) $(TRYWHY3JSON_FILES:%=src/trywhy3/%.mli)
-
-$(TRYWHY3JSON): src/trywhy3/%: src/util/%
-	cp $< $@
-
-GENERATED += $(TRYWHY3JSON)
-
-$(TRYWHY3DEP): $(TRYWHY3JSON)
-
-MAKEINC += $(TRYWHY3DEP)
+# TODO: really use grouped target ?
+src/trywhy3/trywhy3.js src/trywhy3/why3_worker.js &: FORCE $(DUNEDEPS)
+	dune build --root . @trywhy3
 
 clean-trywhy3:
-	rm -f src/trywhy3/trywhy3.js src/trywhy3/trywhy3.byte \
-	  src/trywhy3/why3_worker.js src/trywhy3/why3_worker.byte \
-	  trywhy3.tar.gz
+	rm -f trywhy3.tar.gz
 
 clean:: clean-trywhy3
-
-CLEANDIRS += src/trywhy3
 
 
 #########
@@ -1289,21 +1235,10 @@ CLEANDIRS += src/trywhy3
 
 ifeq (@enable_web_ide@,yes)
 
-src/ide/why3_js.cmo: BFLAGS += -package js_of_ocaml -package js_of_ocaml-ppx
-
-src/ide/why3_js.byte: lib/why3/why3.cma src/ide/why3_js.cmo
-	$(SHOW) 'Linking  $@'
-	$(HIDE)$(OCAMLFIND) ocamlc -package js_of_ocaml \
-	  $(filter-out -thread,$(BFLAGS)) -o $@ -linkpkg $(BLINKFLAGS) $^
-
-src/ide/why3_js.js: src/ide/why3_js.byte
-	$(SHOW) 'Js_of_ocaml $<'
-	$(HIDE)js_of_ocaml --Werror +dynlink.js +toplevel.js +zarith_stubs_js/biginteger.js +zarith_stubs_js/runtime.js $<
+src/ide/why3_js.js: FORCE $(DUNEDEPS)
+	dune build --root . $@
 
 web_ide: src/ide/why3_js.js
-
-opt: bin/why3webserver.cmxs
-byte: bin/why3webserver.cma src/ide/why3_js.cmo
 
 endif
 

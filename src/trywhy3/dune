@@ -1,1 +1,70 @@
 (include_subdirs no)
+
+(rule
+ (action (copy ../util/json_base.ml json_base.ml)))
+
+(rule
+ (action (copy ../util/json_base.mli json_base.mli)))
+
+(rule
+ (action (copy ../util/json_parser.ml json_parser.ml)))
+
+(rule
+ (action (copy ../util/json_parser.mli json_parser.mli)))
+
+(rule
+ (action (copy ../util/json_lexer.ml json_lexer.ml)))
+
+(rule
+ (action (copy ../util/json_lexer.mli json_lexer.mli)))
+
+; glob_files_rec and find are doing the same work, but ...
+(rule
+ (deps (glob_files_rec ../../stdlib/*.mlw))
+ (action
+  (with-stdout-to flags.inc
+   (chdir ../..
+    (progn
+     (echo "(\n")
+     (run find stdlib -name *.mlw -exec printf " --file=%\%{dep:../../%s}:/%s\n" {} {} ";")
+     (echo ")\n"))))))
+
+(library
+ (name trywhy3_shared)
+ (modules bindings worker_proto)
+ (wrapped false)
+ (preprocess (pps js_of_ocaml-ppx))
+ (libraries js_of_ocaml))
+
+(executable
+ (name trywhy3)
+ (modes js)
+ (preprocess (pps js_of_ocaml-ppx))
+ (js_of_ocaml
+  (flags --Werror)
+  (compilation_mode whole_program))
+ (libraries trywhy3_shared js_of_ocaml menhirLib)
+ (modules json_base json_parser json_lexer shortener trywhy3))
+
+(rule
+ (alias trywhy3)
+ (mode (promote (until-clean)))
+ (action (copy trywhy3.bc.js trywhy3.js)))
+
+(executable
+ (name why3_worker)
+ (modes js)
+ (flags :standard -linkall)
+ (js_of_ocaml
+  (flags --Werror +dynlink.js +toplevel.js
+     --extern-fs --file=%{dep:trywhy3.conf}:/
+     --file=%{dep:try_alt_ergo.drv}:/
+     (:include flags.inc))
+  (compilation_mode whole_program))
+ (libraries trywhy3_shared python microc why3 zarith_stubs_js)
+ (modules why3_worker))
+
+(rule
+ (alias trywhy3)
+ (mode (promote (until-clean)))
+ (action (copy why3_worker.bc.js why3_worker.js)))
