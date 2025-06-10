@@ -1,7 +1,7 @@
 # If you modify this file, make sure to update the BUILD_IMAGE variable in `.gitlab-ci.yml`.
 # Follow the detailed instructions given in `ci.md`.
 
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 USER root
 
@@ -9,7 +9,7 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git graphviz libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-nox opam python3-sexpdata unzip wget xauth xvfb && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates ocaml-dune git graphviz libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-nox opam python3-sexpdata rsync unzip wget xauth xvfb && \
     apt-get clean
 
 # install provers
@@ -72,7 +72,7 @@ ENV HOME /home/why3
 WORKDIR /home/why3
 
 # install opam
-ENV OPAM_PACKAGES="menhir mlmpfr.4.1.0+bugfix2 lablgtk3-sourceview3 zarith camlzip conf-autoconf"
+ENV OPAM_PACKAGES="menhir mlmpfr.4.2.0 lablgtk3-sourceview3 zarith camlzip conf-autoconf"
 RUN opam init -y --no-setup -j4 --bare --disable-sandboxing && \
     opam switch create latest ocaml-base-compiler.5.2.1 && \
     opam switch create bench  ocaml-base-compiler.4.09.1 && \
