@@ -42,6 +42,7 @@ depends: [
   "conf-autoconf" {build & dev}
   "ocaml" {>= "4.09"}
   "ocamlfind" {build}
+  "dune" {>= "3.17"}
   "why3" {= version}
   "lablgtk3"
   "lablgtk3-sourceview3"
