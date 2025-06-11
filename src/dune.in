@@ -1,3 +1,13 @@
+; Not using (select) because the incompatibility between mlmpfr and trywhy3
+; prompts us to support deactivation of mlmpfr even if installed.
+(rule
+ (enabled_if (= @enable_mpfr@ yes))
+ (action (copy mlmpfr_wrapper.real.ml mlmpfr_wrapper.ml)))
+
+(rule
+ (enabled_if (<> @enable_mpfr@ yes))
+ (action (copy mlmpfr_wrapper.dummy.ml mlmpfr_wrapper.ml)))
+
 (library
  (public_name why3)
  (modules_without_implementation driver_ast protocol)
@@ -6,10 +16,7 @@
   (per_module
    (@DEBUGOPTIMPPX@ reflection mlinterp)
    (@SEXPLIBPPXDUNE@ ptree dterm ident decl expr ity loc constant number bigInt)))
- (libraries why3deps str dynlink unix zarith menhirLib @INFERLIBDUNE@
-  (select mlmpfr_wrapper.ml from
-   (mlmpfr -> mlmpfr_wrapper.real.ml)
-   (       -> mlmpfr_wrapper.dummy.ml))
+ (libraries why3deps str dynlink unix zarith menhirLib @INFERLIBDUNE@ @MLMPFR@
   (select mysexplib.ml from
    (sexplib -> mysexplib.real.ml)
    (        -> mysexplib.dummy.ml))
