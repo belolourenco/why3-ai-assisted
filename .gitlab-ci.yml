@@ -42,6 +42,8 @@ sphinx-image:
 .docker_template:
   image: "$BUILD_IMAGE"
   dependencies: []
+  variables:
+    FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
   tags:
     - medium
 
