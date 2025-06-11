@@ -40,7 +40,7 @@ build: [
    "--disable-stackify" {!ocamlgraph:installed | ocaml:version < "4.12"}
    "--enable-stackify" {ocamlgraph:installed & ocaml:version >= "4.12"}
    "--disable-ide"]
-  [make "-j%{jobs}%" "all" "byte"]
+  [make "DUNEJOBS=%{jobs}%" "all" "byte"]
   [make "doc" "stdlibdoc" "apidoc"] {with-doc}
 ]
 

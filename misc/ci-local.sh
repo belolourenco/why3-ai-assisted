@@ -20,7 +20,7 @@ section_start configure Configuration
 section_stop configure
 
 section_start build Building
-make -j2
+make DUNEJOBS=2
 section_stop build
 
 while test $# -gt 0

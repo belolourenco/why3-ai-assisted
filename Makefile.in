@@ -233,23 +233,28 @@ GENERATED =
 
 .PHONY: dune.install_local dune.install dune.byte dune.opt
 
+DUNE = dune
+DUNEFLAGS = --root .
+DUNEJOBS = auto
+DUNEBUILD = $(DUNE) build $(DUNEFLAGS) -j $(DUNEJOBS)
+
 # Files created by this Makefile which must exists before calling dune
 DUNEDEPS = src/dune src/util/config.ml src/parser/parser_messages.ml
 
 FORCE:
 
 dune.install_local: $(DUNEDEPS)
-	dune build --root . @install_local
+	$(DUNEBUILD) @install_local
 
 # Nothing but the why3 library for the moment
 dune.install: $(DUNEDEPS)
-	dune build --root . @install
+	$(DUNEBUILD) @install
 
 dune.byte: $(DUNEDEPS)
-	dune build --root . @byte
+	$(DUNEBUILD) @byte
 
 dune.opt: $(DUNEDEPS)
-	dune build --root . @opt
+	$(DUNEBUILD) @opt
 
 byte: dune.byte
 opt:  dune.opt
@@ -257,7 +262,7 @@ opt:  dune.opt
 install_local:: dune.install_local
 
 clean::
-	dune clean --root .
+	$(DUNE) clean $(DUNEFLAGS)
 
 ##############
 # Why3 library
@@ -344,8 +349,8 @@ uninstall-lib:
 uninstall:: uninstall-lib
 
 install-lib::
-	dune install --prefix $(prefix) --libdir $(OCAMLINSTALLLIB) \
-		--section lib,libexec why3
+	$(DUNE) install $(DUNEFLAGS) --prefix $(prefix) \
+		--libdir $(OCAMLINSTALLLIB) --section lib,libexec why3
 
 ##################
 # Why3 emacs mode
@@ -1221,7 +1226,7 @@ trywhy3: src/trywhy3/trywhy3.js src/trywhy3/why3_worker.js
 
 # TODO: really use grouped target ?
 src/trywhy3/trywhy3.js src/trywhy3/why3_worker.js &: FORCE $(DUNEDEPS)
-	dune build --root . @trywhy3
+	$(DUNEBUILD) @trywhy3
 
 clean-trywhy3:
 	rm -f trywhy3.tar.gz
@@ -1236,7 +1241,7 @@ clean:: clean-trywhy3
 ifeq (@enable_web_ide@,yes)
 
 src/ide/why3_js.js: FORCE $(DUNEDEPS)
-	dune build --root . $@
+	$(DUNEBUILD) $@
 
 web_ide: src/ide/why3_js.js
 
@@ -1297,7 +1302,7 @@ test-itp.opt: src/printer/itp.ml lib/why3/why3.cmxa
 
 test-api-%:
 	$(HIDE)mkdir -p examples/use_api/results
-	$(HIDE)(dune exec --display=quiet -- examples/use_api/$*.exe | \
+	$(HIDE)($(DUNE) exec $(DUNEFLAGS) --display=quiet -- examples/use_api/$*.exe | \
 		    sed -e 's/^\(Versions of Alt-Ergo found: \).*$$/\1<hidden>/' \
 			-e 's/0\.0[0-9]/<hidden>/g;s/[0-9]\+ steps/<hidden> steps/' \
 			> examples/use_api/results/$@.stdout ) \

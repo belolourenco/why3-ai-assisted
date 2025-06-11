@@ -33,7 +33,7 @@ build: [
    "--disable-re"
    "--enable-ocamlfind"
    "--enable-ide"]
-  [make "-j%{jobs}%" "ide"]
+  [make "DUNEJOBS=%{jobs}%" "ide"]
 ]
 
 install: [make "install-ide"]
