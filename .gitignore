@@ -105,9 +105,6 @@ why3.conf
 /lib/why3server
 /lib/why3server.exe
 
-# /lib/why3/
-/lib/why3/META
-
 # /share/
 /share/emacs/semantic.cache
 /share/Makefile.config

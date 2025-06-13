@@ -1622,7 +1622,6 @@ AUTOCONF_FILES = \
 	src/dune \
 	.merlin \
 	src/jessie/.merlin \
-	lib/why3/META \
 	lib/coq/version \
 	lib/pvs/version
 
