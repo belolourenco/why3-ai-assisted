@@ -146,20 +146,13 @@ pvsbin/
 /lib/isabelle/bv
 
 # /src/driver/
-/src/driver/driver_parser.conflicts
 
 # /src/parser/
-/src/parser/parser.conflicts
 /src/parser/handcrafted.messages.temp
 /src/parser/parser_messages.ml
 
-# /src/ppx
-/src/ppx/ppx_debug_optim
-/src/ppx/ppx_debug_optim.exe
-
 # /src/util/
 /src/util/config.ml
-/src/util/json_parser.conflicts
 
 # /src/tools
 /src/tools/why3pp_sexp.ml
@@ -170,20 +163,15 @@ pvsbin/
 /src/ide/why3_js.js
 
 # /plugins/tptp/
-/plugins/tptp/tptp_parser.conflicts
 
 # /plugins/python/
-/plugins/python/py_parser.conflicts
 
 # /plugins/microc/
 /plugins/microc/test/
-/plugins/microc/mc_parser.conflicts
 
 # /plugins/coma/
-/plugins/coma/coma_parser.conflicts
 
 # /plugins/cfg/
-/plugins/cfg/cfg_parser.conflicts
 
 # /drivers
 /drivers/coq-realizations.aux
@@ -291,4 +279,4 @@ trywhy3.tar.gz
 
 # Opam
 
-_opam/
+/_opam
