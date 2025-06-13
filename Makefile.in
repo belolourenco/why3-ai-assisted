@@ -233,7 +233,7 @@ GENERATED =
 
 .PHONY: dune.install_local dune.install dune.byte dune.opt
 
-DUNE = dune
+DUNE = @DUNE@
 DUNEFLAGS = --root .
 DUNEJOBS = auto
 DUNEBUILD = $(DUNE) build $(DUNEFLAGS) -j $(DUNEJOBS)

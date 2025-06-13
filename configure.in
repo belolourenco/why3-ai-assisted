@@ -312,6 +312,15 @@ if test "$OCAMLDOC" != true ; then
     fi
 fi
 
+AC_CHECK_PROG(DUNE,dune,dune,no)
+if test "$DUNE" = no ; then
+   AC_MSG_ERROR([cannor find dune.])
+fi
+
+DUNEVERSION=`$DUNE --version`
+AX_VERSION_GE([$DUNEVERSION], 3.17.0, [],
+  [AC_MSG_ERROR([You need Dune 3.17.0 or higher.])])
+
 AC_CHECK_PROG(MENHIR,menhir,menhir,no)
 if test "$MENHIR" = no ; then
    AC_MSG_ERROR([cannot find menhir.])
