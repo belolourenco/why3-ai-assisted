@@ -2,7 +2,7 @@
 
 (menhir
  (modules py_parser)
- (flags --table --strict)
+ (flags --table --strict --explain)
  (infer false))
 
 (library

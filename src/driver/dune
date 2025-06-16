@@ -3,4 +3,4 @@
 (menhir
  (modules driver_parser)
  (infer false)
- (flags --table --strict))
+ (flags --table --strict --explain))

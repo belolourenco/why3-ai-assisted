@@ -81,11 +81,11 @@
 (rule
  (alias byte)
  (mode (promote (until-clean)))
- (enabled_if %{lib-available:ocamlgraph}) ; ocamlgraph is the reason hypothesis_selection might not be built
+ (enabled_if (= @enable_hypothesis_selection@ yes))
  (action (copy ../../plugins/transform/hypothesis_selection.cma hypothesis_selection.cma)))
 
 (rule
  (alias opt)
  (mode (promote (until-clean)))
- (enabled_if %{lib-available:ocamlgraph}) ; ocamlgraph is the reason hypothesis_selection might not be built
+ (enabled_if (= @enable_hypothesis_selection@ yes))
  (action (copy ../../plugins/transform/hypothesis_selection.cmxs hypothesis_selection.cmxs)))

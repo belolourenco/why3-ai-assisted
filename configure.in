@@ -318,8 +318,8 @@ if test "$DUNE" = no ; then
 fi
 
 DUNEVERSION=`$DUNE --version`
-AX_VERSION_GE([$DUNEVERSION], 3.17.0, [],
-  [AC_MSG_ERROR([You need Dune 3.17.0 or higher.])])
+AX_VERSION_GE([$DUNEVERSION], 2.9.0, [],
+  [AC_MSG_ERROR([You need Dune 2.9.0 or higher.])])
 
 AC_CHECK_PROG(MENHIR,menhir,menhir,no)
 if test "$MENHIR" = no ; then
@@ -1287,6 +1287,8 @@ AC_CONFIG_FILES(src/config.sh)
 AC_CONFIG_FILES(src/dune)
 AC_CONFIG_FILES(src/jessie/Makefile)
 AC_CONFIG_FILES(src/jessie/.merlin)
+AC_CONFIG_FILES(bin/dune)
+AC_CONFIG_FILES(lib/plugins/dune)
 AC_CONFIG_FILES(lib/coq/version lib/pvs/version)
 AC_CONFIG_FILES(bench/java/Makefile)
 AC_CONFIG_FILES(doc/javaexamples/Makefile)
@@ -1296,6 +1298,8 @@ chmod a-w src/config.sh;
 chmod a-w src/dune;
 chmod a-w src/jessie/Makefile;
 chmod a-w src/jessie/.merlin;
+chmod a-w bin/dune
+chmod a-w lib/plugins/dune
 chmod a-w lib/coq/version lib/pvs/version;
 chmod u+x src/config.sh)
 

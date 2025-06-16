@@ -164,10 +164,16 @@
 ; call the file why3ide.cmxs, even in the bytecode-only case, where it is
 ; really a cma file
 (rule
- (aliases byte opt)
+ (alias byte)
  (mode (promote (until-clean)))
- (enabled_if (and %{lib-available:lablgtk3} %{lib-available:lablgtk3-sourceview3}))
+ (enabled_if (= @enable_ide@ yes))
  (action (copy ../src/ide/why3ide.cmxs why3ide%{ext_plugin})))
+
+; factor this with the above using (aliases) field when available (dune 3.5)
+(alias
+ (name opt)
+ (deps why3ide.cmxs)
+ (enabled_if (= @enable_ide@ yes)))
 
 (rule
  (alias byte)

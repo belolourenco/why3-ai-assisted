@@ -20,7 +20,10 @@
 
 ; glob_files_rec and find are doing the same work, but ...
 (rule
- (deps (glob_files_rec ../../stdlib/*.mlw))
+ (deps
+  (glob_files ../../stdlib/*.mlw)
+  (glob_files ../../stdlib/mach/*.mlw)
+  (glob_files ../../stdlib/mach/java/*.mlw)) ; use glob_files_rec with dune 3.0
  (action
   (with-stdout-to flags.inc
    (chdir ../..
@@ -41,8 +44,7 @@
  (modes js)
  (preprocess (pps js_of_ocaml-ppx))
  (js_of_ocaml
-  (flags --Werror)
-  (compilation_mode whole_program))
+  (flags --Werror))
  (libraries trywhy3_shared js_of_ocaml menhirLib)
  (modules json_base json_parser json_lexer shortener trywhy3))
 
@@ -59,8 +61,7 @@
   (flags --Werror +dynlink.js +toplevel.js
      --extern-fs --file=%{dep:trywhy3.conf}:/
      --file=%{dep:try_alt_ergo.drv}:/
-     (:include flags.inc))
-  (compilation_mode whole_program))
+     (:include flags.inc)))
  (libraries trywhy3_shared python microc why3 zarith_stubs_js)
  (modules why3_worker))
 

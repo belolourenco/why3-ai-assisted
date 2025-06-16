@@ -53,7 +53,7 @@ depends: [
   "conf-autoconf" {build & dev}
   "ocaml" {>= "4.09"}
   "ocamlfind" {build}
-  "dune" {>= "3.17"}
+  "dune" {>= "2.9"}
   "menhir" {>= "20200211"}
   "zarith"
 ]

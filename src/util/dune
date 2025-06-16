@@ -2,4 +2,4 @@
 
 (menhir
  (modules json_parser)
- (flags --table --strict))
+ (flags --table --strict --explain))

@@ -1621,6 +1621,8 @@ AUTOCONF_FILES = \
 	src/config.sh \
 	src/dune \
 	src/jessie/.merlin \
+	bin/dune \
+	lib/plugins/dune \
 	lib/coq/version \
 	lib/pvs/version
 

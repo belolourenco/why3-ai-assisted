@@ -19,8 +19,7 @@
  (flags :standard -w -32-38 -linkall)
  (preprocess (pps js_of_ocaml-ppx))
  (js_of_ocaml
-  (flags --Werror)
-  (compilation_mode whole_program))
+  (flags --Werror))
  (libraries why3 js_of_ocaml zarith_stubs_js)
  (modules why3_js))
 

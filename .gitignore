@@ -81,6 +81,7 @@ why3.conf
 /bin/isabelle_client.opt
 /bin/isabelle_client.byte
 /bin/isabelle_client
+/bin/dune
 
 # /doc/
 /doc/*whizzy*
@@ -103,6 +104,7 @@ why3.conf
 /lib/why3cpulimit.exe
 /lib/why3server
 /lib/why3server.exe
+/lib/plugins/dune
 
 # /share/
 /share/emacs/semantic.cache
