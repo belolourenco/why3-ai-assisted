@@ -23,7 +23,6 @@ why3.conf
 .*.aux
 *.elc
 *.summary
-.merlin
 \#*\#
 
 # /
@@ -264,6 +263,7 @@ pvsbin/
 /src/ide/ace-builds
 
 # jessie3
+/src/jessie/.merlin
 /src/jessie/config.log
 /src/jessie/Makefile
 /src/jessie/literals.ml
