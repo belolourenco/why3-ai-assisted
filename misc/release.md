@@ -32,6 +32,7 @@
   - or just move to it, `git checkout bugfix/v$VERSION`
   - update the first line of `configure.in` using `$RELEASE`
   - update the `version` and `release` fields in `doc/conf.py` around line 60
+  - update the `version` field in `dune-project`
   - add the release date to `CHANGES.md`
   - update the date in `doc/index.rst`
   - make a last commit
