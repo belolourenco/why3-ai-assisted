@@ -8,6 +8,22 @@
  (enabled_if (<> @enable_mpfr@ yes))
  (action (copy mlmpfr_wrapper.dummy.ml mlmpfr_wrapper.ml)))
 
+(rule
+ (enabled_if (= @enable_zip@ yes))
+ (action (copy compress.z.ml compress.ml)))
+
+(rule
+ (enabled_if (<> @enable_zip@ yes))
+ (action (copy compress.none.ml compress.ml)))
+
+(rule
+ (enabled_if (= @enable_sexp@ yes))
+ (action (copy mysexplib.real.ml mysexplib.ml)))
+
+(rule
+ (enabled_if (<> @enable_sexp@ yes))
+ (action (copy mysexplib.dummy.ml mysexplib.ml)))
+
 (library
  (public_name why3)
  (modules_without_implementation driver_ast protocol)
@@ -17,12 +33,7 @@
    (@DEBUGOPTIMPPX@ reflection mlinterp)
    (@SEXPLIBPPXDUNE@ ptree dterm ident decl expr ity loc constant number bigInt)))
  (libraries why3deps str dynlink unix zarith menhirLib @INFERLIBDUNE@ @MLMPFR@
-  (select mysexplib.ml from
-   (sexplib -> mysexplib.real.ml)
-   (        -> mysexplib.dummy.ml))
-  (select compress.ml from
-   (camlzip -> compress.z.ml)
-   (        -> compress.none.ml))))
+  @ZIPLIBDUNE@ @SEXPLIB@))
 
 (dirs (:standard \ infer bddinfer) @BDDINFER@)
 

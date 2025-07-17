@@ -1,0 +1,17 @@
+(rule
+ (enabled_if (= @enable_re@ yes))
+ (action (copy myre.real.ml myre.ml)))
+
+(rule
+ (enabled_if (<> @enable_re@ yes))
+ (action (copy myre.dummy.ml myre.ml)))
+
+(library
+ (name why3deps)
+ (package why3)
+ (libraries @RELIB@
+  (select mygraph.ml from
+   (ocamlgraph -> mygraph.real.ml)
+   (           -> mygraph.dummy.ml))))
+
+(include_subdirs no)

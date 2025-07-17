@@ -1640,9 +1640,11 @@ AUTOCONF_FILES = \
 	src/jessie/Makefile \
 	src/config.sh \
 	src/dune \
+	src/why3deps/dune \
 	src/jessie/.merlin \
 	bin/dune \
 	lib/plugins/dune \
+	plugins/cfg/dune \
 	lib/coq/version \
 	lib/pvs/version
 

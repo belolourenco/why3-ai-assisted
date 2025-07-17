@@ -116,6 +116,7 @@ why3.conf
 # /src/
 /src/config.sh
 /src/dune
+/src/why3deps/dune
 
 # Coq
 /lib/coq/version
@@ -170,6 +171,7 @@ pvsbin/
 # /plugins/coma/
 
 # /plugins/cfg/
+/plugins/cfg/dune
 
 # /drivers
 /drivers/coq-realizations.aux
