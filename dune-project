@@ -5,3 +5,9 @@
 
 (package
  (name why3))
+
+(package
+ (name why3-ide))
+
+(package
+ (name why3-coq))

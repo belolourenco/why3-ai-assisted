@@ -231,12 +231,31 @@ GENERATED =
 # Dune
 ##############
 
-.PHONY: dune.install_local dune.install dune.byte dune.opt
+.PHONY: dune.install_local dune.lib dune.byte dune.opt
+
+DUNEPKGS =
+
+ifeq (@enable_why3_lib@,yes)
+DUNEPKGS += why3
+endif
+
+ifeq (@enable_ide@,yes)
+DUNEPKGS += why3-ide
+endif
+
+ifeq (@enable_coq_libs@,yes)
+DUNEPKGS += why3-coq
+endif
+
+comma:=,
+empty:=
+space:= $(empty) # space value
 
 DUNE = @DUNE@
-DUNEFLAGS = --root .
+DFLAGS = --root . --only-packages=$(subst $(space),$(comma),$(DUNEPKGS))
+DUNEFLAGS =
 DUNEJOBS = auto
-DUNEBUILD = $(DUNE) build $(DUNEFLAGS) -j $(DUNEJOBS)
+DUNEBUILD = $(DUNE) build $(DFLAGS) $(DUNEFLAGS) -j $(DUNEJOBS)
 
 # Files created by this Makefile which must exists before calling dune
 DUNEDEPS = src/dune src/util/config.ml src/parser/parser_messages.ml
@@ -246,9 +265,9 @@ FORCE:
 dune.install_local: $(DUNEDEPS)
 	$(DUNEBUILD) @install_local
 
-# Nothing but the why3 library for the moment
-dune.install: $(DUNEDEPS)
-	$(DUNEBUILD) @install
+# why3.install contains nothing but the why3 library for the moment
+dune.lib: $(DUNEDEPS)
+	$(DUNEBUILD) why3.install
 
 dune.byte: $(DUNEDEPS)
 	$(DUNEBUILD) @byte
@@ -292,8 +311,8 @@ contains an updated version that must be checked before replacing 'src/parser/ha
 clean::
 	rm -f src/parser/parser_messages.ml.tmp src/parser/handcrafted.messages.temp
 
-byte: dune.install
-opt:  dune.install
+byte: dune.lib
+opt:  dune.lib
 
 # clean and depend
 
@@ -349,7 +368,7 @@ uninstall-lib:
 uninstall:: uninstall-lib
 
 install-lib::
-	$(DUNE) install $(DUNEFLAGS) --prefix $(prefix) \
+	$(DUNE) install --root . --prefix $(prefix) \
 		--libdir $(OCAMLINSTALLLIB) --section lib,libexec why3
 
 ##################
@@ -562,7 +581,8 @@ ifeq (@enable_ide@,yes)
 bin/why3ide.cmxs: dune.opt
 bin/why3ide.cma:  dune.byte
 
-ide: bin/why3ide.$(SHAREDBEST)
+ide: $(DUNEDEPS)
+	$(DUNEBUILD) bin/why3ide.$(SHAREDBEST)
 
 uninstall-ide:
 	rm -f $(TOOLDIR)/why3ide.$(SHAREDBEST)
