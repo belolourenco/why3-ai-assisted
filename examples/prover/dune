@@ -2,6 +2,7 @@
  (target prover.ml)
  (deps (glob_files *.mlw))
  (alias extract)
+ (mode fallback)
  (action (run ../../bin/why3.opt -L . --warn-off=unused_variable extract
                 -D ocaml64 -o prover.ml ProverTest.mlw)))
 

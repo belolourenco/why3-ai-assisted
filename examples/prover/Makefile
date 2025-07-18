@@ -28,8 +28,10 @@ main.opt: FORCE
 
 FORCE:
 
-extract:
-	dune build @extract
+extract: prover.ml
+
+prover.ml:
+	$(WHY3) $(WHY3FLAGS) extract -D ocaml64 -o prover.ml ProverTest.mlw
 
 doc:
 
