@@ -249,7 +249,8 @@ endif
 
 comma:=,
 empty:=
-space:= $(empty) # space value
+# space value
+space:= $(empty) $(empty)
 
 DUNE = @DUNE@
 DFLAGS = --root . --only-packages=$(subst $(space),$(comma),$(DUNEPKGS))
@@ -1257,7 +1258,7 @@ src/trywhy3/trywhy3.js: src/trywhy3/trywhy3.byte
 	$(HIDE)js_of_ocaml $(JSOO_DEBUG) --Werror $<
 
 # TODO: really use grouped target ?
-src/trywhy3/trywhy3.byte src/trywhy3/why3_worker.byte &: FORCE $(DUNEDEPS)
+src/trywhy3/trywhy3.byte src/trywhy3/why3_worker.byte: FORCE $(DUNEDEPS)
 	$(DUNEBUILD) @trywhy3
 
 src/trywhy3/why3_worker.js: src/trywhy3/why3_worker.byte src/trywhy3/trywhy3.conf src/trywhy3/try_alt_ergo.drv
