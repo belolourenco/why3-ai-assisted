@@ -1,5 +1,0 @@
-(ocamllex json_lexer lexlib rc)
-
-(menhir
- (modules json_parser)
- (flags --table --strict --explain))

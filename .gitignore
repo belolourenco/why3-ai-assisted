@@ -116,6 +116,7 @@ why3.conf
 # /src/
 /src/config.sh
 /src/dune
+/src/util/dune
 /src/why3deps/dune
 
 # Coq

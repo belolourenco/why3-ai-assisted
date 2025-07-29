@@ -8,7 +8,7 @@
 (*  on linking described in file LICENSE.                           *)
 (********************************************************************)
 
-#13 "src/compress.none.ml"
+#13 "src/why3deps/compress.none.ml"
 let compression_supported = false
 
 module type S = sig
