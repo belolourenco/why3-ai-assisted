@@ -5,7 +5,7 @@ prelude "(set-logic ALL)"
 prelude "(set-info :smt-lib-version 2.6)"
 
 filename "%f-%t-%g.psmt2"
-unknown "^\\(unknown\\|sat\\|Fail\\)$" "\\1"
+unknown "^\\(unknown\\|sat\\|Fail\\|unknown-branch-cut\\)$" "\\1"
 unknown "^(:reason-unknown \\([^)]*\\))$" "\\1"
 time "why3cpulimit time : %s s"
 valid "^unsat$"
