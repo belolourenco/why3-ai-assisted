@@ -16,7 +16,7 @@ mkdir trywhy3 trywhy3/ace-builds trywhy3/ace-builds/src-min-noconflict/
 
 git clone --branch=v2.5.2 --depth=1 https://github.com/OCamlPro/alt-ergo.git
 cd alt-ergo
-opam exec -- make -j4 js-worker
+opam exec -- make -j4 DUNE_FLAGS=--root=. js-worker
 cp alt-ergo-worker.js ../trywhy3/
 cd -
 rm -rf alt-ergo
