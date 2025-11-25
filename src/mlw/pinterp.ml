@@ -391,9 +391,8 @@ let built_in_modules () =
     builtin ["mach"; "int"] "Int63" bounded_int_ops;
   ]
 
-let add_builtin_mo env (Builtin_module {path; name; types; values}) =
+let add_builtin_mo env pm (Builtin_module {path; name; types; values}) =
   let open Pmodule in
-  let pm = (read_module env path name).mod_intf in
   List.iter
     (fun (id, r) ->
       let its =
@@ -408,6 +407,11 @@ let add_builtin_mo env (Builtin_module {path; name; types; values}) =
         with Not_found -> raise (CannotFind (path, name, id)) in
       Hrs.add builtin_progs ps f)
     (values pm)
+
+let add_builtin_mo env (Builtin_module {path; name; _} as bm) =
+  let pm = Pmodule.read_module env path name in
+  add_builtin_mo env pm.Pmodule.mod_intf bm;
+  add_builtin_mo env pm.Pmodule.mod_impl bm
 
 let get_builtin_progs env =
   List.iter (add_builtin_mo env) (built_in_modules ())

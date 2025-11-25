@@ -126,7 +126,16 @@ let do_input f =
   let prog_parsed = Lexer.parse_expr lb in
   let expr = Typing.type_expr_in_muc muc prog_parsed in
 
+  let rsname = "main'execute" in
+  let cexp = Expr.c_fun [] [] [] Ity.Mxs.empty Ity.Mpv.empty expr in
+  let defn, _ = Expr.let_sym (Ident.id_fresh rsname) cexp in
+  let pdecl = Pdecl.create_let_decl defn in
+  let muc = add_pdecl ~vc:false muc pdecl in
+
   let pmod = Pmodule.close_module muc in
+
+  let rs = Pmodule.(ns_find_rs (mod_export_impl pmod) [rsname]) in
+  let expr = Expr.e_app rs [] [] rs.Expr.rs_cty.Ity.cty_result in
 
   (* execute expression *)
   Option.iter Pinterp.init_real !prec;
@@ -147,7 +156,7 @@ let do_input f =
     let metas = !opt_metas in
     let rac = Pinterp.mk_rac ~ignore_incomplete:!opt_rac_ignore_incomplete
         (Rac.Why.mk_check_term_lit config env ~metas ~why_prover ()) in
-    let env = Pinterp.mk_empty_env env pmod.mod_intf in
+    let env = Pinterp.mk_empty_env env pmod.mod_impl in
     let ctx = Pinterp.mk_ctx env ~do_rac:!opt_enable_rac ~rac ~giant_steps:false
         ~compute_term ~limits () in
     let res = Pinterp.exec_global_fundef ctx [] None expr in
