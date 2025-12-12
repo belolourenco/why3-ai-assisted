@@ -200,9 +200,21 @@ let save cont =
   S.save_session cont.Controller_itp.controller_session;
   Debug.dprintf debug " done@."
 
+let pp_status fmt s =
+  match s with
+  | Controller_itp.Removed p -> fprintf fmt "%a removed" Whyconf.print_prover p
+  | Controller_itp.UpgradeProver(p1,p2) ->
+      fprintf fmt "%a -> %a" Whyconf.print_prover p1 Whyconf.print_prover p2
+  | _ -> assert false
+
+let pp_updated_provers fmt l =
+  if l <> [] then
+    fprintf fmt ", updated provers: %a"
+      (Pp.print_list Pp.comma pp_status) l
+
 let run_replay some_merge_miss found_obs cont =
   let session = cont.Controller_itp.controller_session in
-  let final_callback found_upgraded_prover report =
+  let final_callback updated_provers report =
     Debug.dprintf debug "@.";
     let files,n,m =
       S.Hfile.fold (file_statistics session)
@@ -232,12 +244,12 @@ let run_replay some_merge_miss found_obs cont =
       begin
         match !opt_smoke with
         | SD_None ->
-           printf "(replay OK%s%s)@."
-                  (if found_obs then ", obsolete session" else "")
-                  (if found_upgraded_prover then ", upgraded prover" else "");
+           printf "(replay OK%s%a)@."
+             (if found_obs then ", obsolete session" else "")
+             pp_updated_provers updated_provers;
            if !opt_stats && n<m then print_statistics session files;
            Debug.dprintf debug "Everything replayed OK.@.";
-           if !opt_force || found_obs || found_upgraded_prover then save cont;
+           if !opt_force || found_obs || updated_provers <> [] then save cont;
            exit 0
         | _ ->
            printf "No smoke detected@.";

@@ -24,7 +24,7 @@ type proof_attempt_status =
   | Detached (** parent goal has no task, is detached *)
   | InternalFailure of exn (** external proof aborted by internal error *)
   | Uninstalled of Whyconf.prover (** prover is uninstalled *)
-  | UpgradeProver of Whyconf.prover (** prover is upgraded *)
+  | UpgradeProver of Whyconf.prover * Whyconf.prover (** prover is upgraded *)
   | Removed of Whyconf.prover (** prover has been removed or upgraded *)
 
 val print_status : Format.formatter -> proof_attempt_status -> unit
@@ -359,7 +359,7 @@ val replay:
     callback:(proofAttemptID -> proof_attempt_status -> unit) ->
     notification:notifier ->
     final_callback:
-      (bool ->
+      (proof_attempt_status list ->
        (proofNodeID * Whyconf.prover * Call_provers.resource_limits * report) list
        -> unit) -> any: Session_itp.any option ->
     unit

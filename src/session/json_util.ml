@@ -108,9 +108,10 @@ let convert_proof_attempt (pas: proof_attempt_status) =
   | Removed p ->
       ["proof_attempt", String "Removed";
        "prover", convert_prover "prover_" p]
-  | UpgradeProver p ->
+  | UpgradeProver(p1,p2) ->
       ["proof_attempt", String "UpgradeProver";
-       "prover", convert_prover "prover_" p])
+       "old_prover", convert_prover "prover_" p1;
+       "new_prover", convert_prover "prover_" p2])
 
 let convert_update u =
   Record (match u with
@@ -644,8 +645,9 @@ let parse_proof_attempt j =
     let p = get_field j "prover" in
     Uninstalled (parse_prover_from_json "prover_" p)
   | "UpgradeProver" ->
-    let p = get_field j "prover" in
-    UpgradeProver (parse_prover_from_json "prover_" p)
+    let p1 = get_field j "old_prover" in
+    let p2 = get_field j "new_prover" in
+    UpgradeProver (parse_prover_from_json "prover_" p1, parse_prover_from_json "prover_" p2)
   | _ -> raise NotProofAttempt
 
 exception NotUpdate

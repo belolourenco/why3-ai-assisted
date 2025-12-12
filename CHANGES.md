@@ -7,6 +7,10 @@ API
     versions of a module for a better support of the `module Impl : Intf`
     feature :x:
 
+Provers
+  * support for Z3 4.14 (released Mar 7, 2024)
+  * support for E prover 3.x (released ???)
+
 Version 1.8.2, September 16, 2025
 ---------------------------
 
