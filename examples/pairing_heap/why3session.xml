@@ -3,9 +3,9 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="1" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="Z3" version="4.13.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="5" name="CVC5" version="1.2.0" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="pairing_heap.mlw"/>
 <theory name="Heap" proved="true">
@@ -50,10 +50,10 @@
  </transf>
  </goal>
  <goal name="heap&#39;vc" expl="VC for heap" proved="true">
- <proof prover="5"><result status="valid" time="0.027150" steps="2097"/></proof>
+ <proof prover="1"><result status="valid" time="0.027150" steps="2097"/></proof>
  </goal>
  <goal name="heap_mem&#39;vc" expl="VC for heap_mem" proved="true">
- <proof prover="5"><result status="valid" time="0.041768" steps="3340"/></proof>
+ <proof prover="1"><result status="valid" time="0.041768" steps="3344"/></proof>
  </goal>
  <goal name="heap_mem_tree&#39;vc" expl="VC for heap_mem_tree" proved="true">
  <proof prover="0"><result status="valid" time="0.060000" steps="184"/></proof>
@@ -64,7 +64,7 @@
  <goal name="root_is_minimum&#39;vc" expl="VC for root_is_minimum" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="root_is_minimum&#39;vc.0" expl="unreachable point" proved="true">
-  <proof prover="5"><result status="valid" time="0.052465" steps="2379"/></proof>
+  <proof prover="1"><result status="valid" time="0.052465" steps="2379"/></proof>
   </goal>
   <goal name="root_is_minimum&#39;vc.1" expl="postcondition" proved="true">
   <proof prover="4"><result status="valid" time="0.076840" steps="88862"/></proof>
@@ -72,7 +72,7 @@
  </transf>
  </goal>
  <goal name="empty&#39;vc" expl="VC for empty" proved="true">
- <proof prover="5"><result status="valid" time="0.062500" steps="2891"/></proof>
+ <proof prover="1"><result status="valid" time="0.062500" steps="2893"/></proof>
  </goal>
  <goal name="is_empty&#39;vc" expl="VC for is_empty" proved="true">
  <proof prover="0"><result status="valid" time="0.010000" steps="42"/></proof>
@@ -80,16 +80,16 @@
  <goal name="merge&#39;vc" expl="VC for merge" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="merge&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.057565" steps="2599"/></proof>
+  <proof prover="1"><result status="valid" time="0.057565" steps="2599"/></proof>
   </goal>
   <goal name="merge&#39;vc.1" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.000000" steps="21"/></proof>
   </goal>
   <goal name="merge&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.066797" steps="2641"/></proof>
+  <proof prover="1"><result status="valid" time="0.066797" steps="2642"/></proof>
   </goal>
   <goal name="merge&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.045498" steps="4928"/></proof>
+  <proof prover="1"><result status="valid" time="0.045498" steps="4934"/></proof>
   </goal>
   <goal name="merge&#39;vc.4" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.030000" steps="210"/></proof>
@@ -100,10 +100,10 @@
    <proof prover="0"><result status="valid" time="0.000000" steps="18"/></proof>
    </goal>
    <goal name="merge&#39;vc.5.1" expl="postcondition" proved="true">
-   <proof prover="5"><result status="valid" time="0.072826" steps="2657"/></proof>
+   <proof prover="1"><result status="valid" time="0.072826" steps="2657"/></proof>
    </goal>
    <goal name="merge&#39;vc.5.2" expl="postcondition" proved="true">
-   <proof prover="5"><result status="valid" time="0.034096" steps="2661"/></proof>
+   <proof prover="1"><result status="valid" time="0.034096" steps="2661"/></proof>
    </goal>
    <goal name="merge&#39;vc.5.3" expl="postcondition" proved="true">
    <proof prover="4"><result status="valid" time="0.018834" steps="24516"/></proof>
@@ -113,7 +113,7 @@
   <goal name="merge&#39;vc.6" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="merge&#39;vc.6.0" expl="postcondition" proved="true">
-   <proof prover="5"><result status="valid" time="0.039384" steps="2773"/></proof>
+   <proof prover="1"><result status="valid" time="0.039384" steps="2774"/></proof>
    </goal>
    <goal name="merge&#39;vc.6.1" expl="postcondition" proved="true">
    <proof prover="0"><result status="valid" time="0.010000" steps="41"/></proof>
@@ -129,10 +129,10 @@
  </transf>
  </goal>
  <goal name="insert&#39;vc" expl="VC for insert" proved="true">
- <proof prover="5"><result status="valid" time="0.098360" steps="9270"/></proof>
+ <proof prover="1"><result status="valid" time="0.098360" steps="9287"/></proof>
  </goal>
  <goal name="find_min&#39;vc" expl="VC for find_min" proved="true">
- <proof prover="5"><result status="valid" time="0.055548" steps="3380"/></proof>
+ <proof prover="1"><result status="valid" time="0.055548" steps="3382"/></proof>
  </goal>
  <goal name="merge_pairs&#39;vc" expl="VC for merge_pairs" proved="true">
  <transf name="split_vc" proved="true" >
@@ -173,7 +173,7 @@
    <proof prover="4"><result status="valid" time="0.028016" steps="25688"/></proof>
    </goal>
    <goal name="merge_pairs&#39;vc.7.1" expl="postcondition" proved="true">
-   <proof prover="5"><result status="valid" time="0.058408" steps="3963"/></proof>
+   <proof prover="1"><result status="valid" time="0.058408" steps="3966"/></proof>
    </goal>
    <goal name="merge_pairs&#39;vc.7.2" expl="postcondition" proved="true">
    <proof prover="4"><result status="valid" time="0.022604" steps="42122"/></proof>
@@ -185,7 +185,7 @@
  <goal name="delete_min&#39;vc" expl="VC for delete_min" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="delete_min&#39;vc.0" expl="unreachable point" proved="true">
-  <proof prover="5"><result status="valid" time="0.028800" steps="2507"/></proof>
+  <proof prover="1"><result status="valid" time="0.028800" steps="2507"/></proof>
   </goal>
   <goal name="delete_min&#39;vc.1" expl="precondition" proved="true">
   <proof prover="4"><result status="valid" time="0.010860" steps="17365"/></proof>
@@ -200,7 +200,7 @@
   <goal name="delete_min&#39;vc.3" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="delete_min&#39;vc.3.0" expl="postcondition" proved="true">
-   <proof prover="5"><result status="valid" time="0.097052" steps="4297"/></proof>
+   <proof prover="1"><result status="valid" time="0.097052" steps="4303"/></proof>
    </goal>
   </transf>
   </goal>
@@ -221,7 +221,7 @@
  <proof prover="0"><result status="valid" time="0.010000" steps="19"/></proof>
  </goal>
  <goal name="Heap.min_def" proved="true">
- <proof prover="5"><result status="valid" time="0.091176" steps="3878"/></proof>
+ <proof prover="1"><result status="valid" time="0.091176" steps="3885"/></proof>
  </goal>
  <goal name="Heap.empty&#39;refn&#39;vc" expl="VC for empty&#39;refn" proved="true">
  <proof prover="0"><result status="valid" time="0.010000" steps="49"/></proof>

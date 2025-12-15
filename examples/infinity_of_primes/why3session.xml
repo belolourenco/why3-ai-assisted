@@ -4,7 +4,7 @@
 <why3session shape_version="6">
 <prover id="0" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="4" name="CVC5" version="1.2.0" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="infinity_of_primes.mlw"/>
 <theory name="Top" proved="true">
@@ -57,7 +57,7 @@
   <proof prover="0"><result status="valid" time="0.070000" steps="16585"/></proof>
   </goal>
   <goal name="infinity_of_primes&#39;vc.6" expl="loop invariant preservation" proved="true">
-  <proof prover="4"><result status="valid" time="0.297971" steps="37892"/></proof>
+  <proof prover="2"><result status="valid" time="0.297971" steps="37915"/></proof>
   </goal>
   <goal name="infinity_of_primes&#39;vc.7" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="valid" time="0.090000" steps="16945"/></proof>

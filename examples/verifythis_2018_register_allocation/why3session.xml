@@ -5,79 +5,79 @@
 <prover id="0" name="CVC5" version="1.0.5" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="CVC5" version="1.1.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="4" name="Alt-Ergo" version="2.6.0" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="verifythis_2018_register_allocation.mlw"/>
 <theory name="Top" proved="true">
  <goal name="Svar.eq&#39;refn&#39;vc" expl="VC for eq&#39;refn" proved="true">
- <proof prover="4"><result status="valid" time="0.000000" steps="0"/></proof>
+ <proof prover="3"><result status="valid" time="0.000000" steps="0"/></proof>
  </goal>
  <goal name="Dvar.eq&#39;refn&#39;vc" expl="VC for eq&#39;refn" proved="true">
- <proof prover="4"><result status="valid" time="0.000000" steps="0"/></proof>
+ <proof prover="3"><result status="valid" time="0.000000" steps="0"/></proof>
  </goal>
  <goal name="rem&#39;vc" expl="VC for rem" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="rem&#39;vc.0" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="41"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="41"/></proof>
   </goal>
   <goal name="rem&#39;vc.1" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="99"/></proof>
+  <proof prover="3"><result status="valid" time="0.112118" steps="99"/></proof>
   </goal>
   <goal name="rem&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.100000" steps="11634"/></proof>
+  <proof prover="0"><result status="valid" time="0.301760" steps="11634"/></proof>
   </goal>
   <goal name="rem&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="55"/></proof>
+  <proof prover="3"><result status="valid" time="0.117787" steps="55"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="replace&#39;vc" expl="VC for replace" proved="true">
- <proof prover="4"><result status="valid" time="0.030000" steps="153"/></proof>
+ <proof prover="3"><result status="valid" time="0.163308" steps="153"/></proof>
  </goal>
  <goal name="merge&#39;vc" expl="VC for merge" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="merge&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="10"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="10"/></proof>
   </goal>
   <goal name="merge&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="10"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="10"/></proof>
   </goal>
   <goal name="merge&#39;vc.2" expl="assertion" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="74"/></proof>
+  <proof prover="3"><result status="valid" time="0.124536" steps="74"/></proof>
   </goal>
   <goal name="merge&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.120000" steps="406"/></proof>
+  <proof prover="3"><result status="valid" time="0.239310" steps="406"/></proof>
   </goal>
   <goal name="merge&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.060000" steps="245"/></proof>
+  <proof prover="3"><result status="valid" time="0.198976" steps="245"/></proof>
   </goal>
   <goal name="merge&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.080000" steps="333"/></proof>
+  <proof prover="3"><result status="valid" time="0.223091" steps="333"/></proof>
   </goal>
   <goal name="merge&#39;vc.6" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.080000" steps="342"/></proof>
+  <proof prover="3"><result status="valid" time="0.258100" steps="342"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="all_from&#39;vc" expl="VC for all_from" proved="true">
- <proof prover="4"><result status="valid" time="0.160000" steps="1122"/></proof>
+ <proof prover="3"><result status="valid" time="0.482935" steps="1120"/></proof>
  </goal>
  <goal name="available&#39;vc" expl="VC for available" proved="true">
- <proof prover="4"><result status="valid" time="0.251338" steps="3200"/></proof>
+ <proof prover="3"><result status="valid" time="1.513379" steps="3209"/></proof>
  </goal>
  <goal name="init&#39;vc" expl="VC for init" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="init&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="2"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="2"/></proof>
   </goal>
   <goal name="init&#39;vc.1" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="17"/></proof>
+  <proof prover="3"><result status="valid" time="0.120338" steps="17"/></proof>
   </goal>
   <goal name="init&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="292"/></proof>
+  <proof prover="3"><result status="valid" time="0.212740" steps="291"/></proof>
   </goal>
   <goal name="init&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.060000" steps="392"/></proof>
+  <proof prover="3"><result status="valid" time="0.219485" steps="392"/></proof>
   </goal>
  </transf>
  </goal>
@@ -87,124 +87,124 @@
   <proof prover="0"><result status="valid" time="0.039980" steps="9469"/></proof>
   </goal>
   <goal name="sym_merge.1" proved="true">
-  <proof prover="0"><result status="valid" time="0.230946" steps="26980"/></proof>
+  <proof prover="0"><result status="valid" time="0.766415" steps="26980"/></proof>
   </goal>
   <goal name="sym_merge.2" proved="true">
-  <proof prover="1"><result status="valid" time="0.343746" steps="37358"/></proof>
+  <proof prover="1"><result status="valid" time="0.791493" steps="37358"/></proof>
   </goal>
   <goal name="sym_merge.3" proved="true">
-  <proof prover="0"><result status="valid" time="0.339698" steps="28634"/></proof>
+  <proof prover="0"><result status="valid" time="0.743940" steps="28634"/></proof>
   </goal>
   <goal name="sym_merge.4" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="20"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="20"/></proof>
   </goal>
   <goal name="sym_merge.5" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="66"/></proof>
+  <proof prover="3"><result status="valid" time="0.133080" steps="66"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="irc&#39;vc" expl="VC for irc" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="irc&#39;vc.0" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="7"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="7"/></proof>
   </goal>
   <goal name="irc&#39;vc.1" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="22"/></proof>
+  <proof prover="3"><result status="valid" time="0.125010" steps="22"/></proof>
   </goal>
   <goal name="irc&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="18"/></proof>
+  <proof prover="3"><result status="valid" time="0.119285" steps="18"/></proof>
   </goal>
   <goal name="irc&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.056376" steps="11251"/></proof>
+  <proof prover="0"><result status="valid" time="0.232607" steps="11251"/></proof>
   </goal>
   <goal name="irc&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="8"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="8"/></proof>
   </goal>
   <goal name="irc&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="10"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="10"/></proof>
   </goal>
   <goal name="irc&#39;vc.6" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="36"/></proof>
+  <proof prover="3"><result status="valid" time="0.126056" steps="36"/></proof>
   </goal>
   <goal name="irc&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="18"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="18"/></proof>
   </goal>
   <goal name="irc&#39;vc.8" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.030000" steps="112"/></proof>
+  <proof prover="3"><result status="valid" time="0.163714" steps="112"/></proof>
   </goal>
   <goal name="irc&#39;vc.9" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.070000" steps="424"/></proof>
+  <proof prover="3"><result status="valid" time="0.328885" steps="425"/></proof>
   </goal>
   <goal name="irc&#39;vc.10" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="214"/></proof>
+  <proof prover="3"><result status="valid" time="0.189192" steps="214"/></proof>
   </goal>
   <goal name="irc&#39;vc.11" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.080000" steps="208"/></proof>
+  <proof prover="3"><result status="valid" time="0.204554" steps="208"/></proof>
   </goal>
   <goal name="irc&#39;vc.12" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.030000" steps="107"/></proof>
+  <proof prover="3"><result status="valid" time="0.141788" steps="107"/></proof>
   </goal>
   <goal name="irc&#39;vc.13" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="irc&#39;vc.13.0" expl="postcondition" proved="true">
    <transf name="case" proved="true" arg1="(u = x1 \/ v = x1)">
     <goal name="irc&#39;vc.13.0.0" expl="true case (postcondition)" proved="true">
-    <proof prover="4"><result status="valid" time="0.058565" steps="462"/></proof>
+    <proof prover="3"><result status="valid" time="0.292847" steps="462"/></proof>
     </goal>
     <goal name="irc&#39;vc.13.0.1" expl="false case (postcondition)" proved="true">
-    <proof prover="0"><result status="valid" time="0.520760" steps="44922"/></proof>
+    <proof prover="0"><result status="valid" time="1.493117" steps="44922"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="irc&#39;vc.13.1" expl="VC for irc" proved="true">
-   <proof prover="4"><result status="valid" time="0.020000" steps="70"/></proof>
+   <proof prover="3"><result status="valid" time="0.148836" steps="70"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="irc&#39;vc.14" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.030000" steps="157"/></proof>
+  <proof prover="3"><result status="valid" time="0.190483" steps="157"/></proof>
   </goal>
   <goal name="irc&#39;vc.15" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="168"/></proof>
+  <proof prover="3"><result status="valid" time="0.185254" steps="168"/></proof>
   </goal>
   <goal name="irc&#39;vc.16" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="98"/></proof>
+  <proof prover="3"><result status="valid" time="0.154368" steps="98"/></proof>
   </goal>
   <goal name="irc&#39;vc.17" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="1.099555" steps="77288"/></proof>
+  <proof prover="2"><result status="valid" time="3.744889" steps="77288"/></proof>
   </goal>
   <goal name="irc&#39;vc.18" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="14"/></proof>
+  <proof prover="3"><result status="valid" time="0.111120" steps="14"/></proof>
   </goal>
   <goal name="irc&#39;vc.19" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.010000" steps="14"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="14"/></proof>
   </goal>
   <goal name="irc&#39;vc.20" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="77"/></proof>
+  <proof prover="3"><result status="valid" time="0.020000" steps="77"/></proof>
   </goal>
   <goal name="irc&#39;vc.21" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="24"/></proof>
+  <proof prover="3"><result status="valid" time="0.020000" steps="24"/></proof>
   </goal>
   <goal name="irc&#39;vc.22" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.271961" steps="24389"/></proof>
+  <proof prover="0"><result status="valid" time="0.544323" steps="24389"/></proof>
   </goal>
   <goal name="irc&#39;vc.23" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="24"/></proof>
+  <proof prover="3"><result status="valid" time="0.124330" steps="24"/></proof>
   </goal>
   <goal name="irc&#39;vc.24" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="24"/></proof>
+  <proof prover="3"><result status="valid" time="0.020000" steps="24"/></proof>
   </goal>
   <goal name="irc&#39;vc.25" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="369"/></proof>
+  <proof prover="3"><result status="valid" time="0.215319" steps="369"/></proof>
   </goal>
   <goal name="irc&#39;vc.26" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="311"/></proof>
+  <proof prover="3"><result status="valid" time="0.248028" steps="311"/></proof>
   </goal>
   <goal name="irc&#39;vc.27" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="164"/></proof>
+  <proof prover="3"><result status="valid" time="0.140104" steps="164"/></proof>
   </goal>
   <goal name="irc&#39;vc.28" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="1.544117" steps="155744"/></proof>
+  <proof prover="0"><result status="valid" time="4.172652" steps="155744"/></proof>
   </goal>
  </transf>
  </goal>

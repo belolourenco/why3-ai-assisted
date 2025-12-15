@@ -3,13 +3,13 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.0.5" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.12.6" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="3" name="Z3" version="4.12.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="hillel_challenge.mlw"/>
 <theory name="Leftpad" proved="true">
  <goal name="leftpad&#39;vc" expl="VC for leftpad" proved="true">
- <proof prover="2"><result status="valid" time="0.088560" steps="2206"/></proof>
+ <proof prover="2"><result status="valid" time="0.245662" steps="2206"/></proof>
  </goal>
 </theory>
 <theory name="Unique" proved="true">
@@ -102,7 +102,7 @@
   </goal>
   <goal name="unique&#39;vc.18" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.150000" steps="18699"/></proof>
-  <proof prover="3"><result status="valid" time="0.020000" steps="55919"/></proof>
+  <proof prover="1"><result status="valid" time="0.020000" steps="55919"/></proof>
   </goal>
   <goal name="unique&#39;vc.19" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.080000" steps="8448"/></proof>
@@ -529,7 +529,7 @@
   <proof prover="2"><result status="valid" time="0.020000" steps="98"/></proof>
   </goal>
   <goal name="fulcrum&#39;vc.27" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="3.085011" steps="156969"/></proof>
+  <proof prover="0"><result status="valid" time="3.753369" steps="156969"/></proof>
   <proof prover="2"><result status="valid" time="0.030000" steps="169"/></proof>
   </goal>
   <goal name="fulcrum&#39;vc.28" expl="loop invariant preservation" proved="true">
@@ -573,7 +573,7 @@
   <proof prover="2"><result status="valid" time="0.010000" steps="27"/></proof>
   </goal>
   <goal name="fulcrum&#39;vc.38" expl="out of loop bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.080000" steps="16564"/></proof>
+  <proof prover="0"><result status="valid" time="0.225077" steps="16564"/></proof>
   <proof prover="2"><result status="valid" time="0.020000" steps="22"/></proof>
   </goal>
  </transf>

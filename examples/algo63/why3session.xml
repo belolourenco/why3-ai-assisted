@@ -2,10 +2,10 @@
 <!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
+<prover id="0" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="Z3" version="4.13.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="10" steplimit="0" memlimit="1000"/>
-<prover id="4" name="CVC5" version="1.2.0" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="algo63.mlw"/>
 <theory name="Algo63" proved="true">
@@ -27,7 +27,7 @@
   <proof prover="3" timelimit="5"><result status="valid" time="0.029578" steps="106"/></proof>
   </goal>
   <goal name="exchange&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.027747" steps="5339"/></proof>
+  <proof prover="0"><result status="valid" time="0.027747" steps="5339"/></proof>
   </goal>
   <goal name="exchange&#39;vc.6" expl="postcondition" proved="true">
   <proof prover="3" timelimit="5"><result status="valid" time="0.039297" steps="45"/></proof>
@@ -172,7 +172,7 @@
   <proof prover="3"><result status="valid" time="0.268846" steps="693"/></proof>
   </goal>
   <goal name="partition_&#39;vc.45" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.110000" steps="640"/></proof>
+  <proof prover="3"><result status="valid" time="0.228718" steps="640"/></proof>
   </goal>
   <goal name="partition_&#39;vc.46" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.010000" steps="38"/></proof>
@@ -221,7 +221,7 @@
   <proof prover="3" timelimit="5"><result status="valid" time="0.024695" steps="16"/></proof>
   </goal>
   <goal name="partition&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="3.718603" steps="11402"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="2.245111" steps="11402"/></proof>
   </goal>
  </transf>
  </goal>
