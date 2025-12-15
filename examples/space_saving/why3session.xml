@@ -3,11 +3,11 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="CVC5" version="1.0.5" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="4" name="Eprover" version="2.0" timelimit="15" steplimit="0" memlimit="1000"/>
-<prover id="5" name="Alt-Ergo" version="2.6.0" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="6" name="Z3" version="4.12.2" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="7" name="Z3" version="4.12.6" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="8" name="Eprover" version="2.6" timelimit="15" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="space_saving.mlw"/>
 <theory name="Top" proved="true">
@@ -136,7 +136,7 @@
  <proof prover="0"><result status="valid" time="0.030000" steps="34580"/></proof>
  </goal>
  <goal name="increment&#39;vc" expl="VC for increment" proved="true">
- <proof prover="2" timelimit="1"><result status="valid" time="0.729202" steps="97586"/></proof>
+ <proof prover="2" timelimit="1"><result status="valid" time="1.046924" steps="97586"/></proof>
  </goal>
  <goal name="find&#39;vc" expl="VC for find" proved="true">
  <proof prover="0"><result status="valid" time="0.020000" steps="28979"/></proof>
@@ -194,7 +194,7 @@
      <goal name="space_saving_k&#39;vc.10.1.1.1" expl="false case" proved="true">
      <transf name="assert" proved="true" arg1="(k * occ v s 0 n &lt;= n)">
       <goal name="space_saving_k&#39;vc.10.1.1.1.0" expl="asserted formula" proved="true">
-      <proof prover="4"><result status="valid" time="1.542753"/></proof>
+      <proof prover="8"><result status="valid" time="1.542753"/></proof>
       </goal>
       <goal name="space_saving_k&#39;vc.10.1.1.1.1" expl="false case" proved="true">
       <proof prover="0"><result status="valid" time="0.010000" steps="3703"/></proof>
@@ -228,7 +228,7 @@
    <proof prover="0"><result status="valid" time="0.020000" steps="58740"/></proof>
    </goal>
    <goal name="space_saving_k&#39;vc.16.1" expl="loop invariant preservation" proved="true">
-   <proof prover="3" timelimit="10" memlimit="4000"><result status="valid" time="2.988107" steps="271127"/></proof>
+   <proof prover="3" timelimit="10" memlimit="4000"><result status="valid" time="3.535958" steps="271127"/></proof>
    </goal>
   </transf>
   </goal>
@@ -236,7 +236,7 @@
   <proof prover="3" timelimit="1"><result status="valid" time="0.140000" steps="15708"/></proof>
   </goal>
   <goal name="space_saving_k&#39;vc.18" expl="loop invariant preservation" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.050000" steps="468"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.171659" steps="498"/></proof>
   </goal>
   <goal name="space_saving_k&#39;vc.19" expl="loop invariant preservation" proved="true">
   <transf name="split_vc" proved="true" >
@@ -266,7 +266,7 @@
    <proof prover="2" timelimit="1"><result status="valid" time="0.080000" steps="15554"/></proof>
    </goal>
    <goal name="space_saving_k&#39;vc.25.1" expl="loop invariant preservation" proved="true">
-   <proof prover="6"><result status="valid" time="0.406278" steps="769842"/></proof>
+   <proof prover="7"><result status="valid" time="0.406278" steps="1189328"/></proof>
    </goal>
   </transf>
   </goal>
@@ -274,10 +274,10 @@
   <proof prover="3"><result status="valid" time="0.150000" steps="26706"/></proof>
   </goal>
   <goal name="space_saving_k&#39;vc.27" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.417346" steps="5173"/></proof>
+  <proof prover="1"><result status="valid" time="0.868757" steps="5219"/></proof>
   </goal>
   <goal name="space_saving_k&#39;vc.28" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="3.079743" steps="292152"/></proof>
+  <proof prover="2"><result status="valid" time="3.758190" steps="292152"/></proof>
   </goal>
  </transf>
  </goal>

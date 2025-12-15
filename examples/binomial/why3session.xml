@@ -5,7 +5,7 @@
 <prover id="0" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="Z3" version="4.13.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="3" name="CVC5" version="1.2.0" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="4" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml">
 <path name=".."/><path name="binomial.mlw"/>
 <theory name="Top">
@@ -77,10 +77,10 @@
   <proof prover="1"><result status="valid" time="0.034277" steps="92"/></proof>
   </goal>
   <goal name="compute2&#39;vc.2" expl="check division by zero" proved="true">
-  <proof prover="3"><result status="valid" time="0.041673" steps="1179"/></proof>
+  <proof prover="4"><result status="valid" time="0.041673" steps="1131"/></proof>
   </goal>
   <goal name="compute2&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.037688" steps="5063"/></proof>
+  <proof prover="4"><result status="valid" time="0.037688" steps="5014"/></proof>
   </goal>
   <goal name="compute2&#39;vc.4" expl="loop invariant preservation" proved="true">
   <proof prover="2"><result status="valid" time="0.010956" steps="7979"/></proof>
@@ -88,10 +88,10 @@
   <goal name="compute2&#39;vc.5" expl="loop invariant preservation">
   </goal>
   <goal name="compute2&#39;vc.6" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.040478" steps="5758"/></proof>
+  <proof prover="4"><result status="valid" time="0.040478" steps="5696"/></proof>
   </goal>
   <goal name="compute2&#39;vc.7" expl="VC for compute2" proved="true">
-  <proof prover="3"><result status="valid" time="0.027254" steps="2315"/></proof>
+  <proof prover="4"><result status="valid" time="0.027254" steps="2267"/></proof>
   </goal>
  </transf>
  </goal>
