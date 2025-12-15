@@ -28,7 +28,7 @@ type proof_attempt_status =
   | Detached (** parent goal has no task, is detached *)
   | InternalFailure of exn (** external proof aborted by internal error *)
   | Uninstalled of Whyconf.prover (** prover is uninstalled *)
-  | UpgradeProver of Whyconf.prover (** prover is upgraded *)
+  | UpgradeProver of Whyconf.prover * Whyconf.prover (** prover is upgraded *)
   | Removed of Whyconf.prover (** prover has been removed or upgraded *)
 
 let print_status fmt st =
@@ -44,8 +44,8 @@ let print_status fmt st =
       fprintf fmt "InternalFailure(%a)" Exn_printer.exn_printer e
   | Uninstalled pr    ->
       fprintf fmt "Prover %a is uninstalled" Whyconf.print_prover pr
-  | UpgradeProver pr    ->
-      fprintf fmt "Prover upgrade to %a" Whyconf.print_prover pr
+  | UpgradeProver (p1,p2)  ->
+      fprintf fmt "Prover upgrade from %a to %a" Whyconf.print_prover p1 Whyconf.print_prover p2
   | Removed pr    ->
       fprintf fmt "Prover %a removed" Whyconf.print_prover pr
 
@@ -1211,7 +1211,7 @@ let replay_proof_attempt c pr limits (parid: proofNodeID) id ~callback ~notifica
       remove_proof_attempt c.controller_session parid pr
   | `Found pr' ->
      try
-       if pr' <> pr then callback id (UpgradeProver pr');
+       if pr' <> pr then callback id (UpgradeProver (pr, pr'));
        let _ = get_task c.controller_session parid in
        schedule_proof_attempt c parid pr' ~limits ~callback ~notification
      with Not_found ->
@@ -1262,14 +1262,16 @@ let replay ~valid_only ~obsolete_only ?(use_steps=false) ?(filter=fun _ -> true)
   let session = c.controller_session in
   let count = ref 0 in
   let report = ref [] in
-  let found_upgraded_prover = ref false in
-
+  let modified_provers = ref [] in
+  let add_modified_provers s =
+      if not (List.mem s !modified_provers) then
+        modified_provers := s :: !modified_provers
+  in
   let craft_report s id limits pa =
     let pr = pa.Session_itp.prover in
     match s with
-    | UpgradeProver _ -> found_upgraded_prover := true
-    | Removed _ ->
-       found_upgraded_prover := true;
+    | UpgradeProver _ -> add_modified_provers s
+    | Removed _ -> add_modified_provers s;
        decr count
     | Scheduled | Running -> ()
     | Undone | Interrupted ->
@@ -1338,11 +1340,11 @@ let replay ~valid_only ~obsolete_only ?(use_steps=false) ?(filter=fun _ -> true)
                                         craft_report s parid limits pa;
                                         callback id s;
                                         if !count = 0 then
-                                          final_callback !found_upgraded_prover !report)
+                                          final_callback !modified_provers !report)
                              ~notification
       end in
 
-  if !count = 0 then final_callback !found_upgraded_prover !report else
+  if !count = 0 then final_callback !modified_provers !report else
   (* Calling replay on all the proof_attempts of the session *)
   match any with
   | None -> Session_itp.session_iter_proof_attempt replay_pa session

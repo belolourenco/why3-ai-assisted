@@ -14,7 +14,7 @@
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="coincidence_count&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="11759"/></proof>
+  <proof prover="4"><result status="valid" time="0.050000" steps="11833"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.1" expl="precondition" proved="true">
   <proof prover="4"><result status="valid" time="0.040000" steps="10893"/></proof>
@@ -23,7 +23,7 @@
   <proof prover="4"><result status="valid" time="0.050000" steps="11001"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="11746"/></proof>
+  <proof prover="4"><result status="valid" time="0.040000" steps="11783"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.4" expl="precondition" proved="true">
   <proof prover="4"><result status="valid" time="0.040000" steps="10999"/></proof>
@@ -32,7 +32,7 @@
   <proof prover="4"><result status="valid" time="0.020000" steps="9405"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.6" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="11723"/></proof>
+  <proof prover="4"><result status="valid" time="0.050000" steps="11760"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.7" expl="precondition" proved="true">
   <proof prover="4"><result status="valid" time="0.020000" steps="9401"/></proof>
@@ -54,7 +54,7 @@
  <proof prover="1"><result status="valid" time="0.000000" steps="8"/></proof>
  </goal>
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
- <proof prover="1"><result status="valid" time="1.734092" steps="18699"/></proof>
+ <proof prover="1"><result status="valid" time="1.734092" steps="18588"/></proof>
  </goal>
 </theory>
 <theory name="CoincidenceCountList" proved="true">
@@ -62,7 +62,7 @@
  <proof prover="1"><result status="valid" time="0.000000" steps="3"/></proof>
  </goal>
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
- <proof prover="1"><result status="valid" time="0.330458" steps="3177"/></proof>
+ <proof prover="1"><result status="valid" time="0.465766" steps="4731"/></proof>
  </goal>
 </theory>
 </file>

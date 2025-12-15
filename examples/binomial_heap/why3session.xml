@@ -3,13 +3,13 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="CVC4" version="1.4" timelimit="10" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.12.6" timelimit="10" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="10" steplimit="0" memlimit="1000"/>
-<prover id="4" name="Z3" version="4.12.2" timelimit="10" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="binomial_heap.mlw"/>
 <theory name="BinomialHeap" proved="true">
  <goal name="size_nonnneg&#39;vc" expl="VC for size_nonnneg" proved="true">
- <proof prover="4"><result status="valid" time="0.010000" steps="20749"/></proof>
+ <proof prover="1"><result status="valid" time="0.010000" steps="20829"/></proof>
  </goal>
  <goal name="le_roots_trans" proved="true">
  <transf name="induction_ty_lex" proved="true" >
@@ -59,7 +59,7 @@
    <goal name="occ_append.0.1" proved="true">
    <transf name="compute_in_goal" proved="true" >
     <goal name="occ_append.0.1.0" proved="true">
-    <proof prover="0"><result status="valid" time="0.370000"/></proof>
+    <proof prover="0"><result status="valid" time="0.673637"/></proof>
     </goal>
    </transf>
    </goal>
@@ -70,7 +70,7 @@
  <goal name="occ_reverse" proved="true">
  <transf name="induction_ty_lex" proved="true" >
   <goal name="occ_reverse.0" proved="true">
-  <proof prover="0"><result status="valid" time="0.250000"/></proof>
+  <proof prover="0"><result status="valid" time="0.444729"/></proof>
   </goal>
  </transf>
  </goal>
@@ -87,7 +87,7 @@
    <goal name="has_order_length.0.1" proved="true">
    <transf name="compute_in_goal" proved="true" >
     <goal name="has_order_length.0.1.0" proved="true">
-    <proof prover="3"><result status="valid" time="0.479446" steps="3195"/></proof>
+    <proof prover="3"><result status="valid" time="0.308269" steps="3195"/></proof>
     </goal>
    </transf>
    </goal>
@@ -132,7 +132,7 @@
   <proof prover="0"><result status="valid" time="0.307355"/></proof>
   </goal>
   <goal name="get_min&#39;vc.6" expl="precondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.859224" steps="26225"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="1.097936" steps="26225"/></proof>
   </goal>
   <goal name="get_min&#39;vc.7" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.040000"/></proof>
@@ -247,7 +247,7 @@
  </transf>
  </goal>
  <goal name="extract_min_tree&#39;vc" expl="VC for extract_min_tree" proved="true">
- <proof prover="3"><result status="valid" time="0.335471" steps="2805"/></proof>
+ <proof prover="3"><result status="valid" time="0.335471" steps="2884"/></proof>
  </goal>
  <goal name="extract_min&#39;vc" expl="VC for extract_min" proved="true">
  <proof prover="3"><result status="valid" time="0.100000" steps="1192"/></proof>
@@ -256,15 +256,15 @@
  <proof prover="0"><result status="valid" time="0.100000"/></proof>
  </goal>
  <goal name="binomial_tree_size" proved="true">
+ <proof prover="1"><result status="valid" time="0.010000" steps="28045"/></proof>
  <proof prover="3"><result status="valid" time="0.010000" steps="61"/></proof>
- <proof prover="4"><result status="valid" time="0.010000" steps="28045"/></proof>
  </goal>
  <goal name="inv_size&#39;vc" expl="VC for inv_size" proved="true">
  <proof prover="0"><result status="valid" time="1.300000"/></proof>
  </goal>
  <goal name="heap_size" proved="true">
+ <proof prover="1"><result status="valid" time="0.020000" steps="31038"/></proof>
  <proof prover="3"><result status="valid" time="0.010000" steps="37"/></proof>
- <proof prover="4"><result status="valid" time="0.020000" steps="31038"/></proof>
  </goal>
 </theory>
 </file>
