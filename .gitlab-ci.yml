@@ -133,6 +133,10 @@ nightly-bench-long:
     - misc/ci-local.sh nightly-bench-long
   image: "$BENCH_IMAGE"
   dependencies: []
+  artifacts:
+    paths:
+      - nightly-bench-long.out
+    expire_in: never
   tags:
     - large
 

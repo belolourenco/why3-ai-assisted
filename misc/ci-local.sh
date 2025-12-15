@@ -60,14 +60,15 @@ do
             examples/regtests.sh --reduced-mode
             ;;
         nightly-bench-long)
-            bin/why3 config detect
+            bin/why3 config detect  &> nightly-bench-long.out
             sed -i why3.conf -e "s/running_provers_max = [0-9]*/running_provers_max = 4/"
             cat misc/nightly-bench-provers-why3-conf >> why3.conf
             COQVER=$(bin/why3 config list-provers | sed -n -e 's/Coq (\?\([0-9.]\+\).*/\1/p')
             if test "$COQVER" != "" ; then
               sed misc/bench-coq-why3-conf -e "s/@COQVER@/$COQVER/g" >> why3.conf
             fi
-            examples/regtests.sh --examples-mode || true
+            printf "\n" &>> nightly-bench-long.out
+            examples/regtests.sh --examples-mode &>> nightly-bench-long.out || true
             ;;
     esac
     section_stop "test_$1"
