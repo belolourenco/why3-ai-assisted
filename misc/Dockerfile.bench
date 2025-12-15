@@ -26,9 +26,9 @@ RUN wget --quiet https://github.com/cvc5/cvc5/releases/download/cvc5-1.1.2/cvc5-
 RUN wget --quiet https://github.com/cvc5/cvc5/releases/download/cvc5-1.2.1/cvc5-Linux-x86_64-static.zip && \
     unzip cvc5-Linux-x86_64-static.zip && \
     mv cvc5-Linux-x86_64-static/bin/cvc5 /usr/local/bin/cvc5-1.2.1 && \
-    ls -l /usr/local/bin && \
     rm -r cvc5-Linux-x86_64-static && \
     cvc5-1.2.1 --version
+
 ## CVC4 1.8
 RUN wget --quiet https://github.com/CVC4/CVC4-archived/releases/download/1.8/cvc4-1.8-x86_64-linux-opt -O /usr/local/bin/cvc4-1.8 && \
     chmod a+x /usr/local/bin/cvc4-1.8
@@ -44,6 +44,13 @@ RUN wget --quiet http://cvc4.cs.stanford.edu/downloads/builds/x86_64-linux-opt/c
 ## CVC4 1.4
 RUN wget --quiet http://cvc4.cs.stanford.edu/downloads/builds/x86_64-linux-opt/cvc4-1.4-x86_64-linux-opt -O /usr/local/bin/cvc4-1.4 && \
     chmod a+x /usr/local/bin/cvc4-1.4
+
+## CVC3 2.4.1
+RUN wget --quiet https://cs.nyu.edu/acsys/cvc3/releases/2.4.1/linux64/cvc3-2.4.1-optimized-static.tar.gz && \
+    tar zxf cvc3-2.4.1-optimized-static.tar.gz && \
+    mv cvc3-2.4.1-optimized-static/bin/cvc3 /usr/local/bin/cvc3-2.4.1 && \
+    rm -r cvc3-2.4.1-optimized-static.tar.gz cvc3-2.4.1-optimized-static
+
 ## Z3 4.6.0
 RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.6.0/z3-4.6.0-x64-debian-8.10.zip && \
     unzip z3-4.6.0-x64-debian-8.10.zip && \
@@ -68,13 +75,11 @@ RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.12.6/z3-4
 RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.13.2/z3-4.13.2-x64-glibc-2.35.zip && \
     unzip z3-4.13.2-x64-glibc-2.35.zip && \
     mv z3-4.13.2-x64-glibc-2.35/bin/z3 /usr/local/bin/z3-4.13.2 && \
-    ls -l /usr/local/bin && \
     rm -r z3-4.13.2-x64-glibc-2.35.zip z3-4.13.2-x64-glibc-2.35
 ## Z3 4.14.1
 RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.14.1/z3-4.14.1-x64-glibc-2.35.zip && \
     unzip z3-4.14.1-x64-glibc-2.35.zip && \
     mv z3-4.14.1-x64-glibc-2.35/bin/z3 /usr/local/bin/z3-4.14.1 && \
-    ls -l /usr/local/bin && \
     rm -r z3-4.14.1-x64-glibc-2.35.zip z3-4.14.1-x64-glibc-2.35
 
 ## E prover 2.6
@@ -88,7 +93,6 @@ RUN wget --quiet http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_2.
     cd .. && \
     rm -rf E.tgz E-2.6 && \
     mv /usr/local/bin/eprover /usr/local/bin/eprover-2.6
-
 ## E prover 3.2.5
 RUN wget --quiet http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_3.2/E.tgz && \
     tar -xzf E.tgz && \
@@ -101,9 +105,7 @@ RUN wget --quiet http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_3.
     rm -rf E.tgz E-3.2.5 && \
     mv /usr/local/bin/eprover /usr/local/bin/eprover-3.2.5
 
-
-
-## list installed provers
+## list installed provers so far
 RUN ls -l /usr/local/bin
 
 # create user
