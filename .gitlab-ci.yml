@@ -7,7 +7,7 @@ stages:
 
 variables:
   BUILD_IMAGE: "$CI_REGISTRY_IMAGE:ci-master-2025-05-20"
-  BENCH_IMAGE: "$CI_REGISTRY_IMAGE:ci-bench-2025-12-15A"
+  BENCH_IMAGE: "$CI_REGISTRY_IMAGE:ci-bench-2025-12-16A"
   SPHINX_IMAGE: "$CI_REGISTRY_IMAGE:ci-sphinx"
   GIT_CLEAN_FLAGS: "-ffdxq"
 
@@ -125,7 +125,7 @@ nightly-bench:
 
 nightly-bench-long:
   timeout: 12h
-  stage: build
+  stage: nightly
   variables:
     COMPILER: bench
   when: manual
