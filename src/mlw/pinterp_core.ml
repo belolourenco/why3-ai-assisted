@@ -707,7 +707,7 @@ let fold_premises f (premises: premises) init =
 
 type env = {
   why_env  : Env.env;
-  pmodule  : Pmodule.pmodule;
+  pmodule  : Pmodule.pmodule0;
   funenv   : (cexp * rec_defn list option) Mrs.t;
   tvenv    : Ty.ty Mtv.t;
   vsenv    : value Mvs.t;
@@ -844,7 +844,7 @@ let report_cntr_title fmt (ctx, msg) =
 let report_cntr_head fmt (ctx, msg, term) =
   fprintf fmt "@[<v>%a%t@]" report_cntr_title (ctx, msg)
     (fun fmt ->
-       match ctx.loc, term.t_loc with
+       match ctx.loc, t_loc term with
        | Some t1, Some t2 ->
            fprintf fmt " at %a@,- Defined at %a" Loc.pp_position t1 Loc.pp_position t2
        | Some t, None | None, Some t ->
@@ -1001,7 +1001,7 @@ let value_of_free_vars ctx t =
     ) mid t
 
 let stuck_for_fail ?loc ctx t =
-  let loc = opt_or loc (opt_or ctx.loc t.t_loc) in
+  let loc = opt_or loc (opt_or ctx.loc (t_loc t)) in
   let mid = value_of_free_vars ctx t in
   register_stucked ctx.cntr_env loc (describe_cntr_ctx ctx) mid;
   stuck ?loc ctx "failure in %s" (describe_cntr_ctx ctx)
@@ -1024,14 +1024,14 @@ let check_term rac ?vsenv ctx t =
   try check_term rac ?vsenv ctx t with (Fail (ctx,t)) as e ->
     let mid = value_of_free_vars ctx t in
     register_failure ctx.cntr_env
-      (opt_or ctx.loc t.t_loc) (describe_cntr_ctx ctx) mid;
+      (opt_or ctx.loc (t_loc t)) (describe_cntr_ctx ctx) mid;
     raise e
 
 let check_terms rac ctx tl =
   try check_terms rac ctx tl with (Fail (ctx,t)) as e ->
     let mid = value_of_free_vars ctx t in
     register_failure ctx.cntr_env
-      (opt_or ctx.loc t.t_loc) (describe_cntr_ctx ctx) mid;
+      (opt_or ctx.loc (t_loc t)) (describe_cntr_ctx ctx) mid;
     raise e
 
 let check_posts rac ctx v posts =
@@ -1040,7 +1040,7 @@ let check_posts rac ctx v posts =
   with (Fail (ctx,t)) as e ->
     let mid = value_of_free_vars ctx t in
     register_failure ctx.cntr_env
-      (opt_or ctx.loc t.t_loc) (describe_cntr_ctx ctx) mid;
+      (opt_or ctx.loc (t_loc t)) (describe_cntr_ctx ctx) mid;
     raise e
 
 let check_assume_type_invs rac ?loc ~giant_steps env ity v =
@@ -1053,7 +1053,7 @@ let check_type_invs rac ?loc ~giant_steps env ity v =
   try check_type_invs rac ?loc ~giant_steps env ity v with Fail (ctx, t) as e ->
     let mid = value_of_free_vars ctx t in
     register_failure ctx.cntr_env
-      (opt_or ctx.loc t.t_loc) (describe_cntr_ctx ctx) mid;
+      (opt_or ctx.loc (t_loc t)) (describe_cntr_ctx ctx) mid;
     raise e
 
 (** [oldify_varl env vars] returns a pair [vars', oldies] where [vars'] are the
@@ -1072,7 +1072,7 @@ let oldify_varl env varl =
 (** [variant_term env loc olds news] creates a term representing the validity of
     variants [news] at location [loc], where [olds] are the oldified variants. *)
 let variant_term env olds news =
-  let {Pmodule.mod_theory= {Theory.th_export= ns}} =
+  let {Pmodule.mod_intf= {Pmodule.mod_theory= {Theory.th_export= ns}}} =
     Pmodule.read_module env.why_env ["int"] "Int" in
   let ls_int_le = Theory.ns_find_ls ns [Ident.op_infix "<="] in
   let ls_int_lt = Theory.ns_find_ls ns [Ident.op_infix "<"] in
@@ -1111,15 +1111,15 @@ let variant_term env olds news =
     | _ -> t_false in
   decr (olds, news)
 
-let rec relocate loc t =
-  t_attr_set ?loc t.t_attrs (TermTF.t_map (fun t -> t) (relocate loc) t)
+let rec relocate locs t =
+  t_attr_set ~locs t.t_attrs (TermTF.t_map (fun t -> t) (relocate locs) t)
 
 let check_variant rac expl loc ~giant_steps env (old_varl, oldies) varl =
   let env = {env with vsenv=Mvs.union (fun _ _ v -> Some v) env.vsenv oldies} in
-  let loc = match varl with (t,_)::_ when t.t_loc<>None -> t.t_loc | _ -> loc in
-  let t = relocate loc (variant_term env old_varl varl) in
+  let locs = match varl with (t,_)::_ when t.t_locs<>[] -> t.t_locs | _ -> Option.to_list loc in
+  let t = relocate locs (variant_term env old_varl varl) in
   let ctx = mk_cntr_ctx env ~giant_steps:(Some giant_steps) expl in
-  check_term rac ctx (t_attr_set ?loc (Sattr.singleton expl) t)
+  check_term rac ctx (t_attr_set ~locs (Sattr.singleton expl) t)
 
 (******************************************************************************)
 (*                                 Auxiliaries                                *)
@@ -1224,7 +1224,7 @@ let rec term_of_value ?(ty_mt=Mtv.empty) (env: env) vsenv v : (vsymbol * term) l
       vsenv, t_lambda [vs_arg] [] t
   | Varray arr ->
       let open Pmodule in
-      let {mod_theory= {Theory.th_export= ns}} =
+      let {mod_intf= {mod_theory= {Theory.th_export= ns}}} =
         read_module env.why_env ["array"] "Array" in
       let ts_array = Theory.ns_find_ts ns ["array"] in
       if Debug.test_flag debug_array_as_update_chains_not_epsilon then
@@ -1282,7 +1282,7 @@ let compute_term_dummy : compute_term = fun _ t -> t
 
 let is_array_its env its =
   let pm = Pmodule.read_module env ["array"] "Array" in
-  let array_its = Pmodule.ns_find_its pm.Pmodule.mod_export ["array"] in
+  let array_its = Pmodule.ns_find_its pm.Pmodule.mod_intf.Pmodule.mod_export ["array"] in
   its_equal its array_its
 
 (* TODO Remove argument [env] after replacing Varray by model substitution *)

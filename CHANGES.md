@@ -1,5 +1,31 @@
 :x: marks a potential source of incompatibility
 
+API
+  * The `module Impl : Intf` feature is now supported at the level of the Ptree
+    API. This include a breaking change in the Ptree.mlw_file type. :x:
+  * Type Pmodule.pmodule now includes both the interface and implementation
+    versions of a module for a better support of the `module Impl : Intf`
+    feature :x:
+
+Provers
+  * support for Z3 4.14 (released Mar 7, 2024)
+  * support for E prover 3.x (released ???)
+
+Version 1.8.2, September 16, 2025
+---------------------------
+
+Compilation
+  * compatibility with OCaml 5.4 (MR !1228)
+
+Provers
+  * fix soundness bug with floats in Alt-Ergo 2.6.x (issue #905)
+
+Sessions
+  * fix issue with file identifiers in sessions (MR !1231)
+
+Extraction
+  * restore compatibility of OCaml extraction with js_of_ocaml
+
 Version 1.8.1, June 4, 2025
 ---------------------------
 
@@ -8,9 +34,6 @@ Core
 
 Miscellaneous
   * fix compilation error with GCC 15
-
-Provers
-  * fix soundness bug with floats in Alt-Ergo 2.6.x
 
 Plugins
   * resurrect the BDD-infer loop invariant generation plug-in

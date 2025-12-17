@@ -224,7 +224,7 @@ type term = {
   t_node  : term_node;
   t_ty    : ty option;
   t_attrs : Sattr.t;
-  t_loc   : Loc.position option;
+  t_locs  : Loc.position list;
 }
 
 and term_node =
@@ -326,7 +326,7 @@ let t_compare ~trigger ~attr ~loc ~const t1 t2 =
     if t1 != t2 || vml1 <> [] || vml2 <> [] then begin
       comp_raise (oty_compare t1.t_ty t2.t_ty);
       if attr then comp_raise (Sattr.compare t1.t_attrs t2.t_attrs);
-      if loc then comp_raise (Option.compare Loc.compare t1.t_loc t2.t_loc);
+      if loc then comp_raise (Lists.compare Loc.compare t1.t_locs t2.t_locs);
       match descend vml1 t1, descend vml2 t2 with
       | Bnd i1, Bnd i2 -> perv_compare i1 i2
       | Bnd _, Trm _ -> raise CompLT
@@ -365,6 +365,7 @@ let t_compare ~trigger ~attr ~loc ~const t1 t2 =
               perv_compare q1 q2;
               let rec add bnd bv1 bv2 vl1 vl2 = match vl1, vl2 with
                 | (v1::vl1), (v2::vl2) ->
+                    comp_raise (ty_compare v1.vs_ty v2.vs_ty);
                     let bv1 = Mvs.add v1 bnd bv1 in
                     let bv2 = Mvs.add v2 bnd bv2 in
                     add (bnd + 1) bv1 bv2 vl1 vl2
@@ -481,6 +482,7 @@ let t_hash ~trigger ~attr ~const t =
               t_hash (bnd + 1) vml e
           | Tquant (q,(vl,b,tr,f)) ->
               let h = Hashtbl.hash q in
+              let h = Hashcons.combine_list (fun vs -> ty_hash vs.vs_ty) h vl in
               let rec add bnd bv vl = match vl with
                 | v::vl -> add (bnd + 1) (Mvs.add v bnd bv) vl
                 | [] -> bnd, bv in
@@ -628,7 +630,7 @@ let add_nt_vars _ n t s = vars_union s
 let mk_term n ty = {
   t_node  = n;
   t_attrs = Sattr.empty;
-  t_loc   = None;
+  t_locs  = [];
   t_ty    = ty;
 }
 
@@ -645,7 +647,7 @@ let t_not f         = mk_term (Tnot f) None
 let t_true          = mk_term (Ttrue) None
 let t_false         = mk_term (Tfalse) None
 
-let t_attr_set ?loc l t = { t with t_attrs = l; t_loc = loc }
+let t_attr_set ?(locs = []) l t = { t with t_attrs = l; t_locs = locs }
 
 let t_attr_add l t = { t with t_attrs = Sattr.add l t.t_attrs }
 
@@ -653,10 +655,17 @@ let t_attr_remove l t = { t with t_attrs = Sattr.remove l t.t_attrs }
 
 let t_attr_copy s t =
   if s == t then s else
-  if t_similar s t && Sattr.is_empty t.t_attrs && t.t_loc = None then s else
+  if t_similar s t && Sattr.is_empty t.t_attrs && t.t_locs = [] then s else
   let attrs = Sattr.union s.t_attrs t.t_attrs in
-  let loc = if t.t_loc = None then s.t_loc else t.t_loc in
-  { t with t_attrs = attrs; t_loc = loc }
+  let locs = if t.t_locs = [] then s.t_locs else t.t_locs in
+  { t with t_attrs = attrs; t_locs = locs }
+
+let t_loc t = match t.t_locs with
+  | [] -> None
+  | loc :: _ -> Some loc
+
+let t_locs_append locs t =
+  if locs = [] then t else { t with t_locs = t.t_locs @ locs }
 
 (* unsafe map *)
 
@@ -1485,10 +1494,10 @@ let t_lambda vl trl t =
   let add_ty v ty = ty_func v.vs_ty ty in
   let ty = List.fold_right add_ty vl ty in
   let fc = create_vsymbol (id_fresh "fc") ty in
-  let copy_loc e = if t.t_loc = None then e
-    else t_attr_set ?loc:t.t_loc e.t_attrs e in
+  let copy_loc e = if t.t_locs = [] then e
+    else t_attr_set ~locs:t.t_locs e.t_attrs e in
   let mk_t_var v = if v.vs_name.id_loc = None then t_var v
-    else t_attr_set ?loc:v.vs_name.id_loc Sattr.empty (t_var v) in
+    else t_attr_set ~locs:(Option.to_list v.vs_name.id_loc) Sattr.empty (t_var v) in
   let add_arg h v = copy_loc (t_func_app h (mk_t_var v)) in
   let h = List.fold_left add_arg (mk_t_var fc) vl in
   let f = match t.t_ty with
