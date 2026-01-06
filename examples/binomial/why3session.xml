@@ -3,9 +3,10 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="2" name="Z3" version="4.13.2" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="3" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="4000"/>
 <prover id="4" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="5" name="Alt-Ergo" version="2.6.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="6" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml">
 <path name=".."/><path name="binomial.mlw"/>
 <theory name="Top">
@@ -19,6 +20,7 @@
  <proof prover="0"><result status="valid" time="0.020000" steps="5222"/></proof>
  </goal>
  <goal name="prop2&#39;vc" expl="VC for prop2" proved="true">
+ <proof prover="5"><result status="valid" time="0.228162" steps="4143"/></proof>
  <transf name="split_vc" proved="true" >
   <goal name="prop2&#39;vc.0" expl="variant decrease" proved="true">
   <proof prover="0"><result status="valid" time="0.010000" steps="2339"/></proof>
@@ -33,7 +35,7 @@
   <proof prover="0"><result status="valid" time="0.010000" steps="3235"/></proof>
   </goal>
   <goal name="prop2&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.090000" steps="6092"/></proof>
+  <proof prover="5"><result status="valid" time="0.217690" steps="6093"/></proof>
   </goal>
  </transf>
  </goal>
@@ -66,15 +68,15 @@
  </transf>
  </goal>
  <goal name="prop3&#39;vc" expl="VC for prop3" proved="true">
- <proof prover="1"><result status="valid" time="0.386239" steps="7600"/></proof>
+ <proof prover="5"><result status="valid" time="0.885005" steps="7599"/></proof>
  </goal>
  <goal name="compute2&#39;vc" expl="VC for compute2">
  <transf name="split_vc" >
   <goal name="compute2&#39;vc.0" expl="loop invariant init" proved="true">
-  <proof prover="2"><result status="valid" time="0.005027" steps="390"/></proof>
+  <proof prover="6"><result status="valid" time="0.005947" steps="386"/></proof>
   </goal>
   <goal name="compute2&#39;vc.1" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.034277" steps="92"/></proof>
+  <proof prover="6"><result status="valid" time="0.012772" steps="4340"/></proof>
   </goal>
   <goal name="compute2&#39;vc.2" expl="check division by zero" proved="true">
   <proof prover="4"><result status="valid" time="0.041673" steps="1131"/></proof>
@@ -83,9 +85,21 @@
   <proof prover="4"><result status="valid" time="0.037688" steps="5014"/></proof>
   </goal>
   <goal name="compute2&#39;vc.4" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.010956" steps="7979"/></proof>
+  <proof prover="6"><result status="valid" time="0.015908" steps="8373"/></proof>
   </goal>
   <goal name="compute2&#39;vc.5" expl="loop invariant preservation">
+  <proof prover="3" memlimit="1000"><result status="timeout" time="1.000000" steps="103468"/></proof>
+  <proof prover="4" timelimit="1"><result status="timeout" time="1.000000"/></proof>
+  <proof prover="5"><result status="timeout" time="1.000000" steps="8872"/></proof>
+  <proof prover="6"><result status="timeout" time="1.000000" steps="2107089"/></proof>
+  <transf name="split_vc" >
+   <goal name="compute2&#39;vc.5.0" expl="loop invariant preservation">
+   <proof prover="3" timelimit="10"><result status="timeout" time="10.000000" steps="324686"/></proof>
+   <proof prover="4" timelimit="10" memlimit="4000"><result status="timeout" time="10.000000"/></proof>
+   <proof prover="5" timelimit="10" memlimit="4000"><result status="highfailure" time="0.000527"/></proof>
+   <proof prover="6" timelimit="10" memlimit="4000"><result status="timeout" time="8.205972" steps="26520311"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="compute2&#39;vc.6" expl="postcondition" proved="true">
   <proof prover="4"><result status="valid" time="0.040478" steps="5696"/></proof>
