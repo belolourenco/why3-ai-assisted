@@ -67,6 +67,7 @@ let compute (n k: int) : (r: int)
 = let k = min k (n - k) in
   let ref r = 1 in
   for i = 1 to k do
+    invariant { 1 <= i <= k + 1 }
     invariant { r = comb n (i - 1) }
     r <- r * (n - i + 1) / i;
     prop2 n i;
@@ -92,6 +93,7 @@ let compute2 (n k: int) : (r: int)
 = let k = min k (n - k) in
   let ref r = 1 in
   for i = 1 to k do
+    invariant { 1 <= i <= k + 1 }
     invariant { r = comb (n - k + i - 1) (i - 1) }
     r <- r * (n - k + i) / i;
     prop3 (n - k + i) i;
