@@ -77,7 +77,7 @@ module Set
   function remove (x: 'a) (s: set 'a): set 'a = s[x <- false]
 
   lemma add_remove:
-    forall x: 'a, s: set 'a. mem x s -> add x (remove x s) = s
+    forall x: 'a, s: set 'a [add x (remove x s)]. mem x s -> add x (remove x s) = s
 
   lemma remove_add:
     forall x: 'a, s: set 'a. remove x (add x s) = remove x s
