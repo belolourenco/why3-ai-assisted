@@ -261,7 +261,7 @@
   <proof prover="6"><result status="valid" time="0.020000" steps="154"/></proof>
   </goal>
   <goal name="search_tree_delete_min&#39;vc.29" expl="assertion" proved="true">
-  <proof prover="8"><result status="valid" time="2.463888"/></proof>
+  <proof prover="8"><result status="valid" time="0.186709"/></proof>
   </goal>
   <goal name="search_tree_delete_min&#39;vc.30" expl="precondition" proved="true">
   <proof prover="6"><result status="valid" time="0.010000" steps="73"/></proof>

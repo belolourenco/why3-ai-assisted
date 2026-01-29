@@ -3,10 +3,10 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.0.5" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.8.17" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="2" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="4" name="Z3" version="4.12.6" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="9" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="binary_search.mlw"/>
 <theory name="BinarySearch" proved="true">
@@ -170,7 +170,7 @@
 </theory>
 <theory name="TwoDimensional" proved="true">
  <goal name="search&#39;vc" expl="VC for search" proved="true">
- <proof prover="9"><result status="valid" time="0.037675" steps="31396"/></proof>
+ <proof prover="1"><result status="valid" time="0.037675" steps="22686"/></proof>
  </goal>
 </theory>
 </file>
