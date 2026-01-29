@@ -7,11 +7,22 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git libgmp-dev opam pkg-config unzip wget zlib1g-dev libgcc-s1 libstdc++6 adduser && \
-    apt-get install -yq spass && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git && \
+    apt-get install -yq --no-install-recommends libgmp-dev opam pkg-config unzip wget && \
+    apt-get install -yq --no-install-recommends zlib1g-dev libgcc-s1 libstdc++6 adduser && \
+    apt-get install -yq --no-install-recommends libmpfr-dev libboost-dev && \
+    apt-get install -yq --no-install-recommends spass && \
     apt-get clean
 
 # install provers
+
+## Gappa 1.6.1
+RUN wget --quiet https://gappa.gitlabpages.inria.fr/releases/gappa-1.6.1.tar.gz && \
+    tar -xzf gappa-1.6.1.tar.gz && \
+    cd gappa-1.6.1 && \
+    ./configure && ./remake && ./remake install && \
+    rm -rf gappa-1.6.1 gappa-1.6.1.tar.gz
+
 ## CVC5 1.0.5
 RUN wget --quiet https://github.com/cvc5/cvc5/releases/download/cvc5-1.0.5/cvc5-Linux -O /usr/local/bin/cvc5-1.0.5 && \
     chmod a+x /usr/local/bin/cvc5-1.0.5 && \
@@ -56,11 +67,17 @@ RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.6.0/z3-4.
     unzip z3-4.6.0-x64-debian-8.10.zip && \
     mv z3-4.6.0-x64-debian-8.10/bin/z3 /usr/local/bin/z3-4.6.0 && \
     rm -r z3-4.6.0-x64-debian-8.10.zip z3-4.6.0-x64-debian-8.10
-## Z3 4.8.10
-RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.8.10/z3-4.8.10-x64-ubuntu-18.04.zip && \
-    unzip z3-4.8.10-x64-ubuntu-18.04.zip && \
-    mv z3-4.8.10-x64-ubuntu-18.04/bin/z3 /usr/local/bin/z3-4.8.10 && \
-    rm -r z3-4.8.10-x64-ubuntu-18.04.zip z3-4.8.10-x64-ubuntu-18.04
+## Z3 4.7.1
+RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.7.1/z3-4.7.1-x64-debian-8.10.zip && \
+    unzip z3-4.7.1-x64-debian-8.10.zip && \
+    mv z3-4.7.1-x64-debian-8.10/bin/z3 /usr/local/bin/z3-4.7.1 && \
+    rm -r z3-4.7.1-x64-debian-8.10.zip z3-4.7.1-x64-debian-8.10
+## Z3 4.8.17
+RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.8.17/z3-4.8.17-x64-glibc-2.31.zip && \
+    unzip z3-4.8.17-x64-glibc-2.31.zip && \
+    mv z3-4.8.17-x64-glibc-2.31/bin/z3 /usr/local/bin/z3-4.8.17 && \
+    rm -r z3-4.8.17-x64-glibc-2.31.zip z3-4.8.17-x64-glibc-2.31
+    ## Z3 4.11.2
 ## Z3 4.11.2
 RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.11.2/z3-4.11.2-x64-glibc-2.31.zip && \
         unzip z3-4.11.2-x64-glibc-2.31.zip && \
@@ -104,6 +121,7 @@ RUN wget --quiet http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_3.
     cd .. && \
     rm -rf E.tgz E-3.2.5 && \
     mv /usr/local/bin/eprover /usr/local/bin/eprover-3.2.5
+
 
 ## list installed provers so far
 RUN ls -l /usr/local/bin

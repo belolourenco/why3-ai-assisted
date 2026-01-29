@@ -6,7 +6,7 @@
 <prover id="1" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="4" name="Z3" version="4.8.10" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="5" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="9" name="Eprover" version="2.6" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="verifythis_2021_shearsort.mlw"/>
@@ -198,7 +198,7 @@
   <proof prover="3"><result status="valid" time="0.049493" steps="62"/></proof>
   </goal>
   <goal name="sort_row&#39;vc.16" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.243852" steps="24214"/></proof>
+  <proof prover="1"><result status="valid" time="0.103260" steps="24214"/></proof>
   </goal>
   <goal name="sort_row&#39;vc.17" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.040204" steps="139"/></proof>
@@ -399,7 +399,7 @@
   <proof prover="3"><result status="valid" time="0.027144" steps="15"/></proof>
   </goal>
   <goal name="sort_all_columns&#39;vc.4" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.436308" steps="40610"/></proof>
+  <proof prover="2"><result status="valid" time="0.207134" steps="40610"/></proof>
   </goal>
   <goal name="sort_all_columns&#39;vc.5" expl="loop invariant preservation" proved="true">
   <proof prover="2"><result status="valid" time="0.081774" steps="13698"/></proof>
@@ -677,10 +677,10 @@
   <proof prover="3"><result status="valid" time="0.081328" steps="247"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.56" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.594194" steps="58920"/></proof>
+  <proof prover="1"><result status="valid" time="0.257781" steps="58920"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.57" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="1.039405" steps="110751"/></proof>
+  <proof prover="1"><result status="valid" time="0.503940" steps="110751"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.58" expl="loop variant decrease" proved="true">
   <proof prover="2"><result status="valid" time="0.050525" steps="13364"/></proof>
@@ -698,7 +698,7 @@
   <proof prover="1"><result status="valid" time="0.240000" steps="56654"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.63" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="1.012807" steps="110679"/></proof>
+  <proof prover="1"><result status="valid" time="0.687008" steps="110679"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.64" expl="loop variant decrease" proved="true">
   <proof prover="2"><result status="valid" time="0.093472" steps="13362"/></proof>
@@ -713,7 +713,7 @@
   <proof prover="3"><result status="valid" time="0.043697" steps="69"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.68" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.490417" steps="56671"/></proof>
+  <proof prover="1"><result status="valid" time="0.239065" steps="56671"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.69" expl="postcondition" proved="true">
   <transf name="split_goal_right" proved="true" >
@@ -730,10 +730,10 @@
    <proof prover="1"><result status="valid" time="0.205245" steps="46976"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.69.4" expl="VC for shear_sort" proved="true">
-   <proof prover="1"><result status="valid" time="0.651514" steps="72960"/></proof>
+   <proof prover="1"><result status="valid" time="0.417798" steps="72960"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.69.5" expl="VC for shear_sort" proved="true">
-   <proof prover="1"><result status="valid" time="5.444445" steps="318519"/></proof>
+   <proof prover="1"><result status="valid" time="3.142857" steps="318519"/></proof>
    </goal>
   </transf>
   </goal>
@@ -750,7 +750,7 @@
   <proof prover="3"><result status="valid" time="0.113653" steps="559"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.74" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.693102" steps="72884"/></proof>
+  <proof prover="1"><result status="valid" time="0.310253" steps="72884"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.75" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.058954" steps="144"/></proof>
@@ -779,10 +779,10 @@
   <goal name="shear_sort&#39;vc.83" expl="assertion" proved="true">
   <transf name="split_goal_right" proved="true" >
    <goal name="shear_sort&#39;vc.83.0" expl="VC for shear_sort" proved="true">
-   <proof prover="1"><result status="valid" time="2.202483" steps="181201"/></proof>
+   <proof prover="1"><result status="valid" time="1.225283" steps="181201"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.83.1" expl="VC for shear_sort" proved="true">
-   <proof prover="1"><result status="valid" time="0.590263" steps="65450"/></proof>
+   <proof prover="1"><result status="valid" time="0.284929" steps="65450"/></proof>
    </goal>
   </transf>
   </goal>
@@ -802,13 +802,13 @@
   <proof prover="3"><result status="valid" time="0.049269" steps="173"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.89" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.317409" steps="617"/></proof>
+  <proof prover="3"><result status="valid" time="0.158008" steps="617"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.90" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.046054" steps="107"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.91" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.831768" steps="6819"/></proof>
+  <proof prover="3"><result status="valid" time="0.642712" steps="6819"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.92" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.075129" steps="210"/></proof>
@@ -817,7 +817,7 @@
   <proof prover="2"><result status="valid" time="0.288977" steps="33047"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.94" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="1.506718" steps="132800"/></proof>
+  <proof prover="1"><result status="valid" time="1.080554" steps="132800"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.95" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.084680" steps="213"/></proof>
@@ -829,16 +829,16 @@
   <proof prover="2"><result status="valid" time="0.128122" steps="33191"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.98" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="1.100873" steps="134752"/></proof>
+  <proof prover="1"><result status="valid" time="0.697912" steps="134752"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.99" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.440000" steps="82692"/></proof>
+  <proof prover="1"><result status="valid" time="0.675905" steps="82692"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.100" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.210305" steps="32175"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.101" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.610695" steps="75935"/></proof>
+  <proof prover="1"><result status="valid" time="0.382514" steps="75935"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.102" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.056536" steps="224424"/></proof>
@@ -853,19 +853,19 @@
   <proof prover="3"><result status="valid" time="0.085011" steps="186"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.106" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="5.538822" steps="355314"/></proof>
+  <proof prover="1"><result status="valid" time="3.126925" steps="355314"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.107" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="3.799116" steps="14659"/></proof>
+  <proof prover="3"><result status="valid" time="1.683275" steps="14659"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.108" expl="postcondition" proved="true">
   <proof prover="3"><result status="valid" time="0.026940" steps="0"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.109" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.286588" steps="34728"/></proof>
+  <proof prover="2"><result status="valid" time="0.116419" steps="34728"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.110" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.744976" steps="80250"/></proof>
+  <proof prover="1"><result status="valid" time="0.366170" steps="80250"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.111" expl="assertion" proved="true">
   <transf name="split_goal_right" proved="true" >
@@ -876,7 +876,7 @@
    <proof prover="0"><result status="valid" time="0.060246" steps="219254"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.111.2" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.743569" steps="75913"/></proof>
+   <proof prover="1"><result status="valid" time="0.323411" steps="75913"/></proof>
    </goal>
   </transf>
   </goal>
@@ -884,7 +884,31 @@
   <proof prover="3"><result status="valid" time="0.143798" steps="268"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.113" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="1.635303" steps="1504942"/></proof>
+  <transf name="split_vc" proved="true" >
+   <goal name="shear_sort&#39;vc.113.0" expl="VC for shear_sort" proved="true">
+   <transf name="split_vc" proved="true" >
+    <goal name="shear_sort&#39;vc.113.0.0" expl="VC for shear_sort" proved="true">
+    <proof prover="5"><result status="valid" time="0.524717" steps="1421542"/></proof>
+    </goal>
+    <goal name="shear_sort&#39;vc.113.0.1" expl="VC for shear_sort" proved="true">
+    <transf name="split_vc" proved="true" >
+     <goal name="shear_sort&#39;vc.113.0.1.0" expl="VC for shear_sort" proved="true">
+     <proof prover="5"><result status="valid" time="0.014171" steps="22469"/></proof>
+     </goal>
+     <goal name="shear_sort&#39;vc.113.0.1.1" expl="VC for shear_sort" proved="true">
+     <proof prover="3" memlimit="2000"><result status="valid" time="3.250641" steps="27501"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+   <goal name="shear_sort&#39;vc.113.1" expl="VC for shear_sort" proved="true">
+   <proof prover="5"><result status="valid" time="0.014019" steps="22535"/></proof>
+   </goal>
+   <goal name="shear_sort&#39;vc.113.2" expl="VC for shear_sort" proved="true">
+   <proof prover="5"><result status="valid" time="0.010817" steps="22535"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="shear_sort&#39;vc.114" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.057087" steps="22636"/></proof>
@@ -899,7 +923,7 @@
   <proof prover="3"><result status="valid" time="0.141035" steps="222"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.118" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="1.436868" steps="139161"/></proof>
+  <proof prover="1"><result status="valid" time="0.776780" steps="139161"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.119" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.882604" steps="96032"/></proof>
@@ -908,7 +932,7 @@
   <proof prover="2"><result status="valid" time="0.050365" steps="6531"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.121" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.322617" steps="36095"/></proof>
+  <proof prover="2"><result status="valid" time="0.125534" steps="36095"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.122" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.668282" steps="82226"/></proof>
@@ -919,10 +943,10 @@
    <proof prover="3"><result status="valid" time="0.098188" steps="287"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.123.1" expl="assertion" proved="true">
-   <proof prover="3"><result status="valid" time="0.205306" steps="273"/></proof>
+   <proof prover="3"><result status="valid" time="0.069217" steps="273"/></proof>
    </goal>
    <goal name="shear_sort&#39;vc.123.2" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.812974" steps="80278"/></proof>
+   <proof prover="1"><result status="valid" time="0.352002" steps="80278"/></proof>
    </goal>
   </transf>
   </goal>
@@ -937,7 +961,7 @@
   </transf>
   </goal>
   <goal name="shear_sort&#39;vc.125" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="1.482950" steps="1489877"/></proof>
+  <proof prover="0"><result status="valid" time="0.729915" steps="1489877"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.126" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.109700" steps="22726"/></proof>
@@ -984,7 +1008,7 @@
   <proof prover="1"><result status="valid" time="0.470000" steps="79185"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.134" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.816828" steps="80187"/></proof>
+  <proof prover="1"><result status="valid" time="0.397976" steps="80187"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.135" expl="loop invariant preservation" proved="true">
   <proof prover="3"><result status="valid" time="0.052396" steps="208"/></proof>
@@ -993,10 +1017,10 @@
   <proof prover="3"><result status="valid" time="0.058056" steps="331"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.137" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.668711" steps="77511"/></proof>
+  <proof prover="1"><result status="valid" time="0.452734" steps="77511"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.138" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.470606" steps="7403"/></proof>
+  <proof prover="3"><result status="valid" time="0.260623" steps="7403"/></proof>
   </goal>
   <goal name="shear_sort&#39;vc.139" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.040936" steps="89"/></proof>
@@ -1004,7 +1028,7 @@
   <goal name="shear_sort&#39;vc.140" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shear_sort&#39;vc.140.0" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="1.525097" steps="18044"/></proof>
+   <proof prover="3"><result status="valid" time="0.682713" steps="18044"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1069,7 +1093,7 @@
   <proof prover="0"><result status="valid" time="0.070703" steps="157964"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.9" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.281738" steps="16120"/></proof>
+  <proof prover="2"><result status="valid" time="0.145021" steps="16120"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.10" expl="loop invariant preservation" proved="true">
   <proof prover="2"><result status="valid" time="0.097377" steps="14412"/></proof>
@@ -1093,7 +1117,7 @@
   <proof prover="3"><result status="valid" time="0.028434" steps="30"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.17" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.380008" steps="16928"/></proof>
+  <proof prover="2"><result status="valid" time="0.140178" steps="16928"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.18" expl="variant decrease" proved="true">
   <proof prover="2"><result status="valid" time="0.041766" steps="5206"/></proof>
@@ -1102,7 +1126,7 @@
   <proof prover="3"><result status="valid" time="0.035463" steps="32"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.20" expl="assertion" proved="true">
-  <proof prover="3"><result status="valid" time="0.389036" steps="807"/></proof>
+  <proof prover="3"><result status="valid" time="0.201838" steps="807"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.21" expl="variant decrease" proved="true">
   <proof prover="2"><result status="valid" time="0.036102" steps="5737"/></proof>
@@ -1111,13 +1135,13 @@
   <proof prover="2"><result status="valid" time="0.045485" steps="5856"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.23" expl="assertion" proved="true">
-  <proof prover="3"><result status="valid" time="0.452467" steps="1071"/></proof>
+  <proof prover="3"><result status="valid" time="0.217816" steps="1071"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.24" expl="assertion" proved="true">
   <proof prover="2"><result status="valid" time="0.086799" steps="9372"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.25" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.288383" steps="589"/></proof>
+  <proof prover="3"><result status="valid" time="0.121534" steps="589"/></proof>
   </goal>
   <goal name="quick_rec&#39;vc.26" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.032377" steps="51709"/></proof>
