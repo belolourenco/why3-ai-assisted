@@ -4,7 +4,7 @@
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC5" version="1.0.5" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="2" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.8.17" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="proper_cuts.mlw"/>
 <theory name="ProperCut" proved="true">
@@ -18,12 +18,12 @@
  <proof prover="1"><result status="valid" time="0.154340" steps="14327"/></proof>
  </goal>
  <goal name="cons&#39;vc" expl="VC for cons" proved="true">
- <proof prover="2"><result status="valid" time="1.411770" steps="3949223"/></proof>
+ <proof prover="3"><result status="valid" time="1.411770" steps="3859008"/></proof>
  </goal>
  <goal name="proper_cuts&#39;vc" expl="VC for proper_cuts" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="proper_cuts&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="2"><result status="valid" time="0.038265" steps="4827"/></proof>
+  <proof prover="3"><result status="valid" time="0.038265" steps="4827"/></proof>
   </goal>
   <goal name="proper_cuts&#39;vc.1" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -35,7 +35,7 @@
     <goal name="proper_cuts&#39;vc.1.1.0" expl="VC for proper_cuts" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="proper_cuts&#39;vc.1.1.0.0" expl="VC for proper_cuts" proved="true">
-     <proof prover="2"><result status="valid" time="0.059026" steps="65249"/></proof>
+     <proof prover="3"><result status="valid" time="0.059026" steps="62769"/></proof>
      </goal>
      <goal name="proper_cuts&#39;vc.1.1.0.1" expl="VC for proper_cuts" proved="true">
      <proof prover="1"><result status="valid" time="0.388445" steps="50075"/></proof>

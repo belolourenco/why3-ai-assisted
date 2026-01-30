@@ -3,7 +3,7 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="2" name="Z3" version="4.8.10" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.8.17" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="4" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Alt-Ergo" version="2.4.3" timelimit="30" steplimit="0" memlimit="1000"/>
 <prover id="7" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
@@ -46,13 +46,13 @@
   <proof prover="7"><result status="valid" time="0.020000" steps="5920"/></proof>
   </goal>
   <goal name="mex&#39;vc.8" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.034682" steps="30755"/></proof>
+  <proof prover="1"><result status="valid" time="0.034682" steps="28393"/></proof>
   </goal>
   <goal name="mex&#39;vc.9" expl="precondition" proved="true">
   <proof prover="7"><result status="valid" time="0.030000" steps="5882"/></proof>
   </goal>
   <goal name="mex&#39;vc.10" expl="loop variant decrease" proved="true">
-  <proof prover="2" timelimit="5"><result status="valid" time="0.273961" steps="543072"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.028199" steps="51854"/></proof>
   </goal>
   <goal name="mex&#39;vc.11" expl="loop invariant preservation" proved="true">
   <proof prover="7"><result status="valid" time="0.040000" steps="6206"/></proof>
@@ -63,7 +63,7 @@
   <goal name="mex&#39;vc.13" expl="loop invariant preservation" proved="true">
   <transf name="split_all_full" proved="true" >
    <goal name="mex&#39;vc.13.0" expl="loop invariant preservation" proved="true">
-   <proof prover="2"><result status="valid" time="0.038894" steps="74903"/></proof>
+   <proof prover="1"><result status="valid" time="0.038894" steps="39076"/></proof>
    </goal>
   </transf>
   </goal>
@@ -149,7 +149,7 @@
 <theory name="MexArrayNaive" proved="true">
  <goal name="mex&#39;vc" expl="VC for mex" proved="true">
  <proof prover="4"><result status="valid" time="0.423152" steps="2005"/></proof>
- <proof prover="5"><result status="valid" time="1.128571" steps="6670"/></proof>
+ <proof prover="5"><result status="valid" time="1.128571" steps="6659"/></proof>
  </goal>
 </theory>
 <theory name="MexArraySorted" proved="true">
