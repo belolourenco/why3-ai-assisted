@@ -44,7 +44,7 @@ let t_and_asym_simp f1 f2 = t_and_simp (t_attr_add asym_split f1) f2
 
 let t_implies_simp f1 f2 = match f1.t_node, f2.t_node with
   | Ttrue, _  | _, Ttrue  -> f2
-  | Tfalse, _ | _, Tfalse -> t_not_simp f1
+  | Tfalse, _ | _, Tfalse -> t_attr_copy f2 (t_not_simp f1)
   | _, _ -> t_implies f1 f2
 
 let t_if_simp f1 f2 f3 = match f1.t_node, f2.t_node, f3.t_node with
