@@ -14,7 +14,18 @@ RUN apt-get update -yq && \
     apt-get install -yq --no-install-recommends spass && \
     apt-get clean
 
-# install provers
+# install provers from binaries on the web
+
+## Vampire 5.0.1
+RUN wget --quiet https://github.com/vprover/vampire/releases/download/v5.0.1/vampire-Linux-X64.zip && \
+    unzip vampire-Linux-X64.zip && \
+    mv vampire /usr/local/bin/vampire-5.0.1 && \
+    rm -rf vampire-Linux-X64.zip
+
+## Colibri2 0.4 (TODO: upgrade to 0.5 asap)
+RUN wget --quiet https://git.frama-c.com/pub/colibrics/-/jobs/artifacts/0.4/raw/bin/colibri2/colibri2?job=generate-static:%20[4.12.0]  && \
+    mv 'colibri2?job=generate-static: [4.12.0]' /usr/local/bin/colibri2-0.4 && \
+    chmod +x /usr/local/bin/colibri2-0.4
 
 ## Gappa 1.6.1
 RUN wget --quiet https://gappa.gitlabpages.inria.fr/releases/gappa-1.6.1.tar.gz && \
@@ -132,7 +143,7 @@ USER why3
 ENV HOME=/home/why3
 WORKDIR /home/why3
 
-# install opam
+# install opam, alt-ergo and coq
 RUN opam init -y --no-setup -j4 --bare --disable-sandboxing && \
     opam switch create bench  ocaml-base-compiler.4.09.1 && \
     opam repository add coq-released https://coq.inria.fr/opam/released --all-switches && \
