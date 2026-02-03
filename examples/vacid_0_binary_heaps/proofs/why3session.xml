@@ -89,7 +89,7 @@
      <goal name="heapSort&#39;vc.8.4.0.0" expl="VC for heapSort" proved="true">
      <transf name="split_all_full" proved="true" >
       <goal name="heapSort&#39;vc.8.4.0.0.0" expl="VC for heapSort" proved="true">
-      <proof prover="6"><result status="valid" time="0.674966" steps="10808"/></proof>
+      <proof prover="6"><result status="valid" time="1.190049" steps="10808"/></proof>
       </goal>
      </transf>
      </goal>
@@ -98,7 +98,7 @@
    </transf>
    </goal>
    <goal name="heapSort&#39;vc.8.5" expl="VC for heapSort" proved="true">
-   <proof prover="6"><result status="valid" time="1.030638" steps="13656"/></proof>
+   <proof prover="6"><result status="valid" time="1.330119" steps="13656"/></proof>
    </goal>
   </transf>
   </goal>
