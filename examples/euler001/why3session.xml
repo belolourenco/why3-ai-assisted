@@ -13,7 +13,7 @@
 <path name=".."/><path name="euler001.mlw"/>
 <theory name="DivModHints" proved="true">
  <goal name="mod_div_unique&#39;vc" expl="VC for mod_div_unique" proved="true">
- <proof prover="7" memlimit="0"><path name="euler001_DivModHints_mod_div_unique_1.v"/><result status="valid" time="0.285617"/></proof>
+ <proof prover="7" memlimit="0"><path name="euler001_DivModHints_mod_div_unique_1.v"/><result status="valid" time="0.520685"/></proof>
  </goal>
  <goal name="mod_succ_1&#39;vc" expl="VC for mod_succ_1" proved="true">
  <transf name="split_vc" proved="true" >
@@ -40,7 +40,6 @@
  </goal>
  <goal name="div_succ_2" proved="true">
  <proof prover="1" timelimit="30"><result status="valid" time="0.100000"/></proof>
- <proof prover="8" timelimit="30"><undone/></proof>
  </goal>
  <goal name="mod2_mul2" proved="true">
  <proof prover="0"><result status="valid" time="0.050000" steps="49"/></proof>
@@ -73,24 +72,22 @@
  </goal>
  <goal name="div2_sub" proved="true">
  <proof prover="1"><result status="valid" time="0.040000"/></proof>
- <proof prover="8"><undone/></proof>
  </goal>
 </theory>
 <theory name="TriangularNumbers" proved="true">
  <goal name="tr_mod_2" proved="true">
- <proof prover="7"><path name="euler001_TriangularNumbers_tr_mod_2_1.v"/><result status="valid" time="0.310000"/></proof>
+ <proof prover="7"><path name="euler001_TriangularNumbers_tr_mod_2_1.v"/><result status="valid" time="0.488794"/></proof>
  </goal>
  <goal name="tr_repr" proved="true">
  <proof prover="8"><result status="valid" time="0.010000" steps="18068"/></proof>
  </goal>
  <goal name="tr_succ" proved="true">
  <proof prover="1"><result status="valid" time="0.020000"/></proof>
- <proof prover="8"><undone/></proof>
  </goal>
 </theory>
 <theory name="SumMultiple" proved="true">
  <goal name="mod_15" proved="true">
- <proof prover="3"><result status="valid" time="0.140000" steps="15285"/></proof>
+ <proof prover="3"><result status="valid" time="0.317663" steps="15285"/></proof>
  </goal>
  <goal name="Closed_formula_0" proved="true">
  <proof prover="1" timelimit="30"><result status="valid" time="0.020000"/></proof>
@@ -100,10 +97,10 @@
  <proof prover="0" timelimit="1"><result status="valid" time="0.070000" steps="240"/></proof>
  </goal>
  <goal name="Closed_formula_n_3" proved="true">
- <proof prover="1" timelimit="10"><result status="valid" time="2.514946"/></proof>
+ <proof prover="1" timelimit="10"><result status="valid" time="2.925551"/></proof>
  </goal>
  <goal name="Closed_formula_n_5" proved="true">
- <proof prover="1"><result status="valid" time="0.350000"/></proof>
+ <proof prover="1"><result status="valid" time="0.604612"/></proof>
  </goal>
  <goal name="Closed_formula_n_15" proved="true">
  <proof prover="1"><result status="valid" time="0.280000"/></proof>
@@ -127,7 +124,7 @@
  <proof prover="8" timelimit="30"><result status="valid" time="0.020000" steps="34197"/></proof>
  </goal>
  <goal name="Closed_Formula" proved="true">
- <proof prover="7" timelimit="30"><path name="euler001_SumMultiple_Closed_Formula_1.v"/><result status="valid" time="0.235843"/></proof>
+ <proof prover="7" timelimit="30"><path name="euler001_SumMultiple_Closed_Formula_1.v"/><result status="valid" time="0.400121"/></proof>
  </goal>
 </theory>
 <theory name="Euler001" proved="true">
