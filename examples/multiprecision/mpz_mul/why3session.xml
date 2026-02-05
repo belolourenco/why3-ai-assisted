@@ -13,6 +13,8 @@
 <prover id="8" name="Z3" version="4.8.15" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="9" name="Alt-Ergo" version="2.4.3" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="10" name="Spass" version="3.9" timelimit="5" steplimit="0" memlimit="2000"/>
+<prover id="11" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="12" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="mpz_mul.mlw"/>
 <theory name="Zmul" proved="true">
@@ -5856,7 +5858,7 @@
   <proof prover="3"><result status="valid" time="0.230000"/></proof>
   </goal>
   <goal name="wmpz_mul&#39;vc.1010" expl="assertion" proved="true">
-  <proof prover="4"><result status="valid" time="1.775999"/></proof>
+  <proof prover="11"><result status="valid" time="0.396577" steps="56197"/></proof>
   </goal>
   <goal name="wmpz_mul&#39;vc.1011" expl="integer overflow" proved="true">
   <proof prover="2"><result status="valid" time="0.150000" steps="29146"/></proof>
@@ -5894,10 +5896,10 @@
    <goal name="wmpz_mul&#39;vc.1015.3" expl="VC for wmpz_mul" proved="true">
    <transf name="apply" proved="true" arg1="prod_compat_lr">
     <goal name="wmpz_mul&#39;vc.1015.3.0" expl="apply premises" proved="true">
-    <proof prover="0"><result status="valid" time="0.520756" steps="11797"/></proof>
+    <proof prover="12"><result status="valid" time="0.199130" steps="577729"/></proof>
     </goal>
     <goal name="wmpz_mul&#39;vc.1015.3.1" expl="apply premises" proved="true">
-    <proof prover="0"><result status="valid" time="1.705204" steps="22197"/></proof>
+    <proof prover="12"><result status="valid" time="0.218717" steps="569507"/></proof>
     </goal>
    </transf>
    </goal>

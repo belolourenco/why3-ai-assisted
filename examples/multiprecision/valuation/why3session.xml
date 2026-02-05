@@ -46,7 +46,7 @@
   <goal name="valuation&#39;vc.6" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="valuation&#39;vc.6.0" expl="postcondition" proved="true">
-   <proof prover="9"><result status="valid" time="1.067107"/></proof>
+   <proof prover="3" timelimit="10" memlimit="4000"><result status="valid" time="6.075787" steps="111200"/></proof>
    </goal>
    <goal name="valuation&#39;vc.6.1" expl="postcondition" proved="true">
    <proof prover="3"><result status="valid" time="0.010000" steps="528"/></proof>
