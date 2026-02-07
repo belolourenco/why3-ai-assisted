@@ -955,8 +955,8 @@ if test "$enable_coq_support" = yes; then
       if test "$COQNUMVERSION" -ge 817; then
          COQFLAGS="-w deprecated-instance-without-locality,deprecated-hint-without-locality"
       fi
-      if test "$COQNUMVERSION" -gt 820; then
-         AC_MSG_WARN([unrecognized Coq version, assuming Coq 8.20])
+      if test "$COQNUMVERSION" -gt 901; then
+         AC_MSG_WARN([unrecognized Coq version, assuming Rocq 9.1])
          COQNUMVERSION=820
       fi
       coq_compat_version="COQ$COQNUMVERSION"
