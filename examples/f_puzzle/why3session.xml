@@ -3,10 +3,10 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="Eprover" version="2.6" timelimit="30" steplimit="0" memlimit="1000"/>
-<prover id="1" name="Z3" version="4.6.0" timelimit="30" steplimit="0" memlimit="1000"/>
-<prover id="3" name="Alt-Ergo" version="2.6.0" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="10" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="11" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="4" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="5" name="Z3" version="4.8.17" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="11" name="Z3" version="4.14.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="f_puzzle.mlw"/>
 <theory name="Step1" proved="true">
@@ -14,7 +14,7 @@
  <proof prover="11"><result status="valid" time="0.025384" steps="112"/></proof>
  </goal>
  <goal name="I1.induction_step" proved="true">
- <proof prover="1"><result status="valid" time="0.219631" steps="158668"/></proof>
+ <proof prover="5"><result status="valid" time="0.059599" steps="121455"/></proof>
  </goal>
 </theory>
 <theory name="Solution" proved="true">
@@ -22,16 +22,16 @@
  <proof prover="0"><result status="valid" time="0.105681"/></proof>
  </goal>
  <goal name="L4" proved="true">
- <proof prover="11"><result status="valid" time="0.040794" steps="3408"/></proof>
+ <proof prover="4"><result status="valid" time="0.022690" steps="17"/></proof>
  </goal>
  <goal name="I2.base" proved="true">
- <proof prover="11"><result status="valid" time="0.624644" steps="943442"/></proof>
+ <proof prover="11"><result status="valid" time="0.222051" steps="943442"/></proof>
  </goal>
  <goal name="I2.induction_step" proved="true">
- <proof prover="3"><result status="valid" time="0.418229" steps="734"/></proof>
+ <proof prover="4"><result status="valid" time="0.239419" steps="742"/></proof>
  </goal>
  <goal name="L5" proved="true">
- <proof prover="10"><result status="valid" time="0.236616" steps="1699"/></proof>
+ <proof prover="2"><result status="valid" time="0.036835" steps="1802"/></proof>
  </goal>
  <goal name="L6" proved="true">
  <proof prover="11"><result status="valid" time="0.041126" steps="8135"/></proof>
