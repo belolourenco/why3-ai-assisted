@@ -149,7 +149,7 @@ alternative = ""
 policy = "upgrade"
 target_alternative = ""
 target_name = "Eprover"
-target_version = "2.6"
+target_version = "2.0"
 
 [uninstalled_prover Eprover1.9.1-001]
 name = "Eprover"
@@ -158,16 +158,7 @@ alternative = ""
 policy = "upgrade"
 target_alternative = ""
 target_name = "Eprover"
-target_version = "2.6"
-
-[uninstalled_prover Eprover2.0]
-name = "Eprover"
-version = "2.0"
-alternative = ""
-policy = "upgrade"
-target_alternative = ""
-target_name = "Eprover"
-target_version = "2.6"
+target_version = "2.0"
 
 [uninstalled_prover Gappa1.3.0]
 name = "Gappa"
