@@ -258,8 +258,10 @@ let run_replay some_merge_miss found_obs cont =
     else
       let report = List.rev report in
       begin
-        printf "(replay failed%s)@."
-          (if some_merge_miss then ", with some merge miss" else "");
+        printf "(replay failed%s%s%a)@."
+          (if some_merge_miss then ", with some merge miss" else "")
+          (if found_obs then ", obsolete session" else "")
+          pp_updated_provers updated_provers;
         List.iter (print_report session) report;
         eprintf "Replay failed.@.";
         if !opt_force then save cont;
