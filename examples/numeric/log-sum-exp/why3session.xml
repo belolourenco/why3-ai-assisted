@@ -246,10 +246,9 @@
   <proof prover="2"><result status="valid" time="0.071080" steps="13673"/></proof>
   </goal>
   <goal name="lse_accuracy&#39;vc.14" expl="postcondition" proved="true">
-  <proof prover="6"><result status="valid" time="1.797589" steps="36186"/></proof>
   <transf name="split_vc" proved="true" >
    <goal name="lse_accuracy&#39;vc.14.0" expl="postcondition" proved="true">
-   <proof prover="6"><result status="valid" time="2.846387" steps="23618"/></proof>
+   <proof prover="6"><result status="valid" time="1.361879" steps="23618"/></proof>
    </goal>
    <goal name="lse_accuracy&#39;vc.14.1" expl="postcondition" proved="true">
    <proof prover="6"><result status="valid" time="0.050863" steps="222"/></proof>
