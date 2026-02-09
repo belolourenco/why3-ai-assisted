@@ -3,7 +3,7 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="1" name="Z3" version="4.13.0" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="2" name="Alt-Ergo" version="2.6.0" timelimit="10" steplimit="0" memlimit="4096"/>
+<prover id="2" name="Alt-Ergo" version="2.6.2" timelimit="10" steplimit="0" memlimit="4096"/>
 <file format="coma">
 <path name=".."/><path name="journal.coma"/>
 <theory name="Coma">
