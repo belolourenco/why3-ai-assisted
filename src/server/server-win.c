@@ -721,7 +721,7 @@ int main(int argc, char **argv) {
                                       &mskey,
                                       &ov,
                                       INFINITE);
-      if (mskey == 0) {
+      if (!res && ov == NULL) {
         shutdown_with_msg("GetQueuedCompletionStatus failed");
       }
       key = key_of_ms_key(mskey);
