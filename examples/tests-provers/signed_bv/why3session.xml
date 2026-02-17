@@ -10,39 +10,39 @@
 <theory name="Top" proved="true">
  <goal name="add&#39;vc" expl="VC for add" proved="true">
  <transf name="split_vc" proved="true" >
-  <goal name="add&#39;vc.0" expl="arithmetic overflow" proved="true">
-  <proof prover="1"><result status="valid" time="0.030000" steps="5865"/></proof>
-  <proof prover="2"><result status="valid" time="0.010000" steps="7089"/></proof>
+  <goal name="add&#39;vc.0" expl="signed addition overflow" proved="true">
+  <proof prover="1"><result status="valid" time="0.030000" steps="1123"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="1663"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="sub&#39;vc" expl="VC for sub" proved="true">
  <transf name="split_vc" proved="true" >
-  <goal name="sub&#39;vc.0" expl="arithmetic overflow" proved="true">
-  <proof prover="1"><result status="valid" time="0.050000" steps="8505"/></proof>
-  <proof prover="2"><result status="valid" time="0.010000" steps="9420"/></proof>
+  <goal name="sub&#39;vc.0" expl="signed subtraction overflow" proved="true">
+  <proof prover="1"><result status="valid" time="0.050000" steps="1432"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="1321"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="mul&#39;vc" expl="VC for mul" proved="true">
  <transf name="split_vc" proved="true" >
-  <goal name="mul&#39;vc.0" expl="arithmetic overflow" proved="true">
-  <proof prover="1"><result status="valid" time="0.861205" steps="192564"/></proof>
-  <proof prover="2"><result status="valid" time="0.072553" steps="574994"/></proof>
-  <proof prover="4"><result status="valid" time="0.260673" steps="3823"/></proof>
+  <goal name="mul&#39;vc.0" expl="signed multiplication overflow" proved="true">
+  <proof prover="1"><result status="valid" time="0.033560" steps="4619"/></proof>
+  <proof prover="2"><result status="valid" time="0.072553" steps="14899"/></proof>
+  <proof prover="4"><result status="valid" time="0.031860" steps="262"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="div&#39;vc" expl="VC for div" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="div&#39;vc.0" expl="division by zero" proved="true">
-  <proof prover="1"><result status="valid" time="0.030000" steps="877"/></proof>
-  <proof prover="2"><result status="valid" time="0.010000" steps="473"/></proof>
-  <proof prover="4"><result status="valid" time="0.070000" steps="50"/></proof>
+  <proof prover="1"><result status="valid" time="0.030000" steps="116"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="204"/></proof>
+  <proof prover="4"><result status="valid" time="0.070000" steps="45"/></proof>
   </goal>
   <goal name="div&#39;vc.1" expl="signed division overflow check" proved="true">
-  <proof prover="1"><result status="valid" time="0.030000" steps="1239"/></proof>
-  <proof prover="2"><result status="valid" time="0.010000" steps="536"/></proof>
+  <proof prover="1"><result status="valid" time="0.030000" steps="138"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="239"/></proof>
   </goal>
  </transf>
  </goal>

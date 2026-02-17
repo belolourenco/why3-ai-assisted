@@ -22,6 +22,8 @@ why3.conf
 *.glob
 .*.aux
 *.elc
+*.smt2
+*.psmt2
 *.summary
 .merlin
 \#*\#
@@ -68,7 +70,8 @@ why3.conf
 /bench/alt_ergo_smt2/sessions
 /bench_z3_computerdiv
 /bench/z3_nombqi/bench_z3_nombqi/sessions
-
+/bench-sessions
+/bench/cvc5_no_remove_unused
 
 /examples/tests/*.out
 /bench/java/Makefile
