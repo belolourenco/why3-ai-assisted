@@ -213,7 +213,7 @@ let rec intros kn knl pr mal old_pushed f =
           knl, subst, d::dl) svs (knl, subst, dl) in
         (* only reuse the name when fl is a singleton *)
         let prx = match mal, fl with
-          | Theory.MApr pr :: _, [_] -> pr
+          | Theory.MApr pr :: _, [_] when not (Mid.mem pr.pr_name knl) -> pr
           | _, _ -> pr_of_premise f in
         let d = create_prop_decl Paxiom prx (t_subst subst f) in
         let d = find_fresh_axiom knl d in
