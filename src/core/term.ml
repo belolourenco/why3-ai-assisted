@@ -909,8 +909,8 @@ let t_nat_const n =
 let t_int_const n =
   t_const (Constant.int_const n) Ty.ty_int
 
-let t_real_const ?pow2 ?pow5 s =
-  t_const (Constant.real_const ?pow2 ?pow5 s) Ty.ty_real
+let t_real_const ?pow2 ?pow5 ~is_neg s =
+  t_const (Constant.real_const ?pow2 ?pow5 ~is_neg s) Ty.ty_real
 
 let t_string_const s =
   t_const (Constant.string_const s) Ty.ty_str
