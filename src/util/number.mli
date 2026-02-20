@@ -28,10 +28,12 @@ type int_constant = {
 [@@deriving sexp]
 
 type real_value = private {
-  rv_sig  : BigInt.t;
-  rv_pow2 : BigInt.t;
-  rv_pow5 : BigInt.t;
+  rv_is_neg : bool; (** true when is negative *)
+  rv_mantissa  : BigInt.t; (** mantissa, always non-negative *)
+  rv_pow2 : BigInt.t; (** power of 2 *)
+  rv_pow5 : BigInt.t; (*** power of 5 *)
 }
+[@@deriving sexp]
 
 type real_literal_kind =
   RLitUnk | RLitDec of int | RLitHex of int
@@ -74,7 +76,7 @@ val real_literal : radix:int -> neg:bool -> int:string -> frac:string -> exp:str
      denotes [0x9A.Bp5], i.e., [4950].
 *)
 
-val real_value : ?pow2:BigInt.t -> ?pow5:BigInt.t -> BigInt.t -> real_value
+val real_value : ?pow2:BigInt.t -> ?pow5:BigInt.t -> is_neg:bool -> BigInt.t -> real_value
 (** [real_value ~pow2 ~pow5 n] builds the value [n * 2 ^ pow2 * 5 ^ pow5]. *)
 
 (** {2 Pretty-printing with conversion} *)

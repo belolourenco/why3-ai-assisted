@@ -391,7 +391,7 @@ let built_in_modules () =
     builtin ["mach"; "int"] "Int63" bounded_int_ops;
   ]
 
-let add_builtin_mo env pm (Builtin_module {path; name; types; values}) =
+let add_builtin_mo _env pm (Builtin_module {path; name; types; values}) =
   let open Pmodule in
   List.iter
     (fun (id, r) ->
@@ -467,12 +467,11 @@ let find_definition env (rs: rsymbol) =
 (******************************************************************************)
 
 (* Assuming the real is given in pow2 and pow5 *)
-let compute_fraction {Number.rv_sig= i; rv_pow2= p2; rv_pow5= p5} =
+let compute_fraction Number.{ rv_is_neg = is_neg; rv_mantissa = m; rv_pow2= p2; rv_pow5= p5} =
   let p2_val = BigInt.pow_int_pos_bigint 2 (BigInt.abs p2) in
   let p5_val = BigInt.pow_int_pos_bigint 5 (BigInt.abs p5) in
-  let num = ref BigInt.one in
+  let num = ref m in
   let den = ref BigInt.one in
-  num := BigInt.mul i !num ;
   if BigInt.ge p2 BigInt.zero then
     num := BigInt.mul p2_val !num
   else
@@ -481,6 +480,7 @@ let compute_fraction {Number.rv_sig= i; rv_pow2= p2; rv_pow5= p5} =
     num := BigInt.mul p5_val !num
   else
     den := BigInt.mul p5_val !den ;
+  if is_neg then num := BigInt.minus !num;
   !num, !den
 
 let rec matching env (v : value) p =
