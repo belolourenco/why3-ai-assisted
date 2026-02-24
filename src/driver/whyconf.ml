@@ -1137,7 +1137,9 @@ module Args = struct
       "<file> read configuration from <file>";
       KLong "extra-config", Hnd1 (AString, fun s -> opt_extra := !opt_extra @ [s]),
       "<file> read additional configuration from <file>";
-      Key ('L', "library"), Hnd1 (AString, fun s -> opt_loadpath := s :: !opt_loadpath),
+      Key ('L', "library"), Hnd1 (AString, fun s ->
+          let s = Sysutil.concat (Sys.getcwd ()) s in
+          opt_loadpath := s :: !opt_loadpath),
       "<dir> add <dir> to the library search path";
       KLong "no-stdlib", Hnd0 (fun () -> opt_stdlib := false),
       " do not add the standard library to the loadpath";
