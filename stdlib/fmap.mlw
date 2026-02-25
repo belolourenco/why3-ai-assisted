@@ -62,12 +62,15 @@ module Fmap
 
   axiom add_contents_k:
     forall k v, m: fmap 'k 'v. (add k v m)[k] = v
+  meta "remove_unused:dependency" axiom add_contents_k, function add
 
   axiom add_contents_other:
     forall k v, m: fmap 'k 'v, k1. mem k1 m -> k1 <> k -> (add k v m)[k1] = m[k1]
+  meta "remove_unused:dependency" axiom add_contents_other, function add
 
   axiom add_domain:
     forall k v, m: fmap 'k 'v. (add k v m).domain = S.add k m.domain
+  meta "remove_unused:dependency" axiom add_domain, function add
 
   (*** FIXME? find_opt (k: 'k) (m: fmap 'k 'v) : option 'v *)
 
@@ -75,14 +78,17 @@ module Fmap
 
   axiom find_def:
     forall k, m: fmap 'k 'v. mem k m -> find k m = m[k]
+  meta "remove_unused:dependency" axiom find_def, function find
 
   function remove (k: 'k) (m: fmap 'k 'v) : fmap 'k 'v
 
   axiom remove_contents:
     forall k, m: fmap 'k 'v, k1. mem k1 m -> k1 <> k -> (remove k m)[k1] = m[k1]
+  meta "remove_unused:dependency" axiom remove_contents, function remove
 
   axiom remove_domain:
     forall k, m: fmap 'k 'v. (remove k m).domain = S.remove k m.domain
+  meta "remove_unused:dependency" axiom remove_domain, function remove
 
   function size (m: fmap 'k 'v) : int =
     S.cardinal m.domain
