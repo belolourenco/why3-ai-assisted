@@ -1074,9 +1074,14 @@ let alternatives_frame c (notebook:GPack.notebook) =
     GPack.vbox ~homogeneous:false ~packing:
       (fun w -> ignore(notebook#append_page ~tab_label:label#coerce w)) ()
   in
-  let page_pack = page#pack ?fill:None ?expand:None ?from:None ?padding:None in
+  let page_pack = page#pack ~fill:true ~expand:true ?from:None ?padding:None in
+  let scrollview =
+    GBin.scrolled_window ~hpolicy:`NEVER ~vpolicy:`AUTOMATIC
+      ~packing:page_pack () in
+  let () = scrollview#set_shadow_type `OUT in
   let frame =
-    GBin.frame ~label:"Click to remove a setting" ~packing:page_pack ()
+    GBin.frame ~label:"Click to remove a setting"
+      ~packing:scrollview#add_with_viewport ()
   in
   let box =
     GPack.button_box `VERTICAL ~border_width:5 ~spacing:5
@@ -1101,10 +1106,7 @@ let alternatives_frame c (notebook:GPack.notebook) =
       button#connect#released ~callback:(remove button p)
     in ()
   in
-  Mprover.iter iter (get_policies c.config);
-  let page_pack = page#pack ?fill:None ~expand:true ?from:None ?padding:None in
-  let _fillbox = GPack.vbox ~packing:page_pack () in
-  ()
+  Mprover.iter iter (get_policies c.config)
 
 let colors_frame c (notebook:GPack.notebook) =
   let editable_colors =
