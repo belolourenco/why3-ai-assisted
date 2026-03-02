@@ -11,31 +11,31 @@
  <goal name="filter_non_neg&#39;vc" expl="VC for filter_non_neg" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="filter_non_neg&#39;vc.0" expl="loop invariant init" proved="true">
-  <proof prover="3"><result status="valid" time="0.058141" steps="38"/></proof>
+  <proof prover="3"><result status="valid" time="0.058141" steps="37"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.1" expl="loop invariant init" proved="true">
-  <proof prover="3"><result status="valid" time="0.034365" steps="19"/></proof>
+  <proof prover="3"><result status="valid" time="0.034365" steps="18"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.2" expl="loop variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.042306" steps="154"/></proof>
+  <proof prover="3"><result status="valid" time="0.042306" steps="132"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.3" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.045060" steps="135"/></proof>
+  <proof prover="3"><result status="valid" time="0.045060" steps="120"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.4" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.065150" steps="112389"/></proof>
+  <proof prover="5"><result status="valid" time="0.065150" steps="24575"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.5" expl="loop variant decrease" proved="true">
-  <proof prover="5"><result status="valid" time="0.048984" steps="89414"/></proof>
+  <proof prover="5"><result status="valid" time="0.048984" steps="23571"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.6" expl="loop invariant preservation" proved="true">
-  <proof prover="4"><result status="valid" time="0.075763" steps="6738"/></proof>
+  <proof prover="4"><result status="valid" time="0.075763" steps="2521"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.7" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.030426" steps="43"/></proof>
+  <proof prover="3"><result status="valid" time="0.030426" steps="38"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.035341" steps="68624"/></proof>
+  <proof prover="5"><result status="valid" time="0.035341" steps="20742"/></proof>
   </goal>
  </transf>
  </goal>
@@ -44,31 +44,31 @@
  <goal name="filter_minlength&#39;vc" expl="VC for filter_minlength" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="filter_minlength&#39;vc.0" expl="loop invariant init" proved="true">
-  <proof prover="4"><result status="valid" time="0.056043" steps="8791"/></proof>
+  <proof prover="4"><result status="valid" time="0.056043" steps="5603"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.1" expl="loop invariant init" proved="true">
-  <proof prover="4"><result status="valid" time="0.085578" steps="8828"/></proof>
+  <proof prover="4"><result status="valid" time="0.085578" steps="5640"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.2" expl="loop variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.060742" steps="200"/></proof>
+  <proof prover="3"><result status="valid" time="0.060742" steps="183"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.3" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.054547" steps="108"/></proof>
+  <proof prover="3"><result status="valid" time="0.054547" steps="104"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.4" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.063810" steps="145"/></proof>
+  <proof prover="3"><result status="valid" time="0.063810" steps="135"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.5" expl="loop variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.086573" steps="173"/></proof>
+  <proof prover="3"><result status="valid" time="0.086573" steps="161"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.6" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.058863" steps="64968"/></proof>
+  <proof prover="5"><result status="valid" time="0.058863" steps="31517"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.7" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.047315" steps="57"/></proof>
+  <proof prover="3"><result status="valid" time="0.047315" steps="63"/></proof>
   </goal>
   <goal name="filter_minlength&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.042799" steps="53"/></proof>
+  <proof prover="3"><result status="valid" time="0.042799" steps="51"/></proof>
   </goal>
  </transf>
  </goal>
