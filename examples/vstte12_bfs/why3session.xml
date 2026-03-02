@@ -4,10 +4,9 @@
 <why3session shape_version="6">
 <prover id="0" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="Coq" version="8.20.1" timelimit="0" steplimit="0" memlimit="0"/>
-<prover id="3" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.7" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC4" version="1.8" timelimit="10" steplimit="0" memlimit="4000"/>
 <prover id="5" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="6" name="CVC4" version="1.5" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="7" name="Eprover" version="2.6" timelimit="30" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="vstte12_bfs.mlw"/>
@@ -18,14 +17,14 @@
   <proof prover="0"><result status="valid" time="0.000000" steps="0"/></proof>
   </goal>
   <goal name="path_nonneg.1" proved="true">
-  <proof prover="6"><result status="valid" time="0.000000" steps="9132"/></proof>
+  <proof prover="2"><result status="valid" time="0.000000" steps="3332"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="path_inversion" proved="true">
  <transf name="inversion_pr" proved="true" >
   <goal name="path_inversion.0" proved="true">
-  <proof prover="0"><result status="valid" time="0.000000" steps="3"/></proof>
+  <proof prover="0"><result status="valid" time="0.000000" steps="4"/></proof>
   </goal>
   <goal name="path_inversion.1" proved="true">
   <proof prover="0"><result status="valid" time="0.000000" steps="16"/></proof>
@@ -38,14 +37,14 @@
   <proof prover="0"><result status="valid" time="0.000000" steps="0"/></proof>
   </goal>
   <goal name="path_closure.1" proved="true">
-  <proof prover="6"><result status="valid" time="0.010000" steps="9642"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="3838"/></proof>
   </goal>
  </transf>
  </goal>
 </theory>
 <theory name="BFS" proved="true">
  <goal name="B.eq&#39;refn&#39;vc" expl="VC for eq&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.020000" steps="6044"/></proof>
+ <proof prover="2" timelimit="1"><result status="valid" time="0.020000" steps="2848"/></proof>
  </goal>
  <goal name="fill_next&#39;vc" expl="VC for fill_next" proved="true">
  <transf name="split_goal_right" proved="true" >
@@ -56,7 +55,7 @@
   <proof prover="0"><result status="valid" time="0.010000" steps="0"/></proof>
   </goal>
   <goal name="fill_next&#39;vc.2" expl="loop variant decrease" proved="true">
-  <proof prover="0"><result status="valid" time="0.020000" steps="58"/></proof>
+  <proof prover="0"><result status="valid" time="0.020000" steps="53"/></proof>
   </goal>
   <goal name="fill_next&#39;vc.3" expl="loop invariant preservation" proved="true">
   <transf name="introduce_premises" proved="true" >
@@ -65,37 +64,37 @@
     <goal name="fill_next&#39;vc.3.0.0" expl="loop invariant preservation" proved="true">
     <transf name="split_goal_right" proved="true" >
      <goal name="fill_next&#39;vc.3.0.0.0" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.030000" steps="417"/></proof>
+     <proof prover="0"><result status="valid" time="0.030000" steps="388"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.1" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.010000" steps="157"/></proof>
+     <proof prover="0"><result status="valid" time="0.010000" steps="143"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.2" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.030000" steps="418"/></proof>
+     <proof prover="0"><result status="valid" time="0.138424" steps="390"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.3" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.040000" steps="1215"/></proof>
+     <proof prover="0"><result status="valid" time="0.212768" steps="1135"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.4" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.010000" steps="169"/></proof>
+     <proof prover="0"><result status="valid" time="0.010000" steps="154"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.5" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.204316" steps="1604"/></proof>
+     <proof prover="0"><result status="valid" time="0.204316" steps="1478"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.6" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.010000" steps="170"/></proof>
+     <proof prover="0"><result status="valid" time="0.010000" steps="154"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.7" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.020000" steps="47"/></proof>
+     <proof prover="0"><result status="valid" time="0.020000" steps="43"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.8" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.110000" steps="162"/></proof>
+     <proof prover="0"><result status="valid" time="0.110000" steps="148"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.9" expl="VC for fill_next" proved="true">
-     <proof prover="0"><result status="valid" time="0.010000" steps="478"/></proof>
+     <proof prover="0"><result status="valid" time="0.146512" steps="447"/></proof>
      </goal>
      <goal name="fill_next&#39;vc.3.0.0.10" expl="VC for fill_next" proved="true">
-     <proof prover="7"><result status="valid" time="0.729769"/></proof>
+     <proof prover="7"><result status="valid" time="1.054429"/></proof>
      </goal>
     </transf>
     </goal>
@@ -104,13 +103,13 @@
   </transf>
   </goal>
   <goal name="fill_next&#39;vc.4" expl="loop variant decrease" proved="true">
-  <proof prover="0"><result status="valid" time="0.010000" steps="36"/></proof>
+  <proof prover="0"><result status="valid" time="0.010000" steps="35"/></proof>
   </goal>
   <goal name="fill_next&#39;vc.5" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.150000" steps="504"/></proof>
+  <proof prover="0"><result status="valid" time="0.150000" steps="478"/></proof>
   </goal>
   <goal name="fill_next&#39;vc.6" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.090000" steps="809"/></proof>
+  <proof prover="0"><result status="valid" time="0.090000" steps="723"/></proof>
   </goal>
  </transf>
  </goal>
@@ -119,16 +118,16 @@
   <goal name="bfs&#39;vc.0" expl="loop invariant init" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="bfs&#39;vc.0.0" expl="VC for bfs" proved="true">
-   <proof prover="4"><result status="valid" time="6.874913" steps="1380671"/></proof>
+   <proof prover="4"><result status="valid" time="1.662559" steps="454779"/></proof>
    </goal>
    <goal name="bfs&#39;vc.0.1" expl="VC for bfs" proved="true">
-   <proof prover="5"><result status="valid" time="0.011956" steps="25727"/></proof>
+   <proof prover="5"><result status="valid" time="0.011956" steps="9315"/></proof>
    </goal>
    <goal name="bfs&#39;vc.0.2" expl="VC for bfs" proved="true">
-   <proof prover="5"><result status="valid" time="0.020778" steps="55792"/></proof>
+   <proof prover="5"><result status="valid" time="0.020778" steps="21130"/></proof>
    </goal>
    <goal name="bfs&#39;vc.0.3" expl="VC for bfs" proved="true">
-   <proof prover="5"><result status="valid" time="0.005183" steps="3929"/></proof>
+   <proof prover="5"><result status="valid" time="0.005183" steps="1359"/></proof>
    </goal>
   </transf>
   </goal>
@@ -136,15 +135,15 @@
   <proof prover="0"><result status="valid" time="0.000000" steps="0"/></proof>
   </goal>
   <goal name="bfs&#39;vc.2" expl="exceptional postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.010000" steps="226"/></proof>
+  <proof prover="0"><result status="valid" time="0.010000" steps="197"/></proof>
   </goal>
   <goal name="bfs&#39;vc.3" expl="precondition" proved="true">
   <transf name="split_goal_right" proved="true" >
    <goal name="bfs&#39;vc.3.0" expl="VC for bfs" proved="true">
-   <proof prover="0"><result status="valid" time="0.020000" steps="758"/></proof>
+   <proof prover="0"><result status="valid" time="0.020000" steps="688"/></proof>
    </goal>
    <goal name="bfs&#39;vc.3.1" expl="VC for bfs" proved="true">
-   <proof prover="0"><result status="valid" time="0.010000" steps="208"/></proof>
+   <proof prover="0"><result status="valid" time="0.010000" steps="180"/></proof>
    </goal>
    <goal name="bfs&#39;vc.3.2" expl="VC for bfs" proved="true">
    <transf name="introduce_premises" proved="true" >
@@ -172,32 +171,32 @@
      <goal name="bfs&#39;vc.4.0.0.0" expl="VC for bfs" proved="true">
      <transf name="split_goal_right" proved="true" >
       <goal name="bfs&#39;vc.4.0.0.0.0" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.010000" steps="80"/></proof>
+      <proof prover="0"><result status="valid" time="0.010000" steps="76"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.1" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.010000" steps="256"/></proof>
+      <proof prover="0"><result status="valid" time="0.010000" steps="231"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.2" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.020000" steps="90"/></proof>
+      <proof prover="0"><result status="valid" time="0.020000" steps="86"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.3" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.020000" steps="256"/></proof>
+      <proof prover="0"><result status="valid" time="0.020000" steps="231"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.4" expl="VC for bfs" proved="true">
       <transf name="inline_all" proved="true" >
        <goal name="bfs&#39;vc.4.0.0.0.4.0" expl="VC for bfs" proved="true">
-       <proof prover="3"><result status="valid" time="0.210000" steps="37791"/></proof>
+       <proof prover="2" timelimit="1"><result status="valid" time="0.210000" steps="26859"/></proof>
        </goal>
       </transf>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.5" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.020000" steps="1716"/></proof>
+      <proof prover="0"><result status="valid" time="0.137383" steps="1568"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.6" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.110450" steps="2455"/></proof>
+      <proof prover="0"><result status="valid" time="0.110450" steps="2273"/></proof>
       </goal>
       <goal name="bfs&#39;vc.4.0.0.0.7" expl="VC for bfs" proved="true">
-      <proof prover="0"><result status="valid" time="0.020000" steps="86"/></proof>
+      <proof prover="0"><result status="valid" time="0.020000" steps="82"/></proof>
       </goal>
      </transf>
      </goal>
@@ -206,7 +205,7 @@
    </transf>
    </goal>
    <goal name="bfs&#39;vc.4.1" expl="VC for bfs" proved="true">
-   <proof prover="0"><result status="valid" time="0.000000" steps="96"/></proof>
+   <proof prover="0"><result status="valid" time="0.000000" steps="90"/></proof>
    </goal>
    <goal name="bfs&#39;vc.4.2" expl="VC for bfs" proved="true">
    <transf name="introduce_premises" proved="true" >
@@ -225,10 +224,10 @@
   </transf>
   </goal>
   <goal name="bfs&#39;vc.5" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.010000" steps="77"/></proof>
+  <proof prover="0"><result status="valid" time="0.010000" steps="73"/></proof>
   </goal>
   <goal name="bfs&#39;vc.6" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.020000" steps="174"/></proof>
+  <proof prover="0"><result status="valid" time="0.020000" steps="140"/></proof>
   </goal>
   <goal name="bfs&#39;vc.7" expl="postcondition" proved="true">
   <proof prover="1"><path name="vstte12_bfs_BFS_VC_bfs_1.v"/><result status="valid" time="0.340000"/></proof>
