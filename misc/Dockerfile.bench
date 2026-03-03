@@ -22,10 +22,10 @@ RUN wget --quiet https://github.com/vprover/vampire/releases/download/v5.0.1/vam
     mv vampire /usr/local/bin/vampire-5.0.1 && \
     rm -rf vampire-Linux-X64.zip
 
-## Colibri2 0.4 (TODO: upgrade to 0.5 asap)
-RUN wget --quiet https://git.frama-c.com/pub/colibrics/-/jobs/artifacts/0.4/raw/bin/colibri2/colibri2?job=generate-static:%20[4.12.0]  && \
-    mv 'colibri2?job=generate-static: [4.12.0]' /usr/local/bin/colibri2-0.4 && \
-    chmod +x /usr/local/bin/colibri2-0.4
+## Colibri2 0.5
+RUN wget --quiet https://git.frama-c.com/pub/colibrics/-/jobs/artifacts/0.5/raw/bin/colibri2?job=generate-static -O colibri2-0.5   && \
+    chmod +x colibri2-0.5  && \
+    mv colibri2-0.5 /usr/local/bin/
 
 ## Gappa 1.6.1
 RUN wget --quiet https://gappa.gitlabpages.inria.fr/releases/gappa-1.6.1.tar.gz && \
