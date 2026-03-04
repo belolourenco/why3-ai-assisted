@@ -1149,6 +1149,14 @@ Options are:
    Replay the proofs only if the session contains obsolete proof
    attempts.
 
+.. option:: --use-steps
+
+   Replay the proofs by passing the step limits used by the former proof attempt, if any.
+
+.. option:: --time-factor=f
+
+   Replay the proofs with a time limit that is `f` times the time needed for the former proof attempt.
+
 .. option:: --smoke-detector[=none|top|deep]
 
    Try to detect if the context is self-contradicting (default: top).
@@ -1156,6 +1164,12 @@ Options are:
 .. option:: --prover=<prover>
 
    Restrict the replay to the selected provers only.
+
+The option `--use-steps` should improve the reproducibility of proofs,
+assuming that with a given steps limit the prover behavior is
+deterministic. Caution: it is not guaranteed. The option
+`--time-factor` could be set to larger factor when replaying is done
+on a significantly slower computer than the former proof attempts.
 
 Smoke detector
 ~~~~~~~~~~~~~~

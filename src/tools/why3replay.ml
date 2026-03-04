@@ -37,6 +37,7 @@ let opt_force = ref false
 let opt_obsolete_only = ref false
 let opt_ignore_shapes = ref false
 let opt_use_steps = ref false
+let opt_time_factor = ref 10.0
 let opt_merging_only = ref false
 let opt_provers = ref []
 let opt_verbose = ref true
@@ -70,6 +71,8 @@ let option_list =
     " enforce saving the session after replay";
     KLong "use-steps", Hnd0 (fun () -> opt_use_steps := true),
     " replay using recorded number of proof steps (when\npossible)";
+    KLong "time-factor", Hnd1 (AFloat, fun f -> opt_time_factor := f),
+    " factor applied to the time limit when replaying (default: 10.0)";
     KLong "obsolete-only", Hnd0 (fun () -> opt_obsolete_only := true),
     " replay only if session is obsolete";
     KLong "ignore-shapes", Hnd0 (fun () -> opt_ignore_shapes := true),
@@ -280,6 +283,7 @@ let run_replay some_merge_miss found_obs cont =
       Format.eprintf "Progress: %d/%d/%d                       \r%!" w s r
   in
   C.register_observer update_monitor;
+  C.set_time_factor !opt_time_factor;
   if !opt_provers = [] then
     let () =
       C.replay ~valid_only:false ~obsolete_only:!opt_obsolete_only ~use_steps:!opt_use_steps
