@@ -1471,10 +1471,10 @@
    <goal name="wmpn_sub_n&#39;vc.13.0" expl="assertion" proved="true">
    <transf name="reflection_f" proved="true" arg1="mp_decision">
     <goal name="wmpn_sub_n&#39;vc.13.0.0" expl="assertion" proved="true">
-    <proof prover="10"><result status="valid" time="0.506142"/></proof>
+    <proof prover="10"><result status="valid" time="0.292881"/></proof>
     </goal>
     <goal name="wmpn_sub_n&#39;vc.13.0.1" proved="true">
-    <proof prover="0"><result status="valid" time="0.311873" steps="26672"/></proof>
+    <proof prover="0"><result status="valid" time="0.134807" steps="26672"/></proof>
     </goal>
     <goal name="wmpn_sub_n&#39;vc.13.0.2" proved="true">
     <proof prover="0"><result status="valid" time="0.250000" steps="26693"/></proof>

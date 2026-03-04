@@ -52,7 +52,7 @@
  <proof prover="0"><result status="valid" time="0.041910" steps="4465"/></proof>
  </goal>
  <goal name="list_member&#39;vc" expl="VC for list_member" proved="true">
- <proof prover="0"><result status="valid" time="0.048357" steps="6434"/></proof>
+ <proof prover="0"><result status="valid" time="0.048357" steps="5543"/></proof>
  </goal>
 </theory>
 </file>

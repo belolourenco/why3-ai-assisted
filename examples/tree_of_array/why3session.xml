@@ -23,7 +23,7 @@
   <proof prover="5"><result status="valid" time="0.040000" steps="11826"/></proof>
   </goal>
   <goal name="tree_of_array_aux&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.100000" steps="16305"/></proof>
+  <proof prover="5"><result status="valid" time="0.217961" steps="16305"/></proof>
   </goal>
   <goal name="tree_of_array_aux&#39;vc.5" expl="index in array bounds" proved="true">
   <proof prover="5"><result status="valid" time="0.070000" steps="12966"/></proof>
@@ -36,7 +36,7 @@
    <goal name="tree_of_array_aux&#39;vc.6.1" expl="VC for tree_of_array_aux" proved="true">
    <transf name="split_all_full" proved="true" >
     <goal name="tree_of_array_aux&#39;vc.6.1.0" expl="VC for tree_of_array_aux" proved="true">
-    <proof prover="0" memlimit="2000"><result status="valid" time="0.070242" steps="1297"/></proof>
+    <proof prover="0" memlimit="2000"><result status="valid" time="0.372788" steps="1297"/></proof>
     </goal>
    </transf>
    </goal>
@@ -50,14 +50,14 @@
      <goal name="tree_of_array_aux&#39;vc.6.2.1.0" expl="false case (true case)" proved="true">
      <transf name="split_all_full" proved="true" >
       <goal name="tree_of_array_aux&#39;vc.6.2.1.0.0" expl="false case (true case)" proved="true">
-      <proof prover="0"><result status="valid" time="0.482741" steps="24265"/></proof>
+      <proof prover="0"><result status="valid" time="1.418622" steps="24265"/></proof>
       </goal>
      </transf>
      </goal>
      <goal name="tree_of_array_aux&#39;vc.6.2.1.1" expl="false case" proved="true">
      <transf name="split_all_full" proved="true" >
       <goal name="tree_of_array_aux&#39;vc.6.2.1.1.0" expl="false case" proved="true">
-      <proof prover="4"><result status="valid" time="1.461382" steps="188810"/></proof>
+      <proof prover="4"><result status="valid" time="3.262354" steps="188810"/></proof>
       </goal>
      </transf>
      </goal>
@@ -80,10 +80,10 @@
       <goal name="tree_of_array_aux&#39;vc.6.3.1.0.1" expl="false case (true case)" proved="true">
       <transf name="assert" proved="true" arg1="right=Empty">
        <goal name="tree_of_array_aux&#39;vc.6.3.1.0.1.0" expl="asserted formula" proved="true">
-       <proof prover="5"><result status="valid" time="0.060000" steps="15301"/></proof>
+       <proof prover="5"><result status="valid" time="0.194117" steps="15301"/></proof>
        </goal>
        <goal name="tree_of_array_aux&#39;vc.6.3.1.0.1.1" expl="false case (true case)" proved="true">
-       <proof prover="0" timelimit="1"><result status="valid" time="0.030000" steps="392"/></proof>
+       <proof prover="0" timelimit="1"><result status="valid" time="0.158134" steps="392"/></proof>
        </goal>
       </transf>
       </goal>
@@ -92,7 +92,7 @@
      <goal name="tree_of_array_aux&#39;vc.6.3.1.1" expl="false case" proved="true">
      <transf name="split_all_full" proved="true" >
       <goal name="tree_of_array_aux&#39;vc.6.3.1.1.0" expl="false case" proved="true">
-      <proof prover="0" memlimit="2000"><result status="valid" time="0.700264" steps="14361"/></proof>
+      <proof prover="0" memlimit="2000"><result status="valid" time="2.063434" steps="14361"/></proof>
       </goal>
      </transf>
      </goal>

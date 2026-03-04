@@ -9,19 +9,19 @@
 <path name=".."/><path name="queue_two_lists.mlw"/>
 <theory name="Queue" proved="true">
  <goal name="t&#39;vc" expl="VC for t" proved="true">
- <proof prover="4"><result status="valid" time="0.060000" steps="11593"/></proof>
+ <proof prover="4"><result status="valid" time="0.060000" steps="9944"/></proof>
  </goal>
  <goal name="create&#39;vc" expl="VC for create" proved="true">
- <proof prover="4"><result status="valid" time="0.040000" steps="14021"/></proof>
+ <proof prover="4"><result status="valid" time="0.146853" steps="11664"/></proof>
  </goal>
  <goal name="push&#39;vc" expl="VC for push" proved="true">
- <proof prover="3"><result status="valid" time="0.180000" steps="2876"/></proof>
+ <proof prover="3"><result status="valid" time="0.534417" steps="2747"/></proof>
  </goal>
  <goal name="nth_append&#39;vc" expl="VC for nth_append" proved="true">
- <proof prover="3"><result status="valid" time="0.040000" steps="325"/></proof>
+ <proof prover="3"><result status="valid" time="0.040000" steps="302"/></proof>
  </goal>
  <goal name="nth_rev&#39;vc" expl="VC for nth_rev" proved="true">
- <proof prover="3"><result status="valid" time="0.020000" steps="224"/></proof>
+ <proof prover="3"><result status="valid" time="0.136826" steps="224"/></proof>
  </goal>
  <goal name="pop&#39;vc" expl="VC for pop" proved="true">
  <transf name="split_vc" proved="true" >
@@ -44,7 +44,7 @@
   <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="74"/></proof>
   </goal>
   <goal name="pop&#39;vc.6" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="174"/></proof>
+  <proof prover="3" timelimit="10"><result status="valid" time="0.115243" steps="174"/></proof>
   </goal>
   <goal name="pop&#39;vc.7" expl="postcondition" proved="true">
   <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="53"/></proof>
@@ -59,7 +59,7 @@
   <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="110"/></proof>
   </goal>
   <goal name="pop&#39;vc.11" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="10"><result status="valid" time="0.801093" steps="5523"/></proof>
+  <proof prover="3" timelimit="10"><result status="valid" time="1.739644" steps="5526"/></proof>
   </goal>
   <goal name="pop&#39;vc.12" expl="postcondition" proved="true">
   <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="69"/></proof>
@@ -68,7 +68,7 @@
   <proof prover="3" timelimit="10"><result status="valid" time="0.010000" steps="122"/></proof>
   </goal>
   <goal name="pop&#39;vc.14" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="10"><result status="valid" time="0.000000" steps="53"/></proof>
+  <proof prover="3" timelimit="10"><result status="valid" time="0.100327" steps="53"/></proof>
   </goal>
  </transf>
  </goal>
@@ -88,7 +88,7 @@
  <proof prover="3"><result status="valid" time="0.020000" steps="76"/></proof>
  </goal>
  <goal name="is_empty&#39;vc" expl="VC for is_empty" proved="true">
- <proof prover="1"><result status="valid" time="0.080000" steps="12756"/></proof>
+ <proof prover="1"><result status="valid" time="0.283043" steps="12756"/></proof>
  </goal>
  <goal name="length&#39;vc" expl="VC for length" proved="true">
  <proof prover="3"><result status="valid" time="0.020000" steps="121"/></proof>
@@ -102,13 +102,13 @@
   <proof prover="3"><result status="valid" time="0.010000" steps="32"/></proof>
   </goal>
   <goal name="transfer&#39;vc.2" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.010000" steps="182"/></proof>
+  <proof prover="3"><result status="valid" time="0.148882" steps="182"/></proof>
   </goal>
   <goal name="transfer&#39;vc.3" expl="postcondition" proved="true">
   <proof prover="3"><result status="valid" time="0.010000" steps="58"/></proof>
   </goal>
   <goal name="transfer&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.020000" steps="253"/></proof>
+  <proof prover="3"><result status="valid" time="0.158300" steps="253"/></proof>
   </goal>
   <goal name="transfer&#39;vc.5" expl="type invariant" proved="true">
   <proof prover="3"><result status="valid" time="0.010000" steps="57"/></proof>
@@ -117,10 +117,10 @@
   <proof prover="3"><result status="valid" time="0.020000" steps="184"/></proof>
   </goal>
   <goal name="transfer&#39;vc.7" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.275719" steps="2136"/></proof>
+  <proof prover="3"><result status="valid" time="0.929024" steps="2136"/></proof>
   </goal>
   <goal name="transfer&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.060000" steps="15971"/></proof>
+  <proof prover="4"><result status="valid" time="0.205301" steps="15971"/></proof>
   </goal>
   <goal name="transfer&#39;vc.9" expl="postcondition" proved="true">
   <proof prover="3"><result status="valid" time="0.010000" steps="98"/></proof>

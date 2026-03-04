@@ -146,7 +146,7 @@
  <goal name="ibranchf&#39;vc" expl="VC for ibranchf" proved="true">
  <transf name="split_goal_right" proved="true" >
   <goal name="ibranchf&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.304850" steps="27131"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.167236" steps="27131"/></proof>
   </goal>
   <goal name="ibranchf&#39;vc.1" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.080000" steps="136"/></proof>

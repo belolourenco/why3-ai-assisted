@@ -13,12 +13,12 @@
  <goal name="take_lemma&#39;vc" expl="VC for take_lemma" proved="true">
  <transf name="split_goal_right" proved="true" >
   <goal name="take_lemma&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="2"><result status="valid" time="0.010000" steps="11817"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="5203"/></proof>
   <proof prover="4"><result status="valid" time="0.010000" steps="43"/></proof>
   </goal>
   <goal name="take_lemma&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.010000" steps="11924"/></proof>
-  <proof prover="4"><result status="valid" time="0.010000" steps="21"/></proof>
+  <proof prover="2"><result status="valid" time="0.010000" steps="5312"/></proof>
+  <proof prover="4"><result status="valid" time="0.010000" steps="23"/></proof>
   </goal>
   <goal name="take_lemma&#39;vc.2" expl="postcondition" proved="true">
   <transf name="split_goal_right" proved="true" >

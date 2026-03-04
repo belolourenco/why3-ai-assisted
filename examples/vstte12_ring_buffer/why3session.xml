@@ -111,7 +111,7 @@
 </theory>
 <theory name="Harness" proved="true">
  <goal name="harness&#39;vc" expl="VC for harness" proved="true">
- <proof prover="7"><result status="valid" time="0.250216" steps="28606"/></proof>
+ <proof prover="7"><result status="valid" time="0.122022" steps="28606"/></proof>
  </goal>
  <goal name="harness2&#39;vc" expl="VC for harness2" proved="true">
  <proof prover="7"><result status="valid" time="0.280000" steps="53273"/></proof>
