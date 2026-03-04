@@ -105,7 +105,7 @@
 </theory>
 <theory name="Tower_of_Hanoi" proved="true">
  <goal name="RevSorted.Transitive.Trans" proved="true">
- <proof prover="1"><result status="valid" time="0.030362" steps="2121"/></proof>
+ <proof prover="1"><result status="valid" time="0.030362" steps="223"/></proof>
  </goal>
  <goal name="tower&#39;vc" expl="VC for tower" proved="true">
  <proof prover="1"><result status="valid" time="0.038067" steps="3433"/></proof>
@@ -144,10 +144,10 @@
   <proof prover="1"><result status="valid" time="0.044294" steps="6095"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.170869" steps="19165"/></proof>
+  <proof prover="1"><result status="valid" time="0.323472" steps="19165"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.166123" steps="20542"/></proof>
+  <proof prover="1"><result status="valid" time="0.395591" steps="20542"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.6" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.032284" steps="5137"/></proof>
@@ -159,7 +159,7 @@
   <proof prover="4"><result status="valid" time="0.015818" steps="30522"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.9" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.067020" steps="10483"/></proof>
+  <proof prover="3"><result status="valid" time="0.181325" steps="10483"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.10" expl="precondition" proved="true">
   <proof prover="4"><result status="valid" time="0.015807" steps="30829"/></proof>
@@ -168,7 +168,7 @@
   <proof prover="1"><result status="valid" time="0.059695" steps="9067"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.12" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.125107" steps="17703"/></proof>
+  <proof prover="1"><result status="valid" time="0.277072" steps="17703"/></proof>
   </goal>
   <goal name="hanoi_rec&#39;vc.13" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.036182" steps="36"/></proof>

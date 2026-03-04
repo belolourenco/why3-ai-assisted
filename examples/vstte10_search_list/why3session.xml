@@ -19,13 +19,13 @@
  </goal>
  <goal name="head&#39;vc" expl="VC for head" proved="true">
  <proof prover="1"><result status="valid" time="0.010000"/></proof>
- <proof prover="3"><result status="valid" time="0.000000" steps="34"/></proof>
- <proof prover="5"><result status="valid" time="0.010000" steps="9875"/></proof>
+ <proof prover="3"><result status="valid" time="0.000000" steps="28"/></proof>
+ <proof prover="5"><result status="valid" time="0.010000" steps="7368"/></proof>
  </goal>
  <goal name="tail&#39;vc" expl="VC for tail" proved="true">
  <proof prover="1"><result status="valid" time="0.010000"/></proof>
- <proof prover="3"><result status="valid" time="0.020000" steps="35"/></proof>
- <proof prover="5"><result status="valid" time="0.020000" steps="9982"/></proof>
+ <proof prover="3"><result status="valid" time="0.020000" steps="28"/></proof>
+ <proof prover="5"><result status="valid" time="0.020000" steps="7479"/></proof>
  </goal>
  <goal name="search_loop&#39;vc" expl="VC for search_loop" proved="true">
  <transf name="split_goal_right" proved="true" >

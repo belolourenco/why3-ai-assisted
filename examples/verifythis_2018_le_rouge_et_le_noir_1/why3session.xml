@@ -4,147 +4,125 @@
 <why3session shape_version="6">
 <prover id="0" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="2" name="CVC5" version="1.1.2" timelimit="5" steplimit="0" memlimit="1000"/>
-<prover id="3" name="Z3" version="4.13.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Z3" version="4.14.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="verifythis_2018_le_rouge_et_le_noir_1.mlw"/>
 <theory name="ColoredTiles" proved="true">
  <goal name="valid_contr" proved="true">
- <proof prover="5"><result status="valid" time="0.010820" steps="25271"/></proof>
+ <proof prover="5"><result status="valid" time="0.010820" steps="12259"/></proof>
  </goal>
  <goal name="colo_0" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="colo_0.0" proved="true">
-  <proof prover="5"><result status="valid" time="0.024178" steps="36579"/></proof>
+  <proof prover="5"><result status="valid" time="0.024178" steps="20339"/></proof>
   </goal>
   <goal name="colo_0.1" proved="true">
-  <proof prover="0"><result status="valid" time="0.029194" steps="17"/></proof>
-  <proof prover="1"><result status="valid" time="0.065136" steps="6637"/></proof>
+  <proof prover="1"><result status="valid" time="0.065136" steps="3210"/></proof>
   </goal>
   <goal name="colo_0.2" proved="true">
-  <proof prover="5"><result status="valid" time="0.030936" steps="52877"/></proof>
+  <proof prover="1"><result status="valid" time="0.032196" steps="3139"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="colo_1" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="colo_1.0" proved="true">
-  <proof prover="0"><result status="valid" time="0.037908" steps="14"/></proof>
-  <proof prover="3"><result status="valid" time="0.012561" steps="33179"/></proof>
+  <proof prover="5"><result status="valid" time="0.008104" steps="20566"/></proof>
   </goal>
   <goal name="colo_1.1" proved="true">
-  <proof prover="0"><result status="valid" time="0.033818" steps="63"/></proof>
+  <proof prover="1"><result status="valid" time="0.071906" steps="4394"/></proof>
   </goal>
   <goal name="colo_1.2" proved="true">
-  <proof prover="2"><result status="valid" time="0.062754" steps="6997"/></proof>
-  <proof prover="5"><result status="valid" time="0.018169" steps="44119"/></proof>
+  <proof prover="5"><result status="valid" time="0.018169" steps="29932"/></proof>
   </goal>
   <goal name="colo_1.3" proved="true">
-  <proof prover="1"><result status="valid" time="0.065897" steps="6423"/></proof>
+  <proof prover="4"><result status="valid" time="0.034939" steps="5663"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="colo_2" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="colo_2.0" proved="true">
-  <proof prover="5"><result status="valid" time="0.017310" steps="35455"/></proof>
+  <proof prover="5"><result status="valid" time="0.017310" steps="21270"/></proof>
   </goal>
   <goal name="colo_2.1" proved="true">
-  <proof prover="2"><result status="valid" time="0.057136" steps="6318"/></proof>
-  <proof prover="4"><result status="valid" time="0.057723" steps="9651"/></proof>
+  <proof prover="4"><result status="valid" time="0.057723" steps="5979"/></proof>
   </goal>
   <goal name="colo_2.2" proved="true">
-  <proof prover="5"><result status="valid" time="0.038626" steps="61129"/></proof>
+  <proof prover="1"><result status="valid" time="0.046759" steps="4641"/></proof>
   </goal>
   <goal name="colo_2.3" proved="true">
-  <proof prover="2"><result status="valid" time="0.068209" steps="8721"/></proof>
-  <proof prover="5"><result status="valid" time="0.016306" steps="44640"/></proof>
+  <proof prover="5"><result status="valid" time="0.016306" steps="31075"/></proof>
   </goal>
   <goal name="colo_2.4" proved="true">
-  <proof prover="0"><result status="valid" time="0.031407" steps="8"/></proof>
-  <proof prover="1"><result status="valid" time="0.032387" steps="4669"/></proof>
+  <proof prover="1"><result status="valid" time="0.032387" steps="2669"/></proof>
   </goal>
   <goal name="colo_2.5" proved="true">
-  <proof prover="1"><result status="valid" time="0.065007" steps="6479"/></proof>
-  <proof prover="2"><result status="valid" time="0.047636" steps="7938"/></proof>
+  <proof prover="5"><result status="valid" time="0.010069" steps="25735"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="colo_3" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="colo_3.0" proved="true">
-  <proof prover="3"><result status="valid" time="0.015104" steps="34635"/></proof>
-  <proof prover="5"><result status="valid" time="0.021937" steps="36275"/></proof>
+  <proof prover="0"><result status="valid" time="0.025387" steps="19"/></proof>
   </goal>
   <goal name="colo_3.1" proved="true">
-  <proof prover="0"><result status="valid" time="0.039861" steps="43"/></proof>
-  <proof prover="5"><result status="valid" time="0.031931" steps="47364"/></proof>
+  <proof prover="5"><result status="valid" time="0.031931" steps="23829"/></proof>
   </goal>
   <goal name="colo_3.2" proved="true">
-  <proof prover="2"><result status="valid" time="0.054612" steps="6418"/></proof>
-  <proof prover="5"><result status="valid" time="0.017848" steps="36274"/></proof>
+  <proof prover="5"><result status="valid" time="0.017848" steps="22081"/></proof>
   </goal>
   <goal name="colo_3.3" proved="true">
-  <proof prover="0"><result status="valid" time="0.021314" steps="22"/></proof>
-  <proof prover="1"><result status="valid" time="0.063873" steps="5318"/></proof>
+  <proof prover="1"><result status="valid" time="0.063873" steps="3612"/></proof>
   </goal>
   <goal name="colo_3.4" proved="true">
-  <proof prover="2"><result status="valid" time="0.047391" steps="6641"/></proof>
-  <proof prover="5"><result status="valid" time="0.021021" steps="36375"/></proof>
+  <proof prover="5"><result status="valid" time="0.021021" steps="22178"/></proof>
   </goal>
   <goal name="colo_3.5" proved="true">
-  <proof prover="0"><result status="valid" time="0.039547" steps="22"/></proof>
-  <proof prover="1"><result status="valid" time="0.049862" steps="5315"/></proof>
+  <proof prover="1"><result status="valid" time="0.049862" steps="3609"/></proof>
   </goal>
   <goal name="colo_3.6" proved="true">
-  <proof prover="0"><result status="valid" time="0.087909" steps="593"/></proof>
+  <proof prover="1"><result status="valid" time="0.107085" steps="13190"/></proof>
   </goal>
   <goal name="colo_3.7" proved="true">
-  <proof prover="3"><result status="valid" time="0.029197" steps="44565"/></proof>
-  <proof prover="5"><result status="valid" time="0.022055" steps="46570"/></proof>
+  <proof prover="5"><result status="valid" time="0.022055" steps="32471"/></proof>
   </goal>
   <goal name="colo_3.8" proved="true">
-  <proof prover="0"><result status="valid" time="0.036196" steps="11"/></proof>
-  <proof prover="1"><result status="valid" time="0.042995" steps="4737"/></proof>
+  <proof prover="1"><result status="valid" time="0.042995" steps="2737"/></proof>
   </goal>
   <goal name="colo_3.9" proved="true">
-  <proof prover="0"><result status="valid" time="0.032510" steps="90"/></proof>
-  <proof prover="5"><result status="valid" time="0.039232" steps="50902"/></proof>
+  <proof prover="1"><result status="valid" time="0.082746" steps="6739"/></proof>
   </goal>
   <goal name="colo_3.10" proved="true">
-  <proof prover="2"><result status="valid" time="0.037929" steps="5845"/></proof>
-  <proof prover="5"><result status="valid" time="0.006226" steps="3369"/></proof>
+  <proof prover="5"><result status="valid" time="0.006226" steps="1796"/></proof>
   </goal>
   <goal name="colo_3.11" proved="true">
-  <proof prover="0"><result status="valid" time="0.032957" steps="66"/></proof>
+  <proof prover="4"><result status="valid" time="0.052486" steps="6982"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="valid_split_fb&#39;vc" expl="VC for valid_split_fb" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="valid_split_fb&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.037794" steps="5372"/></proof>
+  <proof prover="5"><result status="valid" time="0.012933" steps="30779"/></proof>
   </goal>
   <goal name="valid_split_fb&#39;vc.1" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="valid_split_fb&#39;vc.1.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.077265" steps="7763"/></proof>
+   <proof prover="1"><result status="valid" time="0.077265" steps="5961"/></proof>
    </goal>
    <goal name="valid_split_fb&#39;vc.1.1" expl="VC for valid_split_fb" proved="true">
-   <proof prover="0"><result status="valid" time="0.028134" steps="47"/></proof>
-   <proof prover="5"><result status="valid" time="0.022565" steps="48151"/></proof>
+   <proof prover="0"><result status="valid" time="0.028134" steps="48"/></proof>
    </goal>
    <goal name="valid_split_fb&#39;vc.1.2" expl="VC for valid_split_fb" proved="true">
-   <proof prover="0"><result status="valid" time="0.114752" steps="781"/></proof>
-   <proof prover="5"><result status="valid" time="0.038764" steps="71408"/></proof>
+   <proof prover="5"><result status="valid" time="0.038764" steps="40521"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="valid_split_fb&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.033536" steps="63797"/></proof>
-  <proof prover="5"><result status="valid" time="0.040525" steps="64518"/></proof>
+  <proof prover="5"><result status="valid" time="0.040525" steps="38874"/></proof>
   </goal>
  </transf>
  </goal>
@@ -153,8 +131,7 @@
   <goal name="valid_restrict&#39;vc.0" expl="postcondition" proved="true">
   <transf name="split_all_full" proved="true" >
    <goal name="valid_restrict&#39;vc.0.0" expl="postcondition" proved="true">
-   <proof prover="3"><result status="valid" time="0.059371" steps="96250"/></proof>
-   <proof prover="5"><result status="valid" time="0.068696" steps="110596"/></proof>
+   <proof prover="0"><result status="valid" time="0.377328" steps="2604"/></proof>
    </goal>
   </transf>
   </goal>
@@ -163,54 +140,45 @@
  <goal name="first_black_tile&#39;vc" expl="VC for first_black_tile" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="first_black_tile&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.074637" steps="10237"/></proof>
-  <proof prover="5"><result status="valid" time="0.016736" steps="47667"/></proof>
+  <proof prover="5"><result status="valid" time="0.016736" steps="33478"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.081126" steps="5891"/></proof>
+  <proof prover="5"><result status="valid" time="0.018007" steps="32401"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.2" expl="variant decrease" proved="true">
-  <proof prover="2"><result status="valid" time="0.081022" steps="11204"/></proof>
-  <proof prover="5"><result status="valid" time="0.019460" steps="49693"/></proof>
+  <proof prover="4"><result status="valid" time="0.082611" steps="11203"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.3" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="first_black_tile&#39;vc.3.0" expl="assertion" proved="true">
-   <proof prover="0"><result status="valid" time="0.036722" steps="33"/></proof>
-   <proof prover="3"><result status="valid" time="0.029160" steps="46011"/></proof>
+   <proof prover="0"><result status="valid" time="0.036722" steps="32"/></proof>
    </goal>
    <goal name="first_black_tile&#39;vc.3.1" expl="VC for first_black_tile" proved="true">
-   <proof prover="2"><result status="valid" time="0.067116" steps="11848"/></proof>
-   <proof prover="5"><result status="valid" time="0.023834" steps="66241"/></proof>
+   <proof prover="5"><result status="valid" time="0.023834" steps="41618"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="first_black_tile&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.029798" steps="66938"/></proof>
+  <proof prover="5"><result status="valid" time="0.029798" steps="40226"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.050854" steps="92720"/></proof>
-  <proof prover="5"><result status="valid" time="0.040397" steps="94140"/></proof>
+  <proof prover="0"><result status="valid" time="0.031925" steps="61"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.6" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.068360" steps="298"/></proof>
-  <proof prover="3"><result status="valid" time="0.028256" steps="62503"/></proof>
+  <proof prover="5"><result status="valid" time="0.018907" steps="40864"/></proof>
   </goal>
   <goal name="first_black_tile&#39;vc.7" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.023498" steps="68963"/></proof>
-  <proof prover="5"><result status="valid" time="0.031404" steps="73251"/></proof>
+  <proof prover="0"><result status="valid" time="0.051115" steps="165"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="addleft&#39;vc" expl="VC for addleft" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="addleft&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="0"><result status="valid" time="0.038760" steps="2"/></proof>
-  <proof prover="1"><result status="valid" time="0.041571" steps="5256"/></proof>
+  <proof prover="5"><result status="valid" time="0.020654" steps="28617"/></proof>
   </goal>
   <goal name="addleft&#39;vc.1" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.029639" steps="22"/></proof>
-  <proof prover="5"><result status="valid" time="0.028168" steps="72986"/></proof>
+  <proof prover="1"><result status="valid" time="0.039032" steps="5156"/></proof>
   </goal>
  </transf>
  </goal>
@@ -219,13 +187,12 @@
   <goal name="addleft_fb.0" proved="true">
   <transf name="induction" proved="true" arg1="nr">
    <goal name="addleft_fb.0.0" expl="base case" proved="true">
-   <proof prover="2"><result status="valid" time="0.068057" steps="9107"/></proof>
-   <proof prover="5"><result status="valid" time="0.020512" steps="53256"/></proof>
+   <proof prover="5"><result status="valid" time="0.020512" steps="38196"/></proof>
    </goal>
    <goal name="addleft_fb.0.1" expl="recursive case" proved="true">
    <transf name="split_all_full" proved="true" >
     <goal name="addleft_fb.0.1.0" expl="recursive case" proved="true">
-    <proof prover="3"><result status="valid" time="0.229259" steps="476724"/></proof>
+    <proof prover="5"><result status="valid" time="0.089562" steps="196345"/></proof>
     </goal>
    </transf>
    </goal>
@@ -234,296 +201,249 @@
  </transf>
  </goal>
  <goal name="mapaddleft_fb" proved="true">
- <proof prover="0"><result status="valid" time="0.063030" steps="221"/></proof>
+ <proof prover="0"><result status="valid" time="0.063030" steps="197"/></proof>
  </goal>
  <goal name="bij_image&#39;vc" expl="VC for bij_image" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="bij_image&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="0.024115" steps="94793"/></proof>
+  <proof prover="5"><result status="valid" time="0.024115" steps="67672"/></proof>
   </goal>
   <goal name="bij_image&#39;vc.1" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.040244" steps="36"/></proof>
+  <proof prover="0"><result status="valid" time="0.040244" steps="31"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="bij_cardinal&#39;vc" expl="VC for bij_cardinal" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="bij_cardinal&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.072486" steps="11106"/></proof>
-  <proof prover="5"><result status="valid" time="0.019427" steps="77273"/></proof>
+  <proof prover="5"><result status="valid" time="0.019427" steps="57541"/></proof>
   </goal>
   <goal name="bij_cardinal&#39;vc.1" expl="assertion" proved="true">
-  <proof prover="3"><result status="valid" time="0.025619" steps="73885"/></proof>
-  <proof prover="5"><result status="valid" time="0.019643" steps="77405"/></proof>
+  <proof prover="0"><result status="valid" time="0.039235" steps="7"/></proof>
   </goal>
   <goal name="bij_cardinal&#39;vc.2" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="0.021429" steps="78938"/></proof>
+  <proof prover="1"><result status="valid" time="0.054865" steps="7588"/></proof>
   </goal>
   <goal name="bij_cardinal&#39;vc.3" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.029164" steps="10"/></proof>
-  <proof prover="1"><result status="valid" time="0.046610" steps="9048"/></proof>
+  <proof prover="4"><result status="valid" time="0.061653" steps="12974"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="ext" proved="true">
- <proof prover="0"><result status="valid" time="0.032541" steps="0"/></proof>
- <proof prover="1"><result status="valid" time="0.035349" steps="6378"/></proof>
+ <proof prover="1"><result status="valid" time="0.035349" steps="5316"/></proof>
  </goal>
  <goal name="app_eq" proved="true">
- <proof prover="0"><result status="valid" time="0.029891" steps="6"/></proof>
- <proof prover="3"><result status="valid" time="0.022891" steps="67134"/></proof>
+ <proof prover="0"><result status="valid" time="0.029891" steps="5"/></proof>
  </goal>
  <goal name="addleft_result&#39;vc" expl="VC for addleft_result" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="addleft_result&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.093983" steps="589"/></proof>
-  <proof prover="1"><result status="valid" time="0.072074" steps="10175"/></proof>
+  <proof prover="5"><result status="valid" time="0.031918" steps="108800"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.038271" steps="4"/></proof>
-  <proof prover="5"><result status="valid" time="0.012325" steps="5678"/></proof>
+  <proof prover="1"><result status="valid" time="0.036462" steps="6057"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.033279" steps="8"/></proof>
-  <proof prover="3"><result status="valid" time="0.030356" steps="89399"/></proof>
+  <proof prover="5"><result status="valid" time="0.011833" steps="31476"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.043233" steps="9354"/></proof>
+  <proof prover="1"><result status="valid" time="0.043233" steps="8167"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.033821" steps="12"/></proof>
-  <proof prover="5"><result status="valid" time="0.024812" steps="94242"/></proof>
+  <proof prover="1"><result status="valid" time="0.058443" steps="8506"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.5" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.037495" steps="79"/></proof>
+  <proof prover="5"><result status="valid" time="0.026957" steps="87694"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.6" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="addleft_result&#39;vc.6.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.427181" steps="48092"/></proof>
-   <proof prover="2"><result status="valid" time="0.809194" steps="78663"/></proof>
+   <proof prover="1"><result status="valid" time="0.427181" steps="43448"/></proof>
    </goal>
    <goal name="addleft_result&#39;vc.6.1" expl="VC for addleft_result" proved="true">
-   <proof prover="5"><result status="valid" time="0.007237" steps="7620"/></proof>
+   <proof prover="5"><result status="valid" time="0.007237" steps="6565"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="addleft_result&#39;vc.7" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.167480" steps="25377"/></proof>
-  <proof prover="5"><result status="valid" time="0.062087" steps="131162"/></proof>
+  <proof prover="5"><result status="valid" time="0.062087" steps="117790"/></proof>
   </goal>
   <goal name="addleft_result&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.909241" steps="66079"/></proof>
+  <proof prover="1"><result status="valid" time="0.909241" steps="70282"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="addleft_bijective&#39;vc" expl="VC for addleft_bijective" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="addleft_bijective&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.553352" steps="3302"/></proof>
+  <proof prover="0"><result status="valid" time="0.331002" steps="3312"/></proof>
   </goal>
   <goal name="addleft_bijective&#39;vc.1" expl="assertion" proved="true">
   <proof prover="0"><result status="valid" time="0.152330" steps="670"/></proof>
   </goal>
   <goal name="addleft_bijective&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.042963" steps="71"/></proof>
-  <proof prover="5"><result status="valid" time="0.050700" steps="123491"/></proof>
+  <proof prover="1"><result status="valid" time="0.091728" steps="11692"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="mapaddleft_card&#39;vc" expl="VC for mapaddleft_card" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="mapaddleft_card&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.008897" steps="5837"/></proof>
+  <proof prover="5"><result status="valid" time="0.008897" steps="4782"/></proof>
   </goal>
   <goal name="mapaddleft_card&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.045477" steps="12853"/></proof>
-  <proof prover="5"><result status="valid" time="0.012844" steps="8087"/></proof>
+  <proof prover="5"><result status="valid" time="0.012844" steps="7032"/></proof>
   </goal>
   <goal name="mapaddleft_card&#39;vc.2" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.080096" steps="14254"/></proof>
-  <proof prover="5"><result status="valid" time="0.022211" steps="101611"/></proof>
+  <proof prover="5"><result status="valid" time="0.022211" steps="85522"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="addleft_valid&#39;vc" expl="VC for addleft_valid" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="addleft_valid&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.033253" steps="4"/></proof>
-  <proof prover="1"><result status="valid" time="0.044240" steps="7658"/></proof>
+  <proof prover="5"><result status="valid" time="0.016692" steps="54556"/></proof>
   </goal>
   <goal name="addleft_valid&#39;vc.1" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="1.219672" steps="84134"/></proof>
+  <proof prover="1"><result status="valid" time="0.904425" steps="76314"/></proof>
   </goal>
   <goal name="addleft_valid&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.046771" steps="27"/></proof>
-  <proof prover="5"><result status="valid" time="0.044155" steps="106505"/></proof>
+  <proof prover="5"><result status="valid" time="0.044155" steps="94358"/></proof>
   </goal>
   <goal name="addleft_valid&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.039112" steps="50"/></proof>
-  <proof prover="5"><result status="valid" time="0.049309" steps="106795"/></proof>
+  <proof prover="0"><result status="valid" time="0.039112" steps="51"/></proof>
   </goal>
   <goal name="addleft_valid&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.132226" steps="214157"/></proof>
-  <proof prover="5"><result status="valid" time="0.100465" steps="223308"/></proof>
+  <proof prover="5"><result status="valid" time="0.100465" steps="210029"/></proof>
   </goal>
   <goal name="addleft_valid&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.035448" steps="7"/></proof>
-  <proof prover="2"><result status="valid" time="0.073673" steps="12996"/></proof>
+  <proof prover="1"><result status="valid" time="0.050484" steps="8711"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="mapaddleft_valid&#39;vc" expl="VC for mapaddleft_valid" proved="true">
- <proof prover="0"><result status="valid" time="0.082144" steps="163"/></proof>
+ <proof prover="0"><result status="valid" time="0.082144" steps="153"/></proof>
  </goal>
  <goal name="mapaddleft_length&#39;vc" expl="VC for mapaddleft_length" proved="true">
- <proof prover="0"><result status="valid" time="0.081264" steps="159"/></proof>
+ <proof prover="0"><result status="valid" time="0.081264" steps="147"/></proof>
  </goal>
  <goal name="disjoint_union&#39;vc" expl="VC for disjoint_union" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="disjoint_union&#39;vc.0" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.079576" steps="10097"/></proof>
-  <proof prover="2"><result status="valid" time="0.092568" steps="14713"/></proof>
+  <proof prover="1"><result status="valid" time="0.079576" steps="8857"/></proof>
   </goal>
   <goal name="disjoint_union&#39;vc.1" expl="variant decrease" proved="true">
-  <proof prover="5"><result status="valid" time="0.024333" steps="92429"/></proof>
+  <proof prover="5"><result status="valid" time="0.024333" steps="77125"/></proof>
   </goal>
   <goal name="disjoint_union&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.048756" steps="52"/></proof>
-  <proof prover="1"><result status="valid" time="0.095758" steps="10458"/></proof>
+  <proof prover="5"><result status="valid" time="0.023219" steps="83362"/></proof>
   </goal>
   <goal name="disjoint_union&#39;vc.3" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="disjoint_union&#39;vc.3.0" expl="assertion" proved="true">
-   <proof prover="0"><result status="valid" time="0.039209" steps="19"/></proof>
-   <proof prover="1"><result status="valid" time="0.070921" steps="10726"/></proof>
+   <proof prover="5"><result status="valid" time="0.027136" steps="84798"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.1" expl="VC for disjoint_union" proved="true">
-   <proof prover="0"><result status="valid" time="0.050115" steps="126"/></proof>
-   <proof prover="3"><result status="valid" time="0.039034" steps="97567"/></proof>
+   <proof prover="5"><result status="valid" time="0.028227" steps="93912"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.2" expl="VC for disjoint_union" proved="true">
-   <proof prover="2"><result status="valid" time="0.069839" steps="12989"/></proof>
-   <proof prover="5"><result status="valid" time="0.024000" steps="92604"/></proof>
+   <proof prover="1"><result status="valid" time="0.051326" steps="9453"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.3" expl="VC for disjoint_union" proved="true">
-   <proof prover="0"><result status="valid" time="0.055975" steps="22"/></proof>
-   <proof prover="3"><result status="valid" time="0.055599" steps="118150"/></proof>
+   <proof prover="5"><result status="valid" time="0.036808" steps="110657"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.4" expl="VC for disjoint_union" proved="true">
-   <proof prover="3"><result status="valid" time="0.038807" steps="97947"/></proof>
-   <proof prover="5"><result status="valid" time="0.031692" steps="102718"/></proof>
+   <proof prover="5"><result status="valid" time="0.031692" steps="94297"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.5" expl="VC for disjoint_union" proved="true">
-   <proof prover="2"><result status="valid" time="0.069758" steps="13081"/></proof>
-   <proof prover="5"><result status="valid" time="0.020656" steps="93571"/></proof>
+   <proof prover="1"><result status="valid" time="0.051613" steps="9505"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.6" expl="VC for disjoint_union" proved="true">
-   <proof prover="2"><result status="valid" time="0.058271" steps="13077"/></proof>
-   <proof prover="5"><result status="valid" time="0.028622" steps="93384"/></proof>
+   <proof prover="0"><result status="valid" time="0.052256" steps="20"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.7" expl="VC for disjoint_union" proved="true">
-   <proof prover="5"><result status="valid" time="0.031344" steps="107167"/></proof>
+   <proof prover="5"><result status="valid" time="0.031344" steps="98438"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.8" expl="VC for disjoint_union" proved="true">
-   <proof prover="0"><result status="valid" time="0.036930" steps="24"/></proof>
-   <proof prover="1"><result status="valid" time="0.052672" steps="10226"/></proof>
+   <proof prover="1"><result status="valid" time="0.052672" steps="9533"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.9" expl="VC for disjoint_union" proved="true">
-   <proof prover="2"><result status="valid" time="0.055306" steps="13143"/></proof>
-   <proof prover="5"><result status="valid" time="0.032795" steps="97158"/></proof>
+   <proof prover="5"><result status="valid" time="0.032795" steps="89154"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.10" expl="VC for disjoint_union" proved="true">
-   <proof prover="2"><result status="valid" time="0.087292" steps="14419"/></proof>
-   <proof prover="5"><result status="valid" time="0.029764" steps="107205"/></proof>
+   <proof prover="5"><result status="valid" time="0.029764" steps="98474"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.11" expl="VC for disjoint_union" proved="true">
    <proof prover="0"><result status="valid" time="0.040747" steps="20"/></proof>
-   <proof prover="5"><result status="valid" time="0.039580" steps="93465"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.12" expl="VC for disjoint_union" proved="true">
-   <proof prover="5"><result status="valid" time="0.025855" steps="93618"/></proof>
+   <proof prover="5"><result status="valid" time="0.025855" steps="85926"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.13" expl="VC for disjoint_union" proved="true">
-   <proof prover="0"><result status="valid" time="0.054063" steps="96"/></proof>
-   <proof prover="3"><result status="valid" time="0.028358" steps="90346"/></proof>
+   <proof prover="5"><result status="valid" time="0.023511" steps="86918"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.14" expl="VC for disjoint_union" proved="true">
-   <proof prover="5"><result status="valid" time="0.034166" steps="94610"/></proof>
+   <proof prover="0"><result status="valid" time="0.046275" steps="95"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.15" expl="VC for disjoint_union" proved="true">
-   <proof prover="0"><result status="valid" time="0.040673" steps="93"/></proof>
-   <proof prover="5"><result status="valid" time="0.036382" steps="107396"/></proof>
+   <proof prover="1"><result status="valid" time="0.079904" steps="10421"/></proof>
    </goal>
    <goal name="disjoint_union&#39;vc.3.16" expl="VC for disjoint_union" proved="true">
-   <proof prover="3"><result status="valid" time="0.007222" steps="8198"/></proof>
-   <proof prover="5"><result status="valid" time="0.012830" steps="8250"/></proof>
+   <proof prover="5"><result status="valid" time="0.012830" steps="7556"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="disjoint_union&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.081159" steps="10599"/></proof>
+  <proof prover="0"><result status="valid" time="0.058016" steps="264"/></proof>
   </goal>
   <goal name="disjoint_union&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.076308" steps="202"/></proof>
-  <proof prover="2"><result status="valid" time="0.104517" steps="14460"/></proof>
+  <proof prover="0"><result status="valid" time="0.076308" steps="201"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="enum&#39;vc" expl="VC for enum" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="enum&#39;vc.0" expl="array creation size" proved="true">
-  <proof prover="3"><result status="valid" time="0.008485" steps="6336"/></proof>
-  <proof prover="5"><result status="valid" time="0.012279" steps="6396"/></proof>
+  <proof prover="1"><result status="valid" time="0.046227" steps="6305"/></proof>
   </goal>
   <goal name="enum&#39;vc.1" expl="array creation size" proved="true">
-  <proof prover="3"><result status="valid" time="0.008643" steps="6637"/></proof>
-  <proof prover="4"><result status="valid" time="0.059091" steps="17425"/></proof>
+  <proof prover="5"><result status="valid" time="0.009536" steps="5642"/></proof>
   </goal>
   <goal name="enum&#39;vc.2" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.049517" steps="11529"/></proof>
-  <proof prover="5"><result status="valid" time="0.009282" steps="10277"/></proof>
+  <proof prover="0"><result status="valid" time="0.029104" steps="5"/></proof>
   </goal>
   <goal name="enum&#39;vc.3" expl="index in array bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.009134" steps="11277"/></proof>
-  <proof prover="5"><result status="valid" time="0.009010" steps="11337"/></proof>
+  <proof prover="1"><result status="valid" time="0.038834" steps="8833"/></proof>
   </goal>
   <goal name="enum&#39;vc.4" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.046362" steps="120"/></proof>
+  <proof prover="0"><result status="valid" time="0.046362" steps="154"/></proof>
   </goal>
   <goal name="enum&#39;vc.5" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.035251" steps="18"/></proof>
-  <proof prover="3"><result status="valid" time="0.013267" steps="16934"/></proof>
+  <proof prover="1"><result status="valid" time="0.063398" steps="13021"/></proof>
   </goal>
   <goal name="enum&#39;vc.6" expl="index in array bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.014672" steps="16997"/></proof>
-  <proof prover="5"><result status="valid" time="0.011183" steps="17041"/></proof>
+  <proof prover="5"><result status="valid" time="0.011183" steps="14603"/></proof>
   </goal>
   <goal name="enum&#39;vc.7" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.056308" steps="366"/></proof>
-  <proof prover="2"><result status="valid" time="0.181809" steps="21740"/></proof>
+  <proof prover="0"><result status="valid" time="0.056308" steps="453"/></proof>
   </goal>
   <goal name="enum&#39;vc.8" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.040345" steps="44"/></proof>
-  <proof prover="5"><result status="valid" time="0.012383" steps="17221"/></proof>
+  <proof prover="5"><result status="valid" time="0.012383" steps="14783"/></proof>
   </goal>
   <goal name="enum&#39;vc.9" expl="index in array bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.011409" steps="17240"/></proof>
-  <proof prover="5"><result status="valid" time="0.011703" steps="17284"/></proof>
+  <proof prover="0"><result status="valid" time="0.035166" steps="68"/></proof>
   </goal>
   <goal name="enum&#39;vc.10" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.134913" steps="920"/></proof>
-  <proof prover="2"><result status="valid" time="0.208997" steps="23387"/></proof>
+  <proof prover="1"><result status="valid" time="0.157602" steps="18381"/></proof>
   </goal>
   <goal name="enum&#39;vc.11" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.048250" steps="88"/></proof>
+  <proof prover="5"><result status="valid" time="0.012207" steps="15038"/></proof>
   </goal>
   <goal name="enum&#39;vc.12" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.077199" steps="16136"/></proof>
-  <proof prover="2"><result status="valid" time="0.089334" steps="20149"/></proof>
+  <proof prover="0"><result status="valid" time="0.037778" steps="121"/></proof>
   </goal>
   <goal name="enum&#39;vc.13" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.056409" steps="376"/></proof>
+  <proof prover="1"><result status="valid" time="0.126735" steps="16772"/></proof>
   </goal>
   <goal name="enum&#39;vc.14" expl="assertion" proved="true">
   <transf name="case" proved="true" arg1="i=3">
@@ -541,22 +461,21 @@
         <proof prover="0"><result status="valid" time="0.040208" steps="161"/></proof>
         </goal>
         <goal name="enum&#39;vc.14.0.0.0.0.0.1" expl="apply premises" proved="true">
-        <proof prover="2"><result status="valid" time="0.072191" steps="23547"/></proof>
-        <proof prover="5"><result status="valid" time="0.013426" steps="15851"/></proof>
+        <proof prover="0"><result status="valid" time="0.040496" steps="161"/></proof>
         </goal>
        </transf>
        </goal>
       </transf>
       </goal>
       <goal name="enum&#39;vc.14.0.0.0.1" expl="VC for enum" proved="true">
-      <proof prover="0"><result status="valid" time="0.083945" steps="643"/></proof>
+      <proof prover="0"><result status="valid" time="0.083945" steps="772"/></proof>
       </goal>
       <goal name="enum&#39;vc.14.0.0.0.2" expl="VC for enum" proved="true">
       <transf name="introduce_premises" proved="true" >
        <goal name="enum&#39;vc.14.0.0.0.2.0" expl="VC for enum" proved="true">
        <transf name="apply" proved="true" arg1="colo_3">
         <goal name="enum&#39;vc.14.0.0.0.2.0.0" expl="apply premises" proved="true">
-        <proof prover="0"><result status="valid" time="0.071850" steps="644"/></proof>
+        <proof prover="0"><result status="valid" time="0.071850" steps="773"/></proof>
         </goal>
         <goal name="enum&#39;vc.14.0.0.0.2.0.1" expl="apply premises" proved="true">
         <transf name="apply" proved="true" arg1="H">
@@ -573,19 +492,18 @@
    </transf>
    </goal>
    <goal name="enum&#39;vc.14.1" expl="false case (assertion)" proved="true">
-   <proof prover="0"><result status="valid" time="0.201124" steps="1382"/></proof>
+   <proof prover="0"><result status="valid" time="0.201124" steps="1369"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.15" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.536416" steps="3470"/></proof>
+  <proof prover="0"><result status="valid" time="0.364080" steps="2389"/></proof>
   </goal>
   <goal name="enum&#39;vc.16" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.062442" steps="337"/></proof>
-  <proof prover="5"><result status="valid" time="0.058834" steps="168975"/></proof>
+  <proof prover="5"><result status="valid" time="0.058834" steps="144525"/></proof>
   </goal>
   <goal name="enum&#39;vc.17" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.062125" steps="606"/></proof>
+  <proof prover="0"><result status="valid" time="0.062125" steps="594"/></proof>
   </goal>
   <goal name="enum&#39;vc.18" expl="loop invariant init" proved="true">
   <transf name="assert" proved="true" arg1="(i=0\/i=1\/i=2\/i=3)">
@@ -597,13 +515,13 @@
     <goal name="enum&#39;vc.18.1.0" expl="loop invariant init" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="enum&#39;vc.18.1.0.0" expl="loop invariant init" proved="true">
-     <proof prover="1"><result status="valid" time="0.230214" steps="23585"/></proof>
+     <proof prover="1"><result status="valid" time="0.230214" steps="20874"/></proof>
      </goal>
      <goal name="enum&#39;vc.18.1.0.1" expl="loop invariant init" proved="true">
-     <proof prover="0"><result status="valid" time="0.166977" steps="1721"/></proof>
+     <proof prover="0"><result status="valid" time="0.166977" steps="1711"/></proof>
      </goal>
      <goal name="enum&#39;vc.18.1.0.2" expl="loop invariant init" proved="true">
-     <proof prover="1"><result status="valid" time="0.191549" steps="23561"/></proof>
+     <proof prover="1"><result status="valid" time="0.191549" steps="20850"/></proof>
      </goal>
      <goal name="enum&#39;vc.18.1.0.3" expl="loop invariant init" proved="true">
      <transf name="introduce_premises" proved="true" >
@@ -614,18 +532,17 @@
         <goal name="enum&#39;vc.18.1.0.3.0.0.0" expl="loop invariant init" proved="true">
         <transf name="rewrite" proved="true" arg1="Assert">
          <goal name="enum&#39;vc.18.1.0.3.0.0.0.0" expl="loop invariant init" proved="true">
-         <proof prover="0"><result status="valid" time="0.060312" steps="262"/></proof>
-         <proof prover="5"><result status="valid" time="0.045704" steps="226521"/></proof>
+         <proof prover="1"><result status="valid" time="0.084312" steps="17303"/></proof>
          </goal>
         </transf>
         </goal>
         <goal name="enum&#39;vc.18.1.0.3.0.0.1" expl="equality hypothesis" proved="true">
-        <proof prover="0"><result status="valid" time="0.091594" steps="489"/></proof>
+        <proof prover="5"><result status="valid" time="0.039015" steps="189876"/></proof>
         </goal>
        </transf>
        </goal>
        <goal name="enum&#39;vc.18.1.0.3.0.1" expl="equality hypothesis" proved="true">
-       <proof prover="5"><result status="valid" time="0.014044" steps="17990"/></proof>
+       <proof prover="5"><result status="valid" time="0.014044" steps="15180"/></proof>
        </goal>
       </transf>
       </goal>
@@ -638,160 +555,139 @@
   </transf>
   </goal>
   <goal name="enum&#39;vc.19" expl="index in array bounds" proved="true">
-  <proof prover="5"><result status="valid" time="0.027118" steps="66661"/></proof>
+  <proof prover="5"><result status="valid" time="0.027118" steps="57531"/></proof>
   </goal>
   <goal name="enum&#39;vc.20" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.108089" steps="22058"/></proof>
-  <proof prover="5"><result status="valid" time="0.027916" steps="66645"/></proof>
+  <proof prover="5"><result status="valid" time="0.027916" steps="57515"/></proof>
   </goal>
   <goal name="enum&#39;vc.21" expl="index in array bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.043812" steps="164199"/></proof>
-  <proof prover="5"><result status="valid" time="0.016360" steps="67238"/></proof>
+  <proof prover="1"><result status="valid" time="0.075410" steps="15866"/></proof>
   </goal>
   <goal name="enum&#39;vc.22" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.058332" steps="295"/></proof>
+  <proof prover="0"><result status="valid" time="0.058332" steps="294"/></proof>
   </goal>
   <goal name="enum&#39;vc.23" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.012393" steps="13001"/></proof>
+  <proof prover="1"><result status="valid" time="0.048095" steps="12952"/></proof>
   </goal>
   <goal name="enum&#39;vc.24" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.103339" steps="22223"/></proof>
-  <proof prover="5"><result status="valid" time="0.022010" steps="67802"/></proof>
+  <proof prover="5"><result status="valid" time="0.022010" steps="58672"/></proof>
   </goal>
   <goal name="enum&#39;vc.25" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.042166" steps="179"/></proof>
+  <proof prover="1"><result status="valid" time="0.072572" steps="15905"/></proof>
   </goal>
   <goal name="enum&#39;vc.26" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.106645" steps="658"/></proof>
-  <proof prover="2"><result status="valid" time="0.208617" steps="28423"/></proof>
+  <proof prover="0"><result status="valid" time="0.106645" steps="661"/></proof>
   </goal>
   <goal name="enum&#39;vc.27" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.116740" steps="609"/></proof>
+  <proof prover="0"><result status="valid" time="0.116740" steps="610"/></proof>
   </goal>
   <goal name="enum&#39;vc.28" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="enum&#39;vc.28.0" expl="assertion" proved="true">
-   <proof prover="0"><result status="valid" time="0.058971" steps="335"/></proof>
-   <proof prover="5"><result status="valid" time="0.040776" steps="174612"/></proof>
+   <proof prover="5"><result status="valid" time="0.040776" steps="150231"/></proof>
    </goal>
    <goal name="enum&#39;vc.28.1" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.075440" steps="368"/></proof>
+   <proof prover="0"><result status="valid" time="0.075440" steps="366"/></proof>
    </goal>
    <goal name="enum&#39;vc.28.2" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.300099" steps="1545"/></proof>
+   <proof prover="5"><result status="valid" time="0.185614" steps="425297"/></proof>
    </goal>
    <goal name="enum&#39;vc.28.3" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.134808" steps="1031"/></proof>
+   <proof prover="0"><result status="valid" time="0.134808" steps="1035"/></proof>
    </goal>
    <goal name="enum&#39;vc.28.4" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.170456" steps="1047"/></proof>
+   <proof prover="0"><result status="valid" time="0.170456" steps="1050"/></proof>
    </goal>
    <goal name="enum&#39;vc.28.5" expl="VC for enum" proved="true">
-   <proof prover="3"><result status="valid" time="0.055229" steps="175524"/></proof>
-   <proof prover="5"><result status="valid" time="0.042443" steps="182737"/></proof>
+   <proof prover="5"><result status="valid" time="0.042443" steps="157177"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.29" expl="loop invariant init" proved="true">
-  <proof prover="3"><result status="valid" time="0.054895" steps="168706"/></proof>
-  <proof prover="5"><result status="valid" time="0.036859" steps="200998"/></proof>
+  <proof prover="5"><result status="valid" time="0.036859" steps="176511"/></proof>
   </goal>
   <goal name="enum&#39;vc.30" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.160239" steps="1032"/></proof>
-  <proof prover="5"><result status="valid" time="0.183467" steps="463935"/></proof>
+  <proof prover="5"><result status="valid" time="0.061528" steps="213483"/></proof>
   </goal>
   <goal name="enum&#39;vc.31" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.139799" steps="818"/></proof>
-  <proof prover="5"><result status="valid" time="0.088481" steps="254123"/></proof>
+  <proof prover="5"><result status="valid" time="0.088481" steps="192260"/></proof>
   </goal>
   <goal name="enum&#39;vc.32" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.579186" steps="4752"/></proof>
+  <proof prover="0"><result status="valid" time="0.864949" steps="4400"/></proof>
   </goal>
   <goal name="enum&#39;vc.33" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.088378" steps="344"/></proof>
+  <proof prover="0"><result status="valid" time="0.088378" steps="342"/></proof>
   </goal>
   <goal name="enum&#39;vc.34" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.075319" steps="215"/></proof>
   </goal>
   <goal name="enum&#39;vc.35" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.116852" steps="23141"/></proof>
-  <proof prover="5"><result status="valid" time="0.032866" steps="73972"/></proof>
+  <proof prover="5"><result status="valid" time="0.032866" steps="64842"/></proof>
   </goal>
   <goal name="enum&#39;vc.36" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.052815" steps="215"/></proof>
-  <proof prover="5"><result status="valid" time="0.035588" steps="73972"/></proof>
+  <proof prover="5"><result status="valid" time="0.035588" steps="64842"/></proof>
   </goal>
   <goal name="enum&#39;vc.37" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.055146" steps="229"/></proof>
-  <proof prover="3"><result status="valid" time="0.052357" steps="168817"/></proof>
   </goal>
   <goal name="enum&#39;vc.38" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.056069" steps="172561"/></proof>
-  <proof prover="5"><result status="valid" time="0.049132" steps="216468"/></proof>
+  <proof prover="5"><result status="valid" time="0.049132" steps="191877"/></proof>
   </goal>
   <goal name="enum&#39;vc.39" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.059667" steps="229"/></proof>
-  <proof prover="1"><result status="valid" time="0.088539" steps="18469"/></proof>
+  <proof prover="5"><result status="valid" time="0.051043" steps="191314"/></proof>
   </goal>
   <goal name="enum&#39;vc.40" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.045969" steps="229"/></proof>
+  <proof prover="1"><result status="valid" time="0.054461" steps="13459"/></proof>
   </goal>
   <goal name="enum&#39;vc.41" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.108258" steps="18597"/></proof>
-  <proof prover="3"><result status="valid" time="0.048016" steps="169327"/></proof>
+  <proof prover="0"><result status="valid" time="0.072013" steps="229"/></proof>
   </goal>
   <goal name="enum&#39;vc.42" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.083713" steps="378"/></proof>
-  <proof prover="5"><result status="valid" time="0.051631" steps="219448"/></proof>
+  <proof prover="5"><result status="valid" time="0.051631" steps="194857"/></proof>
   </goal>
   <goal name="enum&#39;vc.43" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.014312" steps="13760"/></proof>
+  <proof prover="5"><result status="valid" time="0.014312" steps="11866"/></proof>
   </goal>
   <goal name="enum&#39;vc.44" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.052368" steps="229"/></proof>
-  <proof prover="1"><result status="valid" time="0.107812" steps="18617"/></proof>
+  <proof prover="1"><result status="valid" time="0.107812" steps="16681"/></proof>
   </goal>
   <goal name="enum&#39;vc.45" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.060702" steps="229"/></proof>
-  <proof prover="5"><result status="valid" time="0.044655" steps="217350"/></proof>
+  <proof prover="5"><result status="valid" time="0.044655" steps="193417"/></proof>
   </goal>
   <goal name="enum&#39;vc.46" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.048347" steps="233"/></proof>
-  <proof prover="1"><result status="valid" time="0.104010" steps="18644"/></proof>
+  <proof prover="1"><result status="valid" time="0.104010" steps="16708"/></proof>
   </goal>
   <goal name="enum&#39;vc.47" expl="assertion" proved="true">
-  <proof prover="3"><result status="valid" time="0.055736" steps="173555"/></proof>
-  <proof prover="5"><result status="valid" time="0.047997" steps="222200"/></proof>
+  <proof prover="5"><result status="valid" time="0.047997" steps="197325"/></proof>
   </goal>
   <goal name="enum&#39;vc.48" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="enum&#39;vc.48.0" expl="assertion" proved="true">
-   <proof prover="0"><result status="valid" time="0.102038" steps="438"/></proof>
+   <proof prover="5"><result status="valid" time="0.078949" steps="244928"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.1" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.244563" steps="2081"/></proof>
+   <proof prover="0"><result status="valid" time="0.432743" steps="2048"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.2" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="2.274880" steps="12397"/></proof>
+   <proof prover="0"><result status="valid" time="2.274880" steps="12225"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.3" expl="VC for enum" proved="true">
    <transf name="case" proved="true" arg1="i&lt;k">
     <goal name="enum&#39;vc.48.3.0" expl="true case" proved="true">
-    <proof prover="0"><result status="valid" time="0.147828" steps="794"/></proof>
+    <proof prover="5"><result status="valid" time="0.091840" steps="232681"/></proof>
     </goal>
     <goal name="enum&#39;vc.48.3.1" expl="false case" proved="true">
     <transf name="case" proved="true" arg1="i=k">
      <goal name="enum&#39;vc.48.3.1.0" expl="false case (true case)" proved="true">
-     <proof prover="0"><result status="valid" time="0.232462" steps="1321"/></proof>
-     <proof prover="5"><result status="valid" time="0.316747" steps="559714"/></proof>
+     <proof prover="5"><result status="valid" time="0.123460" steps="236527"/></proof>
      </goal>
      <goal name="enum&#39;vc.48.3.1.1" expl="false case" proved="true">
      <transf name="assert" proved="true" arg1="(get1 c i = get1 c[k+1 ..] (i-k-1))">
       <goal name="enum&#39;vc.48.3.1.1.0" expl="asserted formula" proved="true">
-      <proof prover="0"><result status="valid" time="0.683033" steps="3710"/></proof>
+      <proof prover="5"><result status="valid" time="0.258295" steps="436308"/></proof>
       </goal>
       <goal name="enum&#39;vc.48.3.1.1.1" expl="false case" proved="true">
-      <proof prover="1"><result status="valid" time="0.413737" steps="54943"/></proof>
+      <proof prover="4"><result status="valid" time="0.472801" steps="52629"/></proof>
       </goal>
      </transf>
      </goal>
@@ -800,153 +696,136 @@
    </transf>
    </goal>
    <goal name="enum&#39;vc.48.4" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.379006" steps="3167"/></proof>
+   <proof prover="4"><result status="valid" time="0.349107" steps="49310"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.5" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.078961" steps="254"/></proof>
+   <proof prover="1"><result status="valid" time="0.058425" steps="15420"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.6" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.234395" steps="1295"/></proof>
-   <proof prover="5"><result status="valid" time="0.301888" steps="584846"/></proof>
+   <proof prover="0"><result status="valid" time="0.234395" steps="1281"/></proof>
    </goal>
    <goal name="enum&#39;vc.48.7" expl="VC for enum" proved="true">
-   <proof prover="2"><result status="valid" time="0.067996" steps="22051"/></proof>
-   <proof prover="5"><result status="valid" time="0.014887" steps="13868"/></proof>
+   <proof prover="5"><result status="valid" time="0.014887" steps="11974"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.49" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.055889" steps="233"/></proof>
-  <proof prover="1"><result status="valid" time="0.073998" steps="18714"/></proof>
+  <proof prover="5"><result status="valid" time="0.041439" steps="67962"/></proof>
   </goal>
   <goal name="enum&#39;vc.50" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.048772" steps="175197"/></proof>
-  <proof prover="5"><result status="valid" time="0.043496" steps="228253"/></proof>
+  <proof prover="5"><result status="valid" time="0.043496" steps="203217"/></proof>
   </goal>
   <goal name="enum&#39;vc.51" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.087401" steps="18774"/></proof>
-  <proof prover="3"><result status="valid" time="0.048417" steps="175298"/></proof>
+  <proof prover="0"><result status="valid" time="0.065358" steps="239"/></proof>
   </goal>
   <goal name="enum&#39;vc.52" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.121129" steps="850"/></proof>
+  <proof prover="0"><result status="valid" time="0.121129" steps="852"/></proof>
   </goal>
   <goal name="enum&#39;vc.53" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.131364" steps="787"/></proof>
+  <proof prover="5"><result status="valid" time="0.157187" steps="311377"/></proof>
   </goal>
   <goal name="enum&#39;vc.54" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.057865" steps="178848"/></proof>
-  <proof prover="5"><result status="valid" time="0.069335" steps="238140"/></proof>
+  <proof prover="5"><result status="valid" time="0.069335" steps="221269"/></proof>
   </goal>
   <goal name="enum&#39;vc.55" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.198351" steps="1341"/></proof>
-  <proof prover="5"><result status="valid" time="0.399407" steps="646020"/></proof>
+  <proof prover="5"><result status="valid" time="0.118525" steps="333870"/></proof>
   </goal>
   <goal name="enum&#39;vc.56" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.174709" steps="1019"/></proof>
-  <proof prover="5"><result status="valid" time="0.102841" steps="343160"/></proof>
+  <proof prover="5"><result status="valid" time="0.102841" steps="270831"/></proof>
   </goal>
   <goal name="enum&#39;vc.57" expl="loop invariant preservation" proved="true">
-  <proof prover="4"><result status="valid" time="0.276427" steps="42665"/></proof>
+  <proof prover="0"><result status="valid" time="0.295350" steps="2905"/></proof>
   </goal>
   <goal name="enum&#39;vc.58" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.106161" steps="445"/></proof>
+  <proof prover="0"><result status="valid" time="0.106161" steps="440"/></proof>
   </goal>
   <goal name="enum&#39;vc.59" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.075019" steps="208"/></proof>
-  <proof prover="2"><result status="valid" time="0.100502" steps="22972"/></proof>
+  <proof prover="5"><result status="valid" time="0.063117" steps="150989"/></proof>
   </goal>
   <goal name="enum&#39;vc.60" expl="assertion" proved="true">
-  <proof prover="3"><result status="valid" time="0.050922" steps="172232"/></proof>
-  <proof prover="5"><result status="valid" time="0.040895" steps="179547"/></proof>
+  <proof prover="0"><result status="valid" time="0.072317" steps="353"/></proof>
   </goal>
   <goal name="enum&#39;vc.61" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.310362" steps="1639"/></proof>
+  <proof prover="0"><result status="valid" time="0.310362" steps="1629"/></proof>
   </goal>
   <goal name="enum&#39;vc.62" expl="assertion" proved="true">
   <transf name="introduce_premises" proved="true" >
    <goal name="enum&#39;vc.62.0" expl="assertion" proved="true">
    <transf name="inline_goal" proved="true" >
     <goal name="enum&#39;vc.62.0.0" expl="assertion" proved="true">
-    <proof prover="0"><result status="valid" time="0.256131" steps="2723"/></proof>
+    <proof prover="0"><result status="valid" time="0.256131" steps="2485"/></proof>
     </goal>
    </transf>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.63" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.074176" steps="224"/></proof>
+  <proof prover="5"><result status="valid" time="0.037947" steps="155609"/></proof>
   </goal>
   <goal name="enum&#39;vc.64" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.112827" steps="23249"/></proof>
-  <proof prover="5"><result status="valid" time="0.038914" steps="180038"/></proof>
+  <proof prover="0"><result status="valid" time="0.047924" steps="224"/></proof>
   </goal>
   <goal name="enum&#39;vc.65" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.108662" steps="23349"/></proof>
-  <proof prover="5"><result status="valid" time="0.042137" steps="180575"/></proof>
+  <proof prover="5"><result status="valid" time="0.042137" steps="156146"/></proof>
   </goal>
   <goal name="enum&#39;vc.66" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.090593" steps="415"/></proof>
-  <proof prover="5"><result status="valid" time="0.074696" steps="238419"/></proof>
+  <proof prover="5"><result status="valid" time="0.074696" steps="358970"/></proof>
   </goal>
   <goal name="enum&#39;vc.67" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.061548" steps="244"/></proof>
-  <proof prover="1"><result status="valid" time="0.087740" steps="18695"/></proof>
+  <proof prover="5"><result status="valid" time="0.048913" steps="165220"/></proof>
   </goal>
   <goal name="enum&#39;vc.68" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="enum&#39;vc.68.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.116078" steps="18852"/></proof>
-   <proof prover="2"><result status="valid" time="0.116031" steps="23612"/></proof>
+   <proof prover="5"><result status="valid" time="0.066990" steps="218230"/></proof>
    </goal>
    <goal name="enum&#39;vc.68.1" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.071962" steps="424"/></proof>
+   <proof prover="5"><result status="valid" time="0.058351" steps="208052"/></proof>
    </goal>
    <goal name="enum&#39;vc.68.2" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.090816" steps="452"/></proof>
-   <proof prover="5"><result status="valid" time="0.202602" steps="454699"/></proof>
+   <proof prover="0"><result status="valid" time="0.262546" steps="2271"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.69" expl="assertion" proved="true">
   <transf name="split_all_full" proved="true" >
    <goal name="enum&#39;vc.69.0" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.085145" steps="460"/></proof>
-   <proof prover="5"><result status="valid" time="0.080276" steps="287134"/></proof>
+   <proof prover="5"><result status="valid" time="0.080276" steps="219192"/></proof>
    </goal>
    <goal name="enum&#39;vc.69.1" expl="VC for enum" proved="true">
-   <proof prover="0"><result status="valid" time="0.199931" steps="1151"/></proof>
+   <proof prover="0"><result status="valid" time="0.199931" steps="1129"/></proof>
    </goal>
    <goal name="enum&#39;vc.69.2" expl="VC for enum" proved="true">
-   <proof prover="1"><result status="valid" time="0.087054" steps="17333"/></proof>
+   <proof prover="5"><result status="valid" time="0.013889" steps="17126"/></proof>
    </goal>
    <goal name="enum&#39;vc.69.3" expl="VC for enum" proved="true">
-   <proof prover="5"><result status="valid" time="0.151360" steps="404588"/></proof>
+   <proof prover="5"><result status="valid" time="0.151360" steps="227272"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="enum&#39;vc.70" expl="assertion" proved="true">
-  <proof prover="0"><result status="valid" time="0.105745" steps="825"/></proof>
+  <proof prover="0"><result status="valid" time="0.105745" steps="827"/></proof>
   </goal>
   <goal name="enum&#39;vc.71" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="0.075057" steps="241085"/></proof>
+  <proof prover="5"><result status="valid" time="0.075057" steps="184895"/></proof>
   </goal>
   <goal name="enum&#39;vc.72" expl="loop invariant preservation" proved="true">
-  <proof prover="4"><result status="valid" time="0.244297" steps="41851"/></proof>
+  <proof prover="0"><result status="valid" time="0.282411" steps="2070"/></proof>
   </goal>
   <goal name="enum&#39;vc.73" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.210727" steps="1844"/></proof>
+  <proof prover="0"><result status="valid" time="0.210727" steps="1821"/></proof>
   </goal>
   <goal name="enum&#39;vc.74" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.327367" steps="2029"/></proof>
+  <proof prover="4"><result status="valid" time="0.273863" steps="49588"/></proof>
   </goal>
   <goal name="enum&#39;vc.75" expl="out of loop bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.050534" steps="192"/></proof>
+  <proof prover="5"><result status="valid" time="0.039695" steps="177307"/></proof>
   </goal>
   <goal name="enum&#39;vc.76" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.138527" steps="1218"/></proof>
+  <proof prover="0"><result status="valid" time="0.138527" steps="1213"/></proof>
   </goal>
   <goal name="enum&#39;vc.77" expl="VC for enum" proved="true">
-  <proof prover="5"><result status="valid" time="0.017273" steps="12608"/></proof>
+  <proof prover="0"><result status="valid" time="0.036452" steps="155"/></proof>
   </goal>
  </transf>
  </goal>

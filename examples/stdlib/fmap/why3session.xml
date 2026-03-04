@@ -10,46 +10,46 @@
 <path name="fmap.mlw"/>
 <theory name="Fmap" proved="true">
  <goal name="mem_mapsto" proved="true">
- <proof prover="4"><result status="valid" time="0.048860" steps="8070"/></proof>
+ <proof prover="4"><result status="valid" time="0.048860" steps="3959"/></proof>
  </goal>
 </theory>
 <theory name="Fmap_ext_facts" proved="true">
  <goal name="anti_res_1" proved="true">
- <proof prover="4"><result status="valid" time="0.079565" steps="14687"/></proof>
+ <proof prover="4"><result status="valid" time="0.079565" steps="9628"/></proof>
  </goal>
  <goal name="anti_res_2" proved="true">
- <proof prover="0"><result status="valid" time="0.056497" steps="266"/></proof>
+ <proof prover="0"><result status="valid" time="0.056497" steps="242"/></proof>
  </goal>
  <goal name="anti_res_3" proved="true">
- <proof prover="3"><result status="valid" time="0.014714" steps="39232"/></proof>
+ <proof prover="3"><result status="valid" time="0.014714" steps="26690"/></proof>
  </goal>
  <goal name="anti_res_4" proved="true">
- <proof prover="0"><result status="valid" time="0.031720" steps="65"/></proof>
+ <proof prover="0"><result status="valid" time="0.031720" steps="60"/></proof>
  </goal>
  <goal name="anti_res_res" proved="true">
- <proof prover="0"><result status="valid" time="0.114183" steps="910"/></proof>
+ <proof prover="0"><result status="valid" time="0.114183" steps="749"/></proof>
  </goal>
  <goal name="anti_res_anti_res" proved="true">
- <proof prover="0"><result status="valid" time="0.088690" steps="710"/></proof>
+ <proof prover="0"><result status="valid" time="0.088690" steps="687"/></proof>
  </goal>
  <goal name="anti_res_override_res" proved="true">
- <proof prover="0"><result status="valid" time="0.103578" steps="875"/></proof>
+ <proof prover="0"><result status="valid" time="0.103578" steps="849"/></proof>
  </goal>
  <goal name="remove_remove_set" proved="true">
- <proof prover="0"><result status="valid" time="0.060472" steps="445"/></proof>
+ <proof prover="0"><result status="valid" time="0.060472" steps="700"/></proof>
  </goal>
  <goal name="add_override" proved="true">
- <proof prover="0"><result status="valid" time="0.066662" steps="489"/></proof>
+ <proof prover="0"><result status="valid" time="0.066662" steps="642"/></proof>
  </goal>
 </theory>
 <theory name="MapAppInt" proved="true">
  <goal name="eq&#39;refn&#39;vc" expl="VC for eq&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.004653" steps="2613"/></proof>
+ <proof prover="3"><result status="valid" time="0.004653" steps="1069"/></proof>
  </goal>
 </theory>
 <theory name="MapImpInt" proved="true">
  <goal name="eq&#39;refn&#39;vc" expl="VC for eq&#39;refn" proved="true">
- <proof prover="4"><result status="valid" time="0.041688" steps="7740"/></proof>
+ <proof prover="4"><result status="valid" time="0.041688" steps="3472"/></proof>
  </goal>
 </theory>
 </file>

@@ -18,7 +18,7 @@
  <proof prover="2"><result status="valid" time="0.045560" steps="29"/></proof>
  </goal>
  <goal name="test1&#39;vc" expl="VC for test1" proved="true">
- <proof prover="1"><result status="valid" time="0.005046" steps="696"/></proof>
+ <proof prover="1"><result status="valid" time="0.005046" steps="6"/></proof>
  </goal>
  <goal name="bench&#39;vc" expl="VC for bench" proved="true">
  <proof prover="2"><result status="valid" time="0.032322" steps="0"/></proof>

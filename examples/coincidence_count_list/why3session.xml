@@ -4,6 +4,8 @@
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.14.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="coincidence_count_list.mlw"/>
@@ -14,34 +16,34 @@
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="coincidence_count&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="7673"/></proof>
+  <proof prover="3"><result status="valid" time="0.010286" steps="6992"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="6735"/></proof>
+  <proof prover="3"><result status="valid" time="0.020758" steps="29766"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="6843"/></proof>
+  <proof prover="3"><result status="valid" time="0.019617" steps="27839"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="7625"/></proof>
+  <proof prover="3"><result status="valid" time="0.011756" steps="6894"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="6841"/></proof>
+  <proof prover="1"><result status="valid" time="0.048667" steps="19"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="5631"/></proof>
+  <proof prover="3"><result status="valid" time="0.008123" steps="2309"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.6" expl="variant decrease" proved="true">
-  <proof prover="4"><result status="valid" time="0.050000" steps="7600"/></proof>
+  <proof prover="0"><result status="valid" time="0.059079" steps="4221"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020000" steps="5627"/></proof>
+  <proof prover="3"><result status="valid" time="0.010944" steps="2308"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.8" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040000" steps="6848"/></proof>
+  <proof prover="3"><result status="valid" time="0.021542" steps="30023"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.9" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.382452" steps="30913"/></proof>
+  <proof prover="0"><result status="valid" time="0.657148" steps="30913"/></proof>
   </goal>
  </transf>
  </goal>
@@ -54,7 +56,7 @@
  <proof prover="1"><result status="valid" time="0.000000" steps="8"/></proof>
  </goal>
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
- <proof prover="1"><result status="valid" time="1.734092" steps="20035"/></proof>
+ <proof prover="0"><result status="valid" time="0.513939" steps="38622"/></proof>
  </goal>
 </theory>
 <theory name="CoincidenceCountList" proved="true">
@@ -62,7 +64,7 @@
  <proof prover="1"><result status="valid" time="0.000000" steps="3"/></proof>
  </goal>
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
- <proof prover="1"><result status="valid" time="0.465766" steps="4731"/></proof>
+ <proof prover="2"><result status="valid" time="0.253594" steps="20925"/></proof>
  </goal>
 </theory>
 </file>

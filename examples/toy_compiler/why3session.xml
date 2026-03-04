@@ -14,19 +14,19 @@
   <proof prover="0"><result status="valid" time="0.023659" steps="83"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.1" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.021553" steps="3021"/></proof>
+  <proof prover="1"><result status="valid" time="0.021553" steps="1677"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.2" expl="variant decrease" proved="true">
   <proof prover="1"><result status="valid" time="0.027911" steps="7865"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.020118" steps="3025"/></proof>
+  <proof prover="1"><result status="valid" time="0.020118" steps="1681"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.4" expl="variant decrease" proved="true">
   <proof prover="1"><result status="valid" time="0.026882" steps="7869"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.5" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.023366" steps="3025"/></proof>
+  <proof prover="1"><result status="valid" time="0.023366" steps="1681"/></proof>
   </goal>
   <goal name="soundness_gen&#39;vc.6" expl="variant decrease" proved="true">
   <proof prover="1"><result status="valid" time="0.020221" steps="7869"/></proof>
@@ -37,13 +37,13 @@
    <proof prover="1"><result status="valid" time="0.040300" steps="26504"/></proof>
    </goal>
    <goal name="soundness_gen&#39;vc.7.1" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.186867" steps="24803"/></proof>
+   <proof prover="2"><result status="valid" time="0.482910" steps="24803"/></proof>
    </goal>
    <goal name="soundness_gen&#39;vc.7.2" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.075303" steps="24865"/></proof>
+   <proof prover="2"><result status="valid" time="0.571748" steps="24865"/></proof>
    </goal>
    <goal name="soundness_gen&#39;vc.7.3" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.075493" steps="23609"/></proof>
+   <proof prover="2"><result status="valid" time="0.522338" steps="23609"/></proof>
    </goal>
   </transf>
   </goal>

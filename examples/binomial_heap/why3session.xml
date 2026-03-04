@@ -9,12 +9,12 @@
 <path name=".."/><path name="binomial_heap.mlw"/>
 <theory name="BinomialHeap" proved="true">
  <goal name="size_nonnneg&#39;vc" expl="VC for size_nonnneg" proved="true">
- <proof prover="1"><result status="valid" time="0.010000" steps="20829"/></proof>
+ <proof prover="1"><result status="valid" time="0.010000" steps="7098"/></proof>
  </goal>
  <goal name="le_roots_trans" proved="true">
  <transf name="induction_ty_lex" proved="true" >
   <goal name="le_roots_trans.0" proved="true">
-  <proof prover="3"><result status="valid" time="0.010000" steps="50"/></proof>
+  <proof prover="3"><result status="valid" time="0.010000" steps="36"/></proof>
   </goal>
  </transf>
  </goal>
@@ -26,7 +26,7 @@
    <proof prover="3"><result status="valid" time="0.010000" steps="10"/></proof>
    </goal>
    <goal name="heaps_append.0.1" proved="true">
-   <proof prover="3" timelimit="5"><result status="valid" time="0.809262" steps="18500"/></proof>
+   <proof prover="3" timelimit="5"><result status="valid" time="0.059143" steps="442"/></proof>
    </goal>
   </transf>
   </goal>
@@ -59,7 +59,7 @@
    <goal name="occ_append.0.1" proved="true">
    <transf name="compute_in_goal" proved="true" >
     <goal name="occ_append.0.1.0" proved="true">
-    <proof prover="0"><result status="valid" time="0.673637"/></proof>
+    <proof prover="0"><result status="valid" time="0.479672"/></proof>
     </goal>
    </transf>
    </goal>
@@ -151,7 +151,7 @@
   <proof prover="3"><result status="valid" time="0.010000" steps="139"/></proof>
   </goal>
   <goal name="add_tree&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.548958"/></proof>
+  <proof prover="0"><result status="valid" time="0.361401"/></proof>
   </goal>
   <goal name="add_tree&#39;vc.3" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.100000"/></proof>
@@ -166,7 +166,7 @@
   <proof prover="3"><result status="valid" time="0.020000" steps="106"/></proof>
   </goal>
   <goal name="add_tree&#39;vc.7" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.343989"/></proof>
+  <proof prover="0"><result status="valid" time="0.314090"/></proof>
   </goal>
   <goal name="add_tree&#39;vc.8" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.592290"/></proof>
