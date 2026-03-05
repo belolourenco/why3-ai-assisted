@@ -344,6 +344,10 @@ module Hprover = Whyconf.Hprover
    to the time or mem limits, we adapt these limits when we replay a
    proof *)
 
+let time_factor = ref 2.0
+
+let set_time_factor f = time_factor := max 1.0 f
+
 let adapt_limits ~interactive ~use_steps limits a =
   let t, m, s =
     let timelimit = limits.Call_provers.limit_time in
@@ -353,12 +357,12 @@ let adapt_limits ~interactive ~use_steps limits a =
     | Some { Call_provers.pr_answer = r;
              Call_provers.pr_time = t;
              Call_provers.pr_steps = s } ->
-       (* increased time limit is 1 + twice the previous running time,
-       but enforced to remain inside the interval [l,2l] where l is
+       (* increased time limit is 1 + `time_factor` times the previous running time,
+       but enforced to remain inside the interval [l, `time_factor` l] where l is
        the previous time limit *)
-       let t = (1. +. 2.0 *. t) in
+       let t = (1. +. !time_factor *. t) in
        let increased_time = if interactive then 0.
-                            else max timelimit (min t (2. *. timelimit)) in
+                            else max timelimit (min t (!time_factor *. timelimit)) in
        (* increased mem limit is just 1.5 times the previous mem limit *)
        let increased_mem = if interactive then 0 else 3 * memlimit / 2 in
        begin
