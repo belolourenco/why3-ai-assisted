@@ -834,7 +834,7 @@ Warning: Error while interpreting is_signed_positive1: No variable in bound_vars
   - Abstract RAC: NORMAL
 File "bench/check-ce/bv-overflow.mlw", line 72, characters 28-37:
 Sub-goal Signed multiplication overflow of goal tsmul'vc.
-Prover result is: Unknown (unknown) (84 steps).
+Prover result is: Unknown (unknown) (83 steps).
 Sorry, we don't have a good counterexample for you :(
 
 
