@@ -41,9 +41,9 @@ module Peano
   val ge (x y: t) : bool
     ensures { result <-> x.v >= y.v }
   val eq (x y: t) : bool
-    ensures { result <-> x.v = y.v }
+    returns { True -> x = y | False -> x.v <> y.v }
   val ne (x y: t) : bool
-    ensures { result <-> x.v <> y.v }
+    returns { True -> x.v <> y.v | False -> x = y }
 
   val neg (x: t) : t
     ensures { result.v = - x.v }
