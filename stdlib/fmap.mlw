@@ -273,15 +273,124 @@ module MapApp
 
 end
 
-(** {3 Applicative maps of integers} *)
+(** {3 Applicative maps indexed by integers and strings} *)
 
 module MapAppInt
 
   use int.Int
+  use set.Fset as S
 
   clone export MapApp with type key = int, val eq = Int.(=)
 
+  val mapi (f: int -> 'v -> 'w) (m: t 'v) : t 'w
+    ensures {forall i. S.mem i m.domain -> result i = f i (m i)}
+
+  scope Iter  (* iteration over maps *)
+
+    type iter 'v = abstract {
+              initial: fmap int 'v;
+      mutable visited: S.fset int;
+    } invariant {
+      S.subset visited initial.domain
+    }  by {
+      initial = empty;
+      visited = S.empty;
+    }
+
+    val create (m: t 'v) : iter 'v
+      ensures { result.initial = m.to_fmap }
+      ensures { S.is_empty result.visited }
+
+    exception Done
+
+    val next (it: iter 'v) : (int, 'v)
+      writes { it }
+      raises  { Done -> it.visited = (old it).visited = it.initial.domain}
+      returns { (r,v) -> S.mem r it.initial.domain /\ it.initial r = v /\
+                     not (S.mem r (old it).visited) /\
+                     it.visited = S.add r (old it).visited }
+
+  end
+
 end
+
+
+module MapAppInt63
+
+  use mach.int.Int63
+  clone export MapApp with type key = int63, val eq = Int63.(=)
+
+  val mapi (f: int63 -> 'v -> 'w) (m: t 'v) : t 'w
+    ensures {forall i. S.mem i m.domain -> result i = f i (m i)}
+
+  scope Iter  (* iteration over maps *)
+
+    type iter 'v = abstract {
+              initial: fmap int63 'v;
+      mutable visited: S.fset int63;
+    } invariant {
+      S.subset visited initial.domain
+    }  by {
+      initial = empty;
+      visited = S.empty;
+    }
+
+    val create (m: t 'v) : iter 'v
+      ensures { result.initial = m.to_fmap }
+      ensures { S.is_empty result.visited }
+
+    exception Done
+
+    val next (it: iter 'v) : (int63, 'v)
+      writes { it }
+      raises  { Done -> it.visited = (old it).visited = it.initial.domain}
+      returns { (r,v) -> S.mem r it.initial.domain /\ it.initial r = v /\
+                     not (S.mem r (old it).visited) /\
+                     it.visited = S.add r (old it).visited }
+
+  end
+
+end
+
+
+module MapAppString
+
+  use set.Fset as S
+  use string.OCaml as Str
+  clone export MapApp with type key = string, val eq = Str.(=)
+  val mapi (f: string -> 'v -> 'w) (m: t 'v) : t 'w
+    ensures {forall i. S.mem i m.domain -> result i = f i (m i)}
+
+  scope Iter  (* iteration over maps *)
+
+    type iter 'v = abstract {
+              initial: fmap string 'v;
+      mutable visited: S.fset string;
+    } invariant {
+      S.subset visited initial.domain
+    }  by {
+      initial = empty;
+      visited = S.empty;
+    }
+
+    val create (m: t 'v) : iter 'v
+      ensures { result.initial = m.to_fmap }
+      ensures { S.is_empty result.visited }
+
+    exception Done
+
+    val next (it: iter 'v) : (string, 'v)
+      writes { it }
+      raises  { Done -> it.visited = (old it).visited = it.initial.domain}
+      returns { (r,v) -> S.mem r it.initial.domain /\ it.initial r = v /\
+                     not (S.mem r (old it).visited) /\
+                     it.visited = S.add r (old it).visited }
+
+  end
+
+
+end
+
 
 (** {3 Imperative maps} *)
 

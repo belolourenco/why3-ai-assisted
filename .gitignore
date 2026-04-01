@@ -301,6 +301,8 @@ pvsbin/
 /examples/prover/bench2
 /examples/prover/macro_generator/depend
 /examples/prover/macro_generator/build
+/examples/set_iterators/set_iterators.ml
+/examples/map_iterators/map_iterators.ml
 
 # Try Why3
 /src/trywhy3/trywhy3.byte
