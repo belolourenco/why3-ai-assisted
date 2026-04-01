@@ -711,6 +711,45 @@ module SetAppInt
 
 end
 
+module SetAppInt63
+
+  use mach.int.Int63
+
+  clone export SetApp with type elt = int63, val eq = Int63.(=)
+
+  scope Iter  (* iteration over sets *)
+
+    type t = abstract {
+              initial: set;
+      mutable visited: set;
+    } invariant {
+      subset visited initial
+    }  by {
+      initial = empty ();
+      visited = empty ();
+    }
+
+    val create (s: set) : t
+      ensures { result.initial = s }
+      ensures { is_empty result.visited }
+
+    exception Done
+
+    val next (iter: t) : int63
+      writes { iter }
+      raises  { Done ->  iter.initial = (old iter).visited /\
+                         iter.visited = (old iter).visited }
+      returns { r -> mem r iter.initial /\
+                     not (mem r (old iter).visited) /\
+                     iter.visited = add r (old iter).visited }
+
+
+  end
+
+
+end
+
+
 
 
 (** {3 Applicative sets of strings} *)

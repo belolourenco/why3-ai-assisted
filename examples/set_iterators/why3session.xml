@@ -2,6 +2,7 @@
 <!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
+<prover id="0" name="Z3" version="4.14.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Z3" version="4.12.6" timelimit="5" steplimit="0" memlimit="1000"/>
@@ -11,33 +12,71 @@
  <goal name="filter_non_neg&#39;vc" expl="VC for filter_non_neg" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="filter_non_neg&#39;vc.0" expl="loop invariant init" proved="true">
-  <proof prover="3"><result status="valid" time="0.058141" steps="37"/></proof>
+  <proof prover="3"><result status="valid" time="0.058141" steps="24"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.1" expl="loop invariant init" proved="true">
-  <proof prover="3"><result status="valid" time="0.034365" steps="18"/></proof>
+  <proof prover="3"><result status="valid" time="0.034365" steps="14"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.2" expl="loop variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.042306" steps="132"/></proof>
+  <proof prover="3"><result status="valid" time="0.042306" steps="125"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.3" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.045060" steps="120"/></proof>
+  <proof prover="3"><result status="valid" time="0.045060" steps="108"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.4" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.065150" steps="24575"/></proof>
+  <proof prover="5"><result status="valid" time="0.065150" steps="22980"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.5" expl="loop variant decrease" proved="true">
-  <proof prover="5"><result status="valid" time="0.048984" steps="23571"/></proof>
+  <proof prover="5"><result status="valid" time="0.048984" steps="21976"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.6" expl="loop invariant preservation" proved="true">
-  <proof prover="4"><result status="valid" time="0.075763" steps="2521"/></proof>
+  <proof prover="4"><result status="valid" time="0.075763" steps="2284"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.7" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.030426" steps="38"/></proof>
+  <proof prover="3"><result status="valid" time="0.030426" steps="30"/></proof>
   </goal>
   <goal name="filter_non_neg&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.035341" steps="20742"/></proof>
+  <proof prover="5"><result status="valid" time="0.035341" steps="19147"/></proof>
   </goal>
  </transf>
+ </goal>
+</theory>
+<theory name="TestPeanoSetIterator" proved="true">
+ <goal name="filter_non_neg_peano&#39;vc" expl="VC for filter_non_neg_peano" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="filter_non_neg_peano&#39;vc.0" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.024692" steps="17737"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.1" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.013854" steps="17050"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.2" expl="loop variant decrease" proved="true">
+  <proof prover="4"><result status="valid" time="0.066211" steps="4319"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.3" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.021107" steps="36823"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.4" expl="loop invariant preservation" proved="true">
+  <proof prover="4"><result status="valid" time="0.040325" steps="2804"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.5" expl="loop variant decrease" proved="true">
+  <proof prover="4"><result status="valid" time="0.040117" steps="3923"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.6" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.008224" steps="19075"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.7" expl="loop invariant preservation" proved="true">
+  <proof prover="4"><result status="valid" time="0.059253" steps="2587"/></proof>
+  </goal>
+  <goal name="filter_non_neg_peano&#39;vc.8" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.014602" steps="21697"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="TestInt63SetIterator" proved="true">
+ <goal name="filter_non_neg_int63&#39;vc" expl="VC for filter_non_neg_int63" proved="true">
+ <proof prover="0"><result status="valid" time="0.164156" steps="109837"/></proof>
  </goal>
 </theory>
 <theory name="TestStringSetIterator" proved="true">

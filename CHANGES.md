@@ -11,8 +11,17 @@ Provers
   * support for Z3 4.14 (released Mar 7, 2024)
   * support for E prover 3.x (released ???)
 
+Stdlib
+  * added iterators of sets and maps of unbounded integers, 63-bit
+    integers, "Peano" integers and strings, with appropriate
+    declarations in OCaml64 driver
+
+Drivers
+  * extended coverage of the "remove unused" mechanism, including on
+    lists and sets
+
 Version 1.8.2, September 16, 2025
----------------------------
+---------------------------------
 
 Compilation
   * compatibility with OCaml 5.4 (MR !1228)
@@ -24,7 +33,7 @@ Sessions
   * fix issue with file identifiers in sessions (MR !1231)
 
 Extraction
-  * restore compatibility of OCaml extraction with js_of_ocaml
+  * restore compatibility of OCaml extraction with `js_of_ocaml`
 
 Version 1.8.1, June 4, 2025
 ---------------------------
@@ -37,6 +46,9 @@ Miscellaneous
 
 Plugins
   * resurrect the BDD-infer loop invariant generation plug-in
+
+Provers
+  * support for Alt-Ergo 2.6.x with the SMT-LIB input format
 
 Version 1.8.0, December 11, 2024
 --------------------------------
