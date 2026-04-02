@@ -9,7 +9,12 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git graphviz libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-nox opam python3-sexpdata unzip wget xauth xvfb && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git && \
+    apt-get install -yq --no-install-recommends graphviz libgmp-dev opam pkg-config unzip wget && \
+    apt-get install -yq --no-install-recommends liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev && \
+    apt-get install -yq --no-install-recommends libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev && \
+    apt-get install -yq --no-install-recommends menhir ocaml-nox xauth xvfb clang && \
+    apt-get install -yq --no-install-recommends python3-minimal python3-sexpdata && \
     apt-get clean
 
 # install provers
