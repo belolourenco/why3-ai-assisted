@@ -10,7 +10,7 @@ RUN apt-get update -yq && \
     apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git && \
     apt-get install -yq --no-install-recommends libgmp-dev opam pkg-config unzip wget && \
     apt-get install -yq --no-install-recommends zlib1g-dev libgcc-s1 libstdc++6 adduser && \
-    apt-get install -yq --no-install-recommends libmpfr-dev libboost-dev && \
+    apt-get install -yq --no-install-recommends libmpfr-dev libboost-dev python3-minimal && \
     apt-get install -yq --no-install-recommends spass && \
     apt-get clean
 

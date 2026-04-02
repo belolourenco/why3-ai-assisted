@@ -77,11 +77,16 @@ let write_file_fmt f c =
 
 
 let write_unique_file_fmt f c =
-  let dir = Filename.dirname f in
-  let base = Filename.basename f in
-  let prefix = Filename.remove_extension base in
-  let suffix = Filename.extension base in
-  let _,oc = Filename.open_temp_file ~temp_dir:dir prefix suffix in
+  let oc =
+    try open_out_gen [Open_creat;Open_excl;Open_text;Open_wronly] 0o444 f
+    with _ ->
+      let dir = Filename.dirname f in
+      let base = Filename.basename f in
+      let prefix = Filename.remove_extension base in
+      let suffix = Filename.extension base in
+      let _,oc = Filename.open_temp_file ~temp_dir:dir prefix suffix in
+      oc
+  in
   let fmt = Format.formatter_of_out_channel oc in
   Fun.protect
     ~finally:(fun () ->

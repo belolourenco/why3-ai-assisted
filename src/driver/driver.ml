@@ -290,10 +290,11 @@ let syntax_map drv =
 exception UnknownSpec of string
 
 let filename_regexp = Re.Str.regexp "%\\(.\\)"
+let filename_sanitizer = Ident.sanitizer
+    Ident.char_to_alnumus Ident.char_to_alnumus
 
-let get_filename drv ~input_file ~theory_name ~goal_name =
-  let sanitize = Ident.sanitizer
-    Ident.char_to_alnumus Ident.char_to_alnumus in
+
+let get_filename ?(sanitize=filename_sanitizer) ~input_file ~theory_name ~goal_name drv =
   let file = match drv.drv_filename with
     | Some f -> f
     | None -> "%f-%t-%g.dump"
