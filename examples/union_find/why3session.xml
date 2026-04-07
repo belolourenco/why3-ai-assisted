@@ -68,10 +68,10 @@
   <proof prover="3"><result status="valid" time="0.304631" steps="1141"/></proof>
   </goal>
   <goal name="link&#39;vc.10" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.452805" steps="2575"/></proof>
+  <proof prover="3"><result status="valid" time="0.289414" steps="2575"/></proof>
   </goal>
   <goal name="link&#39;vc.11" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.314802" steps="22843"/></proof>
+  <proof prover="0"><result status="valid" time="0.150055" steps="22843"/></proof>
   </goal>
   <goal name="link&#39;vc.12" expl="type invariant" proved="true">
   <proof prover="3"><result status="valid" time="0.064324" steps="52"/></proof>
@@ -95,79 +95,79 @@
   <proof prover="3"><result status="valid" time="0.071194" steps="63"/></proof>
   </goal>
   <goal name="link&#39;vc.19" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.083273" steps="89"/></proof>
+  <proof prover="3"><result status="valid" time="0.083273" steps="93"/></proof>
   </goal>
   <goal name="link&#39;vc.20" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.203456" steps="680"/></proof>
+  <proof prover="3"><result status="valid" time="0.203456" steps="687"/></proof>
   </goal>
   <goal name="link&#39;vc.21" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.137889" steps="227"/></proof>
+  <proof prover="3"><result status="valid" time="0.137889" steps="235"/></proof>
   </goal>
   <goal name="link&#39;vc.22" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.119506" steps="247"/></proof>
+  <proof prover="3"><result status="valid" time="0.119506" steps="254"/></proof>
   </goal>
   <goal name="link&#39;vc.23" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.305178" steps="1535"/></proof>
+  <proof prover="3"><result status="valid" time="0.305178" steps="1554"/></proof>
   </goal>
   <goal name="link&#39;vc.24" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.529594" steps="3124"/></proof>
+  <proof prover="3"><result status="valid" time="0.529594" steps="3198"/></proof>
   </goal>
   <goal name="link&#39;vc.25" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.335369" steps="24426"/></proof>
+  <proof prover="0"><result status="valid" time="0.182004" steps="24466"/></proof>
   </goal>
   <goal name="link&#39;vc.26" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.083249" steps="70"/></proof>
+  <proof prover="3"><result status="valid" time="0.083249" steps="71"/></proof>
   </goal>
   <goal name="link&#39;vc.27" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.274596" steps="1205"/></proof>
+  <proof prover="3"><result status="valid" time="0.274596" steps="1238"/></proof>
   </goal>
   <goal name="link&#39;vc.28" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.203164" steps="17685"/></proof>
+  <proof prover="0"><result status="valid" time="0.203164" steps="17706"/></proof>
   </goal>
   <goal name="link&#39;vc.29" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.061588" steps="50"/></proof>
+  <proof prover="3"><result status="valid" time="0.061588" steps="49"/></proof>
   </goal>
   <goal name="link&#39;vc.30" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.158512" steps="578"/></proof>
+  <proof prover="3"><result status="valid" time="0.158512" steps="579"/></proof>
   </goal>
   <goal name="link&#39;vc.31" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.125350" steps="306"/></proof>
+  <proof prover="3"><result status="valid" time="0.125350" steps="307"/></proof>
   </goal>
   <goal name="link&#39;vc.32" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.165563" steps="529"/></proof>
+  <proof prover="3"><result status="valid" time="0.165563" steps="530"/></proof>
   </goal>
   <goal name="link&#39;vc.33" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.116406" steps="183"/></proof>
+  <proof prover="3"><result status="valid" time="0.116406" steps="185"/></proof>
   </goal>
   <goal name="link&#39;vc.34" expl="type invariant" proved="true">
   <proof prover="3"><result status="valid" time="0.108444" steps="197"/></proof>
   </goal>
   <goal name="link&#39;vc.35" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.176481" steps="1158"/></proof>
+  <proof prover="3"><result status="valid" time="0.176481" steps="1163"/></proof>
   </goal>
   <goal name="link&#39;vc.36" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.282596" steps="2599"/></proof>
+  <proof prover="3"><result status="valid" time="0.282596" steps="2574"/></proof>
   </goal>
   <goal name="link&#39;vc.37" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.239655" steps="22809"/></proof>
+  <proof prover="0"><result status="valid" time="0.239655" steps="22856"/></proof>
   </goal>
   <goal name="link&#39;vc.38" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.074762" steps="54"/></proof>
+  <proof prover="3"><result status="valid" time="0.074762" steps="56"/></proof>
   </goal>
   <goal name="link&#39;vc.39" expl="type invariant" proved="true">
-  <proof prover="3"><result status="valid" time="0.250263" steps="1167"/></proof>
+  <proof prover="3"><result status="valid" time="0.250263" steps="1218"/></proof>
   </goal>
   <goal name="link&#39;vc.40" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.241325" steps="18769"/></proof>
+  <proof prover="1"><result status="valid" time="0.241325" steps="18800"/></proof>
   </goal>
   <goal name="link&#39;vc.41" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.055302" steps="44"/></proof>
+  <proof prover="3"><result status="valid" time="0.055302" steps="46"/></proof>
   </goal>
   <goal name="link&#39;vc.42" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.138102" steps="429"/></proof>
+  <proof prover="3"><result status="valid" time="0.138102" steps="543"/></proof>
   </goal>
   <goal name="link&#39;vc.43" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.123972" steps="272"/></proof>
+  <proof prover="3"><result status="valid" time="0.123972" steps="273"/></proof>
   </goal>
   <goal name="link&#39;vc.44" expl="unreachable point" proved="true">
   <proof prover="3"><result status="valid" time="0.122205" steps="194"/></proof>
