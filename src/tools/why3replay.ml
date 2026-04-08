@@ -34,6 +34,7 @@ let debug = Debug.register_info_flag
 let files = Queue.create ()
 let opt_stats = ref true
 let opt_force = ref false
+let opt_dont_save = ref false
 let opt_obsolete_only = ref false
 let opt_ignore_shapes = ref false
 let opt_use_steps = ref false
@@ -69,6 +70,8 @@ let option_list =
   let open Getopt in
   [ Key ('f', "force"), Hnd0 (fun () -> opt_force := true),
     " enforce saving the session after replay";
+    KLong "dont-save", Hnd0 (fun () -> opt_dont_save := true),
+    " don't save session after replay, whatever the results";
     KLong "use-steps", Hnd0 (fun () -> opt_use_steps := true),
     " replay using recorded number of proof steps (when\npossible)";
     KLong "time-factor", Hnd1 (AFloat, fun f -> opt_time_factor := f),
@@ -199,6 +202,8 @@ let same_result r1 r2 =
       -> false
 
 let save cont =
+  if !opt_dont_save then
+    Format.eprintf "Not saving the session, as requested by --dont-save@.";
   Debug.dprintf debug "Saving session...@?";
   S.save_session cont.Controller_itp.controller_session;
   Debug.dprintf debug " done@."
@@ -421,7 +426,7 @@ let () =
     if found_obs then eprintf "[Warning] session is obsolete@.";
     if found_detached then eprintf "[Warning] found detached goals or theories or transformations@.";
     if !opt_merging_only then
-      exit (if found_detached then 1 else 0);
+      exit (if found_obs || found_detached then 1 else 0);
 (*
     if !opt_bench then run_as_bench env_session;
  *)

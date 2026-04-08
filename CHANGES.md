@@ -14,11 +14,15 @@ Provers
 Stdlib
   * added iterators of sets and maps of unbounded integers, 63-bit
     integers, "Peano" integers and strings, with appropriate
-    declarations in OCaml64 driver
+    declarations in the OCaml64 driver
 
 Drivers
   * extended coverage of the "remove unused" mechanism, including on
     lists and sets
+
+Tools
+  * `why3 replay`: new option `--dont-save`, improved documentation of
+    other options.
 
 Version 1.8.2, September 16, 2025
 ---------------------------------
