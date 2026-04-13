@@ -1,5 +1,5 @@
 opam-version: "2.0"
-maintainer: "guillaume.melquiond@inria.fr"
+maintainer: "Claude.Marche@inria.fr"
 authors: [
   "François Bobot"
   "Jean-Christophe Filliâtre"
@@ -7,6 +7,7 @@ authors: [
   "Guillaume Melquiond"
   "Andrei Paskevich"
 ]
+x-maintenance-intent: ["(latest)"]
 
 homepage: "https://www.why3.org/"
 license: "LGPL-2.1-only"
@@ -24,6 +25,7 @@ tags: [
 
 build: [
   ["./autogen.sh"] {dev} # when pinning, there might be no configure file
+  ["touch" "configure"]
   ["./configure"
    "--prefix" prefix
    "--disable-frama-c"
@@ -51,7 +53,7 @@ install: [
 
 depends: [
   "conf-autoconf" {build & dev}
-  "ocaml" {>= "4.09"}
+  "ocaml" {>= "4.09" & < "5.5"}
   "ocamlfind" {build}
   "dune" {>= "2.9"}
   "menhir" {>= "20200211"}

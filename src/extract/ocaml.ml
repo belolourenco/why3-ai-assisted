@@ -681,10 +681,10 @@ module Print = struct
           (print_list newline (print_branch info)) bl
           (print_list newline (print_xbranch info true)) xl
     | Eexn (xs, None, e) ->
-        fprintf fmt "@[<hv>let exception %a in@\n%a@]"
+        fprintf fmt (protect_on_be ~boxed (opr && prec < 18) "@[<hv>let exception %a in@\n%a@]")
           (print_uident info) xs.xs_name (print_expr info 18) e
     | Eexn (xs, Some t, e) ->
-        fprintf fmt "@[<hv>let exception %a of %a in@\n%a@]"
+        fprintf fmt (protect_on_be ~boxed (opr && prec < 18) "@[<hv>let exception %a of %a in@\n%a@]")
           (print_uident info) xs.xs_name (print_ty ~use_quote:false ~paren:true info) t
           (print_expr info 18) e
     | Eignore e ->

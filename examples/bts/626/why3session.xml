@@ -15,7 +15,7 @@
   <proof prover="0"><result status="valid" time="0.040000" steps="2220"/></proof>
   <proof prover="1"><result status="valid" time="0.050000" steps="1628"/></proof>
   <proof prover="3"><result status="valid" time="0.010000" steps="2362"/></proof>
-  <proof prover="5"><result status="valid" time="0.030000" steps="108"/></proof>
+  <proof prover="5"><result status="valid" time="0.030000" steps="118"/></proof>
   </goal>
  </transf>
  </goal>

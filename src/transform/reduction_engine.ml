@@ -10,6 +10,9 @@
 
 open Term
 
+let debug = Debug.register_info_flag "reduction_engine"
+  ~desc:"trace reduction engine"
+
 let debug_cont_size = Debug.register_info_flag "reduction_cont_size"
   ~desc:"check cont size invariant intensively"
 
@@ -31,7 +34,8 @@ let term_of_value v =
   match v with
   | Term t -> t
   | Int n -> t_int_const n
-  | Real { rv_sig = s; rv_pow2 = pow2; rv_pow5 = pow5 } -> t_real_const ~pow2 ~pow5 s
+  | Real { rv_is_neg = is_neg; rv_mantissa = m; rv_pow2 = pow2; rv_pow5 = pow5 } ->
+      t_real_const ~pow2 ~pow5 ~is_neg m
 
 exception NotNum
 
@@ -159,10 +163,10 @@ let eval_int_uop op _ls l _ty =
 
 let real_align ~pow2 ~pow5 r =
   let open Number in
-  let { rv_sig = s; rv_pow2 = p2; rv_pow5 = p5 } = r in
-  let s = BigInt.mul s (BigInt.pow_int_pos_bigint 2 (BigInt.sub p2 pow2)) in
-  let s = BigInt.mul s (BigInt.pow_int_pos_bigint 5 (BigInt.sub p5 pow5)) in
-  s
+  let { rv_is_neg = is_neg ; rv_mantissa = m; rv_pow2 = p2; rv_pow5 = p5 } = r in
+  let m = BigInt.mul m (BigInt.pow_int_pos_bigint 2 (BigInt.sub p2 pow2)) in
+  let m = BigInt.mul m (BigInt.pow_int_pos_bigint 5 (BigInt.sub p5 pow5)) in
+  if is_neg then BigInt.minus m else m
 
 let eval_real_op op simpl ls l ty =
   match l with
@@ -198,15 +202,16 @@ let eval_real_rel op _ls l _ty =
         let n1 = real_of_value t1 in
         let n2 = real_of_value t2 in
         let s1, s2 =
-          let { rv_sig = s1; rv_pow2 = p21; rv_pow5 = p51 } = n1 in
-          let { rv_sig = s2; rv_pow2 = p22; rv_pow5 = p52 } = n2 in
-          if BigInt.sign s1 <> BigInt.sign s2 then s1,s2
-          else
-            let pow2 = BigInt.min p21 p22 in
-            let pow5 = BigInt.min p51 p52 in
-            let s1 = real_align ~pow2 ~pow5 n1 in
-            let s2 = real_align ~pow2 ~pow5 n2 in
-            s1, s2 in
+          let { rv_is_neg = in1 ; rv_mantissa = _; rv_pow2 = p21; rv_pow5 = p51 } = n1 in
+          let { rv_is_neg = in2 ; rv_mantissa = _; rv_pow2 = p22; rv_pow5 = p52 } = n2 in
+          let pow2 = BigInt.min p21 p22 in
+          let pow5 = BigInt.min p51 p52 in
+          let s1 = real_align ~pow2 ~pow5 n1 in
+          let s2 = real_align ~pow2 ~pow5 n2 in
+          let s1 = if in1 then BigInt.minus s1 else s1 in
+          let s2 = if in2 then BigInt.minus s2 else s2 in
+          s1, s2
+        in
         Term (to_bool (op s1 s2))
       with NotNum ->
         raise Undetermined
@@ -214,8 +219,8 @@ let eval_real_rel op _ls l _ty =
     end
   | _ -> assert false
 
-let real_0 = Number.real_value BigInt.zero
-let real_1 = Number.real_value BigInt.one
+let real_0 = Number.real_value ~is_neg:false BigInt.zero
+let real_1 = Number.real_value ~is_neg:false BigInt.one
 
 let is_real t r =
   try Number.compare_real (real_of_value t) r = 0
@@ -223,41 +228,39 @@ let is_real t r =
 
 let real_opp r =
   let open Number in
-  let { rv_sig = s; rv_pow2 = pow2; rv_pow5 = pow5 } = r in
-  real_value ~pow2 ~pow5 (BigInt.minus s)
+  let { rv_is_neg = is_neg; rv_mantissa = m; rv_pow2 = pow2; rv_pow5 = pow5 } = r in
+  real_value ~pow2 ~pow5 ~is_neg:(not is_neg) m
 
 let real_add r1 r2 =
   let open Number in
-  let { rv_sig = s1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
-  let { rv_sig = s2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
-  if BigInt.eq s1 BigInt.zero then r2 else
-  if BigInt.eq s2 BigInt.zero then r1 else
+  let { rv_is_neg = in1; rv_mantissa = m1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
+  let { rv_is_neg = in2; rv_mantissa = m2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
+  if BigInt.eq m1 BigInt.zero then r2 else
+  if BigInt.eq m2 BigInt.zero then r1 else
   let pow2 = BigInt.min p21 p22 in
   let pow5 = BigInt.min p51 p52 in
   let s1 = real_align ~pow2 ~pow5 r1 in
   let s2 = real_align ~pow2 ~pow5 r2 in
-  real_value ~pow2 ~pow5 (BigInt.add s1 s2)
+  let is_neg,m =
+    match in1,in2 with
+    | false, false -> false, BigInt.add s1 s2
+    | false, true -> if BigInt.ge s1 s2 then false,BigInt.sub s1 s2 else true,BigInt.sub s2 s1
+    | true, false -> if BigInt.ge s2 s1 then false,BigInt.sub s2 s1 else true,BigInt.sub s1 s2
+    | true, true -> true, BigInt.add s1 s2
+  in
+  real_value ~pow2 ~pow5 ~is_neg m
 
-let real_sub r1 r2 =
-  let open Number in
-  let { rv_sig = s1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
-  let { rv_sig = s2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
-  if BigInt.eq s2 BigInt.zero then r1 else
-  if BigInt.eq s1 BigInt.zero then real_value ~pow2:p22 ~pow5:p52 (BigInt.minus s2) else
-  let pow2 = BigInt.min p21 p22 in
-  let pow5 = BigInt.min p51 p52 in
-  let s1 = real_align ~pow2 ~pow5 r1 in
-  let s2 = real_align ~pow2 ~pow5 r2 in
-  real_value ~pow2 ~pow5 (BigInt.sub s1 s2)
+let real_sub r1 r2 = real_add r1 (real_opp r2)
 
 let real_mul r1 r2 =
   let open Number in
-  let { rv_sig = s1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
-  let { rv_sig = s2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
-  let s = BigInt.mul s1 s2 in
+  let { rv_is_neg = in1; rv_mantissa = m1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
+  let { rv_is_neg = in2; rv_mantissa = m2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
+  let is_neg = in1 <> in2 in
+  let m = BigInt.mul m1 m2 in
   let pow2 = BigInt.add p21 p22 in
   let pow5 = BigInt.add p51 p52 in
-  real_value ~pow2 ~pow5 s
+  real_value ~pow2 ~pow5 ~is_neg m
 
 let simpl_real_add _ls t1 t2 _ty =
   if is_real t1 real_0 then t2 else
@@ -277,23 +280,34 @@ let simpl_real_mul _ls t1 t2 _ty =
 
 let real_pow r1 r2 =
   let open Number in
-  let { rv_sig = s1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
-  let { rv_sig = s2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
-  if BigInt.le s1 BigInt.zero then
+  let { rv_is_neg = in1; rv_mantissa = m1; rv_pow2 = p21; rv_pow5 = p51 } = r1 in
+  let { rv_is_neg = in2; rv_mantissa = m2; rv_pow2 = p22; rv_pow5 = p52 } = r2 in
+  if in1 || BigInt.eq m1 BigInt.zero then
+    (* r1 must be > 0 *)
     raise Undetermined
   else if BigInt.lt p22 BigInt.zero || BigInt.lt p52 BigInt.zero then
+    (* r2 must be an integer *)
     raise NotNum
   else
-    let s1 = try BigInt.to_int s1 with Failure _ -> raise NotNum in
-    let s2 = BigInt.mul s2 (BigInt.pow_int_pos_bigint 2 p22) in
-    let s2 = BigInt.mul s2 (BigInt.pow_int_pos_bigint 5 p52) in
-    let s =
-      if s1 = 1 then BigInt.one
-      else if BigInt.lt s2 BigInt.zero then raise NotNum
-      else BigInt.pow_int_pos_bigint s1 s2 in
-    let pow2 = BigInt.mul p21 s2 in
-    let pow5 = BigInt.mul p51 s2 in
-    Number.real_value ~pow2 ~pow5 s
+    let m1 = try BigInt.to_int m1 with Failure _ -> raise NotNum in
+    let m2 = BigInt.mul m2 (BigInt.pow_int_pos_bigint 2 p22) in
+    let m2 = BigInt.mul m2 (BigInt.pow_int_pos_bigint 5 p52) in
+    let m =
+      if m1 = 1 then BigInt.one
+      else if in2 then
+        (* can't compute negative powers of the mantissa *)
+        raise NotNum
+      else BigInt.pow_int_pos_bigint m1 m2
+    in
+    let m2 = if in2 then BigInt.minus m2 else m2 in
+    let pow2 = BigInt.mul p21 m2 in
+    let pow5 = BigInt.mul p51 m2 in
+    let r = Number.real_value ~pow2 ~pow5 ~is_neg:false m in
+    Debug.dprintf debug "real_pow %a %a -> %a@."
+      Number.(print_real_constant full_support) Number.{ rl_kind = RLitHex 1 ; rl_real = r1}
+      Number.(print_real_constant full_support) Number.{ rl_kind = RLitHex 1 ; rl_real = r2}
+      Number.(print_real_constant full_support) Number.{ rl_kind = RLitHex 1 ; rl_real = r};
+    r
 
 let simpl_real_pow _ls t1 _t2 _ty =
   if is_real t1 real_1 then t1 else
@@ -305,7 +319,11 @@ let real_from_int _ls l _ty =
     begin
       try
         let n = big_int_of_value t in
-        Real (Number.real_value n)
+        let is_neg,m = if BigInt.lt n BigInt.zero then true,BigInt.minus n else false,n in
+        let r = Number.real_value ~is_neg m in
+        Debug.dprintf debug "real_from_int %s -> %a@." (BigInt.to_string n)
+          Number.(print_real_constant full_support) Number.{ rl_kind = RLitHex 0 ; rl_real = r};
+        Real r
       with NotNum ->
         raise Undetermined
     end

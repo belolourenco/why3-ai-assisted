@@ -7,10 +7,10 @@
 <path name=".."/><path name="relabel.mlw"/>
 <theory name="Relabel" proved="true">
  <goal name="labels_Leaf" proved="true">
- <proof prover="0" timelimit="60" memlimit="0"><result status="valid" time="0.030000" steps="103"/></proof>
+ <proof prover="0" timelimit="60" memlimit="0"><result status="valid" time="0.030000" steps="77"/></proof>
  </goal>
  <goal name="labels_Node" proved="true">
- <proof prover="0" timelimit="60" memlimit="0"><result status="valid" time="0.020000" steps="29"/></proof>
+ <proof prover="0" timelimit="60" memlimit="0"><result status="valid" time="0.020000" steps="25"/></proof>
  </goal>
  <goal name="fresh&#39;vc" expl="VC for fresh" proved="true">
  <proof prover="0"><result status="valid" time="0.000000" steps="0"/></proof>

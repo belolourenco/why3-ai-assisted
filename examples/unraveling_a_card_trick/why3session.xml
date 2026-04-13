@@ -35,20 +35,20 @@
   <proof prover="1"><result status="valid" time="0.010000" steps="9"/></proof>
   </goal>
   <goal name="shuffle_length.2" proved="true">
-  <proof prover="0"><result status="valid" time="0.020000" steps="7156"/></proof>
+  <proof prover="0"><result status="valid" time="0.020000" steps="4588"/></proof>
   </goal>
   <goal name="shuffle_length.3" proved="true">
-  <proof prover="0"><result status="valid" time="0.020000" steps="7151"/></proof>
+  <proof prover="0"><result status="valid" time="0.020000" steps="4583"/></proof>
   </goal>
  </transf>
  </goal>
 </theory>
 <theory name="GilbreathCardTrick" proved="true">
  <goal name="shuffle&#39;vc" expl="VC for shuffle" proved="true">
- <proof prover="0"><result status="valid" time="0.120000" steps="27219"/></proof>
+ <proof prover="0"><result status="valid" time="0.346532" steps="27219"/></proof>
  </goal>
  <goal name="card_trick&#39;vc" expl="VC for card_trick" proved="true">
- <proof prover="1"><result status="valid" time="0.042614" steps="2413"/></proof>
+ <proof prover="1"><result status="valid" time="0.237333" steps="2413"/></proof>
  </goal>
 </theory>
 </file>

@@ -2,12 +2,13 @@
 <!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
-<prover id="0" name="Alt-Ergo" version="2.6.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="0" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC3" version="2.4.1" timelimit="5" steplimit="0" memlimit="2000"/>
 <prover id="2" name="Eprover" version="2.0" timelimit="5" steplimit="0" memlimit="2000"/>
 <prover id="3" name="Alt-Ergo" version="2.3.3" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Z3" version="4.7.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="6" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="add.mlw"/>
 <theory name="Add" proved="true">
@@ -108,13 +109,13 @@
    <goal name="wmpn_add_n&#39;vc.23.0" expl="assertion" proved="true">
    <transf name="reflection_f" proved="true" arg1="mp_decision">
     <goal name="wmpn_add_n&#39;vc.23.0.0" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.080000"/></proof>
+    <proof prover="2"><result status="valid" time="0.325594"/></proof>
     </goal>
     <goal name="wmpn_add_n&#39;vc.23.0.1" proved="true">
-    <proof prover="4"><result status="valid" time="0.240000" steps="40503"/></proof>
+    <proof prover="6"><result status="valid" time="0.432295" steps="40504"/></proof>
     </goal>
     <goal name="wmpn_add_n&#39;vc.23.0.2" proved="true">
-    <proof prover="4"><result status="valid" time="0.139753" steps="40514"/></proof>
+    <proof prover="6"><result status="valid" time="0.521527" steps="40515"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1447,13 +1448,13 @@
    <goal name="wmpn_add_n&#39;vc.13.0" expl="assertion" proved="true">
    <transf name="reflection_f" proved="true" arg1="mp_decision">
     <goal name="wmpn_add_n&#39;vc.13.0.0" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.080000"/></proof>
+    <proof prover="2"><result status="valid" time="0.307388"/></proof>
     </goal>
     <goal name="wmpn_add_n&#39;vc.13.0.1" proved="true">
-    <proof prover="4"><result status="valid" time="0.166436" steps="38161"/></proof>
+    <proof prover="6"><result status="valid" time="0.447624" steps="38162"/></proof>
     </goal>
     <goal name="wmpn_add_n&#39;vc.13.0.2" proved="true">
-    <proof prover="4"><result status="valid" time="0.240000" steps="38172"/></proof>
+    <proof prover="6"><result status="valid" time="0.477094" steps="38173"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1827,13 +1828,13 @@
    <goal name="wmpn_add_n_in_place&#39;vc.16.0" expl="assertion" proved="true">
    <transf name="reflection_f" proved="true" arg1="mp_decision">
     <goal name="wmpn_add_n_in_place&#39;vc.16.0.0" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.140000"/></proof>
+    <proof prover="2"><result status="valid" time="0.379521"/></proof>
     </goal>
     <goal name="wmpn_add_n_in_place&#39;vc.16.0.1" proved="true">
-    <proof prover="4"><result status="valid" time="0.260000" steps="38534"/></proof>
+    <proof prover="6"><result status="valid" time="0.422074" steps="38535"/></proof>
     </goal>
     <goal name="wmpn_add_n_in_place&#39;vc.16.0.2" proved="true">
-    <proof prover="4"><result status="valid" time="0.240000" steps="38545"/></proof>
+    <proof prover="6"><result status="valid" time="0.444643" steps="38546"/></proof>
     </goal>
    </transf>
    </goal>

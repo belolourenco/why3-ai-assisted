@@ -57,7 +57,7 @@ do
             if test "$COQVER" != "" ; then
               sed misc/bench-coq-why3-conf -e "s/@COQVER@/$COQVER/g" >> why3.conf
             fi
-            examples/regtests.sh --reduced-mode
+            examples/regtests.py --reduced-mode
             ;;
         nightly-bench-long)
             bin/why3 config detect  &> nightly-bench-long.out
@@ -68,7 +68,7 @@ do
               sed misc/bench-coq-why3-conf -e "s/@COQVER@/$COQVER/g" >> why3.conf
             fi
             printf "\n" &>> nightly-bench-long.out
-            examples/regtests.sh --examples-mode &>> nightly-bench-long.out || true
+            examples/regtests.py --examples-mode &>> nightly-bench-long.out || true
             ;;
     esac
     section_stop "test_$1"

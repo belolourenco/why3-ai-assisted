@@ -350,6 +350,9 @@ val replay_print:
       (proofNodeID * Whyconf.prover * Call_provers.resource_limits * report) list ->
         unit
 
+val set_time_factor : float -> unit
+(** factor applied to the time limits when replaying. Default is 2.0 *)
+
 val replay:
     valid_only:bool ->
     obsolete_only:bool ->
