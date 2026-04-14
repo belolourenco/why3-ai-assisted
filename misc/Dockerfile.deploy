@@ -1,6 +1,6 @@
 # Stage 1: build setup and prover download; to be cached
 
-FROM debian:bookworm-slim as builder
+FROM debian:trixie-slim as builder
 
 USER root
 
@@ -48,7 +48,7 @@ RUN make install && \
 # Note that the first command after FROM decides which cache is used,
 # so we start with COPY instead of USER to make sure both caches are trivially different.
 
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 COPY --from=builder /root/.opam/default/bin/alt-ergo /usr/local/bin/
 COPY --from=builder /usr/local/bin/cvc4-1.8 /usr/local/bin/
