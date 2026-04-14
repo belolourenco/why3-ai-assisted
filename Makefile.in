@@ -201,9 +201,7 @@ else
 all:
 endif
 
-plugins: plugins.@OCAMLBEST@
-opt: plugins.opt
-byte: plugins.byte
+plugins: dune.@OCAMLBEST@
 
 ifeq (@enable_local@,yes)
 all: install_local
@@ -217,7 +215,7 @@ endif
 .PHONY: coq install-coq uninstall-coq clean-coq
 .PHONY: pvs install-pvs uninstall-pvs clean-pvs
 .PHONY: install-isabelle clean-isabelle
-.PHONY: plugins plugins.byte plugins.opt
+.PHONY: plugins
 .PHONY: trywhy3 clean-trywhy3
 
 .SUFFIXES:
@@ -414,9 +412,6 @@ endif
 
 LIBPLUGCMA =  $(PLUGINS:%=lib/plugins/%.cma)
 LIBPLUGCMXS = $(PLUGINS:%=lib/plugins/%.cmxs)
-
-plugins.byte: dune.byte
-plugins.opt : dune.opt
 
 uninstall-bin::
 	rm -f $(PLUGINS:%=$(LIBDIR)/why3/plugins/%.cma)
