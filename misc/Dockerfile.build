@@ -9,7 +9,7 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git ocaml-dune rsync && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git ocaml-dune rsync adduser && \
     apt-get install -yq --no-install-recommends graphviz libgmp-dev opam pkg-config unzip wget && \
     apt-get install -yq --no-install-recommends liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev && \
     apt-get install -yq --no-install-recommends libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev && \
