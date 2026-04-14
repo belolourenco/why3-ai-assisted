@@ -80,10 +80,6 @@ DEPFLAGS = -slash
 ifeq (@enable_why3_lib@,yes)
 INCLUDES += -I lib/why3
 endif
-ifeq (@OCAMLBEST@,opt)
-# the semantics of the -native flag changed in ocaml 4.03.0
-#DEPFLAGS += -native
-endif
 
 ifeq (@OCAMLBEST@,opt)
 SHAREDBEST=cmxs
@@ -195,16 +191,16 @@ endif
 # main target
 ###############
 
-ifeq (@enable_why3_lib@,yes)
-all: @OCAMLBEST@
-else
 all:
+
+ifeq (@enable_why3_lib@,yes)
+DUNEALLTARGET += @@OCAMLBEST@
 endif
 
 plugins: dune.@OCAMLBEST@
 
 ifeq (@enable_local@,yes)
-all: install_local
+DUNEALLTARGET += @install_local
 endif
 
 .PHONY: byte opt clean depend all install install-lib uninstall
@@ -235,10 +231,12 @@ DUNEPKGS =
 
 ifeq (@enable_why3_lib@,yes)
 DUNEPKGS += why3
+DUNEALLTARGET += why3.install
 endif
 
 ifeq (@enable_ide@,yes)
 DUNEPKGS += why3-ide
+DUNEALLTARGET += bin/why3ide.$(SHAREDBEST)
 endif
 
 ifeq (@enable_coq_libs@,yes)
@@ -261,6 +259,9 @@ DUNEDEPS = src/dune src/util/config.ml src/parser/parser_messages.ml
 
 FORCE:
 
+dune.all: $(DUNEDEPS)
+	$(DUNEBUILD) $(DUNEALLTARGET)
+
 dune.install_local: $(DUNEDEPS)
 	$(DUNEBUILD) @install_local
 
@@ -276,6 +277,8 @@ dune.opt: $(DUNEDEPS)
 
 byte: dune.byte
 opt:  dune.opt
+all: dune.all
+
 
 install_local:: dune.install_local
 
@@ -288,7 +291,8 @@ clean::
 
 LIBGENERATED = \
 	src/util/config.ml \
-	src/parser/parser_messages.ml
+	src/parser/parser_messages.ml \
+	lib/coq/dune
 
 .PHONY: initialize_messages update-parsing-error-handling
 

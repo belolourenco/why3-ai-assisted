@@ -30,13 +30,7 @@ let editor    = \"@EDITOR@\"
 let libdir    = $libdir
 let datadir   = $datadir
 let localdir  = $localdir
-" > $config.new
-
-if cmp -s $config $config.new; then
-    rm $config.new
-else
-    mv $config.new $config
-fi
+" > $config
 
 echo "
 OCAMLBEST   = @OCAMLBEST@
