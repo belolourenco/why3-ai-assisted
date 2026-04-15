@@ -13,7 +13,7 @@
  <transf name="split_goal_right" proved="true" >
   <goal name="my_cosine&#39;vc.0" expl="assertion" proved="true">
   <proof prover="2"><result status="valid" time="0.140000"/></proof>
-  <proof prover="6"><path name="my_cosine_M_VC_my_cosine_1.v"/><result status="valid" time="1.212559"/></proof>
+  <proof prover="6"><path name="my_cosine_M_VC_my_cosine_1.v"/><result status="valid" time="0.936783"/></proof>
   </goal>
   <goal name="my_cosine&#39;vc.1" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.010000" steps="1047"/></proof>
