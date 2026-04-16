@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"https://www.why3.org/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="4" name="colibri2" version="0.5" timelimit="60" steplimit="0" memlimit="1000"/>
+<prover id="5" name="Z3" version="4.14.1" alternative="counterexamples" timelimit="5" steplimit="0" memlimit="1000"/>
+<file format="whyml">
+<path name=".."/><path name="verifythis_2026_challenge1.mlw"/>
+<theory name="Top">
+ <goal name="hindex_intro&#39;vc" expl="VC for hindex_intro" proved="true">
+ <proof prover="0"><result status="valid" time="0.244478" steps="42055"/></proof>
+ </goal>
+ <goal name="hindex_elim&#39;vc" expl="VC for hindex_elim" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="hindex_elim&#39;vc.0" expl="assertion" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.017968" steps="31876"/></proof>
+  </goal>
+  <goal name="hindex_elim&#39;vc.1" expl="assertion" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.011024" steps="21112"/></proof>
+  </goal>
+  <goal name="hindex_elim&#39;vc.2" expl="assertion" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.016035" steps="22170"/></proof>
+  </goal>
+  <goal name="hindex_elim&#39;vc.3" expl="assertion" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.059561" steps="129241"/></proof>
+  </goal>
+  <goal name="hindex_elim&#39;vc.4" expl="postcondition" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.033748" steps="48606"/></proof>
+  </goal>
+  <goal name="hindex_elim&#39;vc.5" expl="postcondition" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="1.084087" steps="2556478"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="compute&#39;vc" expl="VC for compute" proved="true">
+ <proof prover="1"><result status="valid" time="0.015800" steps="27458"/></proof>
+ </goal>
+ <goal name="compute_opt&#39;vc" expl="VC for compute_opt" proved="true">
+ <proof prover="1"><result status="valid" time="0.023211" steps="42453"/></proof>
+ </goal>
+ <goal name="keep_sorted&#39;vc" expl="VC for keep_sorted" proved="true">
+ <proof prover="1" timelimit="5"><result status="valid" time="0.015859" steps="28294"/></proof>
+ </goal>
+ <goal name="update&#39;vc" expl="VC for update" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="update&#39;vc.0" expl="precondition" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.008304" steps="2187"/></proof>
+  </goal>
+  <goal name="update&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.009833" steps="2192"/></proof>
+  </goal>
+  <goal name="update&#39;vc.2" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.007624" steps="3355"/></proof>
+  </goal>
+  <goal name="update&#39;vc.3" expl="loop invariant init" proved="true">
+  <proof prover="1"><result status="valid" time="0.004884" steps="2281"/></proof>
+  </goal>
+  <goal name="update&#39;vc.4" expl="loop invariant init" proved="true">
+  <proof prover="1"><result status="valid" time="0.013006" steps="25971"/></proof>
+  </goal>
+  <goal name="update&#39;vc.5" expl="loop invariant init" proved="true">
+  <proof prover="1"><result status="valid" time="0.005946" steps="2349"/></proof>
+  </goal>
+  <goal name="update&#39;vc.6" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.002941" steps="2379"/></proof>
+  </goal>
+  <goal name="update&#39;vc.7" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.020016" steps="36468"/></proof>
+  </goal>
+  <goal name="update&#39;vc.8" expl="loop variant decrease" proved="true">
+  <proof prover="1"><result status="valid" time="0.019191" steps="41152"/></proof>
+  </goal>
+  <goal name="update&#39;vc.9" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.020563" steps="37351"/></proof>
+  </goal>
+  <goal name="update&#39;vc.10" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.139875" steps="285192"/></proof>
+  </goal>
+  <goal name="update&#39;vc.11" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.020612" steps="38295"/></proof>
+  </goal>
+  <goal name="update&#39;vc.12" expl="loop variant decrease" proved="true">
+  <proof prover="1"><result status="valid" time="0.020099" steps="38889"/></proof>
+  </goal>
+  <goal name="update&#39;vc.13" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.019405" steps="39728"/></proof>
+  </goal>
+  <goal name="update&#39;vc.14" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.037561" steps="37685"/></proof>
+  </goal>
+  <goal name="update&#39;vc.15" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.015082" steps="49793"/></proof>
+  </goal>
+  <goal name="update&#39;vc.16" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.013831" steps="26472"/></proof>
+  </goal>
+  <goal name="update&#39;vc.17" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.013613" steps="26472"/></proof>
+  </goal>
+  <goal name="update&#39;vc.18" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.013857" steps="31587"/></proof>
+  </goal>
+  <goal name="update&#39;vc.19" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.046702" steps="33522"/></proof>
+  </goal>
+  <goal name="update&#39;vc.20" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.096109" steps="14622"/></proof>
+  </goal>
+  <goal name="update&#39;vc.21" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.017158" steps="38429"/></proof>
+  </goal>
+  <goal name="update&#39;vc.22" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.946797" steps="2189583"/></proof>
+  </goal>
+  <goal name="update&#39;vc.23" expl="postcondition" proved="true">
+  <proof prover="3" timelimit="5"><result status="valid" time="0.034579" steps="84"/></proof>
+  </goal>
+  <goal name="update&#39;vc.24" expl="postcondition" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.017298" steps="39903"/></proof>
+  </goal>
+  <goal name="update&#39;vc.25" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.146711" steps="3831"/></proof>
+  </goal>
+  <goal name="update&#39;vc.26" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.015893" steps="36418"/></proof>
+  </goal>
+  <goal name="update&#39;vc.27" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.437953" steps="1052571"/></proof>
+  </goal>
+  <goal name="update&#39;vc.28" expl="precondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="update&#39;vc.28.0" expl="precondition" proved="true">
+   <proof prover="0" timelimit="60"><result status="valid" time="0.589589" steps="71345"/></proof>
+   </goal>
+   <goal name="update&#39;vc.28.1" expl="precondition" proved="true">
+   <proof prover="0" timelimit="60"><result status="valid" time="0.571073" steps="64191"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="update&#39;vc.29" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.392383" steps="909460"/></proof>
+  </goal>
+  <goal name="update&#39;vc.30" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.025312" steps="45307"/></proof>
+  </goal>
+  <goal name="update&#39;vc.31" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.020866" steps="43438"/></proof>
+  </goal>
+  <goal name="update&#39;vc.32" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.007958" steps="2671"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="swap&#39;vc" expl="VC for swap" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="swap&#39;vc.0" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.022357" steps="46166"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.005153" steps="2227"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.2" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.012733" steps="25312"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.3" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.010376" steps="25260"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.4" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.011037" steps="25312"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.5" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.013054" steps="30706"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.6" expl="assertion" proved="true">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.112508" steps="303050"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.7" expl="assertion" proved="true">
+  <proof prover="1"><result status="valid" time="0.039012" steps="96333"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.8" expl="assertion" proved="true">
+  <proof prover="1"><result status="valid" time="0.064118" steps="229117"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.9" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.010092" steps="14750"/></proof>
+  </goal>
+  <goal name="swap&#39;vc.10" expl="postcondition" proved="true">
+  <proof prover="2" timelimit="5"><result status="valid" time="0.834146" steps="104425"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="sort_then_compute&#39;vc" expl="VC for sort_then_compute" proved="true">
+ <proof prover="1"><result status="valid" time="0.029055" steps="46331"/></proof>
+ </goal>
+ <goal name="compute_complexity&#39;vc" expl="VC for compute_complexity" proved="true">
+ <proof prover="1"><result status="valid" time="0.012891" steps="26554"/></proof>
+ </goal>
+ <goal name="compute_opt_complexity&#39;vc" expl="VC for compute_opt_complexity">
+ <proof prover="3" obsolete="true"><result status="timeout" time="1.198724" steps="9274"/></proof>
+ <transf name="split_vc" >
+  <goal name="compute_opt_complexity&#39;vc.0" expl="loop invariant init">
+  <proof prover="1" timelimit="5" obsolete="true"><result status="valid" time="0.016744" steps="32520"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.1" expl="loop invariant init">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.000000"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="5.000000" steps="32183461"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="112568"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="5598"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.2" expl="precondition">
+  <proof prover="3" timelimit="5" obsolete="true"><result status="valid" time="0.026533" steps="24"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.3" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.018827" steps="42608"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.4" expl="loop variant decrease">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.027166" steps="43685"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.5" expl="loop invariant preservation">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.020006" steps="42881"/></proof>
+  <proof prover="3" timelimit="5" obsolete="true"><result status="valid" time="0.041640" steps="51"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.6" expl="loop invariant preservation">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.322482" steps="34670"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="837227"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="126940"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="10738"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.7" expl="loop variant decrease">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.023451" steps="43690"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.8" expl="loop invariant preservation">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.021692" steps="43334"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.9" expl="loop invariant preservation">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.372817" steps="35463"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="1555877"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="126324"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="14362"/></proof>
+  <proof prover="4" obsolete="true"><result status="highfailure" time="45.086908"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.10" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.107417" steps="10628"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="1652803"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="121805"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="43114"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.11" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.000000"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="5.000000" steps="18164899"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="105358"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="20475"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.4" expl="assertion">
+  <proof prover="1" timelimit="5"><result status="valid" time="0.036252" steps="42302"/></proof>
+  </goal>
+  <goal name="compute_opt_complexity&#39;vc.3" expl="assertion">
+  <proof prover="0"><result status="unknown" time="0.137584" steps="14899"/></proof>
+  <proof prover="1"><result status="timeout" time="1.000000" steps="1505850"/></proof>
+  <proof prover="2"><result status="timeout" time="1.000000" steps="121593"/></proof>
+  <proof prover="3"><result status="timeout" time="1.000000" steps="8269"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="5.000000" steps="3472133"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="update_complexity&#39;vc" expl="VC for update_complexity">
+ <transf name="split_vc" >
+  <goal name="update_complexity&#39;vc.0" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.006019" steps="3780"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.1" expl="loop invariant init">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.008076" steps="2616"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.2" expl="loop invariant init">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.017615" steps="31841"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.3" expl="precondition">
+  <proof prover="0" timelimit="5" obsolete="true"><result status="valid" time="0.056848" steps="3699"/></proof>
+  <proof prover="1" obsolete="true"><result status="valid" time="0.007069" steps="2691"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.4" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.021118" steps="38963"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.5" expl="loop variant decrease">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.024009" steps="44875"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.6" expl="loop invariant preservation">
+  <proof prover="0" timelimit="5" obsolete="true"><result status="valid" time="0.081841" steps="6540"/></proof>
+  <proof prover="1" obsolete="true"><result status="valid" time="0.023513" steps="42799"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.7" expl="loop invariant preservation">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.277403" steps="21395"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="1444547"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="151784"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="6928"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.8" expl="loop variant decrease">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.031293" steps="44476"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.9" expl="loop invariant preservation">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.033749" steps="43282"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.10" expl="loop invariant preservation">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.230414" steps="29610"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="1854376"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="149192"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="6512"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.11" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.025059" steps="33479"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.12" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.019048" steps="33479"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.13" expl="index in array bounds">
+  <proof prover="1" obsolete="true"><result status="valid" time="0.020736" steps="36548"/></proof>
+  </goal>
+  <goal name="update_complexity&#39;vc.14" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="unknown" time="0.170213" steps="26495"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="1983879"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000" steps="204863"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="12152"/></proof>
+  <transf name="split_vc" >
+   <goal name="update_complexity&#39;vc.14.0" expl="postcondition">
+   <proof prover="0" timelimit="10" memlimit="4000" obsolete="true"><result status="unknown" time="0.158930" steps="22357"/></proof>
+   <proof prover="1" timelimit="10" memlimit="4000" obsolete="true"><result status="timeout" time="10.000000" steps="6957189"/></proof>
+   <proof prover="2" timelimit="10" memlimit="4000" obsolete="true"><result status="timeout" time="10.000000" steps="645855"/></proof>
+   <proof prover="3" timelimit="10" memlimit="4000" obsolete="true"><result status="timeout" time="10.000000" steps="145452"/></proof>
+   </goal>
+   <goal name="update_complexity&#39;vc.14.1" expl="postcondition">
+   <proof prover="1" obsolete="true"><result status="valid" time="0.005006" steps="2832"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="update_complexity&#39;vc.15" expl="postcondition">
+  <proof prover="0" timelimit="5" obsolete="true"><result status="unknown" time="0.126592" steps="16839"/></proof>
+  <proof prover="1" timelimit="5" obsolete="true"><result status="timeout" time="5.000000" steps="6944362"/></proof>
+  <proof prover="2" timelimit="5" obsolete="true"><result status="timeout" time="5.000000" steps="395205"/></proof>
+  <proof prover="3" timelimit="5" obsolete="true"><result status="timeout" time="5.000000" steps="110622"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>
