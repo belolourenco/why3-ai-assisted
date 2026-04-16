@@ -238,17 +238,13 @@ pattern (u - l)%Z; apply Z_lt_induction. 2: lia.
 clear H; intros.
 assert (h: (x = 0 \/ x <> 0)%Z) by lia. destruct h.
 now rewrite occ_empty; lia.
-destruct (why_decidable_eq (m (l + (x-1))%Z) v).
-assert (m (l + (x - 1)) <> v)%Z.
+assert (H3: (m (l + x - 1) <> v)%Z).
   apply H1; lia.
-intuition.
-rewrite occ_right_no_add.
+rewrite occ_right_no_add by (try easy ; lia).
 replace (l+x-1)%Z with (l+(x-1))%Z by ring.
-apply H; intuition.
-apply (H1 i). lia. assumption.
-lia.
-replace (l + x - 1)%Z with (l+(x-1))%Z by ring.
-trivial.
+apply H ; try lia.
+intros i Hi.
+apply H1 ; lia.
 Qed.
 
 (* Why3 goal *)

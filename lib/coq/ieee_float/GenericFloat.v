@@ -476,7 +476,8 @@ Qed.
 
 Lemma is_nan_dec: forall x, {is_nan x} + {~ is_nan x}.
 Proof.
-  intro; destruct x; compute; intuition.
+  intro; destruct x; try now right.
+  now left.
 Qed.
 
 Lemma eq_not_nan_refl: forall {x : t}, ~ is_nan x -> eq x x.

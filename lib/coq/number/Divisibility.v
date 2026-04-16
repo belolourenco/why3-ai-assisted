@@ -203,7 +203,7 @@ Lemma divides_mod_euclidean :
   divides b a -> ((int.EuclideanDivision.mod1 a b) = 0%Z).
 Proof.
 intros a b Zb H.
-assert (Zmod a b = Z0).
+assert (Z.modulo a b = Z0).
 now apply Zdivide_mod.
 unfold mod1, div.
 rewrite H0.
