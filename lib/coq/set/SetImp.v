@@ -52,7 +52,6 @@ Lemma choose'spec :
   set.Fset.mem (choose s) (to_fset s).
 Proof.
 intros s h1.
-destruct h1. unfold to_fset, Fset.is_empty, Fset.mem, set.Set.mem.
-intuition.
+now destruct h1.
 Qed.
 

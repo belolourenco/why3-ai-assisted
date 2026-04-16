@@ -1018,7 +1018,7 @@ match p with
             ((Vector.last prev) :: (Vector.shiftout prev))
 end.
 
-Lemma mod1_is_mod : forall x y, y > 0 -> mod1 x y = Zmod x y.
+Lemma mod1_is_mod : forall x y, y > 0 -> mod1 x y = Z.modulo x y.
   intros; unfold mod1, div.
   case Z_le_dec; intro.
   rewrite Z.mod_eq by lia; trivial.

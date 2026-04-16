@@ -33,7 +33,7 @@ Proof.
 intros p.
 apply iff_trans with (2 := prime_alt p).
 unfold prime, prime'.
-intuition.
+intuition ; lia.
 Qed.
 
 (* Why3 goal *)
