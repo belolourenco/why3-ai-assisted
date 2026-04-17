@@ -428,11 +428,11 @@ TOOLS_BIN = \
 	why3config why3execute why3extract why3prove \
 	why3realize why3replay why3show why3wc why3bench
 
-bin/why3.opt: dune.opt
-bin/why3.byte: dune.byte
+bin/why3.opt: dune.all
+bin/why3.byte: dune.all
 
-$(TOOLS_BIN:%=bin/%.cma):  dune.byte
-$(TOOLS_BIN:%=bin/%.cmxs): dune.opt
+$(TOOLS_BIN:%=bin/%.cma):  dune.all
+$(TOOLS_BIN:%=bin/%.cmxs): dune.all
 
 bin/why3$(EXE): dune.all
 
@@ -573,8 +573,8 @@ ifeq (@enable_ide@,yes)
 
 # build targets
 
-bin/why3ide.cmxs: dune.opt
-bin/why3ide.cma:  dune.byte
+bin/why3ide.cmxs: dune.all
+bin/why3ide.cma:  dune.all
 
 ide: $(DUNEDEPS)
 	$(DUNEBUILD) bin/why3ide.$(SHAREDBEST)
@@ -609,8 +609,8 @@ endif
 
 # build targets
 
-bin/why3webserver.cmxs: dune.opt
-bin/why3webserver.cma:  dune.byte
+bin/why3webserver.cmxs: dune.all
+bin/why3webserver.cma:  dune.all
 
 uninstall-bin::
 	rm -f $(TOOLDIR)/why3webserver.$(SHAREDBEST)
@@ -628,8 +628,8 @@ install_local:: bin/why3webserver.$(SHAREDBEST)
 
 # build targets
 
-bin/why3session.cmxs: dune.opt
-bin/why3session.cma:  dune.byte
+bin/why3session.cmxs: dune.all
+bin/why3session.cma:  dune.all
 
 uninstall-bin::
 	rm -f $(TOOLDIR)/why3session.$(SHAREDBEST)
@@ -646,8 +646,8 @@ install_local:: bin/why3session.$(SHAREDBEST)
 
 # build targets
 
-bin/why3shell.cmxs: dune.opt
-bin/why3shell.cma:  dune.byte
+bin/why3shell.cmxs: dune.all
+bin/why3shell.cma:  dune.all
 
 uninstall-bin::
 	rm -f $(TOOLDIR)/why3shell.$(SHAREDBEST)
@@ -1129,9 +1129,8 @@ clean:: clean-isabelle
 byte: bin/isabelle_client.byte
 opt:  bin/isabelle_client.opt
 
-bin/isabelle_client.opt: dune.opt
-
-bin/isabelle_client.byte: dune.byte
+bin/isabelle_client.opt: dune.all
+bin/isabelle_client.byte: dune.all
 
 install-bin::
 	cp -f bin/isabelle_client.@OCAMLBEST@ $(BINDIR)/isabelle_client$(EXE)
@@ -1177,8 +1176,8 @@ endif
 
 # build targets
 
-bin/why3pp.cmxs: dune.opt
-bin/why3pp.cma:  dune.byte
+bin/why3pp.cmxs: dune.all
+bin/why3pp.cma:  dune.all
 
 uninstall-bin::
 	rm -f $(TOOLDIR)/why3pp.$(SHAREDBEST)
@@ -1195,8 +1194,8 @@ install_local:: bin/why3pp.$(SHAREDBEST)
 
 # build targets
 
-bin/why3doc.cmxs: dune.opt
-bin/why3doc.cma:  dune.byte
+bin/why3doc.cmxs: dune.all
+bin/why3doc.cma:  dune.all
 
 uninstall-bin::
 	rm -f $(TOOLDIR)/why3doc.$(SHAREDBEST)
@@ -1288,8 +1287,7 @@ endif
 
 .PHONY: bench test
 
-bench:: bin/why3.@OCAMLBEST@ bin/why3config.$(SHAREDBEST) plugins $(TOOLS) \
-  share/Makefile.config bin/why3extract.$(SHAREDBEST)
+bench:: dune.all share/Makefile.config
 	bin/why3.@OCAMLBEST@ config list-provers | grep -q Alt-Ergo || \
 		bin/why3.@OCAMLBEST@ config detect
 	@echo "=== Check API examples ==="
@@ -1572,7 +1570,7 @@ STDLIBS = \
 STDLIBFILES = $(patsubst %,stdlib/%.mlw, $(STDLIBS))
 
 # TODO: remove the hack about int.mlw once it has become builtin
-stdlibdoc: $(STDLIBFILES) bin/why3.@OCAMLBEST@ bin/why3doc.$(SHAREDBEST)
+stdlibdoc: $(STDLIBFILES) dune.all
 	mkdir -p doc/stdlibdoc
 	sed -e "s/use Int/use int.Int/" stdlib/int.mlw > int.mlw
 	rm -f doc/stdlibdoc/style.css
