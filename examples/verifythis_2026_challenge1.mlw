@@ -1,7 +1,11 @@
 
-(** {VerifyThis 2026, challenge 1 Ada and her papers}
+(** {VerifyThis 2026, challenge 1: Ada and her papers}
+
+  See {h <a href="https://verifythis.github.io/onsite/archive/2026/challenge1.pdf">the challenge here</a>}.
 
   Team YYY (Jean-Christophe Filliâtre)
+
+  All tasks verified, including the bonus tasks.
 
 *)
 
@@ -134,12 +138,13 @@ let update (a: array int) (h: int) (i: int) : (h': int, ghost m: int)
 
 (** The permutation property can be defined in terms of `numof atleast`,
     by stating that it is invariant for any value `x`. *)
+
 predicate permut (a1 a2: array int) =
   length a1 = length a2 &&
   forall x. numof (atleast a1 x) 0 (length a1)
           = numof (atleast a2 x) 0 (length a2)
 
-(** we are not going to prove a sorting algorithm again (there are
+(** We are not going to prove a sorting algorithm again (there are
     plenty of examples in this very gallery) but at least we can prove
     that swapping two elements ensures the permutation property, and
     thus any swap-based sorting algorithm also does. *)
@@ -252,7 +257,8 @@ let update_k (a: array int) (h: int) (i: int) (k: int) : (h': int, ghost m: int)
 
 val ghost ref time: int
 
-(** Function `compute` is O(n) *)
+(** Compexity of `compute` is O(n) *)
+
 let compute_complexity (a: array int) : (h: int)
   ensures { 0 < time - old time <= length a + 1 }
 = let ref h = 0 in
@@ -268,39 +274,65 @@ let compute_complexity (a: array int) : (h: int)
   return h
 
 use int.Power
+use int.MinMax
 
-(** Function `compute_opt` is O(log n) *)
+(** Showing logarithmic complexity of binary search is unpleasant for two
+    reasons:
+
+    - First, we have to turn `T <= log N` into `2^T <= N`;
+
+    - Second, though the argument is trivial (the length of `hi-lo` is
+      divided by two at each step), it is not easy to turn it into a loop
+      invariant. Indeed, the invariant `2^T * (hi-lo) <= N+1` is natural,
+      and indeed a loop invariant, but `hi-lo=0` when we exit the loop.
+      So we are rather interested in the penultimate iteration, when
+      `hi-lo` is 1 or 2. So we maintain it in a ghost variable `last`. *)
+
+(** Complexity of `compute_opt` is O(log n) *)
+
 let compute_opt_complexity (a: array int) : (h: int)
   ensures { 0 < time - old time }
-  ensures { power 2 (time - old time - 1) <= length a + 1 }
+  ensures { power 2 (time - (old time) - 1) <= 2 * length a + 1 }
 = let n = length a in
   let ref lo = 0 in
   let ref hi = n in
-  time <- time + 1;
+  time <- time + 1; (* for all the computation outside the loop *)
+  let ghost ref last = 2 * n + 1 in
   while lo < hi do
     invariant { 0 <= lo <= hi <= n } variant { hi - lo }
-    invariant { power 2 (time - old time - 1) * (hi - lo + 1) <= n + 1 }
+    invariant { 1 <= time - old time }
+    invariant { power 2 (time - (old time) - 1) * last <= 2 * n + 1 }
+    invariant { 2 * (hi - lo) <= last }
+    invariant { 0 < last <= 2 * (hi - lo) + 2 }
+    last <- hi - lo;
     let mid = lo + div (hi - lo) 2 in
     if a[mid] <= mid then hi <- mid else lo <- mid + 1;
     time <- time + 1;
   done;
   return lo
 
-(** Function `update` is O(log n) *)
+(** Complexity of `update` is O(log i), and thus O(log n) *)
+
 let update_complexity (a: array int) (h: int) (i: int) : (h': int, ghost m: int)
   requires { 0 <= i < length a }
-  ensures  { power 2 (time - old time) <= 2 * (length a + 1) }
+  ensures  { 1 <= time - old time }
+  ensures  { power 2 (time - (old time) - 1) <= 2 * i + 1 }
 = let x = a[i] in
   let ref lo = 0 in
   let ref hi = i in
+  time <- time + 1; (* for all the computation outside the loop *)
+  let ghost ref last = 2 * i + 1 in
   while lo < hi do
     invariant { 0 <= lo <= hi <= i } variant { hi - lo }
-    invariant { power 2 (time - old time) * (hi - lo + 1) <= length a + 1 }
+    invariant { 1 <= time - old time }
+    invariant { power 2 (time - (old time) - 1) * last <= 2 * i + 1 }
+    invariant { 2 * (hi - lo) <= last }
+    invariant { 0 < last <= 2 * (hi - lo) + 2 }
+    last <- hi - lo;
     let mid = lo + div (hi - lo) 2 in
     if a[mid] = x then hi <- mid else lo <- mid + 1;
     time <- time + 1;
   done;
-  time <- time + 1; (* for all the remaining, to be fair *)
   a[lo] <- a[lo] + 1;
   if lo = h && a[lo] = h+1 then (
     return (h+1, lo)
