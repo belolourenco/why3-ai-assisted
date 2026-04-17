@@ -200,6 +200,7 @@ endif
 plugins: dune.@OCAMLBEST@
 
 ifeq (@enable_local@,yes)
+all: install_local
 DUNEALLTARGET += @install_local
 endif
 
@@ -225,7 +226,7 @@ GENERATED =
 # Dune
 ##############
 
-.PHONY: dune.install_local dune.lib dune.byte dune.opt
+.PHONY: dune.lib dune.byte dune.opt
 
 DUNEPKGS =
 
@@ -262,9 +263,6 @@ FORCE:
 dune.all: $(DUNEDEPS)
 	$(DUNEBUILD) $(DUNEALLTARGET)
 
-dune.install_local: $(DUNEDEPS)
-	$(DUNEBUILD) @install_local
-
 # why3.install contains nothing but the why3 library for the moment
 dune.lib: $(DUNEDEPS)
 	$(DUNEBUILD) why3.install
@@ -280,8 +278,6 @@ opt:  dune.opt
 all: dune.all
 
 
-install_local:: dune.install_local
-
 clean::
 	$(DUNE) clean $(DUNEFLAGS)
 
@@ -291,8 +287,7 @@ clean::
 
 LIBGENERATED = \
 	src/util/config.ml \
-	src/parser/parser_messages.ml \
-	lib/coq/dune
+	src/parser/parser_messages.ml
 
 .PHONY: initialize_messages update-parsing-error-handling
 
@@ -439,7 +434,7 @@ bin/why3.byte: dune.byte
 $(TOOLS_BIN:%=bin/%.cma):  dune.byte
 $(TOOLS_BIN:%=bin/%.cmxs): dune.opt
 
-bin/why3$(EXE): dune.install_local
+bin/why3$(EXE): dune.all
 
 uninstall-bin::
 	rm -f $(BINDIR)/why3$(EXE)
