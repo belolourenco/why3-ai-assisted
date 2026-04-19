@@ -1,5 +1,5 @@
 
-(** {VerifyThis 2026, challenge 2 Particle simulation}
+(** {VerifyThis 2026, challenge 2 "Particle simulation"}
 
   Team YYY (Jean-Christophe Filliâtre)
 
@@ -8,10 +8,10 @@
 
   Summary:
   - Task 1.1 completed (see the preconditions in Bags' functions)
-  - Task 1.2 completed (for loops always terminates + a variant for `iter`)
+  - Task 1.2 completed (for loops always terminate + a variant for `iter`)
   - Task 1.3 skipped (not meaningful for Why3)
-  - Task 2.1 stated but not fully verified
-  - Task 2.2 not attempted
+  - Task 2.1 completed (look for "Task 2.1" below)
+  - Task 2.2 completed (look for "Task 2.2" below)
 
 *)
 
@@ -36,9 +36,6 @@ module Bags
     mutable content: int -> set;
   }
   invariant { size >= 0 }
-  (* all distinct *)
-  invariant { forall i j. 0 <= i < size -> 0 <= j < size -> i <> j ->
-                          disjoint (content i) (content j) }
   by { size = 0; content = (fun _ -> empty); }
 
   meta coercion function content
@@ -47,42 +44,48 @@ module Bags
   val create (n: int) : (b: bags)
     requires { n >= 0 }
     ensures  { b.size = n }
-    ensures  { forall i. 0 <= i < n -> forall x. not mem x (b i) }
+    ensures  { forall i. 0 <= i < n -> is_empty (b i) }
 
   val atomic_push (b: bags) (i: int) (x: elt) : unit
     requires { 0 <= i < b.size }
     requires { forall j. 0 <= j < b.size -> not mem x (b j) }
     writes   { b }
-    ensures  { mem x (b i) }
-    ensures  { forall j y. 0 <= j < b.size ->
-               (j <> i \/ y <> x) -> mem y (b j) = old (mem y (b j)) }
+    ensures  { b i = add x (old (b i)) }
+    ensures  { forall j. 0 <= j < b.size -> j <> i -> b j = old (b j) }
 
   val nonatomic_push (b: bags) (i: int) (x: elt) : unit
     requires { 0 <= i < b.size }
     requires { forall j. 0 <= j < b.size -> not mem x (b j) }
     writes   { b }
-    ensures  { mem x (b i) }
-    ensures  { forall j y. 0 <= j < b.size ->
-               (j <> i \/ y <> x) -> mem y (b j) = old (mem y (b j)) }
+    ensures  { b i = add x (old (b i)) }
+    ensures  { forall j. 0 <= j < b.size -> j <> i -> b j = old (b j) }
 
   val transfer (b1: bags) (i: int) (b2: bags) (j: int) : unit
     requires { 0 <= i < b1.size }
     requires { 0 <= j < b2.size }
-    requires { forall k. 0 <= k < b2.size -> disjoint (b1 i) (b2 k) }
+    requires { disjoint (b1 i) (b2 j) }
     writes   { b1, b2 }
     ensures  { forall x. not mem x (b1 i) } (* b1 i emptied *)
-    ensures  { forall k x. 0 <= k < b1.size -> k <> i ->
-               mem x (b1 k) = old (mem x (b1 k)) }
+    ensures  { forall k. 0 <= k < b1.size -> k <> i ->
+               forall x. mem x (b1 k) = old (mem x (b1 k)) }
     ensures  { forall x. mem x (b2 j) <-> (old (mem x (b1 i)) \/ old (mem x (b2 j))) }
-    ensures  { forall k x. 0 <= k < b2.size -> k <> j -> mem x (b2 k) = old (mem x (b2 k)) }
+    ensures  { forall k. 0 <= k < b2.size -> k <> j ->
+               forall x. mem x (b2 k) = old (mem x (b2 k)) }
 
   val clear (b: bags) (i: int) : unit
     requires { 0 <= i < b.size }
     writes   { b}
-    ensures  { forall x. not mem x (b i) }
+    ensures  { is_empty (b i) }
     ensures  { forall j x. 0 <= j < b.size -> j <> i -> mem x (b j) = old (mem x (b j)) }
 
-  (* interface to use the `for each` loop of Why3 *)
+  (** There is no way we can specify or implement the function
+      `iter : bag -> (int -> unit) -> unit` overs bags, as it would require
+      higher-order effectful functions.
+
+      But we can use the `for each` loop of Why3 to iterate over the
+      elements of a set. The scope below provides what is necessary
+      for that purpose. *)
+
   scope Iter
 
     type t = abstract {
@@ -103,9 +106,9 @@ module Bags
     exception Done
 
     val next (iter: t) : elt
-      writes { iter }
-      raises  { Done ->  iter.initial = (old iter).visited /\
-                         iter.visited = (old iter).visited }
+      writes  { iter }
+      raises  { Done -> iter.initial = (old iter).visited /\
+                        iter.visited = (old iter).visited }
       returns { r -> mem r iter.initial /\
                      not (mem r (old iter).visited) /\
                      iter.visited = add r (old iter).visited }
@@ -129,37 +132,96 @@ module Challenge2
     requires { 0 <= i < _N }
     ensures  { 0 <= j < _N }
 
+  (* ---%<----------------------------------------- *)
+  (** there are the only definitions uses for the specification *)
   function fx (x: elt) : int -> int = fun i -> f i x
 
-  predicate good_moves_ (i: int) (cur1 cur2: bags) (k: int) (where: elt -> int) =
-    forall x. mem x (cur1 i) -> 0 <= where x < cur2.size
-                             /\ where x = iter (fx x) k i
-                             /\ mem x (cur2 (where x))
+  (** Task 2.1: the position of the particle `x`, as given by `where`,
+      in indeed the iteration `k` times of function `f` from `init`  *)
+  predicate good_particle (x: elt) (k: int) (init where: elt -> int) =
+    0 <= where x < _N /\ where x = iter (fx x) k (init x)
 
-  predicate good_moves (cur1 cur2: bags) (k: int) (where: elt -> int) =
-    forall i. 0 <= i < cur1.size -> good_moves_ i cur1 cur2 k where
+  (** all the particles have a good position and are in `cur` accordingly *)
+  predicate good_particles (particles: set) (cur: bags)
+                           (k: int) (init where: elt -> int) =
+    forall x. mem x particles -> good_particle x k init where
+                              /\ mem x (cur (where x))
 
-  let compute (cur: bags) (_K: int) (ghost ref where: elt -> int) : unit
+  (** Task 2.2: conversely, all the bags only contain particles,
+      placed in the right bag *)
+  predicate good_bag (particles: set) (b: bags) (j: int)
+                     (k: int) (init where: elt -> int) = [@inline:trivial]
+    forall x. mem x (b j) ->
+    mem x particles /\ good_particle x k init where /\ where x = j
+
+  predicate good_bags (particles: set) (b: bags) (k: int)
+                      (init where: elt -> int) =
+    forall j. 0 <= j < b.size ->
+    good_bag particles b j k init where
+  (* ---%<----------------------------------------- *)
+
+  (** the predicates below are only used in loop invariants *)
+
+  (** all the particles in `b` comes from `cur[..i]` or `s` *)
+  predicate comes_from (b: bags) (cur: bags) (i: int) (s: set) =
+    forall j. 0 <= j < b.size -> forall x. mem x (b j) ->
+    mem x s \/ exists i0. 0 <= i0 < i /\ mem x (cur i0)
+
+  (** the particle `x` has already been moved *)
+  predicate moved (x: elt) (next_private next_shared: bags) (where: elt -> int) =
+    [@inline:trivial]
+    mem x (next_private (where x)) \/ mem x (next_shared  (where x))
+
+  (** all the particles from `cur[..i]` or `s` have already been moved *)
+  predicate all_moved (cur: bags) (i: int) (s: set)
+                      (next_private next_shared: bags) (where: elt -> int) =
+    (forall x. mem x s ->
+       moved x next_private next_shared where) /\
+    (forall j. 0 <= j < i -> forall x. mem x (cur j) ->
+       moved x next_private next_shared where)
+
+  let compute (cur: bags) (_K: int)
+              (ghost particles: set)
+              (ghost  init: elt -> int)
+            : (ghost final: elt -> int)
     requires { cur.size = _N }
     requires { _K >= 0 }
-    requires { good_moves cur cur 0 where }
-    ensures  { good_moves (old cur) cur _K where }
-  = let next_private = create _N in
+    requires { good_particles particles cur  0 init init  }
+    requires { good_bags      particles cur  0 init init  }
+    ensures  { good_particles particles cur _K init final }
+    ensures  { good_bags      particles cur _K init final }
+  = assert { forall i j. 0 <= i < _N -> 0 <= j < _N -> i <> j ->
+             disjoint (cur i) (cur j) };
+    let ghost ref where = init in
+    let next_private = create _N in
     let next_shared  = create _N in
     for k = 0 to _K - 1 do
+      invariant { forall i j. 0 <= i < _N -> 0 <= j < _N -> i <> j ->
+                  disjoint (cur i) (cur j) }
+      invariant { good_particles particles cur k init where }
+      invariant { good_bags      particles cur k init where }
       invariant { forall i. 0 <= i < _N -> is_empty (next_private i) }
       invariant { forall i. 0 <= i < _N -> is_empty (next_shared  i) }
-      invariant { good_moves (old cur) cur k where }
       for i = 0 to _N - 1 do
-        invariant { forall j. i <= j < _N -> forall j'. 0 <= j' < _N ->
-                    disjoint (cur j) (next_private j') /\
-                    disjoint (cur j) (next_shared  j') }
-        invariant { forall j. 0 <= j < i -> forall x. mem x (cur j) ->
-                    if f j x = j then mem x (next_private j      )
-                                 else mem x (next_shared  (f j x)) }
+        invariant { forall x. mem x particles -> 0 <= where x < _N }
+        invariant { good_bags particles next_private (k+1) init where }
+        invariant { good_bags particles next_shared  (k+1) init where }
+        invariant { comes_from next_private cur i empty }
+        invariant { comes_from next_shared  cur i empty }
+        invariant { all_moved cur i empty next_private next_shared where }
+        invariant { forall j. 0 <= j < _N ->
+                    disjoint (next_private j) (next_shared j) }
         (* for `iter`, we use for `for each` loop of Why3 *)
         for x in (cur, i) with Bags.Iter do
-          variant { cardinal (cur i) - cardinal it.Bags.Iter.visited } (* task 1.2 *)
+          variant { cardinal (cur i) - cardinal it.Iter.visited }
+          invariant { forall x. mem x particles -> 0 <= where x < _N }
+          invariant { good_bags particles next_private (k+1) init where }
+          invariant { good_bags particles next_shared  (k+1) init where }
+          invariant { comes_from next_private cur i it.Iter.visited }
+          invariant { comes_from next_shared  cur i it.Iter.visited }
+          invariant { all_moved cur i it.Iter.visited next_private next_shared where }
+          invariant { forall j. 0 <= j < _N ->
+                      disjoint (next_private j) (next_shared j) }
           let j = f i x in
           where <- where[x <- j];
           if j = i then nonatomic_push next_private i x
@@ -169,11 +231,21 @@ module Challenge2
       for i = 0 to _N - 1 do
         invariant { forall j. 0 <= j < i -> is_empty (next_private j) }
         invariant { forall j. 0 <= j < i -> is_empty (next_shared  j) }
+        invariant { good_bags particles next_private (k+1) init where }
+        invariant { good_bags particles next_shared  (k+1) init where }
+        invariant { forall j1 j2. 0 <= j1 < _N -> 0 <= j2 < _N ->
+                    disjoint (next_private j1) (next_shared j2) }
+        invariant { forall x. mem x particles -> where x < i ->
+                    mem x (cur (where x)) }
+        invariant { forall x. mem x particles -> where x >= i ->
+                    moved x next_private next_shared where }
+        invariant { forall j. 0 <= j < i -> good_bag particles cur j (k+1) init where }
         clear cur i;
         transfer next_private i cur i;
         transfer next_shared  i cur i;
       done;
-    done
+    done;
+    return where
 
 end
 
@@ -200,9 +272,6 @@ module BagsImpl : Bags
     mutable ghost content: int -> set;
   }
   invariant { size = length bags }
-  (* all distinct *)
-  invariant { forall i j. 0 <= i < size -> 0 <= j < size -> i <> j ->
-                          disjoint (content i) (content j) }
   (* gluing invariant *)
   invariant { forall i. 0 <= i < size ->
               forall x. S.mem x bags[i] <-> Fset.mem x (content i) }
@@ -223,9 +292,8 @@ module BagsImpl : Bags
     requires { 0 <= i < b.size }
     requires { forall j. 0 <= j < b.size -> not mem x (b j) }
     writes   { b, b.bags }
-    ensures  { mem x (b i) }
-    ensures  { forall j y. 0 <= j < b.size ->
-               (j <> i \/ y <> x) -> mem y (b j) = old (mem y (b j)) }
+    ensures  { b i = add x (old (b i)) }
+    ensures  { forall j. 0 <= j < b.size -> j <> i -> b j = old (b j) }
   = b.bags[i] <- S.add x b.bags[i];
     b.content <- Map.set b.content i (Fset.add x (b.content i))
 
@@ -233,24 +301,22 @@ module BagsImpl : Bags
     requires { 0 <= i < b.size }
     requires { forall j. 0 <= j < b.size -> not mem x (b j) }
     writes   { b, b.bags }
-    ensures  { mem x (b i) }
-    ensures  { forall j y. 0 <= j < b.size ->
-               (j <> i \/ y <> x) -> mem y (b j) = old (mem y (b j)) }
+    ensures  { b i = add x (old (b i)) }
+    ensures  { forall j. 0 <= j < b.size -> j <> i -> b j = old (b j) }
   = b.bags[i] <- S.add x b.bags[i];
     b.content <- Map.set b.content i (Fset.add x (b.content i))
 
   let transfer (b1: bags) (i: int) (b2: bags) (j: int) : unit
     requires { 0 <= i < b1.size }
     requires { 0 <= j < b2.size }
-    requires { forall k. 0 <= k < b2.size -> disjoint (b1 i) (b2 k) }
+    requires { disjoint (b1 i) (b2 j) }
     writes   { b1, b1.bags, b2, b2.bags }
     ensures  { forall x. not mem x (b1 i) } (* b1 i emptied *)
-    ensures  { forall k x. 0 <= k < b1.size -> k <> i ->
-               mem x (b1 k) = old (mem x (b1 k)) }
-    ensures  { forall x. mem x (b2 j)
-                     <-> (old (mem x (b1 i)) \/ old (mem x (b2 j))) }
-    ensures  { forall k x. 0 <= k < b2.size -> k <> j ->
-               mem x (b2 k) = old (mem x (b2 k)) }
+    ensures  { forall k. 0 <= k < b1.size -> k <> i ->
+               forall x. mem x (b1 k) = old (mem x (b1 k)) }
+    ensures  { forall x. mem x (b2 j) <-> (old (mem x (b1 i)) \/ old (mem x (b2 j))) }
+    ensures  { forall k. 0 <= k < b2.size -> k <> j ->
+               forall x. mem x (b2 k) = old (mem x (b2 k)) }
   = b2.bags[j] <- S.union b1.bags[i] b2.bags[j];
     b2.content <- Map.set b2.content j (Fset.union (b1.content i) (b2.content j));
     b1.bags[i] <- S.empty ();
