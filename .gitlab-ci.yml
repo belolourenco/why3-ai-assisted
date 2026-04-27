@@ -11,6 +11,19 @@ variables:
   SPHINX_IMAGE: "$CI_REGISTRY_IMAGE:ci-sphinx"
   GIT_CLEAN_FLAGS: "-ffdxq"
 
+workflow:
+  rules:
+    # No CI for a branch without MR except for master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  auto_cancel:
+    # Cancel jobs if the branch receive a new pipeline except docker image creation (slow)
+    # on_new_commit is misnamed: resetting to a previous commit do not cancel the previous pipeline
+    on_new_commit: interruptible
+
+default:
+  interruptible: true
+
 build-image:
   stage: docker
   image: docker
@@ -21,10 +34,9 @@ build-image:
     - docker push "$BUILD_IMAGE"
     - docker rmi "$BUILD_IMAGE"
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: never
     - changes:
         - misc/Dockerfile.build
+  interruptible: false
   tags:
     - large
 
@@ -38,10 +50,9 @@ bench-image:
     - docker push "$BENCH_IMAGE"
     - docker rmi "$BENCH_IMAGE"
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: never
     - changes:
         - misc/Dockerfile.bench
+  interruptible: false
   artifacts:
     paths:
       - eprover-build.log
@@ -67,6 +78,7 @@ sphinx-image:
   dependencies: []
   tags:
     - medium
+
 
 build-system:
   stage: build
