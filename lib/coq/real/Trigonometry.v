@@ -83,12 +83,9 @@ Lemma Pi_double_precision_bounds :
 Proof.
 replace PI with (4 * (PI / 4))%R by field.
 rewrite <- atan_1.
-admit. (* to avoid a dependency on CoqInterval *)
-(*
-Require Import Interval_tactic.
-split ; interval with (i_prec 55). 
-*)
-Admitted.
+Require Import Interval.Tactic.
+split ; interval with (i_prec 55).
+Qed.
 
 (* Why3 goal *)
 Lemma Cos_pi : ((Reals.Rtrigo_def.cos Reals.Rtrigo1.PI) = (-1%R)%R).
@@ -223,4 +220,3 @@ Proof.
 intros x.
 apply atan_right_inv.
 Qed.
-

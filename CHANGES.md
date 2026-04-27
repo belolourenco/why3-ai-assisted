@@ -1,5 +1,8 @@
 :x: marks a potential source of incompatibility
 
+Compilation
+  * compatibility with OCaml up to 5.5 and hopefully beyond
+
 API
   * The `module Impl : Intf` feature is now supported at the level of the Ptree
     API. This include a breaking change in the Ptree.mlw_file type. :x:
@@ -18,11 +21,15 @@ Stdlib
 
 Drivers
   * extended coverage of the "remove unused" mechanism, including on
-    lists and sets
+    lists and sets. Usually gains some proofs or make them faster, but
+    may occasionally lose some :x:
 
 Tools
   * `why3 replay`: new option `--dont-save`, improved documentation of
     other options.
+
+Why3 server
+  * various fixes (contribution by Johannes Kanig)
 
 Version 1.8.2, September 16, 2025
 ---------------------------------

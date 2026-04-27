@@ -327,8 +327,8 @@ if test "$MENHIR" = no ; then
 fi
 
 MENHIRVERSION=`$MENHIR --version | sed -n -e 's,.*version *\(.*\)$,\1,p'`
-AX_VERSION_GE([$MENHIRVERSION], 20170418, [],
-  [AC_MSG_ERROR([You need Menhir 20170418 or higher.])])
+AX_VERSION_GE([$MENHIRVERSION], 20200211, [],
+  [AC_MSG_ERROR([You need Menhir 20200211 or higher.])])
 
 found_ocamlfind=no
 if test "$enable_ocamlfind" != no; then
@@ -398,9 +398,15 @@ if test "$enable_ocamlfind" = yes; then
   AC_MSG_CHECKING([for ppxlib using ocamlfind])
   PPXLIB=$($OCAMLFIND query ppxlib 2> /dev/null | tr -d '\r')
   if test -n "$PPXLIB"; then
-    AC_MSG_RESULT([yes])
-    DEBUGOPTIMPPX="(pps ppx_debug_optim)"
-    enable_ppx=yes
+    PPXLIBVERSION=$($OCAMLFIND query -format "%v" ppxlib 2> /dev/null | tr -d '\r')
+    AX_VERSION_GE([$PPXLIBVERSION], 0.33.0, [
+      AC_MSG_RESULT([yes])
+      DEBUGOPTIMPPX="(pps ppx_debug_optim)"
+      enable_ppx=yes
+    ], [
+      AC_MSG_RESULT([no (version $PPXLIBVERSION is too old)])
+      enable_ppx=no
+      reason_ppx=" (ppxlib >= 0.33 not found)"])
   else
     AC_MSG_RESULT([no])
     enable_ppx=no
@@ -939,6 +945,7 @@ fi
 
 enable_coq_support=yes
 enable_coq_fp_libs=yes
+enable_coq_interval=yes
 
 coq_compat_version=
 
@@ -997,6 +1004,7 @@ fi
 if test "$enable_coq_support" = no; then
    enable_coq_libs=no
    enable_coq_fp_libs=no
+   enable_coq_interval=no
    COQVERSION=
 else
    enable_coq_libs=yes
@@ -1012,6 +1020,18 @@ if test "$enable_coq_fp_libs" = yes; then
      [ AC_MSG_RESULT(no)
        enable_coq_fp_libs=no
        reason_coq_fp_libs=" (Flocq >= 3.4 not found)" ])
+   rm -f conftest.v conftest.vo conftest.err
+fi
+
+if test "$enable_coq_interval" = yes; then
+   AC_MSG_CHECKING([for Coq-interval])
+   AS_IF(
+     [ echo "Require Import Interval.Tactic." > conftest.v
+       "$COQC" conftest.v > conftest.err ],
+     [ AC_MSG_RESULT(yes) ],
+     [ AC_MSG_RESULT(no)
+       enable_coq_interval=no
+       reason_coq_interval=" (Coq-interval not found)" ])
    rm -f conftest.v conftest.vo conftest.err
 fi
 
@@ -1236,6 +1256,7 @@ AC_SUBST(RELIB)
 
 AC_SUBST(enable_coq_libs)
 AC_SUBST(enable_coq_fp_libs)
+AC_SUBST(enable_coq_interval)
 AC_SUBST(coq_compat_version)
 
 AC_SUBST(COQC)
@@ -1363,6 +1384,7 @@ if test "$enable_coq_support" = yes ; then
    echo "        Realization support : $enable_coq_libs$reason_coq_libs"
    if test "$enable_coq_libs" = yes ; then
       echo "            FP arithmetic   : $enable_coq_fp_libs$reason_coq_fp_libs"
+      echo "            Interval arith. : $enable_coq_interval$reason_coq_interval"
    fi
 fi
 echo "    PVS                     : $enable_pvs_support$reason_pvs_support"
