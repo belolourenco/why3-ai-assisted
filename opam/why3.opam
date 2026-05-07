@@ -42,7 +42,7 @@ build: [
    "--disable-stackify" {!ocamlgraph:installed | ocaml:version < "4.12"}
    "--enable-stackify" {ocamlgraph:installed & ocaml:version >= "4.12"}
    "--disable-ide"]
-  [make "-j%{jobs}%" "all" "byte"]
+  [make "DUNEJOBS=%{jobs}%" "all" "byte"]
   [make "doc" "stdlibdoc" "apidoc"] {with-doc}
 ]
 
@@ -55,6 +55,7 @@ depends: [
   "conf-autoconf" {build & dev}
   "ocaml" {>= "4.09"}
   "ocamlfind" {build}
+  "dune" {>= "2.9"}
   "menhir" {>= "20200211"}
   "zarith"
 ]

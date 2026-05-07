@@ -1,13 +1,13 @@
 # Stage 1: build setup and prover download; to be cached
 
-FROM debian:bullseye-slim as builder
+FROM debian:trixie-slim as builder
 
 USER root
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends alt-ergo autoconf build-essential ca-certificates libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libnum-ocaml-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-findlib ocaml-nox unzip wget && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libnum-ocaml-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-dune ocaml-findlib ocaml-nox opam unzip wget && \
     apt-get clean
 
 RUN adduser --disabled-password --gecos '' guest
@@ -22,6 +22,9 @@ RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.10.2/z3-4
     mv z3-4.10.2-x64-glibc-2.31/bin/z3 /usr/local/bin/z3-4.10.2 && \
     rm -r z3-4.10.2-x64-glibc-2.31.zip z3-4.10.2-x64-glibc-2.31
 
+## Alt-Ergo 2.5.4
+RUN opam init --bare -n --disable-sandboxing && \
+    opam switch create default --packages ocaml-system,alt-ergo.2.5.4
 
 # Stage 2: compilation and installation; to be pruned
 
@@ -45,9 +48,9 @@ RUN make install && \
 # Note that the first command after FROM decides which cache is used,
 # so we start with COPY instead of USER to make sure both caches are trivially different.
 
-FROM debian:bullseye-slim
+FROM debian:trixie-slim
 
-COPY --from=builder /usr/bin/alt-ergo /usr/local/bin/
+COPY --from=builder /root/.opam/default/bin/alt-ergo /usr/local/bin/
 COPY --from=builder /usr/local/bin/cvc4-1.8 /usr/local/bin/
 COPY --from=builder /usr/local/bin/z3-4.10.2 /usr/local/bin/
 

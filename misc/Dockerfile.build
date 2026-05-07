@@ -1,7 +1,7 @@
 # If you modify this file, make sure to update the BUILD_IMAGE variable in `.gitlab-ci.yml`.
 # Follow the detailed instructions given in `ci.md`.
 
-FROM debian:bullseye-slim
+FROM debian:trixie-slim
 
 USER root
 
@@ -9,7 +9,7 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git ocaml-dune rsync adduser && \
     apt-get install -yq --no-install-recommends graphviz libgmp-dev opam pkg-config unzip wget && \
     apt-get install -yq --no-install-recommends liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev && \
     apt-get install -yq --no-install-recommends libmpfr-dev libzarith-ocaml-dev libzip-ocaml-dev && \
@@ -77,7 +77,7 @@ ENV HOME /home/why3
 WORKDIR /home/why3
 
 # install opam
-ENV OPAM_PACKAGES="menhir mlmpfr.4.1.0+bugfix2 lablgtk3-sourceview3 zarith camlzip conf-autoconf"
+ENV OPAM_PACKAGES="menhir mlmpfr.4.2.0 lablgtk3-sourceview3 zarith camlzip conf-autoconf"
 RUN opam init -y --no-setup -j4 --bare --disable-sandboxing && \
     opam switch create latest ocaml-base-compiler.5.2.1 && \
     opam switch create bench  ocaml-base-compiler.4.09.1 && \

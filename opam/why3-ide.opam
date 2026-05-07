@@ -35,7 +35,7 @@ build: [
    "--disable-re"
    "--enable-ocamlfind"
    "--enable-ide"]
-  [make "-j%{jobs}%" "ide"]
+  [make "DUNEJOBS=%{jobs}%" "ide"]
 ]
 
 install: [make "install-ide"]
@@ -44,6 +44,7 @@ depends: [
   "conf-autoconf" {build & dev}
   "ocaml" {>= "4.09"}
   "ocamlfind" {build}
+  "dune" {>= "2.9"}
   "why3" {= version}
   "lablgtk3"
   "lablgtk3-sourceview3"

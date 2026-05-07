@@ -20,7 +20,7 @@ section_start configure Configuration
 section_stop configure
 
 section_start build Building
-make -j2
+make DUNEJOBS=2
 section_stop build
 
 while test $# -gt 0
@@ -37,8 +37,8 @@ do
             bench/ide-bench
             ;;
         trywhy3)
-            make -j2 web_ide
-            make -j2 trywhy3.tar.gz
+            make web_ide
+            make trywhy3.tar.gz
             ;;
         doc)
             make predoc

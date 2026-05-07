@@ -312,6 +312,15 @@ if test "$OCAMLDOC" != true ; then
     fi
 fi
 
+AC_CHECK_PROG(DUNE,dune,dune,no)
+if test "$DUNE" = no ; then
+   AC_MSG_ERROR([cannor find dune.])
+fi
+
+DUNEVERSION=`$DUNE --version`
+AX_VERSION_GE([$DUNEVERSION], 2.9.0, [],
+  [AC_MSG_ERROR([You need Dune 2.9.0 or higher.])])
+
 AC_CHECK_PROG(MENHIR,menhir,menhir,no)
 if test "$MENHIR" = no ; then
    AC_MSG_ERROR([cannot find menhir.])
@@ -384,6 +393,7 @@ else
 fi
 
 # ppx
+DEBUGOPTIMPPX="(no_preprocessing)"
 if test "$enable_ocamlfind" = yes; then
   AC_MSG_CHECKING([for ppxlib using ocamlfind])
   PPXLIB=$($OCAMLFIND query ppxlib 2> /dev/null | tr -d '\r')
@@ -391,6 +401,7 @@ if test "$enable_ocamlfind" = yes; then
     PPXLIBVERSION=$($OCAMLFIND query -format "%v" ppxlib 2> /dev/null | tr -d '\r')
     AX_VERSION_GE([$PPXLIBVERSION], 0.33.0, [
       AC_MSG_RESULT([yes])
+      DEBUGOPTIMPPX="(pps ppx_debug_optim)"
       enable_ppx=yes
     ], [
       AC_MSG_RESULT([no (version $PPXLIBVERSION is too old)])
@@ -472,6 +483,8 @@ if test "$enable_bddinfer" = yes; then
       echo "ocamlfind found apron in $INFERINCLUDE"
       INFERLIB="apron"
       INFERPKG="zarith apron apron.polkaMPQ"
+      INFERLIBDUNE="apron apron.polkaMPQ"
+      BDDINFER="bddinfer"
    else
       enable_bddinfer=no
       reason_bddinfer=" (apron not found)"
@@ -545,9 +558,11 @@ fi
 
 if test "$enable_zip" != no; then
    ZIPLIB=zip
+   ZIPLIBDUNE=camlzip
    enable_zip=yes
 else
    ZIPLIB=
+   ZIPLIBDUNE=
    ZIPINCLUDE=
 fi
 
@@ -893,6 +908,7 @@ if test "$enable_statmemprof" = yes; then
 fi
 
 # ppx_sexp_conv (only with ocamlfind)
+SEXPLIBPPXDUNE="(no_preprocessing)"
 SEXPLIBPPX=
 SEXPLIB=
 if test "$enable_sexp" = no; then
@@ -919,6 +935,7 @@ else
         done
     fi
     if test "$enable_sexp" = yes; then
+        SEXPLIBPPXDUNE="(pps ppx_sexp_conv)"
         SEXPLIBPPX="ppx_sexp_conv"
         SEXPLIB="sexplib"
     fi
@@ -1209,6 +1226,8 @@ AC_SUBST(enable_ppx)
 AC_SUBST(enable_sexp)
 AC_SUBST(SEXPLIB)
 AC_SUBST(SEXPLIBPPX)
+AC_SUBST(SEXPLIBPPXDUNE)
+AC_SUBST(DEBUGOPTIMPPX)
 
 AC_SUBST(MLMPFR)
 AC_SUBST(enable_mpfr)
@@ -1221,10 +1240,13 @@ AC_SUBST(enable_bddinfer)
 AC_SUBST(INFERINCLUDE)
 AC_SUBST(INFERLIB)
 AC_SUBST(INFERPKG)
+AC_SUBST(INFERLIBDUNE)
+AC_SUBST(BDDINFER)
 
 AC_SUBST(enable_zip)
 AC_SUBST(ZIPINCLUDE)
 AC_SUBST(ZIPLIB)
+AC_SUBST(ZIPLIBDUNE)
 
 AC_SUBST(MENHIRINCLUDE)
 
@@ -1286,20 +1308,28 @@ AC_SUBST(JAVA)
 # Finally create the Makefile from Makefile.in
 AC_CONFIG_FILES(Makefile)
 AC_CONFIG_FILES(src/config.sh)
-AC_CONFIG_FILES(lib/why3/META)
-AC_CONFIG_FILES(.merlin)
+AC_CONFIG_FILES(src/dune)
+AC_CONFIG_FILES(src/util/dune)
+AC_CONFIG_FILES(src/why3deps/dune)
 AC_CONFIG_FILES(src/jessie/Makefile)
 AC_CONFIG_FILES(src/jessie/.merlin)
+AC_CONFIG_FILES(bin/dune)
+AC_CONFIG_FILES(lib/plugins/dune)
+AC_CONFIG_FILES(plugins/cfg/dune)
 AC_CONFIG_FILES(lib/coq/version lib/pvs/version)
 AC_CONFIG_FILES(bench/java/Makefile)
 AC_CONFIG_FILES(doc/javaexamples/Makefile)
 AC_CONFIG_COMMANDS([chmod],
 chmod a-w Makefile src/jessie/Makefile;
 chmod a-w src/config.sh;
-chmod a-w lib/why3/META;
-chmod a-w .merlin;
+chmod a-w src/dune;
+chmod a-w src/util/dune;
+chmod a-w src/why3deps/dune;
 chmod a-w src/jessie/Makefile;
 chmod a-w src/jessie/.merlin;
+chmod a-w bin/dune;
+chmod a-w lib/plugins/dune;
+chmod a-w plugins/cfg/dune;
 chmod a-w lib/coq/version lib/pvs/version;
 chmod u+x src/config.sh)
 

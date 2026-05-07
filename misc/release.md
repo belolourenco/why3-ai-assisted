@@ -14,7 +14,6 @@
   - run `make update-doc-png` and check if some pictures need to be updated
   - run `make doc/latex/manual.pdf` and check the manual
   - run `make dist` and check the content of `distrib/why3-X.X.X.tar.gz`
-  - check `lib/why3/META.in` (in particular against `EXTPKGS` in `Makefile.in`)
   - update `opam/why3{,-ide,-coq}.opam` with correct dependencies on external packages
   - check the gallery, especially the new examples (see below)
   - run the manual job `trywhy3-extra` to build Alt-Ergo for TryWhy3
@@ -36,6 +35,7 @@
   - or just move to it, `git checkout bugfix/v$VERSION`
   - update the first line of `configure.in` using `$RELEASE`
   - update the `version` and `release` fields in `doc/conf.py` around line 60
+  - update the `version` field in `dune-project`
   - add the release date to `CHANGES.md`
   - update the date in `doc/index.rst`
   - make a last commit
