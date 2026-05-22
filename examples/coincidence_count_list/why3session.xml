@@ -16,34 +16,34 @@
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="coincidence_count&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.010286" steps="6992"/></proof>
+  <proof prover="3"><result status="valid" time="0.010286" steps="6968"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.020758" steps="29766"/></proof>
+  <proof prover="3"><result status="valid" time="0.020758" steps="29678"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.019617" steps="27839"/></proof>
+  <proof prover="3"><result status="valid" time="0.019617" steps="27759"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="3"><result status="valid" time="0.011756" steps="6894"/></proof>
+  <proof prover="3"><result status="valid" time="0.011756" steps="6870"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.4" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.048667" steps="19"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.008123" steps="2309"/></proof>
+  <proof prover="3"><result status="valid" time="0.008123" steps="2301"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.6" expl="variant decrease" proved="true">
-  <proof prover="0"><result status="valid" time="0.059079" steps="4221"/></proof>
+  <proof prover="0"><result status="valid" time="0.059079" steps="4217"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.010944" steps="2308"/></proof>
+  <proof prover="3"><result status="valid" time="0.010944" steps="2300"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.8" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.021542" steps="30023"/></proof>
+  <proof prover="3"><result status="valid" time="0.021542" steps="29935"/></proof>
   </goal>
   <goal name="coincidence_count&#39;vc.9" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.657148" steps="30913"/></proof>
+  <proof prover="0"><result status="valid" time="0.282526" steps="30909"/></proof>
   </goal>
  </transf>
  </goal>
@@ -56,7 +56,7 @@
  <proof prover="1"><result status="valid" time="0.000000" steps="8"/></proof>
  </goal>
  <goal name="coincidence_count&#39;vc" expl="VC for coincidence_count" proved="true">
- <proof prover="0"><result status="valid" time="0.513939" steps="38622"/></proof>
+ <proof prover="0"><result status="valid" time="0.322655" steps="38655"/></proof>
  </goal>
 </theory>
 <theory name="CoincidenceCountList" proved="true">

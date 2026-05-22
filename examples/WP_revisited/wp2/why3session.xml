@@ -88,7 +88,7 @@
  </transf>
  </goal>
  <goal name="many_steps_seq" proved="true">
- <proof prover="10"><path name="wp2_Imp_many_steps_seq_1.v"/><result status="valid" time="0.400124"/></proof>
+ <proof prover="10"><path name="wp2_Imp_many_steps_seq_1.v"/><result status="valid" time="0.752110"/></proof>
  </goal>
 </theory>
 <theory name="TestSemantics" proved="true">
@@ -178,53 +178,53 @@
  <proof prover="11"><result status="valid" time="0.018599" steps="3417"/></proof>
  </goal>
  <goal name="assigns_refl" proved="true">
- <proof prover="11"><result status="valid" time="0.027848" steps="38853"/></proof>
+ <proof prover="11"><result status="valid" time="0.027848" steps="39146"/></proof>
  </goal>
  <goal name="assigns_trans" proved="true">
- <proof prover="11"><result status="valid" time="0.035019" steps="39461"/></proof>
+ <proof prover="11"><result status="valid" time="0.035019" steps="39754"/></proof>
  </goal>
  <goal name="assigns_union_left" proved="true">
- <proof prover="11"><result status="valid" time="0.031010" steps="45450"/></proof>
+ <proof prover="11"><result status="valid" time="0.031010" steps="45743"/></proof>
  </goal>
  <goal name="assigns_union_right" proved="true">
- <proof prover="11"><result status="valid" time="0.033861" steps="45802"/></proof>
+ <proof prover="11"><result status="valid" time="0.033861" steps="46095"/></proof>
  </goal>
  <goal name="compute_writes&#39;vc" expl="VC for compute_writes" proved="true">
  <transf name="split_goal_right" proved="true" >
   <goal name="compute_writes&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="9"><result status="valid" time="0.078755" steps="9126"/></proof>
+  <proof prover="9"><result status="valid" time="0.078755" steps="9158"/></proof>
   </goal>
   <goal name="compute_writes&#39;vc.1" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.014674" steps="3961"/></proof>
+  <proof prover="11"><result status="valid" time="0.014674" steps="3990"/></proof>
   </goal>
   <goal name="compute_writes&#39;vc.2" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.013162" steps="4431"/></proof>
+  <proof prover="11"><result status="valid" time="0.013162" steps="4460"/></proof>
   </goal>
   <goal name="compute_writes&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.012054" steps="3969"/></proof>
+  <proof prover="11"><result status="valid" time="0.012054" steps="3998"/></proof>
   </goal>
   <goal name="compute_writes&#39;vc.4" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.015014" steps="4431"/></proof>
+  <proof prover="11"><result status="valid" time="0.015014" steps="4460"/></proof>
   </goal>
   <goal name="compute_writes&#39;vc.5" expl="postcondition" proved="true">
   <transf name="split_goal_right" proved="true" >
    <goal name="compute_writes&#39;vc.5.0" expl="postcondition" proved="true">
-   <proof prover="6"><result status="valid" time="0.090000" steps="278"/></proof>
+   <proof prover="6"><result status="valid" time="0.090000" steps="279"/></proof>
    </goal>
    <goal name="compute_writes&#39;vc.5.1" expl="postcondition" proved="true">
-   <proof prover="9"><result status="valid" time="0.152262" steps="14709"/></proof>
+   <proof prover="9"><result status="valid" time="0.152262" steps="14742"/></proof>
    </goal>
    <goal name="compute_writes&#39;vc.5.2" expl="postcondition" proved="true">
-   <proof prover="11"><result status="valid" time="0.023332" steps="52133"/></proof>
+   <proof prover="11"><result status="valid" time="0.023332" steps="52426"/></proof>
    </goal>
    <goal name="compute_writes&#39;vc.5.3" expl="postcondition" proved="true">
-   <proof prover="9"><result status="valid" time="0.106155" steps="13186"/></proof>
+   <proof prover="9"><result status="valid" time="0.106155" steps="13219"/></proof>
    </goal>
    <goal name="compute_writes&#39;vc.5.4" expl="postcondition" proved="true">
-   <proof prover="10" timelimit="0"><path name="wp2_WP_VC_compute_writes_2.v"/><result status="valid" time="0.468023"/></proof>
+   <proof prover="10" timelimit="0"><path name="wp2_WP_VC_compute_writes_2.v"/><result status="valid" time="0.707472"/></proof>
    </goal>
    <goal name="compute_writes&#39;vc.5.5" expl="postcondition" proved="true">
-   <proof prover="9"><result status="valid" time="0.100022" steps="13466"/></proof>
+   <proof prover="9"><result status="valid" time="0.100022" steps="13499"/></proof>
    </goal>
   </transf>
   </goal>
@@ -233,39 +233,39 @@
  <goal name="wp&#39;vc" expl="VC for wp" proved="true">
  <transf name="split_goal_right" proved="true" >
   <goal name="wp&#39;vc.0" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.005549" steps="4766"/></proof>
+  <proof prover="11"><result status="valid" time="0.005549" steps="4795"/></proof>
   </goal>
   <goal name="wp&#39;vc.1" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.006044" steps="4818"/></proof>
+  <proof prover="11"><result status="valid" time="0.006044" steps="4847"/></proof>
   </goal>
   <goal name="wp&#39;vc.2" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.005025" steps="4774"/></proof>
+  <proof prover="11"><result status="valid" time="0.005025" steps="4803"/></proof>
   </goal>
   <goal name="wp&#39;vc.3" expl="variant decrease" proved="true">
-  <proof prover="11"><result status="valid" time="0.009184" steps="4826"/></proof>
+  <proof prover="11"><result status="valid" time="0.009184" steps="4855"/></proof>
   </goal>
   <goal name="wp&#39;vc.4" expl="variant decrease" proved="true">
-  <proof prover="9"><result status="valid" time="0.045570" steps="9707"/></proof>
+  <proof prover="9"><result status="valid" time="0.045570" steps="9739"/></proof>
   </goal>
   <goal name="wp&#39;vc.5" expl="postcondition" proved="true">
   <transf name="split_goal_right" proved="true" >
    <goal name="wp&#39;vc.5.0" expl="postcondition" proved="true">
-   <proof prover="9"><result status="valid" time="0.051819" steps="9926"/></proof>
+   <proof prover="9"><result status="valid" time="0.051819" steps="9959"/></proof>
    </goal>
    <goal name="wp&#39;vc.5.1" expl="postcondition" proved="true">
    <proof prover="6"><result status="valid" time="0.010000" steps="16"/></proof>
    </goal>
    <goal name="wp&#39;vc.5.2" expl="postcondition" proved="true">
-   <proof prover="11"><result status="valid" time="0.028836" steps="52901"/></proof>
+   <proof prover="11"><result status="valid" time="0.028836" steps="53194"/></proof>
    </goal>
    <goal name="wp&#39;vc.5.3" expl="postcondition" proved="true">
-   <proof prover="11"><result status="valid" time="0.025409" steps="72541"/></proof>
+   <proof prover="11"><result status="valid" time="0.025409" steps="72834"/></proof>
    </goal>
    <goal name="wp&#39;vc.5.4" expl="postcondition" proved="true">
-   <proof prover="11"><result status="valid" time="0.028606" steps="52770"/></proof>
+   <proof prover="11"><result status="valid" time="0.028606" steps="53063"/></proof>
    </goal>
    <goal name="wp&#39;vc.5.5" expl="postcondition" proved="true">
-   <proof prover="10" timelimit="0"><path name="wp2_WP_VC_wp_1.v"/><result status="valid" time="0.400466"/></proof>
+   <proof prover="10" timelimit="0"><path name="wp2_WP_VC_wp_1.v"/><result status="valid" time="0.586952"/></proof>
    </goal>
   </transf>
   </goal>

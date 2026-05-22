@@ -126,36 +126,6 @@ module SetPeano
 
   clone export set.SetApp with type elt = Peano.t, val eq = Peano.eq
 
-  scope Iter  (* iteration over sets *)
-
-    type t = abstract {
-              initial: set;
-      mutable visited: set;
-    } invariant {
-      subset visited initial
-    }  by {
-      initial = empty ();
-      visited = empty ();
-    }
-
-    val create (s: set) : t
-      ensures { result.initial = s }
-      ensures { is_empty result.visited }
-
-    exception Done
-
-    val next (iter: t) : Peano.t
-      writes { iter }
-      raises  { Done ->  iter.initial = (old iter).visited /\
-                         iter.visited = (old iter).visited }
-      returns { r -> mem r iter.initial /\
-                     not (mem r (old iter).visited) /\
-                     iter.visited = add r (old iter).visited }
-
-
-  end
-
-
 end
 
 
