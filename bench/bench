@@ -56,7 +56,7 @@ simple_test_raw() {
 }
 
 simple_test() {
-    $ret=simple_test_raw "$@"
+    ret=simple_test_raw "$@"
     if ! $ret; then
         exit $ret
     fi

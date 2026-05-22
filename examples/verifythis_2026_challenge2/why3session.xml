@@ -283,27 +283,27 @@
 </theory>
 <theory name="BagsImpl&#39;impl" proved="true">
  <goal name="bags&#39;vc" expl="VC for bags" proved="true">
- <proof prover="3"><result status="valid" time="0.012352" steps="7941"/></proof>
+ <proof prover="3"><result status="valid" time="0.012352" steps="8058"/></proof>
  </goal>
  <goal name="create&#39;vc" expl="VC for create" proved="true">
- <proof prover="3"><result status="valid" time="0.020195" steps="26401"/></proof>
+ <proof prover="3"><result status="valid" time="0.020195" steps="26697"/></proof>
  </goal>
  <goal name="atomic_push&#39;vc" expl="VC for atomic_push" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="atomic_push&#39;vc.0" expl="index in array bounds" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.015803" steps="24270"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.015803" steps="24626"/></proof>
   </goal>
   <goal name="atomic_push&#39;vc.1" expl="index in array bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.076184" steps="3456"/></proof>
+  <proof prover="2"><result status="valid" time="0.076184" steps="3489"/></proof>
   </goal>
   <goal name="atomic_push&#39;vc.2" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.017303" steps="27257"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.017303" steps="27598"/></proof>
   </goal>
   <goal name="atomic_push&#39;vc.3" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.123142" steps="7023"/></proof>
+  <proof prover="2"><result status="valid" time="0.123142" steps="7056"/></proof>
   </goal>
   <goal name="atomic_push&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.060784" steps="4005"/></proof>
+  <proof prover="2"><result status="valid" time="0.060784" steps="4038"/></proof>
   </goal>
   <goal name="atomic_push&#39;vc.5" expl="postcondition" proved="true">
   <proof prover="1"><result status="valid" time="0.041065" steps="77"/></proof>
@@ -313,103 +313,103 @@
  <goal name="nonatomic_push&#39;vc" expl="VC for nonatomic_push" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="nonatomic_push&#39;vc.0" expl="index in array bounds" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.014133" steps="24270"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.014133" steps="24626"/></proof>
   </goal>
   <goal name="nonatomic_push&#39;vc.1" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.028538" steps="18"/></proof>
+  <proof prover="1"><result status="valid" time="0.028538" steps="19"/></proof>
   </goal>
   <goal name="nonatomic_push&#39;vc.2" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.083963" steps="6092"/></proof>
+  <proof prover="0"><result status="valid" time="0.083963" steps="6156"/></proof>
   </goal>
   <goal name="nonatomic_push&#39;vc.3" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.119911" steps="7023"/></proof>
+  <proof prover="2"><result status="valid" time="0.119911" steps="7056"/></proof>
   </goal>
   <goal name="nonatomic_push&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.060766" steps="4005"/></proof>
+  <proof prover="2"><result status="valid" time="0.060766" steps="4038"/></proof>
   </goal>
   <goal name="nonatomic_push&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.058534" steps="4267"/></proof>
+  <proof prover="2"><result status="valid" time="0.058534" steps="4300"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="transfer&#39;vc" expl="VC for transfer" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="transfer&#39;vc.0" expl="index in array bounds" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.015682" steps="22025"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.015682" steps="22349"/></proof>
   </goal>
   <goal name="transfer&#39;vc.1" expl="index in array bounds" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.019807" steps="22033"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.019807" steps="22357"/></proof>
   </goal>
   <goal name="transfer&#39;vc.2" expl="index in array bounds" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.010178" steps="31207"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.010178" steps="31563"/></proof>
   </goal>
   <goal name="transfer&#39;vc.3" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.024731" steps="47"/></proof>
+  <proof prover="1"><result status="valid" time="0.024731" steps="43"/></proof>
   </goal>
   <goal name="transfer&#39;vc.4" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.016094" steps="34978"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.016094" steps="35319"/></proof>
   </goal>
   <goal name="transfer&#39;vc.5" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.130374" steps="10856"/></proof>
+  <proof prover="0"><result status="valid" time="0.130374" steps="10920"/></proof>
   </goal>
   <goal name="transfer&#39;vc.6" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.023821" steps="35529"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.023821" steps="35870"/></proof>
   </goal>
   <goal name="transfer&#39;vc.7" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.291762" steps="14847"/></proof>
+  <proof prover="2"><result status="valid" time="0.291762" steps="14880"/></proof>
   </goal>
   <goal name="transfer&#39;vc.8" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.035054" steps="54976"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.035054" steps="55349"/></proof>
   </goal>
   <goal name="transfer&#39;vc.9" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.049455" steps="69213"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.049455" steps="69557"/></proof>
   </goal>
   <goal name="transfer&#39;vc.10" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.045297" steps="61330"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.045297" steps="61671"/></proof>
   </goal>
   <goal name="transfer&#39;vc.11" expl="postcondition" proved="true">
-  <proof prover="3" timelimit="5"><result status="valid" time="0.057499" steps="71639"/></proof>
+  <proof prover="3" timelimit="5"><result status="valid" time="0.057499" steps="71980"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="clear&#39;vc" expl="VC for clear" proved="true">
- <proof prover="2" timelimit="1"><result status="valid" time="0.186367" steps="9151"/></proof>
+ <proof prover="2" timelimit="1"><result status="valid" time="0.186367" steps="9184"/></proof>
  </goal>
  <goal name="Iter.t&#39;vc" expl="VC for t" proved="true">
- <proof prover="2"><result status="valid" time="0.084803" steps="4454"/></proof>
+ <proof prover="2"><result status="valid" time="0.084803" steps="4481"/></proof>
  </goal>
  <goal name="Iter.create&#39;vc" expl="VC for create" proved="true">
- <proof prover="0"><result status="valid" time="0.100213" steps="9989"/></proof>
+ <proof prover="0"><result status="valid" time="0.100213" steps="10042"/></proof>
  </goal>
  <goal name="Iter.next&#39;vc" expl="VC for next" proved="true">
- <proof prover="0" timelimit="1"><result status="valid" time="0.294727" steps="29182"/></proof>
+ <proof prover="0" timelimit="1"><result status="valid" time="0.294727" steps="29235"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.bags&#39;refn&#39;vc" expl="VC for bags" proved="true">
- <proof prover="3"><result status="valid" time="0.017991" steps="19276"/></proof>
+ <proof prover="3"><result status="valid" time="0.017991" steps="19569"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.create&#39;refn&#39;vc" expl="VC for create&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.018324" steps="28540"/></proof>
+ <proof prover="3"><result status="valid" time="0.018324" steps="28833"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.atomic_push&#39;refn&#39;vc" expl="VC for atomic_push&#39;refn" proved="true">
- <proof prover="2" timelimit="1"><result status="valid" time="0.203065" steps="3859"/></proof>
+ <proof prover="2" timelimit="1"><result status="valid" time="0.203065" steps="3892"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.nonatomic_push&#39;refn&#39;vc" expl="VC for nonatomic_push&#39;refn" proved="true">
- <proof prover="2" timelimit="1"><result status="valid" time="0.206314" steps="3859"/></proof>
+ <proof prover="2" timelimit="1"><result status="valid" time="0.206314" steps="3892"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.transfer&#39;refn&#39;vc" expl="VC for transfer&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.020276" steps="22626"/></proof>
+ <proof prover="3"><result status="valid" time="0.020276" steps="22916"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.clear&#39;refn&#39;vc" expl="VC for clear&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.014976" steps="43576"/></proof>
+ <proof prover="3"><result status="valid" time="0.014976" steps="43869"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.Iter.t&#39;refn&#39;vc" expl="VC for t" proved="true">
- <proof prover="3"><result status="valid" time="0.007974" steps="22245"/></proof>
+ <proof prover="3"><result status="valid" time="0.007974" steps="22466"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.Iter.create&#39;refn&#39;vc" expl="VC for create&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.014915" steps="24295"/></proof>
+ <proof prover="3"><result status="valid" time="0.014915" steps="24588"/></proof>
  </goal>
  <goal name="BagsImpl&#39;impl_of.Iter.next&#39;refn&#39;vc" expl="VC for next&#39;refn" proved="true">
- <proof prover="3"><result status="valid" time="0.005791" steps="1746"/></proof>
+ <proof prover="3"><result status="valid" time="0.005791" steps="1775"/></proof>
  </goal>
 </theory>
 </file>

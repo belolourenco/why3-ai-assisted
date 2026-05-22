@@ -1,18 +1,20 @@
 
 (** {1 Set theories}
 
-  - polymorphic sets to be used in specification/ghost only
+  * polymorphic sets to be used in specification/ghost only
     (no executable functions)
 
     - `Set`, `Cardinal`: possibly infinite sets
+
     - `Fset`, `FsetInt`, `FsetInduction`, `FsetSum`: finite sets
 
-  - monomorphic finite sets to be used in programs only (no logical functions)
+  * monomorphic finite sets to be used in programs only (no logical functions)
 
     a program function `eq` deciding equality on the element type must be
     provided when cloned
 
-    - `SetApp`, `SetAppInt`: immutable sets
+    - `SetApp`, `SetAppInt`, `SetAppInt63`, `SetAppString` : immutable sets
+
     - `SetImp`, `SetImpInt`: mutable sets
 
 *)
@@ -222,7 +224,7 @@ module Cardinal
     forall s1: set 'a, s2 : set 'b. is_finite s1 -> is_finite s2 ->
            is_finite (product s1 s2)
 
-  (** `cardinal` function *)
+  (** {3 The `cardinal` function} *)
 
   use int.Int
 
@@ -436,7 +438,7 @@ module Fset
     forall x: 'a. mem x u -> mem (f x) (map f u)
   meta "remove_unused:dependency" lemma mem_map, function map
 
-  (** cardinal *)
+  (** {3 cardinal} *)
 
   use int.Int
 
@@ -594,11 +596,14 @@ module SetApp
   use int.Int
   use export Fset
 
+  (** abstract type for elements of the sets *)
   type elt
 
+  (** equality on elements *)
   val eq (x y: elt) : bool
     ensures { result <-> x = y }
 
+  (** type of sets, abstractly modeled by logic finite sets *)
   type set = abstract {
     to_fset: fset elt;
   }
@@ -607,45 +612,47 @@ module SetApp
   val ghost function mk (s: fset elt) : set
     ensures { result.to_fset = s }
 
+  (** membership, equivalent to membership in the model *)
   val mem (x: elt) (s: set) : bool
-    ensures { result <-> mem x s }
+    ensures { result <-> mem x s.to_fset }
 
+  (** program equality on sets, that decides whether two sets have the same model *)
   val (==) (s1 s2: set) : bool
-    ensures { result <-> s1 == s2 }
+    ensures { result <-> s1.to_fset == s2.to_fset }
 
   val subset (s1 s2: set) : bool
-    ensures { result <-> subset s1 s2 }
+    ensures { result <-> subset s1.to_fset s2.to_fset }
 
   val empty () : set
     ensures { result.to_fset = empty }
-    ensures { cardinal result = 0 }
+    ensures { cardinal result.to_fset = 0 }
 
   val is_empty (s: set) : bool
-    ensures { result <-> is_empty s }
+    ensures { result <-> is_empty s.to_fset }
 
   val add (x: elt) (s: set) : set
-    ensures { result = add x s }
+    ensures { result.to_fset = add x s }
     ensures { if mem x s then cardinal result = cardinal s
                          else cardinal result = cardinal s + 1 }
 
   let singleton (x: elt) : set
-    ensures { result = singleton x }
+    ensures { result.to_fset = singleton x }
     ensures { cardinal result = 1 }
   = add x (empty ())
 
   val remove (x: elt) (s: set): set
-    ensures { result = remove x s }
+    ensures { result.to_fset = remove x s }
     ensures { if mem x s then cardinal result = cardinal s - 1
                          else cardinal result = cardinal s }
 
   val union (s1 s2: set): set
-    ensures { result = union s1 s2 }
+    ensures { result.to_fset = union s1 s2 }
 
   val inter (s1 s2: set) : set
-    ensures { result = inter s1 s2 }
+    ensures { result.to_fset = inter s1 s2 }
 
   val diff (s1 s2: set) : set
-    ensures { result = diff s1 s2 }
+    ensures { result.to_fset = diff s1 s2 }
 
   val function choose (s: set) : elt
     requires { not (is_empty s) }
@@ -656,6 +663,37 @@ module SetApp
 
   val cardinal (s: set) : int (* Peano.t *)
     ensures { result = cardinal s }
+
+  (** {3 iteration over applicative sets} *)
+
+  scope Iter
+
+    type t = abstract {
+              initial: fset elt;
+      mutable visited: fset elt;
+    } invariant {
+      subset visited initial
+    }  by {
+      initial = pure { (empty : fset elt) };
+      visited = pure { (empty : fset elt) };
+    }
+
+    val create (s: set) : t
+      ensures { result.initial = s.to_fset }
+      ensures { is_empty result.visited }
+
+    exception Done
+
+    val next (iter: t) : elt
+      writes { iter }
+      raises  { Done -> iter.initial = (old iter).visited /\
+                        iter.visited = (old iter).visited }
+      returns { r -> mem r iter.initial /\
+                     not (mem r (old iter).visited) /\
+                     iter.visited = add r (old iter).visited }
+
+
+  end
 
 end
 
@@ -677,39 +715,12 @@ module SetAppInt
     ensures  { result = FsetInt.max_elt s }
 
   val interval (l r: int) : set
-    ensures  { result = FsetInt.interval l r }
+    ensures  { result.to_fset = FsetInt.interval l r }
     ensures  { cardinal result = if l <= r then r - l else 0 }
 
-  scope Iter  (* iteration over sets *)
-
-    type t = abstract {
-              initial: set;
-      mutable visited: set;
-    } invariant {
-      subset visited initial
-    }  by {
-      initial = empty ();
-      visited = empty ();
-    }
-
-    val create (s: set) : t
-      ensures { result.initial = s }
-      ensures { is_empty result.visited }
-
-    exception Done
-
-    val next (iter: t) : int
-      writes { iter }
-      raises  { Done ->  iter.initial = (old iter).visited /\
-                         iter.visited = (old iter).visited }
-      returns { r -> mem r iter.initial /\
-                     not (mem r (old iter).visited) /\
-                     iter.visited = add r (old iter).visited }
-
-
-  end
-
 end
+
+(** {3 Applicative sets of 63-bit integers} *)
 
 module SetAppInt63
 
@@ -717,38 +728,7 @@ module SetAppInt63
 
   clone export SetApp with type elt = int63, val eq = Int63.(=)
 
-  scope Iter  (* iteration over sets *)
-
-    type t = abstract {
-              initial: set;
-      mutable visited: set;
-    } invariant {
-      subset visited initial
-    }  by {
-      initial = empty ();
-      visited = empty ();
-    }
-
-    val create (s: set) : t
-      ensures { result.initial = s }
-      ensures { is_empty result.visited }
-
-    exception Done
-
-    val next (iter: t) : int63
-      writes { iter }
-      raises  { Done ->  iter.initial = (old iter).visited /\
-                         iter.visited = (old iter).visited }
-      returns { r -> mem r iter.initial /\
-                     not (mem r (old iter).visited) /\
-                     iter.visited = add r (old iter).visited }
-
-
-  end
-
-
 end
-
 
 
 
@@ -762,35 +742,6 @@ module SetAppString
   use string.OCaml as Str
 
   clone export SetApp with type elt = string, val eq = Str.(=), axiom .
-
-  scope Iter  (* iteration over sets *)
-
-    type t = abstract {
-              initial: set;
-      mutable visited: set;
-    } invariant {
-      subset visited initial
-    }  by {
-      initial = empty ();
-      visited = empty ();
-    }
-
-    val create (s: set) : t
-      ensures { result.initial = s }
-      ensures { is_empty result.visited }
-
-    exception Done
-
-    val next (iter: t) : string
-      writes { iter }
-      raises  { Done ->  iter.initial = (old iter).visited /\
-                         iter.visited = (old iter).visited }
-      returns { r -> mem r iter.initial /\
-                     not (mem r (old iter).visited) /\
-                     iter.visited = add r (old iter).visited }
-
-
-  end
 
 end
 

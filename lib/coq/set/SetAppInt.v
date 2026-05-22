@@ -64,14 +64,14 @@ exact unit.
 Defined.
 
 (* Why3 goal *)
-Definition initial : t -> set.
+Definition initial : t -> set.Fset.fset Numbers.BinNums.Z.
 Proof.
 intro x.
 exact Fset.empty.
 Defined.
 
 (* Why3 goal *)
-Definition visited : t -> set.
+Definition visited : t -> set.Fset.fset Numbers.BinNums.Z.
 Proof.
 intro x.
 exact Fset.empty.
@@ -79,8 +79,7 @@ Defined.
 
 (* Why3 goal *)
 Lemma t'invariant :
-  forall (self:t),
-  set.Fset.subset (to_fset (visited self)) (to_fset (initial self)).
+  forall (self:t), set.Fset.subset (visited self) (initial self).
 Proof.
 intros self.
 unfold Fset.subset, to_fset, visited, initial.
