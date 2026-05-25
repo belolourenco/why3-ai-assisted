@@ -392,7 +392,11 @@ let handle_message = function
   | SetStatus (st, id) -> List.iter W.send (Task.set_status id st)
   | GetFormats ->
       let formats = Env.list_formats Env.base_language in
-      let formats = List.map (fun (name, ext, _) -> (name, ext)) formats in
+      let formats =
+        List.fold_left
+          (fun acc (name, ext, _) -> if name = Sexp_parser.sexp_format then acc else (name, ext)::acc)
+          [] formats
+      in
       W.send (Formats formats)
 
 

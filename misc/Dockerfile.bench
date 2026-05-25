@@ -143,7 +143,6 @@ RUN wget --quiet http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_3.
     cd .. && \
     rm -rf E.tgz E-3.2.5
 
-
 ## list installed provers so far
 RUN ls -l /usr/local/bin
 
@@ -155,7 +154,7 @@ WORKDIR /home/why3
 
 # install opam, alt-ergo and coq
 RUN opam init -y --no-setup -j4 --bare --disable-sandboxing && \
-    opam switch create bench  ocaml-base-compiler.4.09.1 && \
+    opam switch create bench  ocaml-base-compiler.4.14.2 && \
     opam repository add coq-released https://coq.inria.fr/opam/released --all-switches && \
     opam install -y --switch=bench alt-ergo.2.0.0 && \
     cp /home/why3/.opam/bench/bin/alt-ergo /home/why3/alt-ergo-2.0.0 && \
