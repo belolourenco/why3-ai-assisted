@@ -161,4 +161,4 @@ let () =
 
 end
 
-let () = Whyconf.register_command "web" (module Main)
+let () = Whyconf.register_command "webserver" (module Main)

@@ -11,11 +11,11 @@
 open Js_of_ocaml
 open Js
 
-let log s = ignore (Firebug.console ## log (string s))
+let log s = ignore (Console.console ## log (string s))
 
 let log_time s =
   let date = new%js date_now in
-  let date_str = string_of_float (date ## getTime /. 1000.) in
+  let date_str = Js.to_string date ## toString in
   log (date_str ^ " : " ^ s)
 
 let check_def s o =

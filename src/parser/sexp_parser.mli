@@ -9,6 +9,7 @@
 (********************************************************************)
 
 
+val sexp_format : Env.fformat
 
 val read_channel :
   Env.env -> string list -> string -> in_channel -> Pmodule.mlw_file

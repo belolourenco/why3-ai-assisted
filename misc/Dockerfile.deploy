@@ -7,7 +7,7 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yq && \
     apt-get upgrade -yq --with-new-pkgs --auto-remove && \
-    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libnum-ocaml-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-dune ocaml-findlib ocaml-nox opam unzip wget && \
+    apt-get install -yq --no-install-recommends autoconf build-essential ca-certificates git libgmp-dev liblablgtksourceview3-ocaml-dev libmenhir-ocaml-dev libnum-ocaml-dev libzarith-ocaml-dev libzip-ocaml-dev menhir ocaml-dune ocaml-findlib ocaml-nox opam unzip wget adduser && \
     apt-get clean
 
 RUN adduser --disabled-password --gecos '' guest
