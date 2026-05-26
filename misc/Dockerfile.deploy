@@ -22,9 +22,9 @@ RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/z3-4.10.2/z3-4
     mv z3-4.10.2-x64-glibc-2.31/bin/z3 /usr/local/bin/z3-4.10.2 && \
     rm -r z3-4.10.2-x64-glibc-2.31.zip z3-4.10.2-x64-glibc-2.31
 
-## Alt-Ergo 2.5.4
+## Alt-Ergo most recent
 RUN opam init --bare -n --disable-sandboxing && \
-    opam switch create default --packages ocaml-system,alt-ergo.2.5.4
+    opam switch create default --packages ocaml-system,alt-ergo
 
 # Stage 2: compilation and installation; to be pruned
 
