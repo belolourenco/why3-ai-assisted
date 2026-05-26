@@ -665,7 +665,8 @@ module Powm
                                     + power 2 (bi - nbits) * result }
     ensures  { bi < nbits -> valueb p bi = result }
     ensures  { 0 <= result < power 2 nbits }
-    ensures  { result = mod (div (value p pn) (power 2 (bi - nbits)))
+    ensures  { nbits <= bi -> 
+               result = mod (div (value p pn) (power 2 (bi - nbits)))
                                                       (power 2 nbits)  }
   =
     if bi < nbits
