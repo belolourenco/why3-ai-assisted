@@ -20,7 +20,7 @@
   and {h <a href="https://hal.science/hal-05132556v2">here</a>})
 
   Authors: Andrei Paskevich (Université Paris-Saclay)
-           Jean-Christophe Filliâtre (CNRS)
+       and Jean-Christophe Filliâtre (CNRS)
 *)
 
 (** {2 Mutable binary trees} *)
