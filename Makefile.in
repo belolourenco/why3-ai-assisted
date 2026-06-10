@@ -250,7 +250,7 @@ empty:=
 space:= $(empty) $(empty)
 
 DUNE = @DUNE@
-DFLAGS = --root . --only-packages=$(subst $(space),$(comma),$(DUNEPKGS))
+DFLAGS = --root . --only-packages=$(subst $(space),$(comma),$(strip $(DUNEPKGS)))
 DUNEFLAGS =
 DUNEJOBS = auto
 DUNEBUILD = $(DUNE) build $(DFLAGS) $(DUNEFLAGS) -j $(DUNEJOBS)
