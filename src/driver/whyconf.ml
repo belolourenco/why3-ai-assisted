@@ -764,9 +764,6 @@ type filter_prover =
   }
 
 let mk_filter_prover ?version ?altern name =
-  begin match version with
-  | Some "" -> invalid_arg "mk_filter_prover: version can't be an empty string"
-  | _ -> () end;
   { filter_name    = mk_regexp name;
     filter_version = Option.map mk_regexp version;
     filter_altern  = Option.map mk_regexp altern;
