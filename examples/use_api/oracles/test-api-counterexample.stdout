@@ -12,7 +12,7 @@ theory Task
   
 end
 
-On task2, CVC4,1.7 answers Unknown (sat) (<hidden>s, <hidden> steps)
+On task2, CVC4,1.7 answers Unknown (sat) (0.10s, <hidden> steps)
 A candidate counterexample obtained from the prover is
 [{"filename": "myfile.my_ext",
   "model":
