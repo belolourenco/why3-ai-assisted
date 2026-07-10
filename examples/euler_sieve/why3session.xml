@@ -1531,18 +1531,24 @@
  <goal name="conservation_inv_arr_on_jump&#39;vc" expl="VC for conservation_inv_arr_on_jump" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="conservation_inv_arr_on_jump&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="16"><result status="valid" time="0.033567" steps="22"/></proof>
+  <proof prover="4" timelimit="1"><result status="valid" time="0.042315" steps="80618"/></proof>
   </goal>
   <goal name="conservation_inv_arr_on_jump&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="16"><result status="valid" time="0.033567" steps="22"/></proof>
+  </goal>
+  <goal name="conservation_inv_arr_on_jump&#39;vc.2" expl="precondition" proved="true">
+  <proof prover="4" timelimit="1"><result status="valid" time="0.016933" steps="11417"/></proof>
+  </goal>
+  <goal name="conservation_inv_arr_on_jump&#39;vc.3" expl="precondition" proved="true">
   <proof prover="10"><result status="valid" time="0.105951" steps="25316"/></proof>
   </goal>
-  <goal name="conservation_inv_arr_on_jump&#39;vc.2" expl="assertion" proved="true">
+  <goal name="conservation_inv_arr_on_jump&#39;vc.4" expl="assertion" proved="true">
   <proof prover="14"><result status="valid" time="0.153063" steps="26199"/></proof>
   </goal>
-  <goal name="conservation_inv_arr_on_jump&#39;vc.3" expl="assertion" proved="true">
+  <goal name="conservation_inv_arr_on_jump&#39;vc.5" expl="assertion" proved="true">
   <proof prover="10"><result status="valid" time="0.160000" steps="28844"/></proof>
   </goal>
-  <goal name="conservation_inv_arr_on_jump&#39;vc.4" expl="postcondition" proved="true">
+  <goal name="conservation_inv_arr_on_jump&#39;vc.6" expl="postcondition" proved="true">
   <proof prover="14"><result status="valid" time="0.825397" steps="109196"/></proof>
   </goal>
  </transf>

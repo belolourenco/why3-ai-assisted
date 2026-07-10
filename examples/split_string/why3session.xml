@@ -4,6 +4,7 @@
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.0.5" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC4" version="1.8" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Z3" version="4.14.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="6" name="CVC5" version="1.2.1" timelimit="30" steplimit="0" memlimit="4000"/>
 <prover id="7" name="Z3" version="4.8.17" timelimit="1" steplimit="0" memlimit="1000"/>
@@ -14,7 +15,7 @@
  <proof prover="7"><result status="valid" time="0.044785" steps="62653"/></proof>
  </goal>
  <goal name="mixfix []&#39;vc" expl="VC for mixfix []" proved="true">
- <proof prover="7"><result status="valid" time="0.026382" steps="1450"/></proof>
+ <proof prover="2"><result status="valid" time="0.008824" steps="1450"/></proof>
  </goal>
  <goal name="split_string&#39;vc" expl="VC for split_string" proved="true">
  <transf name="split_vc" proved="true" >
