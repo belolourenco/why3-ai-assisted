@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"https://www.why3.org/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Alt-Ergo" version="2.6.3" timelimit="10" steplimit="0" memlimit="4000"/>
+<file format="whyml" proved="true">
+<path name=".."/><path name="gosper_hack.mlw"/>
+<theory name="BV" proved="true">
+ <goal name="word_size&#39;vc" expl="VC for word_size" proved="true">
+ <proof prover="0"><result status="valid" time="0.006014" steps="6"/></proof>
+ </goal>
+</theory>
+<theory name="Spec" proved="true">
+ <goal name="lt_trans&#39;vc" expl="VC for lt_trans" proved="true">
+ <proof prover="0" timelimit="5"><result status="valid" time="0.016934" steps="19653"/></proof>
+ </goal>
+ <goal name="first_is_first&#39;vc" expl="VC for first_is_first" proved="true">
+ <proof prover="0"><result status="valid" time="0.013968" steps="24530"/></proof>
+ </goal>
+ <goal name="last_is_last&#39;vc" expl="VC for last_is_last" proved="true">
+ <proof prover="0"><result status="valid" time="0.016838" steps="28983"/></proof>
+ </goal>
+ <goal name="iter&#39;vc" expl="VC for iter" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="iter&#39;vc.0" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.007830" steps="2956"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.004838" steps="2974"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.2" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.077031" steps="4608"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.3" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.007633" steps="4227"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.4" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.006823" steps="4310"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.5" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.026077" steps="42655"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.6" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.103726" steps="14420"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.7" expl="loop invariant preservation" proved="true">
+  <proof prover="3"><result status="valid" time="8.573868" steps="18313"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.8" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.028742" steps="49177"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.9" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.005973" steps="2928"/></proof>
+  </goal>
+  <goal name="iter&#39;vc.10" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.006029" steps="10060"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

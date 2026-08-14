@@ -1,0 +1,175 @@
+
+(* Gosper's Hack
+
+   Iterates over all n-bit words with k bits set, in lexicographic
+   order and in linear time, with O(1) cheap operations to move from
+   one word to the next.
+
+   Said otherwise, iterates over all subsets of {0,1,...,n-1} of
+   size k, where each subset is represented as a bit vector.
+
+   Principle: Identify the rightmost segment of 1 bits,
+                                  i
+         w = ?????????000000111111100000
+                            <- m ->
+
+   Isolate its rightmost bit, at position i, with w&-w:
+                                  i
+         c = 000000000000000000000100000
+
+   Add it to w, to get the following:
+                                  i
+         r = ?????????000001000000000000
+                            <- m ->
+
+   XOR r and w, to get the following:
+                                  i
+       r^w = 000000000000001111111100000
+                           <  m+1 >
+
+   Shift this to the right i+2 times (using shift and division by c):
+                                  i
+             00000000000000000000111111
+                                 < m-1>
+
+   Finally, OR this with r to get the expected word:
+
+             ?????????00000100000111111
+                                 < m-1>
+
+   Works for 0 <= k <= n <= Sys.int_size.
+
+   Gosper's Hack is explained in Hacker's Delight (Henri Warren,
+   Addison-Wesley, 2013); see pages 14--15.
+*)
+
+module BV
+
+  use int.Int
+
+  val constant word_size: int
+    ensures { 0 < result }
+
+  type bv = abstract {
+    bits: int -> bool;
+  }
+  meta coercion function bits
+
+  predicate (==) (x y: bv)
+  = forall i. 0 <= i < word_size -> x i = y i
+
+  axiom extensionality: forall x y. x == y <-> x = y
+
+  val (=) (x y: bv) : bool
+    ensures { result <-> x = y }
+    ensures { result -> x == y }
+
+end
+
+module Spec
+
+  use int.Int
+  use int.NumOf
+  use BV
+
+  function pop (x: bv) : int
+  = numof x 0 word_size
+
+  predicate valid (n k: int) (x: bv)
+  = 0 <= k <= n <= word_size /\
+    pop x = k /\
+    forall i. n <= i < word_size -> not x i
+
+  predicate is_first (n k: int) (x: bv)
+  = (forall i. 0 <= i < k -> x i) /\
+    (forall i. k <= i < n -> not x i)
+
+  val first (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_first n k x }
+
+  predicate is_last (n k: int) (x: bv)
+  = (forall i. 0 <= i < n-k -> not x i) /\
+    (forall i. n-k <= i < n -> x i)
+
+  val last (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_last n k x }
+
+  predicate lt (x y: bv)
+  = exists i. 0 <= i < word_size /\
+   not x i /\ y i /\
+   forall j. i < j < word_size -> x j = y j
+
+  let lemma lt_trans (x y z: bv)
+    requires { lt x y } requires { lt y z } ensures { lt x z }
+  = ()
+
+  let lemma first_is_first (n k: int) (x f: bv)
+    requires { 0 <= k <= n <= word_size }
+    requires { valid n k f }
+    requires { is_first n k f }
+    requires { valid n k x }
+    ensures  { not lt x f }
+  = ()
+
+  let lemma last_is_last (n k: int) (l x: bv)
+    requires { 0 <= k <= n <= word_size }
+    requires { valid n k l }
+    requires { is_last n k l }
+    requires { valid n k x }
+    ensures  { not lt l x }
+  = ()
+
+  val next (ghost n k: int) (x: bv) : (y: bv)
+    requires { 0 <= k <= n <= word_size }
+    requires { valid n k x }
+    requires { not is_last n k x }
+    ensures  { valid n k y }
+    ensures  { lt x y }
+    ensures  { forall z. valid n k z -> not (lt x z /\ lt z y) }
+
+  use seq.Seq
+
+  type visited = seq bv
+
+  predicate good_sequence (n k: int) (v: visited)
+  = let len = length v in
+    len >= 1 /\
+    (forall i. 0 <= i < len -> valid n k v[i]) /\
+    is_first n k v[0] /\
+    (forall i j. 0 <= i < j < len -> lt v[i] v[j])
+
+  let iter (n k: int) : (r: unit, ghost v: visited)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { good_sequence n k v }
+    ensures  { is_last n k v[length v - 1] }
+    diverges
+  = let ref w = first n k in
+    let last = last n k in
+    (* visit first *)
+    let ghost ref v = singleton w in
+    while not w = last do
+      invariant { good_sequence n k v }
+      invariant { length v >= 1 && v[length v - 1] = w }
+      w <- next n k w;
+      (* visit w *)
+      v <- snoc v w
+    done;
+    return (), v
+
+end
+
+(* let next w = *)
+(*   let c = w land -w in *)
+(*   let r = w + c in *)
+(*   (((r lxor w) lsr 2) / c) lor r *)
+
+(* let iter n k f = *)
+(*   if n < 0 || n > Sys.int_size || k < 0 || k > n then invalid_arg "iter"; *)
+(*   let first = 1 lsl k - 1 in *)
+(*   let last = first lsl (n - k) in *)
+(*   let rec loop w = f w; if w <> last then loop (next w) in *)
+(*   loop first *)
