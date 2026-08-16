@@ -1,13 +1,13 @@
 
-(* Gosper's Hack
+(** Gosper's Hack
 
-   Iterates over all n-bit words with k bits set, in lexicographic
+   Iterates over all `n`-bit words with `k` bits set, in lexicographic
    order and in linear time, with O(1) cheap operations to move from
    one word to the next.
 
-   Said otherwise, iterates over all subsets of {0,1,...,n-1} of
-   size k, where each subset is represented as a bit vector.
-
+   Said otherwise, iterates over all subsets of `{0,1,...,n-1}` of
+   size `k`, where each subset is represented as a bit vector.
+  {h<pre>
    Principle: Identify the rightmost segment of 1 bits,
                                   i
          w = ?????????000000111111100000
@@ -36,6 +36,7 @@
 
              ?????????00000100000111111
                                  < m-1>
+  </pre>}
 
    Works for 0 <= k <= n <= Sys.int_size.
 
@@ -43,6 +44,7 @@
    Addison-Wesley, 2013); see pages 14--15.
 *)
 
+(** Bit vectors *)
 module BV
 
   use int.Int
@@ -76,6 +78,8 @@ module Spec
   function pop (x: bv) : int
   = numof x 0 word_size
 
+  (** a valid bit vector has exactly `k` bits set in the range
+      `0..n` and no bit set beyond *)
   predicate valid (n k: int) (x: bv)
   = 0 <= k <= n <= word_size /\
     pop x = k /\
@@ -128,30 +132,6 @@ module Spec
   = lt x y /\ valid n k y /\
     forall z. valid n k z -> not (lt x z /\ lt z y)
 
-  type visited = seq bv
-
-  (** a good sequence contains subsets from `first`, in order,
-      without omission (but not necessarily up to `last`) *)
-  predicate good_sequence (n k: int) (v: visited)
-  = let len = length v in
-    len >= 1 /\
-    (forall i. 0 <= i < len -> valid n k v[i]) /\
-    is_first n k v[0] /\
-    forall i. 0 <= i < len-1 -> is_next n k v[i] v[i+1]
-
-  let lemma good_sequence_is_sorted (n k: int) (v: visited)
-    requires { good_sequence n k v }
-    ensures  { forall i j. 0 <= i < j < length v -> lt v[i] v[j] }
-  = let len = length v in
-    for i = 0 to len-1 do
-      invariant { forall i'. 0 <= i' < i ->
-                  forall j'. i' < j' < len -> lt v[i'] v[j'] }
-      for j = i+1 to len-1 do
-        invariant { forall j'. i < j' < len -> lt v[i] v[j'] }
-        ()
-      done
-    done
-
 end
 
 module Intf
@@ -187,6 +167,30 @@ module Iter
   use BV
   use Spec
   use Intf
+
+  type visited = seq bv
+
+  (** a good sequence contains subsets from `first`, in order,
+      without omission (but not necessarily up to `last`) *)
+  predicate good_sequence (n k: int) (v: visited)
+  = let len = length v in
+    len >= 1 /\
+    (forall i. 0 <= i < len -> valid n k v[i]) /\
+    is_first n k v[0] /\
+    forall i. 0 <= i < len-1 -> is_next n k v[i] v[i+1]
+
+  let lemma good_sequence_is_sorted (n k: int) (v: visited)
+    requires { good_sequence n k v }
+    ensures  { forall i j. 0 <= i < j < length v -> lt v[i] v[j] }
+  = let len = length v in
+    for i = 0 to len-1 do
+      invariant { forall i'. 0 <= i' < i ->
+                  forall j'. i' < j' < len -> lt v[i'] v[j'] }
+      for j = i+1 to len-1 do
+        invariant { forall j'. i < j' < len -> lt v[i] v[j'] }
+        ()
+      done
+    done
 
   let iter (n k: int) : (r: unit, ghost v: visited)
     requires { 0 <= k <= n <= word_size }

@@ -23,11 +23,11 @@
  <goal name="last_is_last&#39;vc" expl="VC for last_is_last" proved="true">
  <proof prover="0"><result status="valid" time="0.016838" steps="26956"/></proof>
  </goal>
- <goal name="good_sequence_is_sorted&#39;vc" expl="VC for good_sequence_is_sorted" proved="true">
- <proof prover="0" timelimit="5"><result status="valid" time="0.033154" steps="46017"/></proof>
- </goal>
 </theory>
 <theory name="Iter" proved="true">
+ <goal name="good_sequence_is_sorted&#39;vc" expl="VC for good_sequence_is_sorted" proved="true">
+ <proof prover="0"><result status="valid" time="0.048412" steps="47676"/></proof>
+ </goal>
  <goal name="iter&#39;vc" expl="VC for iter" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="iter&#39;vc.0" expl="precondition" proved="true">
@@ -68,84 +68,84 @@
 </theory>
 <theory name="MoreBV" proved="true">
  <goal name="zero&#39;vc" expl="VC for zero" proved="true">
- <proof prover="0"><result status="valid" time="0.024962" steps="2380"/></proof>
+ <proof prover="0"><result status="valid" time="0.024962" steps="1938"/></proof>
  </goal>
  <goal name="one&#39;vc" expl="VC for one" proved="true">
- <proof prover="0"><result status="valid" time="0.018947" steps="2385"/></proof>
+ <proof prover="0"><result status="valid" time="0.018947" steps="1943"/></proof>
  </goal>
 </theory>
 <theory name="Impl&#39;impl" proved="true">
  <goal name="first&#39;vc" expl="VC for first" proved="true">
- <proof prover="0" timelimit="5"><result status="valid" time="0.046787" steps="60853"/></proof>
+ <proof prover="0" timelimit="5"><result status="valid" time="0.046787" steps="56486"/></proof>
  </goal>
  <goal name="numof_ones&#39;vc" expl="VC for numof_ones" proved="true">
- <proof prover="0" timelimit="5"><result status="valid" time="0.053107" steps="30910"/></proof>
+ <proof prover="0" timelimit="5"><result status="valid" time="0.053107" steps="24307"/></proof>
  </goal>
  <goal name="numof_zeros&#39;vc" expl="VC for numof_zeros" proved="true">
- <proof prover="0" timelimit="5"><result status="valid" time="0.054624" steps="32069"/></proof>
+ <proof prover="0" timelimit="5"><result status="valid" time="0.054624" steps="25466"/></proof>
  </goal>
  <goal name="last&#39;vc" expl="VC for last" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="last&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="0" timelimit="5"><result status="valid" time="0.013087" steps="3713"/></proof>
+  <proof prover="0" timelimit="5"><result status="valid" time="0.013087" steps="3071"/></proof>
   </goal>
   <goal name="last&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.023145" steps="36558"/></proof>
+  <proof prover="0"><result status="valid" time="0.023145" steps="29732"/></proof>
   </goal>
   <goal name="last&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.014048" steps="31648"/></proof>
+  <proof prover="0"><result status="valid" time="0.014048" steps="24822"/></proof>
   </goal>
   <goal name="last&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.011789" steps="2244"/></proof>
+  <proof prover="0"><result status="valid" time="0.011789" steps="1802"/></proof>
   </goal>
   <goal name="last&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.015157" steps="12387"/></proof>
+  <proof prover="0"><result status="valid" time="0.015157" steps="9981"/></proof>
   </goal>
   <goal name="last&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.068963" steps="84809"/></proof>
+  <proof prover="0"><result status="valid" time="0.068963" steps="77974"/></proof>
   </goal>
   <goal name="last&#39;vc.6" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.024821" steps="30624"/></proof>
+  <proof prover="0"><result status="valid" time="0.024821" steps="24032"/></proof>
   </goal>
   <goal name="last&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.035551" steps="47689"/></proof>
+  <proof prover="0"><result status="valid" time="0.035551" steps="41092"/></proof>
   </goal>
   <goal name="last&#39;vc.8" expl="postcondition" proved="true">
   <transf name="unfold" proved="true" arg1="valid">
    <goal name="last&#39;vc.8.0" expl="VC for last" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="last&#39;vc.8.0.0" expl="VC for last" proved="true">
-    <proof prover="0"><result status="valid" time="0.030160" steps="2282"/></proof>
+    <proof prover="0"><result status="valid" time="0.030160" steps="1840"/></proof>
     </goal>
     <goal name="last&#39;vc.8.0.1" expl="VC for last" proved="true">
-    <proof prover="0"><result status="valid" time="0.012960" steps="2282"/></proof>
+    <proof prover="0"><result status="valid" time="0.012960" steps="1840"/></proof>
     </goal>
     <goal name="last&#39;vc.8.0.2" expl="VC for last" proved="true">
-    <proof prover="0"><result status="valid" time="0.007995" steps="2282"/></proof>
+    <proof prover="0"><result status="valid" time="0.007995" steps="1840"/></proof>
     </goal>
     <goal name="last&#39;vc.8.0.3" expl="VC for last" proved="true">
-    <proof prover="0"><result status="valid" time="0.341380" steps="650388"/></proof>
+    <proof prover="0"><result status="valid" time="0.341380" steps="643784"/></proof>
     </goal>
     <goal name="last&#39;vc.8.0.4" expl="VC for last" proved="true">
-    <proof prover="0"><result status="valid" time="0.037376" steps="48043"/></proof>
+    <proof prover="0"><result status="valid" time="0.037376" steps="41448"/></proof>
     </goal>
    </transf>
    </goal>
   </transf>
   </goal>
   <goal name="last&#39;vc.9" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.161978" steps="319976"/></proof>
+  <proof prover="0"><result status="valid" time="0.161978" steps="313381"/></proof>
   </goal>
  </transf>
  </goal>
  <goal name="Impl&#39;impl_of.first&#39;refn&#39;vc" expl="VC for first&#39;refn" proved="true">
- <proof prover="0"><result status="valid" time="0.013033" steps="35236"/></proof>
+ <proof prover="0"><result status="valid" time="0.013033" steps="28622"/></proof>
  </goal>
  <goal name="Impl&#39;impl_of.last&#39;refn&#39;vc" expl="VC for last&#39;refn" proved="true">
- <proof prover="0"><result status="valid" time="0.026275" steps="2526"/></proof>
+ <proof prover="0"><result status="valid" time="0.026275" steps="2084"/></proof>
  </goal>
  <goal name="Impl&#39;impl_of.next&#39;refn&#39;vc" expl="VC for next&#39;refn" proved="true">
- <proof prover="0"><result status="valid" time="0.028349" steps="2526"/></proof>
+ <proof prover="0"><result status="valid" time="0.028349" steps="2084"/></proof>
  </goal>
 </theory>
 </file>
