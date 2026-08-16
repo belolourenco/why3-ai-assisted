@@ -332,6 +332,22 @@ module Impl : Intf
     ensures  { not ones x i n }
   = ()
 
+  let lemma main_lemma (n k: int) (x v: bv) (i m: int)
+    requires { 0 <= i < i+m < n <= word_size }
+    requires { valid n k x }
+    requires { zeros x 0 i /\ ones x i (i+m) /\ not x (i+m) }
+    requires { valid n k v }
+    requires { ones v 0 (m-1) }
+    requires { zeros v (m-1) (i+m) }
+    requires { v (i+m) }
+    requires { same v x (i+m+1) word_size }
+    requires { lt x v }
+    ensures  { forall z. valid n k z -> not (lt x z /\ lt z v) }
+  = let lemma no_middle_element (z: bv)
+      requires { valid n k z } ensures { not (lt x z /\ lt z v) }
+      = () in
+    ()
+
   let next (ghost n k: int) (x: bv) : (y: bv)
     requires { 0 <= k <= n <= word_size }
     requires { valid n k x }
@@ -350,6 +366,7 @@ module Impl : Intf
     (*                            i
          r = ?????????000001000000000000
                             <- m ->        *)
+    assert { zeros r (m-1) (i+m) };
     let y = xor r x in
     (*                            i
          y = 000000000000001111111100000
@@ -364,6 +381,7 @@ module Impl : Intf
                                  < m-1>   *)
     assert { ones u 0 (m-1) };
     assert { zeros u (m-1) word_size };
+    assert { zeros u (m-1) (i+m) };
     let v = lor r u in
     (*                    i+m
          v = ?????????00000100000111111
@@ -372,6 +390,11 @@ module Impl : Intf
     assert { zeros v (m-1) (i+m) };
     assert { v (i+m) };
     assert { same v x (i+m+1) word_size };
+    assert { numof x 0 (i+m+1) = m };
+    assert { numof v 0 (i+m+1) = m };
+    assert { numof x (i+m+1) word_size
+           = numof v (i+m+1) word_size };
+    main_lemma n k x v i m;
     return v
 
 end
