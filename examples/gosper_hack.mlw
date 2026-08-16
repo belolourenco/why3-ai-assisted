@@ -10,21 +10,21 @@
   {h<pre>
    Principle: Identify the rightmost segment of 1 bits,
                                   i
-         w = ?????????000000111111100000
+         x = ?????????000000111111100000
                             <- m ->
 
-   Isolate its rightmost bit, at position i, with w&-w:
+   Isolate its rightmost bit, at position i, with x&-x:
                                   i
          c = 000000000000000000000100000
 
-   Add it to w, to get the following:
+   Add it to x, to get the following:
                                   i
          r = ?????????000001000000000000
                             <- m ->
 
-   XOR r and w, to get the following:
+   XOR r and x, to get the following:
                                   i
-       r^w = 000000000000001111111100000
+       r^x = 000000000000001111111100000
                            <  m+1 >
 
    Shift this to the right i+2 times (using shift and division by c):
@@ -78,15 +78,15 @@ module Spec
   function pop (x: bv) : int
   = numof x 0 word_size
 
+  predicate zeros (x: bv) (lo hi: int)
+  = forall i. lo <= i < hi -> not x i
+
   (** a valid bit vector has exactly `k` bits set in the range
       `0..n` and no bit set beyond *)
   predicate valid (n k: int) (x: bv)
   = 0 <= k <= n <= word_size /\
     pop x = k /\
-    forall i. n <= i < word_size -> not x i
-
-  predicate zeros (x: bv) (lo hi: int)
-  = forall i. lo <= i < hi -> not x i
+    zeros x n word_size
 
   predicate ones (x: bv) (lo hi: int)
   = forall i. lo <= i < hi -> x i
@@ -103,7 +103,7 @@ module Spec
   (** bit vectors are ordered lexicographically *)
   predicate lt (x y: bv)
   = exists i. 0 <= i < word_size /\
-    not x i /\ y i /\ same x y i word_size
+    not x i /\ y i /\ same x y (i+1) word_size
 
   predicate le (x y: bv)
   = x = y \/ lt x y
@@ -187,7 +187,7 @@ module Iter
       invariant { forall i'. 0 <= i' < i ->
                   forall j'. i' < j' < len -> lt v[i'] v[j'] }
       for j = i+1 to len-1 do
-        invariant { forall j'. i < j' < len -> lt v[i] v[j'] }
+        invariant { forall j'. i < j' < j -> lt v[i] v[j'] }
         ()
       done
     done
@@ -242,6 +242,48 @@ module MoreBV
     ensures  { zeros r i word_size }
     ensures  { pop r = i }
 
+  predicate pow2 (x: bv) (i: int)
+  = 0 <= i < word_size /\
+    zeros x 0 i /\ x i /\ zeros x (i+1) word_size
+
+  val rightmost_one_bit (x: bv) : (c: bv, ghost i: int)
+    requires { x <> zero }
+    ensures  { 0 <= i < word_size }
+    ensures  { x i }
+    ensures  { zeros x 0 i }
+    ensures  { pow2 c i }
+  (* = x & -x *)
+
+  val add_pow2 (x c: bv) (ghost n i m: int) : (r: bv)
+    requires { 0 <= i < i+m < n <= word_size }
+    requires { zeros x 0 i }
+    requires { ones  x i (i+m) }
+    requires { not x (i+m) }
+    requires { pow2 c i }
+    ensures  { zeros r 0 (i+m) }
+    ensures  { r (i+m) }
+    ensures  { same r x (i+m+1) word_size }
+
+  val xor (x y: bv) : (z: bv)
+    ensures  { forall i. 0 <= i < word_size -> (z i <-> x i <> y i) }
+
+  val lor (x y: bv) : (z: bv)
+    ensures  { forall i. 0 <= i < word_size -> (z i <-> (x i \/ y i)) }
+
+  predicate shift_right (x: bv) (n: int) (y: bv)
+  = 0 <= n <= word_size /\
+    zeros y (word_size - n) word_size /\
+    forall i. 0 <= i < word_size - n -> y i = x (i+n)
+
+  val lsr (x: bv) (n: int) : (y: bv)
+    requires { 0 <= n <= word_size }
+    ensures  { shift_right x n y }
+
+  val shift_by_division (u c: bv) (ghost i: int) : (r: bv)
+    requires { 0 <= i < word_size - 1 }
+    requires { pow2 c i }
+    ensures  { shift_right u i r }
+
 end
 
 module Impl : Intf
@@ -281,15 +323,55 @@ module Impl : Intf
     numof_zeros l n word_size;
     return l
 
-  val next (ghost n k: int) (x: bv) : (y: bv)
+  let lemma gap_if_not_last (n k: int) (x: bv) (i: int)
+    requires { valid n k x }
+    requires { not is_last n k x }
+    requires { 0 <= i < n }
+    requires { zeros x 0 i }
+    requires { x i }
+    ensures  { not ones x i n }
+  = ()
+
+  let next (ghost n k: int) (x: bv) : (y: bv)
     requires { 0 <= k <= n <= word_size }
     requires { valid n k x }
     requires { not is_last n k x }
     ensures  { is_next n k x y }
-
-(* let next w = *)
-(*   let c = w land -w in *)
-(*   let r = w + c in *)
-(*   (((r lxor w) lsr 2) / c) lor r *)
+  = (*                            i
+         x = ?????????000000111111100000
+                            <- m ->        *)
+    let c, i = rightmost_one_bit x in
+    (*                            i
+         c = 000000000000000000000100000   *)
+    let ghost ref m = 1 in
+    (ghost while pure {x (i+m)} do variant { n-i-m }
+            invariant { 1 <= m /\ i+m < n /\ ones x i (i+m) } m <- m+1 done);
+    let r = add_pow2 x c n i m in
+    (*                            i
+         r = ?????????000001000000000000
+                            <- m ->        *)
+    let y = xor r x in
+    (*                            i
+         y = 000000000000001111111100000
+                           <  m+1 >        *)
+    assert { zeros y 0 i };
+    assert { ones  y i (i+m+1) };
+    assert { zeros y (i+m+1) word_size };
+    let u = lsr y 2 in
+    let u = shift_by_division u c i in
+    (*                            i
+         u = 00000000000000000000111111
+                                 < m-1>   *)
+    assert { ones u 0 (m-1) };
+    assert { zeros u (m-1) word_size };
+    let v = lor r u in
+    (*                    i+m
+         v = ?????????00000100000111111
+                                 < m-1>   *)
+    assert { ones v 0 (m-1) };
+    assert { zeros v (m-1) (i+m) };
+    assert { v (i+m) };
+    assert { same v x (i+m+1) word_size };
+    return v
 
 end
