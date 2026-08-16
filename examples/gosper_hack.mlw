@@ -1,5 +1,5 @@
 
-(** Gosper's Hack
+(** {1 Gosper's Hack}
 
    Iterates over all `n`-bit words with `k` bits set, in lexicographic
    order and in linear time, with O(1) cheap operations to move from
@@ -42,9 +42,12 @@
 
    Gosper's Hack is explained in Hacker's Delight (Henri Warren,
    Addison-Wesley, 2013); see pages 14--15.
+
+   Author: Jean-Christophe Filliâtre (CNRS)
 *)
 
-(** Bit vectors *)
+(** {2 Bit vectors} *)
+
 module BV
 
   use int.Int
@@ -67,6 +70,10 @@ module BV
     ensures { result -> x == y }
 
 end
+
+(** {2 Specification Predicates}
+
+    The predicates of interest are `valid`, `lt`, and `is_next`. *)
 
 module Spec
 
@@ -128,11 +135,17 @@ module Spec
     ensures  { not lt l x }
   = ()
 
+  (** `y` follows `x` in the lexicographic order *)
   predicate is_next (n k: int) (x y: bv)
   = lt x y /\ valid n k y /\
     forall z. valid n k z -> not (lt x z /\ lt z y)
 
 end
+
+(** {2 Program Interface}
+
+    The following three functions respectively give the first bit vector,
+    the last bit vector, and the next bit vector. *)
 
 module Intf
 
@@ -159,7 +172,12 @@ module Intf
 
 end
 
-(** the interface above is all we need to iterate over all the subsets *)
+(** {2 Iteration}
+
+    The interface above is all we need to iterate over all the subsets.
+    Below we show that each bit set is visted exactly once, and that no
+    one is omitted. *)
+
 module Iter
 
   use int.Int
@@ -213,6 +231,16 @@ module Iter
   (* note: the code would be nicer with `do while` loop *)
 
 end
+
+(** {2 More operations on bit vectors}
+
+    Here we introduce the arithmetic operations (seen as operating over
+    bit vectors) that are needed to implement Gosper's hack.
+
+    Note that these operations are purposely under-specified. For instance,
+    function `minus1` is requiring its parameter to be either 0 or a power
+    of two.
+*)
 
 module MoreBV
 
@@ -286,7 +314,9 @@ module MoreBV
 
 end
 
-module Impl : Intf
+(** {2 Gosper's Hack Implementation} *)
+
+module Impl: Intf
 
   use int.Int
   use int.NumOf
@@ -332,6 +362,14 @@ module Impl : Intf
     ensures  { not ones x i n }
   = ()
 
+  let lemma first_diff (x y: bv) : (i: int)
+    requires { lt x y }
+    ensures  { 0 <= i < word_size }
+    ensures  { not x i } ensures { y i }
+    ensures  { same x y (i+1) word_size }
+  = any int ensures { 0 <= result < word_size /\ not x result /\ y result /\
+                      same x y (result+1) word_size }
+
   let lemma main_lemma (n k: int) (x v: bv) (i m: int)
     requires { 0 <= i < i+m < n <= word_size }
     requires { valid n k x }
@@ -344,9 +382,12 @@ module Impl : Intf
     requires { lt x v }
     ensures  { forall z. valid n k z -> not (lt x z /\ lt z v) }
   = let lemma no_middle_element (z: bv)
-      requires { valid n k z } ensures { not (lt x z /\ lt z v) }
-      = () in
-    ()
+      requires { valid n k z } requires { lt x z } requires { lt z v }
+      ensures  { false }
+      = let _i = first_diff x z in
+        let _j = first_diff z v in
+        ()
+    in ()
 
   let next (ghost n k: int) (x: bv) : (y: bv)
     requires { 0 <= k <= n <= word_size }
@@ -398,3 +439,6 @@ module Impl : Intf
     return v
 
 end
+
+(* TODO: ensure the consistency of all `val` over bit vectors,
+   at least on 32-bit integers *)
