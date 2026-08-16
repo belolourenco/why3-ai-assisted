@@ -70,6 +70,7 @@ module Spec
 
   use int.Int
   use int.NumOf
+  use seq.Seq
   use BV
 
   function pop (x: bv) : int
@@ -80,28 +81,28 @@ module Spec
     pop x = k /\
     forall i. n <= i < word_size -> not x i
 
-  predicate is_first (n k: int) (x: bv)
-  = (forall i. 0 <= i < k -> x i) /\
-    (forall i. k <= i < n -> not x i)
+  predicate zeros (x: bv) (lo hi: int)
+  = forall i. lo <= i < hi -> not x i
 
-  val first (n k: int) : (x: bv)
-    requires { 0 <= k <= n <= word_size }
-    ensures  { valid n k x }
-    ensures  { is_first n k x }
+  predicate ones (x: bv) (lo hi: int)
+  = forall i. lo <= i < hi -> x i
+
+  predicate same (x y: bv) (lo hi: int)
+  = forall i. lo <= i < hi -> x i = y i
+
+  predicate is_first (n k: int) (x: bv)
+  = ones x 0 k /\ zeros x k n
 
   predicate is_last (n k: int) (x: bv)
-  = (forall i. 0 <= i < n-k -> not x i) /\
-    (forall i. n-k <= i < n -> x i)
+  = zeros x 0 (n-k) /\ ones x (n-k) n
 
-  val last (n k: int) : (x: bv)
-    requires { 0 <= k <= n <= word_size }
-    ensures  { valid n k x }
-    ensures  { is_last n k x }
-
+  (** bit vectors are ordered lexicographically *)
   predicate lt (x y: bv)
   = exists i. 0 <= i < word_size /\
-   not x i /\ y i /\
-   forall j. i < j < word_size -> x j = y j
+    not x i /\ y i /\ same x y i word_size
+
+  predicate le (x y: bv)
+  = x = y \/ lt x y
 
   let lemma lt_trans (x y z: bv)
     requires { lt x y } requires { lt y z } ensures { lt x z }
@@ -123,24 +124,69 @@ module Spec
     ensures  { not lt l x }
   = ()
 
-  val next (ghost n k: int) (x: bv) : (y: bv)
-    requires { 0 <= k <= n <= word_size }
-    requires { valid n k x }
-    requires { not is_last n k x }
-    ensures  { valid n k y }
-    ensures  { lt x y }
-    ensures  { forall z. valid n k z -> not (lt x z /\ lt z y) }
-
-  use seq.Seq
+  predicate is_next (n k: int) (x y: bv)
+  = lt x y /\ valid n k y /\
+    forall z. valid n k z -> not (lt x z /\ lt z y)
 
   type visited = seq bv
 
+  (** a good sequence contains subsets from `first`, in order,
+      without omission (but not necessarily up to `last`) *)
   predicate good_sequence (n k: int) (v: visited)
   = let len = length v in
     len >= 1 /\
     (forall i. 0 <= i < len -> valid n k v[i]) /\
     is_first n k v[0] /\
-    (forall i j. 0 <= i < j < len -> lt v[i] v[j])
+    forall i. 0 <= i < len-1 -> is_next n k v[i] v[i+1]
+
+  let lemma good_sequence_is_sorted (n k: int) (v: visited)
+    requires { good_sequence n k v }
+    ensures  { forall i j. 0 <= i < j < length v -> lt v[i] v[j] }
+  = let len = length v in
+    for i = 0 to len-1 do
+      invariant { forall i'. 0 <= i' < i ->
+                  forall j'. i' < j' < len -> lt v[i'] v[j'] }
+      for j = i+1 to len-1 do
+        invariant { forall j'. i < j' < len -> lt v[i] v[j'] }
+        ()
+      done
+    done
+
+end
+
+module Intf
+
+  use int.Int
+  use seq.Seq
+  use BV
+  use Spec
+
+  val first (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_first n k x }
+
+  val last (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_last n k x }
+
+  val next (ghost n k: int) (x: bv) : (y: bv)
+    requires { 0 <= k <= n <= word_size }
+    requires { valid n k x }
+    requires { not is_last n k x }
+    ensures  { is_next n k x y }
+
+end
+
+(** the interface above is all we need to iterate over all the subsets *)
+module Iter
+
+  use int.Int
+  use seq.Seq
+  use BV
+  use Spec
+  use Intf
 
   let iter (n k: int) : (r: unit, ghost v: visited)
     requires { 0 <= k <= n <= word_size }
@@ -149,7 +195,7 @@ module Spec
     diverges
   = let ref w = first n k in
     let last = last n k in
-    (* visit first *)
+    (* visit w *)
     let ghost ref v = singleton w in
     while not w = last do
       invariant { good_sequence n k v }
@@ -160,16 +206,86 @@ module Spec
     done;
     return (), v
 
+  (* note: the code would be nicer with `do while` loop *)
+
 end
+
+module MoreBV
+
+  use int.Int
+  use export BV
+  use Spec
+
+  val constant zero: bv
+    ensures { zeros result 0 word_size }
+
+  val constant one: bv
+    ensures { result 0 }
+    ensures { zeros result 1 word_size }
+
+  val lsl (x: bv) (n: int) : (r: bv)
+    requires { 0 <= n <= word_size }
+    ensures  { zeros r 0 n }
+    ensures  { forall i. n <= i < word_size -> r i = x (i - n) }
+
+  val minus1 (x: bv) (ghost i: int) : (r: bv)
+    requires { 0 <= i <= word_size }
+    (* x = 2^i *)
+    requires { zeros x 0 i }
+    requires { i < word_size -> x i }
+    requires { zeros x (i+1) word_size }
+    ensures  { ones r 0 i }
+    ensures  { zeros r i word_size }
+    ensures  { pop r = i }
+
+end
+
+module Impl : Intf
+
+  use int.Int
+  use int.NumOf
+  use MoreBV
+  use Spec
+
+  let first (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_first n k x }
+    ensures  { zeros x k word_size }
+  = minus1 (lsl one k) (ghost k)
+
+  let lemma numof_ones (x: bv) (i j: int)
+    requires { 0 <= i <= j <= word_size }
+    requires { ones x i j }
+    ensures  { numof x i j = j - i }
+  = ()
+
+  let lemma numof_zeros (x: bv) (i j: int)
+    requires { 0 <= i <= j <= word_size }
+    requires { zeros x i j }
+    ensures  { numof x i j = 0 }
+  = ()
+
+  let last (n k: int) : (x: bv)
+    requires { 0 <= k <= n <= word_size }
+    ensures  { valid n k x }
+    ensures  { is_last n k x }
+  = let f = first n k in
+    let l = lsl f (n - k) in
+    numof_zeros l 0 (n-k);
+    numof_ones  l (n-k) n;
+    numof_zeros l n word_size;
+    return l
+
+  val next (ghost n k: int) (x: bv) : (y: bv)
+    requires { 0 <= k <= n <= word_size }
+    requires { valid n k x }
+    requires { not is_last n k x }
+    ensures  { is_next n k x y }
 
 (* let next w = *)
 (*   let c = w land -w in *)
 (*   let r = w + c in *)
 (*   (((r lxor w) lsr 2) / c) lor r *)
 
-(* let iter n k f = *)
-(*   if n < 0 || n > Sys.int_size || k < 0 || k > n then invalid_arg "iter"; *)
-(*   let first = 1 lsl k - 1 in *)
-(*   let last = first lsl (n - k) in *)
-(*   let rec loop w = f w; if w <> last then loop (next w) in *)
-(*   loop first *)
+end
