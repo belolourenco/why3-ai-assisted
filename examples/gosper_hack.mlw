@@ -63,11 +63,8 @@ module BV
   predicate (==) (x y: bv)
   = forall i. 0 <= i < word_size -> x i = y i
 
-  axiom extensionality: forall x y. x == y <-> x = y
-
   val (=) (x y: bv) : bool
-    ensures { result <-> x = y }
-    ensures { result -> x == y }
+    ensures { result <-> x == y }
 
 end
 
@@ -274,13 +271,34 @@ module MoreBV
   = 0 <= i < word_size /\
     zeros x 0 i /\ x i /\ zeros x (i+1) word_size
 
-  val rightmost_one_bit (x: bv) : (c: bv, ghost i: int)
-    requires { x <> zero }
+  (*                          i
+       x =          <xxxxxxxx>100000000
+      ~x =          <negation>011111111
+      -x = ~x + 1 = <negation>100000000
+  *)
+  val neg (x: bv) (ghost i: int) : (r: bv)
+    requires { 0 <= i < word_size }
+    requires { zeros x 0 i }
+    requires { x i }
+    ensures  { zeros r 0 i }
+    ensures  { r i }
+    ensures  { forall j. i < j < word_size -> r j = not x j }
+
+  val land (x y: bv) : (z: bv)
+    ensures  { forall i. 0 <= i < word_size -> (z i <-> (x i /\ y i)) }
+
+  (* = x & -x *)
+  let rightmost_one_bit (x: bv) : (c: bv, ghost i: int)
+    requires { not x == zero }
     ensures  { 0 <= i < word_size }
     ensures  { x i }
     ensures  { zeros x 0 i }
     ensures  { pow2 c i }
-  (* = x & -x *)
+  = let ghost ref i = 0 in
+    while pure {not x i} do variant { word_size - i }
+      invariant { 0 <= i } invariant { zeros x 0 i } i <- i+1 done;
+    let c = land x (neg x i) in
+    return c, i
 
   val add_pow2 (x c: bv) (ghost n i m: int) : (r: bv)
     requires { 0 <= i < i+m < n <= word_size }
