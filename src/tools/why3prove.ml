@@ -526,6 +526,8 @@ let do_input config env drv = function
         | "-" -> "stdin",
             Env.read_channel Env.base_language ?format env "stdin" stdin
         | fname ->
+            if not (Sys.file_exists fname) then
+              Loc.errorm "%s: no such file" fname;
             let (mlw_files, _) =
               Env.read_file Env.base_language ?format env fname in
             (fname, mlw_files)
