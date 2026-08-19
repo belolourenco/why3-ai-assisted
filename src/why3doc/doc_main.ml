@@ -64,13 +64,11 @@ let css =
   css_fname
 
 let do_file env fname =
+  if not (Sys.file_exists fname) then Loc.errorm "%s: no such file" fname;
   let glob = Glob.drop fname in
-  begin try
-    ignore (Env.read_file Env.base_language env fname)
-  with e ->
-    eprintf "error: could not read file '%s'@." fname;
-    eprintf "(%a)@." Exn_printer.exn_printer e;
-    exit 1
+  begin try ignore (Env.read_file Env.base_language env fname)
+        with e -> Loc.errorm "error: could not read file '%s' (%a)" fname
+                    Exn_printer.exn_printer e
   end;
   let fhtml = Doc_def.output_file fname in
   let c = open_out fhtml in
