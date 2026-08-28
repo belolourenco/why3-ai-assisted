@@ -740,8 +740,9 @@ let find_prover data name path =
     ) data.Prover_autodetection_data.skeletons;
   Hashtbl.fold
     (fun (switch, regexp) () acc ->
-      if Option.is_some acc then acc
-      else query_prover_version path switch regexp
+      match acc with
+      | Some "" | None -> query_prover_version path switch regexp
+      | Some _ -> acc
     ) binaries None
 
 let find_provers data =
@@ -755,10 +756,11 @@ let find_provers data =
     Hashtbl.fold (fun (exec_name, switch, regexp) name acc ->
         let binaries = locate_exe exec_name in
         List.fold_left (fun acc exec_name ->
-            if Mstr.mem exec_name acc then acc
-            else
+            match Mstr.find_opt exec_name acc with
+            | Some (_, "") | None ->
               let r = query_prover_version exec_name switch regexp in
               Opt.fold (fun acc x -> Mstr.add exec_name (name, x) acc) acc r
+            | Some _ -> acc
           ) acc binaries
       ) binaries Mstr.empty in
   let provers = Mstr.bindings provers in
