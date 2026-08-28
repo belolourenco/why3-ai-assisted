@@ -14,6 +14,19 @@ Provers
   * support for Z3 4.14 (released Mar 7, 2024)
   * support for E prover 3.x (released ???)
 
+Transformations
+  * new transformation `compute` with arguments, of the form
+    ```
+    compute [nodef] [branches] [in H]
+    ```
+    if `nodef` is set, definitions are not unfolded anymore
+    if `branches` is set, also reduces below branches of `if` and `match`
+  * `compute_hyp` is replaced by `compute .. in ..` :x:
+  * `compute_specified` is replaced by `compute nodefs ..` :x:
+  * `compute_hyp_specified` is replaced by `compute nodefs .. in ..` :x:
+  * `compute_in_goal` remains as a legacy transformation, as an alias
+    to `compute` with no arguments. (deprecated)
+
 Stdlib
   * added iterators of sets and maps of unbounded integers, 63-bit
     integers, "Peano" integers and strings, with appropriate
