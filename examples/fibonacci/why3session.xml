@@ -383,5 +383,19 @@
  <proof prover="10"><result status="valid" time="0.032110" steps="38165"/></proof>
  </goal>
 </theory>
+<theory name="NegativeFibonacci" proved="true">
+ <goal name="fib&#39;vc" expl="VC for fib" proved="true">
+ <proof prover="10"><result status="valid" time="0.038918" steps="2637"/></proof>
+ </goal>
+ <goal name="property&#39;vc" expl="VC for property" proved="true">
+ <proof prover="10"><result status="valid" time="0.234153" steps="663365"/></proof>
+ </goal>
+ <goal name="even" proved="true">
+ <proof prover="10" timelimit="5"><result status="valid" time="0.051239" steps="3736"/></proof>
+ </goal>
+ <goal name="odd" proved="true">
+ <proof prover="10" timelimit="5"><result status="valid" time="0.034104" steps="4141"/></proof>
+ </goal>
+</theory>
 </file>
 </why3session>
