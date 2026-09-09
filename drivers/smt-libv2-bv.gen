@@ -133,10 +133,6 @@ theory bv.BV_Gen
 
   (** nth_bv *)
 
-  (* remove prop nth_bv_def *)
-  (* remove prop Nth_bv_is_nth *)
-  (* remove prop Nth_bv_is_nth2 *)
-
   remove prop Extensionality
 end
 
