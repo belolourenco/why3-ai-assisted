@@ -115,7 +115,7 @@ let check_params ~loc h p a =
         aux ~loc ll rr
     | Pc (_, wl, l) :: ll, Pc (_, wr, r) :: rr ->
         if not (Svs.equal (Svs.of_list wl) (Svs.of_list wr)) then
-          Loc.errorm ~loc "[coma typing] prewrite mismatch"
+          Loc.errorm ~loc "[coma typing] prewrite mismatch";
         aux ~loc l r;
         aux ~loc ll rr
     | [], _ | _, [] ->
