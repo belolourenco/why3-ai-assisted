@@ -237,7 +237,10 @@ let hs_register (hs,_,_ as reg) =
   Pdecl.create_exn_decl xs
 
 let rec subs_param (mty, mvs as acc) = function
-  | Pt _ as p -> acc, p
+  | Pt a ->
+      let b = create_tvsymbol (id_clone a.tv_name) in
+      let mty = Mtv.add a (ty_var b) mty in
+      (mty, mvs), Pt b
   | Pv v ->
       let t = ty_inst mty v.vs_ty in
       let v' = create_vsymbol (id_clone v.vs_name) t in
