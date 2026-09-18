@@ -359,15 +359,7 @@
     <goal name="next&#39;vc.35.0.0" expl="VC for next" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="next&#39;vc.35.0.0.0" expl="VC for next" proved="true">
-     <transf name="unfold" proved="true" arg1="lt">
-      <goal name="next&#39;vc.35.0.0.0.0" expl="VC for next" proved="true">
-      <transf name="exists" proved="true" arg1="(i+m)">
-       <goal name="next&#39;vc.35.0.0.0.0.0" proved="true">
-       <proof prover="2"><result status="valid" time="0.130237" steps="10984"/></proof>
-       </goal>
-      </transf>
-      </goal>
-     </transf>
+     <proof prover="2"><result status="valid" time="0.643230" steps="126648"/></proof>
      </goal>
      <goal name="next&#39;vc.35.0.0.1" expl="VC for next" proved="true">
      <transf name="unfold" proved="true" arg1="valid">

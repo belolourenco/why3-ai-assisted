@@ -33,10 +33,10 @@
   <proof prover="0"><result status="valid" time="0.030000" steps="495"/></proof>
   </goal>
   <goal name="client&#39;vc.7" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.030000" steps="655"/></proof>
+  <proof prover="0"><result status="valid" time="0.030000" steps="639"/></proof>
   </goal>
   <goal name="client&#39;vc.8" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.040000" steps="796"/></proof>
+  <proof prover="0"><result status="valid" time="0.040000" steps="777"/></proof>
   </goal>
   <goal name="client&#39;vc.9" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.040000" steps="613"/></proof>

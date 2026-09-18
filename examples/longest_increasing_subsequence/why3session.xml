@@ -4,6 +4,7 @@
 <why3session shape_version="6">
 <prover id="0" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="1" name="CVC5" version="1.0.5" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Alt-Ergo" version="2.6.3" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="Z3" version="4.8.17" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml" proved="true">
 <path name=".."/><path name="longest_increasing_subsequence.mlw"/>
@@ -56,22 +57,22 @@
       <goal name="liss&#39;vc.9.0.0.0.0" expl="loop invariant preservation" proved="true">
       <transf name="case" proved="true" arg1="(k &lt; j)">
        <goal name="liss&#39;vc.9.0.0.0.0.0" expl="true case (loop invariant preservation)" proved="true">
-       <proof prover="1" timelimit="5"><result status="valid" time="0.144032" steps="17539"/></proof>
+       <proof prover="1" timelimit="5"><result status="valid" time="0.144032" steps="17494"/></proof>
        </goal>
        <goal name="liss&#39;vc.9.0.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
        <transf name="assert" proved="true" arg1="(length s&#39;[1..] &lt;= length s[1..])">
         <goal name="liss&#39;vc.9.0.0.0.0.1.0" expl="asserted formula" proved="true">
         <transf name="assert" proved="true" arg1="(s&#39;[1..][0] = j)">
          <goal name="liss&#39;vc.9.0.0.0.0.1.0.0" expl="asserted formula" proved="true">
-         <proof prover="0"><result status="valid" time="0.061128" steps="363"/></proof>
+         <proof prover="2"><result status="valid" time="0.061128" steps="377"/></proof>
          </goal>
          <goal name="liss&#39;vc.9.0.0.0.0.1.0.1" expl="asserted formula" proved="true">
-         <proof prover="0"><result status="valid" time="0.927077" steps="7551"/></proof>
+         <proof prover="2"><result status="valid" time="2.239520" steps="19623"/></proof>
          </goal>
         </transf>
         </goal>
         <goal name="liss&#39;vc.9.0.0.0.0.1.1" expl="false case (loop invariant preservation)" proved="true">
-        <proof prover="3" timelimit="5"><result status="valid" time="0.075796" steps="91763"/></proof>
+        <proof prover="3" timelimit="5"><result status="valid" time="0.075796" steps="91727"/></proof>
         </goal>
        </transf>
        </goal>
@@ -103,22 +104,22 @@
      <goal name="liss&#39;vc.13.0.0.0" expl="loop invariant preservation" proved="true">
      <transf name="case" proved="true" arg1="(k &lt; j)">
       <goal name="liss&#39;vc.13.0.0.0.0" expl="true case (loop invariant preservation)" proved="true">
-      <proof prover="0"><result status="valid" time="0.049421" steps="187"/></proof>
+      <proof prover="2"><result status="valid" time="0.049421" steps="185"/></proof>
       </goal>
       <goal name="liss&#39;vc.13.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
       <transf name="assert" proved="true" arg1="(length s&#39;[1..] &lt;= length s[1..])">
        <goal name="liss&#39;vc.13.0.0.0.1.0" expl="asserted formula" proved="true">
        <transf name="assert" proved="true" arg1="(s&#39;[1..][0] = j)">
         <goal name="liss&#39;vc.13.0.0.0.1.0.0" expl="asserted formula" proved="true">
-        <proof prover="1"><result status="valid" time="0.097431" steps="12544"/></proof>
+        <proof prover="1"><result status="valid" time="0.097431" steps="12532"/></proof>
         </goal>
         <goal name="liss&#39;vc.13.0.0.0.1.0.1" expl="asserted formula" proved="true">
-        <proof prover="0" timelimit="1"><result status="valid" time="0.088027" steps="620"/></proof>
+        <proof prover="2" timelimit="1"><result status="valid" time="0.088027" steps="448"/></proof>
         </goal>
        </transf>
        </goal>
        <goal name="liss&#39;vc.13.0.0.0.1.1" expl="false case (loop invariant preservation)" proved="true">
-       <proof prover="3" timelimit="5"><result status="valid" time="0.070919" steps="68869"/></proof>
+       <proof prover="3" timelimit="5"><result status="valid" time="0.070919" steps="68841"/></proof>
        </goal>
       </transf>
       </goal>
@@ -188,13 +189,13 @@
   <proof prover="3"><result status="valid" time="0.030635" steps="48972"/></proof>
   </goal>
   <goal name="liss&#39;vc.27" expl="loop invariant preservation" proved="true">
-  <proof prover="3"><result status="valid" time="0.046713" steps="13886"/></proof>
+  <proof prover="3"><result status="valid" time="0.046713" steps="4000"/></proof>
   </goal>
   <goal name="liss&#39;vc.28" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.162952" steps="7111"/></proof>
+  <proof prover="1"><result status="valid" time="0.162952" steps="6769"/></proof>
   </goal>
   <goal name="liss&#39;vc.29" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.173396" steps="8441"/></proof>
+  <proof prover="1"><result status="valid" time="0.173396" steps="8303"/></proof>
   </goal>
   <goal name="liss&#39;vc.30" expl="loop invariant preservation" proved="true">
   <proof prover="1"><result status="valid" time="0.064351" steps="6765"/></proof>
