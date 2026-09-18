@@ -145,7 +145,7 @@
   <proof prover="6"><result status="valid" time="0.030000" steps="17249"/></proof>
   </goal>
   <goal name="equality&#39;vc.18" expl="assertion" proved="true">
-  <proof prover="13"><result status="valid" time="0.011394" steps="5526"/></proof>
+  <proof prover="13"><result status="valid" time="0.011394" steps="5426"/></proof>
   </goal>
   <goal name="equality&#39;vc.19" expl="postcondition" proved="true">
   <proof prover="9"><result status="valid" time="0.025534" steps="93"/></proof>

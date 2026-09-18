@@ -3,7 +3,7 @@
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
 <prover id="0" name="CVC5" version="1.1.2" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Alt-Ergo" version="2.6.3" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="3" name="CVC5" version="1.2.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="4" name="Z3" version="4.14.1" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="5" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="1000"/>
@@ -34,7 +34,7 @@
   <proof prover="4"><result status="valid" time="0.036694" steps="56843"/></proof>
   </goal>
   <goal name="morris&#39;vc.5" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.517071" steps="2069"/></proof>
+  <proof prover="2"><result status="valid" time="0.517071" steps="2093"/></proof>
   </goal>
   <goal name="morris&#39;vc.6" expl="postcondition" proved="true">
   <proof prover="4"><result status="valid" time="0.020861" steps="40104"/></proof>
@@ -234,7 +234,7 @@
   <proof prover="4"><result status="valid" time="0.084192" steps="155880"/></proof>
   </goal>
   <goal name="morris&#39;vc.59" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.352267" steps="1103717"/></proof>
+  <proof prover="4"><result status="valid" time="0.216035" steps="1103717"/></proof>
   </goal>
   <goal name="morris&#39;vc.60" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -370,7 +370,7 @@
   <proof prover="4"><result status="valid" time="0.041114" steps="67875"/></proof>
   </goal>
   <goal name="morris&#39;vc.95" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="3.684439" steps="209433"/></proof>
+  <proof prover="3"><result status="valid" time="4.338041" steps="209433"/></proof>
   </goal>
   <goal name="morris&#39;vc.96" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -417,7 +417,7 @@
  </transf>
  </goal>
  <goal name="traversal&#39;vc" expl="VC for traversal" proved="true">
- <proof prover="1"><result status="valid" time="0.958145" steps="2244"/></proof>
+ <proof prover="2"><result status="valid" time="0.613538" steps="1879"/></proof>
  </goal>
 </theory>
 <theory name="MorrisSpec" proved="true">
@@ -472,91 +472,91 @@
   <proof prover="4"><result status="valid" time="0.024296" steps="33901"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.14" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.026833" steps="46625"/></proof>
+  <proof prover="4"><result status="valid" time="0.026833" steps="46693"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.15" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.196874" steps="24879"/></proof>
+  <proof prover="5"><result status="valid" time="0.196874" steps="24640"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.16" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.023114" steps="48388"/></proof>
+  <proof prover="4"><result status="valid" time="0.023114" steps="48463"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.17" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.175262" steps="22137"/></proof>
+  <proof prover="3"><result status="valid" time="0.175262" steps="22274"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.18" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.18.0" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.005873" steps="5224"/></proof>
+   <proof prover="4"><result status="valid" time="0.005873" steps="5255"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.18.1" expl="precondition" proved="true">
-   <transf name="instantiate" proved="true" arg1="Ensures21" arg2="(rts.cell j)">
+   <transf name="instantiate" proved="true" arg1="Ensures24" arg2="(o5.cell j)">
     <goal name="shape_of_tree&#39;vc.18.1.0" expl="precondition" proved="true">
-    <proof prover="4"><result status="valid" time="0.024680" steps="54905"/></proof>
+    <proof prover="4" timelimit="5"><result status="valid" time="0.021585" steps="54914"/></proof>
     </goal>
    </transf>
    </goal>
   </transf>
   </goal>
   <goal name="shape_of_tree&#39;vc.19" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.018756" steps="44255"/></proof>
+  <proof prover="4"><result status="valid" time="0.018756" steps="44336"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.20" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.020958" steps="111910"/></proof>
+  <proof prover="5" timelimit="5"><result status="valid" time="0.085488" steps="14689"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.21" expl="precondition" proved="true">
-  <proof prover="4" timelimit="5"><result status="valid" time="0.021985" steps="49549"/></proof>
+  <proof prover="4" timelimit="5"><result status="valid" time="0.021985" steps="49624"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.22" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.22.0" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="0.178258" steps="22560"/></proof>
+   <proof prover="3"><result status="valid" time="0.178258" steps="22066"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.1" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.197694" steps="405578"/></proof>
+   <proof prover="4"><result status="valid" time="0.197694" steps="275647"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.2" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.057458" steps="118784"/></proof>
+   <proof prover="4"><result status="valid" time="0.057458" steps="107418"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.3" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="0.142152" steps="17786"/></proof>
+   <proof prover="3"><result status="valid" time="0.142152" steps="17189"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.4" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.038458" steps="52831"/></proof>
+   <proof prover="4"><result status="valid" time="0.038458" steps="54808"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.5" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.045042" steps="70929"/></proof>
+   <proof prover="4"><result status="valid" time="0.045042" steps="238136"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.6" expl="precondition" proved="true">
-   <proof prover="4" timelimit="5"><result status="valid" time="4.239411" steps="73427572"/></proof>
+   <proof prover="4" timelimit="5"><result status="valid" time="8.661067" steps="86565883"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.7" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.041007" steps="58848"/></proof>
+   <proof prover="4"><result status="valid" time="0.041007" steps="142015"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="shape_of_tree&#39;vc.23" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.043720" steps="63166"/></proof>
+  <proof prover="4"><result status="valid" time="0.043720" steps="63957"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.24" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.024721" steps="60173"/></proof>
+  <proof prover="4"><result status="valid" time="0.024721" steps="64265"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.25" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.25.0" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="0.133924" steps="14335"/></proof>
+   <proof prover="3"><result status="valid" time="0.133924" steps="14286"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.25.1" expl="precondition" proved="true">
-   <proof prover="4" timelimit="5"><result status="valid" time="3.254424" steps="30111768"/></proof>
+   <proof prover="2"><result status="valid" time="0.776437" steps="4604"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="shape_of_tree&#39;vc.26" expl="precondition" proved="true">
   <transf name="case" proved="true" arg1="(i &lt; k)">
    <goal name="shape_of_tree&#39;vc.26.0" expl="true case (precondition)" proved="true">
-   <proof prover="4"><result status="valid" time="0.029540" steps="66875"/></proof>
+   <proof prover="4"><result status="valid" time="0.029540" steps="62517"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.26.1" expl="false case (precondition)" proved="true">
-   <proof prover="4"><result status="valid" time="0.042028" steps="270118"/></proof>
+   <proof prover="4"><result status="valid" time="0.159458" steps="543011"/></proof>
    </goal>
   </transf>
   </goal>
@@ -573,7 +573,7 @@
   <proof prover="4"><result status="valid" time="0.033435" steps="53086"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.31" expl="postcondition" proved="true">
-  <proof prover="0" timelimit="5"><result status="valid" time="3.104094" steps="182111"/></proof>
+  <proof prover="0" timelimit="5"><result status="valid" time="3.548667" steps="182111"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.32" expl="postcondition" proved="true">
   <transf name="unfold" proved="true" arg1="wf_rst">
@@ -588,7 +588,7 @@
      <proof prover="4"><result status="valid" time="0.030192" steps="78344"/></proof>
      </goal>
      <goal name="shape_of_tree&#39;vc.32.0.1.1" expl="VC for shape_of_tree" proved="true">
-     <proof prover="1"><result status="valid" time="1.984481" steps="8576"/></proof>
+     <proof prover="2"><result status="valid" time="2.464686" steps="6838"/></proof>
      </goal>
     </transf>
     </goal>
@@ -606,7 +606,7 @@
     <goal name="shape_of_tree&#39;vc.33.0.1" expl="postcondition" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="shape_of_tree&#39;vc.33.0.1.0" expl="postcondition" proved="true">
-     <proof prover="3"><result status="valid" time="0.824302" steps="71731"/></proof>
+     <proof prover="3"><result status="valid" time="1.236311" steps="71731"/></proof>
      </goal>
      <goal name="shape_of_tree&#39;vc.33.0.1.1" expl="postcondition" proved="true">
      <transf name="case" proved="true" arg1="(q = p)">
@@ -624,7 +624,7 @@
         <proof prover="4"><result status="valid" time="0.036091" steps="62117"/></proof>
         </goal>
         <goal name="shape_of_tree&#39;vc.33.0.1.1.1.1.1" expl="false case (postcondition)" proved="true">
-        <proof prover="1"><result status="valid" time="0.077006" steps="300"/></proof>
+        <proof prover="2"><result status="valid" time="0.077006" steps="301"/></proof>
         </goal>
        </transf>
        </goal>
@@ -644,10 +644,10 @@
     <goal name="shape_of_tree&#39;vc.33.1.1" expl="postcondition" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="shape_of_tree&#39;vc.33.1.1.0" expl="postcondition" proved="true">
-     <proof prover="3"><result status="valid" time="0.865190" steps="56181"/></proof>
+     <proof prover="3"><result status="valid" time="1.152170" steps="56181"/></proof>
      </goal>
      <goal name="shape_of_tree&#39;vc.33.1.1.1" expl="postcondition" proved="true">
-     <proof prover="3"><result status="valid" time="2.071711" steps="141702"/></proof>
+     <proof prover="3"><result status="valid" time="2.788131" steps="141702"/></proof>
      </goal>
     </transf>
     </goal>
@@ -797,12 +797,12 @@
   <proof prover="4"><result status="valid" time="0.044392" steps="69882"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.19" expl="precondition" proved="true">
-  <transf name="assert" proved="true" arg1="(lts.cell i = (inorder x2)[i])">
+  <transf name="assert" proved="true" arg1="(o4.cell i = (inorder x2)[i])">
    <goal name="shape_of_tree&#39;vc.19.0" expl="asserted formula" proved="true">
-   <proof prover="4"><result status="valid" time="0.037013" steps="69759"/></proof>
+   <proof prover="4" timelimit="5"><result status="valid" time="0.026268" steps="69759"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.19.1" expl="precondition" proved="true">
-   <proof prover="5" timelimit="30"><result status="valid" time="1.209016" steps="109167"/></proof>
+   <proof prover="5" timelimit="5"><result status="valid" time="1.203739" steps="109167"/></proof>
    </goal>
   </transf>
   </goal>
@@ -810,30 +810,30 @@
   <proof prover="4"><result status="valid" time="0.044895" steps="71559"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.21" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.060718" steps="221"/></proof>
+  <proof prover="2"><result status="valid" time="0.060718" steps="221"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.22" expl="precondition" proved="true">
-  <transf name="assert" proved="true" arg1="(lts.cell i = (inorder x2)[i])">
+  <transf name="assert" proved="true" arg1="(o4.cell i = (inorder x2)[i])">
    <goal name="shape_of_tree&#39;vc.22.0" expl="asserted formula" proved="true">
-   <proof prover="4"><result status="valid" time="0.031083" steps="73094"/></proof>
+   <proof prover="4" timelimit="5"><result status="valid" time="0.031647" steps="73094"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.22.1" expl="precondition" proved="true">
-   <transf name="assert" proved="true" arg1="(rts.cell j = (inorder x)[j])">
+   <transf name="assert" proved="true" arg1="(o2.cell j = (inorder x)[j])">
     <goal name="shape_of_tree&#39;vc.22.1.0" expl="asserted formula" proved="true">
-    <proof prover="4"><result status="valid" time="0.034174" steps="73436"/></proof>
+    <proof prover="4" timelimit="5"><result status="valid" time="0.025703" steps="73436"/></proof>
     </goal>
     <goal name="shape_of_tree&#39;vc.22.1.1" expl="precondition" proved="true">
-    <transf name="assert" proved="true" arg1="(rts.cell j = (inorder t)[k + 1 + j])">
+    <transf name="assert" proved="true" arg1="(o2.cell j = (inorder t)[k + 1 + j])">
      <goal name="shape_of_tree&#39;vc.22.1.1.0" expl="asserted formula" proved="true">
-     <proof prover="1"><result status="valid" time="0.074549" steps="319"/></proof>
+     <proof prover="2"><result status="valid" time="0.067157" steps="319"/></proof>
      </goal>
      <goal name="shape_of_tree&#39;vc.22.1.1.1" expl="precondition" proved="true">
-     <transf name="assert" proved="true" arg1="(lts.cell i = (inorder t)[i])">
+     <transf name="assert" proved="true" arg1="(o4.cell i = (inorder t)[i])">
       <goal name="shape_of_tree&#39;vc.22.1.1.1.0" expl="asserted formula" proved="true">
-      <proof prover="4"><result status="valid" time="0.117460" steps="235231"/></proof>
+      <proof prover="2"><result status="valid" time="0.040330" steps="177"/></proof>
       </goal>
       <goal name="shape_of_tree&#39;vc.22.1.1.1.1" expl="precondition" proved="true">
-      <proof prover="4"><result status="valid" time="0.080884" steps="167881"/></proof>
+      <proof prover="4" timelimit="5"><result status="valid" time="0.065028" steps="167881"/></proof>
       </goal>
      </transf>
      </goal>
@@ -850,65 +850,65 @@
   <proof prover="4"><result status="valid" time="0.034326" steps="70338"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.25" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.035831" steps="71319"/></proof>
+  <proof prover="4"><result status="valid" time="0.035831" steps="71369"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.26" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="4.615735" steps="288633"/></proof>
+  <proof prover="3"><result status="valid" time="5.873406" steps="326877"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.27" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.040666" steps="79899"/></proof>
+  <proof prover="4"><result status="valid" time="0.040666" steps="79943"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.28" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.28.0" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.075910" steps="144258"/></proof>
+   <proof prover="4"><result status="valid" time="0.870213" steps="5529944"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.1" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.376061" steps="1742"/></proof>
+   <proof prover="2"><result status="valid" time="0.376061" steps="1507"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.2" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.101891" steps="172575"/></proof>
+   <proof prover="4"><result status="valid" time="0.101891" steps="254655"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.3" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.051563" steps="96384"/></proof>
+   <proof prover="4"><result status="valid" time="0.051563" steps="97050"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.4" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.061714" steps="96507"/></proof>
+   <proof prover="4"><result status="valid" time="0.061714" steps="97577"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.5" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.089964" steps="166803"/></proof>
+   <proof prover="4"><result status="valid" time="0.089964" steps="188845"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.6" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="1.257747" steps="87031"/></proof>
+   <proof prover="3"><result status="valid" time="1.551735" steps="89155"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.28.7" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.070216" steps="131362"/></proof>
+   <proof prover="4"><result status="valid" time="0.070216" steps="98132"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="shape_of_tree&#39;vc.29" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.327082" steps="37472"/></proof>
+  <proof prover="3"><result status="valid" time="0.327082" steps="39341"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.30" expl="precondition" proved="true">
-  <proof prover="4"><result status="valid" time="0.064254" steps="133688"/></proof>
+  <proof prover="4"><result status="valid" time="0.064254" steps="125507"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.31" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.31.0" expl="precondition" proved="true">
-   <proof prover="3"><result status="valid" time="0.151587" steps="18547"/></proof>
+   <proof prover="3"><result status="valid" time="0.151587" steps="18510"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.31.1" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.943678" steps="3972"/></proof>
+   <proof prover="2"><result status="valid" time="0.943678" steps="4275"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="shape_of_tree&#39;vc.32" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="shape_of_tree&#39;vc.32.0" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.078797" steps="130967"/></proof>
+   <proof prover="4"><result status="valid" time="0.078797" steps="133720"/></proof>
    </goal>
    <goal name="shape_of_tree&#39;vc.32.1" expl="precondition" proved="true">
-   <proof prover="4"><result status="valid" time="0.268276" steps="726342"/></proof>
+   <proof prover="2"><result status="valid" time="0.751698" steps="3846"/></proof>
    </goal>
   </transf>
   </goal>
@@ -922,7 +922,7 @@
   <proof prover="4"><result status="valid" time="0.056438" steps="100654"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.36" expl="postcondition" proved="true">
-  <proof prover="0" timelimit="30"><result status="valid" time="9.583273" steps="421490"/></proof>
+  <proof prover="0" timelimit="30"><result status="valid" time="8.218202" steps="421490"/></proof>
   </goal>
   <goal name="shape_of_tree&#39;vc.37" expl="postcondition" proved="true">
   <transf name="unfold" proved="true" arg1="wf_rst">
@@ -932,7 +932,7 @@
     <proof prover="4"><result status="valid" time="0.009591" steps="5901"/></proof>
     </goal>
     <goal name="shape_of_tree&#39;vc.37.0.1" expl="VC for shape_of_tree" proved="true">
-    <proof prover="1"><result status="valid" time="1.802533" steps="7669"/></proof>
+    <proof prover="2"><result status="valid" time="1.802533" steps="10374"/></proof>
     </goal>
    </transf>
    </goal>
@@ -946,19 +946,19 @@
    <goal name="shape_of_tree&#39;vc.38.1" expl="postcondition" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="shape_of_tree&#39;vc.38.1.0" expl="postcondition" proved="true">
-    <proof prover="1"><result status="valid" time="1.353773" steps="6804"/></proof>
+    <proof prover="2"><result status="valid" time="1.353773" steps="7634"/></proof>
     </goal>
     <goal name="shape_of_tree&#39;vc.38.1.1" expl="postcondition" proved="true">
     <transf name="assert" proved="true" arg1="(length (inorder t) = ts2.size)">
      <goal name="shape_of_tree&#39;vc.38.1.1.0" expl="asserted formula" proved="true">
-     <proof prover="3"><result status="valid" time="4.922974" steps="335875"/></proof>
+     <proof prover="3"><result status="valid" time="4.020097" steps="335875"/></proof>
      </goal>
      <goal name="shape_of_tree&#39;vc.38.1.1.1" expl="postcondition" proved="true">
      <transf name="assert" proved="true" arg1="(forall i. 0 &lt;= i &lt; ts2.size -&gt; ts2.cell i = (inorder t)[i])">
       <goal name="shape_of_tree&#39;vc.38.1.1.1.0" expl="asserted formula" proved="true">
       <transf name="split_vc" proved="true" >
        <goal name="shape_of_tree&#39;vc.38.1.1.1.0.0" expl="asserted formula" proved="true">
-       <proof prover="1"><result status="valid" time="1.023949" steps="4515"/></proof>
+       <proof prover="2"><result status="valid" time="1.549413" steps="7338"/></proof>
        </goal>
       </transf>
       </goal>
