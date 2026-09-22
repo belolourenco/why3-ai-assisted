@@ -103,7 +103,7 @@ let rec t_neg f =
     | Tnot g -> tac g
     | Tbinop (Tand,g,h) when Sattr.mem asym_split g.t_attrs ->
                               tac @@ t_implies g (t_neg h)
-    | Tbinop (Tand,g,h) -> tac @@ t_or (t_neg g) (t_neg h)
+    | Tbinop (Tand,g,h) -> tac @@ add_case_split @@ t_or (t_neg g) (t_neg h)
     | Tbinop (Tor,g,h) -> tac @@ t_and (t_neg g) (t_neg h)
     | Tbinop (Timplies,g,h) ->    tac @@ t_and g (t_neg h)
     | Tquant (q,b) ->
