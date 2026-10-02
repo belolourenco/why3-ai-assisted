@@ -45,7 +45,7 @@
      <goal name="nth_flatten&#39;vc.2.0.0.0" expl="true case (postcondition)" proved="true">
      <transf name="destruct_term_subst" proved="true" arg1="x1">
       <goal name="nth_flatten&#39;vc.2.0.0.0.0" expl="true case (postcondition)" proved="true">
-      <transf name="compute_in_goal" proved="true" >
+      <transf name="compute" proved="true" >
       </transf>
       </goal>
      </transf>

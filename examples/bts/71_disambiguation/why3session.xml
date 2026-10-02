@@ -8,7 +8,7 @@
 <theory name="M" proved="true">
  <goal name="g" proved="true">
  <proof prover="0"><result status="valid" time="0.010000" steps="18"/></proof>
- <transf name="compute_in_goal" proved="true" >
+ <transf name="compute" proved="true" >
  </transf>
  </goal>
 </theory>

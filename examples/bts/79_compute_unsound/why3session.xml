@@ -10,7 +10,11 @@
  <proof prover="1"><result status="valid" time="0.050000" steps="12253"/></proof>
  </goal>
  <goal name="Fail">
- <transf name="compute_specified" >
+ <transf name="compute" arg1="nodef">
+  <goal name="Fail.0">
+  </goal>
+ </transf>
+ <transf name="compute" >
   <goal name="Fail.0">
   </goal>
  </transf>

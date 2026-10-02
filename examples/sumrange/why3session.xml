@@ -124,14 +124,14 @@
   <goal name="sum_update.0" proved="true">
   <transf name="induction" proved="true" arg1="h" arg2="from" arg3="i+1">
    <goal name="sum_update.0.0" expl="base case" proved="true">
-   <transf name="compute_in_goal" proved="true" >
+   <transf name="compute" proved="true" >
     <goal name="sum_update.0.0.0" expl="base case" proved="true">
     <proof prover="5"><result status="valid" time="0.070000" steps="13501"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="sum_update.0.1" expl="recursive case" proved="true">
-   <transf name="compute_in_goal" proved="true" >
+   <transf name="compute" proved="true" >
     <goal name="sum_update.0.1.0" expl="recursive case" proved="true">
     <proof prover="5"><result status="valid" time="0.040000" steps="8740"/></proof>
     </goal>

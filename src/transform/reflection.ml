@@ -554,8 +554,10 @@ let build_goals do_trans renv prev mapdecls defdecls subst env lp g rt =
   let task_r = Task.add_decl (Task.add_decl prev d_r) d in
   Debug.dprintf debug_refl "building cut indication rt %a g %a@."
     Pretty.print_term rt Pretty.print_term g;
-  let compute_hyp_few pr = Compute.normalize_hyp_few None (Some pr) env in
-  let compute_in_goal = Compute.normalize_goal_transf_all env in
+  let compute_hyp_few pr =
+    Compute.compute_in_hypothesis None ~defs:false ~branches:false (Some pr) env
+  in
+  let compute_in_goal = Compute.compute_in_goal ~defs:true ~branches:false env in
   let ltask_r =
     try let ci =
           match (rt.t_node, g.t_node) with

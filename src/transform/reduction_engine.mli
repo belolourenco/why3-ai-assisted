@@ -78,6 +78,7 @@ type engine
 type params = {
   compute_defs : bool;
   compute_builtin : bool;
+  compute_in_branches : bool;
   compute_def_set : Term.Sls.t;
   compute_max_quantifier_domain : int;
 }
