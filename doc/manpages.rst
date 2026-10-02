@@ -1812,7 +1812,7 @@ This includes the validation of assertions, function contracts, and loop
 invariants [#no-type-invars]_.
 
 There are two strategies to check the validity of an annotation: First, the term
-is reduced using the Why3 transformation ``compute_in_goal``. The annotation is
+is reduced using the Why3 transformation ``compute``. The annotation is
 valid when the result of the reduction is `true` and invalid when the result is
 `false`. When the transformation cannot reduce the term to a trivial term, and
 when a RAC prover is given using option :option:`--rac-prover`, the prover is
