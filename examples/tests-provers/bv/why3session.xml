@@ -478,7 +478,7 @@
  </goal>
  <goal name="g3b" proved="true">
  <proof prover="1" timelimit="5"><result status="valid" time="1.006846"/></proof>
- <transf name="compute_in_goal" proved="true" >
+ <transf name="compute" proved="true" >
   <goal name="g3b.0" proved="true">
   <proof prover="1"><result status="valid" time="0.680737"/></proof>
   <proof prover="13"><result status="valid" time="0.010000" steps="95562"/></proof>

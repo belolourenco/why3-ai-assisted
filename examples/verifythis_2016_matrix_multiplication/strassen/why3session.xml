@@ -871,7 +871,7 @@
     <goal name="strassen&#39;vc.150.0.0" expl="precondition" proved="true">
     <transf name="compute_specified" proved="true" >
      <goal name="strassen&#39;vc.150.0.0.0" expl="precondition" proved="true">
-     <proof prover="7"><result status="valid" time="0.389321" steps="1242"/></proof>
+     <proof prover="7"><result status="valid" time="0.239512" steps="1242"/></proof>
      </goal>
     </transf>
     </goal>

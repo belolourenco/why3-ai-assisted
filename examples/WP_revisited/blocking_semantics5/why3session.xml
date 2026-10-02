@@ -347,7 +347,7 @@
     <goal name="eval_change_free.0.10.0" proved="true">
     <transf name="subst" proved="true" arg1="f">
      <goal name="eval_change_free.0.10.0.0" proved="true">
-     <transf name="compute_in_goal" proved="true" >
+     <transf name="compute" proved="true" >
       <goal name="eval_change_free.0.10.0.0.0" proved="true">
       <transf name="destruct_term" proved="true" arg1="x1">
        <goal name="eval_change_free.0.10.0.0.0.0" proved="true">

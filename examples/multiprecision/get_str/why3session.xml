@@ -3175,7 +3175,7 @@
   <goal name="wmpn_get_str_other&#39;vc.192" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="wmpn_get_str_other&#39;vc.192.0" expl="assertion" proved="true">
-   <transf name="compute_in_goal" proved="true" >
+   <transf name="compute" proved="true" >
     <goal name="wmpn_get_str_other&#39;vc.192.0.0" expl="assertion" proved="true">
     <proof prover="1"><result status="valid" time="2.570000"/></proof>
     </goal>

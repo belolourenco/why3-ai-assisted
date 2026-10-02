@@ -710,7 +710,7 @@
    <goal name="list_reversal&#39;vc.31.0" expl="true case (loop invariant preservation)" proved="true">
    <transf name="rewrite" proved="true" arg1="h">
     <goal name="list_reversal&#39;vc.31.0.0" expl="true case (loop invariant preservation)" proved="true">
-    <transf name="compute_in_goal" proved="true" >
+    <transf name="compute" proved="true" >
      <goal name="list_reversal&#39;vc.31.0.0.0" expl="true case (loop invariant preservation)" proved="true">
      <proof prover="7"><result status="valid" time="0.032791" steps="5664"/></proof>
      </goal>
