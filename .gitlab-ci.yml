@@ -192,7 +192,7 @@ opam-full:
 
 trywhy3-extra:
   stage: build
-  image: "debian:bullseye-slim"
+  image: "debian:trixie-slim"
   script:
     - misc/ci-trywhy3.sh
   when: manual
