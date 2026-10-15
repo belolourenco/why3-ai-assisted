@@ -80,6 +80,9 @@ val interp:
   Controller_itp.controller ->
   Session_itp.any option -> string -> command
 
+(** How arguments are splited for commands (and so transformations) *)
+val split_args: string -> string * string list
+
 (** Find the next goal from the current node (using heuristic st).
    @param st          use heuristic st
    @param always_send if true then always returns something
