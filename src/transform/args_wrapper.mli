@@ -114,6 +114,13 @@ val wrap   : ('a, task) trans_typ -> 'a -> Trans.trans_with_args
 
 val wrap_and_register : desc:Pp.formatted -> string -> ('a, 'b) trans_typ -> 'a -> unit
 
+(** [Pack t] hides the type parameters of a [trans_typ] *)
+type packed_trans_typ = Pack : ('a, 'b) trans_typ -> packed_trans_typ
+
+(** [get_trans_typ name] is the [trans_typ] with which the transformation
+    [name] was registered by [wrap_and_register], if any. *)
+val get_trans_typ : string -> packed_trans_typ option
+
 val parse_and_type_list : lang:string -> as_fmla:bool -> string -> Trans.naming_table -> Term.term list
 
 val set_argument_parsing_functions:
