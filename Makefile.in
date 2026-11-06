@@ -341,6 +341,7 @@ install-data::
 	$(INSTALL_DATA) extraction_drivers/*.drv $(DATADIR)/why3/extraction_drivers
 	$(INSTALL_DATA) LICENSE $(DATADIR)/why3/
 	$(INSTALL_DATA) share/provers-detection-data.conf $(DATADIR)/why3/
+	$(INSTALL_DATA) share/coqagent.conf.example $(DATADIR)/why3/
 	$(INSTALL_DATA) share/why3session.dtd $(DATADIR)/why3
 	$(INSTALL_DATA) share/Makefile.config $(DATADIR)/why3
 	$(INSTALL_DATA) share/vim/ftdetect/why3.vim $(DATADIR)/why3/vim/ftdetect/why3.vim

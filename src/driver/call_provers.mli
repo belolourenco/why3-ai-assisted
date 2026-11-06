@@ -179,5 +179,14 @@ val interrupt_call : config:Whyconf.main -> prover_call -> unit
 val wait_on_call : prover_call -> prover_result
 (** blocking function that waits until the prover finishes. *)
 
+val call_worker :
+  timeout:float -> max_parallel:int ->
+  ?on_finish:(prover_result -> prover_result) ->
+  ?on_interrupt:(unit -> unit) ->
+  (unit -> prover_result) -> prover_call
+(** Run isolated local orchestration asynchronously. Results and publication
+    callbacks are delivered in the parent. Elapsed limits and interruption kill
+    the worker's process group. This does not use the prover-server socket. *)
+
 val debug_attrs : Debug.flag
 (** Print attributes in model *)

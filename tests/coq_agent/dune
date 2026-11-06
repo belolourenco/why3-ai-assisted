@@ -1,0 +1,17 @@
+(tests
+ (names config_test native_config_test detection_test validation_test integration_test worker_test compatibility_test isolation_test script_allocation_test local_worker_test script_gate_test)
+ (modules config_test native_config_test detection_test validation_test integration_test worker_test compatibility_test isolation_test script_allocation_test local_worker_test script_gate_test)
+ (libraries why3 unix)
+ (deps ../../share/coqagent.conf.example
+       ../../examples_in_progress/bigInt.mlw
+       (source_tree ../../lib/coq)
+       (source_tree ../../drivers)
+       (source_tree ../../stdlib)
+       fake_codex.exe
+       ../../lib/why3server
+       ../../lib/why3cpulimit))
+
+(executable
+ (name fake_codex)
+ (modules fake_codex)
+ (libraries why3 unix))

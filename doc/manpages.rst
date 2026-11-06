@@ -83,6 +83,10 @@ particular, option :option:`--help` displays the usage and options.
 
    Read additional configuration from the given file. See :numref:`sec.whyconffile`.
 
+.. option:: --coq-agent-profile=<name>
+
+   Override the default model profile in the Coq agent configuration.
+
 .. option:: --list-debug-flags
 
    List all the known debug flags. Flags marked by a star are those
@@ -251,6 +255,13 @@ This command lists the names, versions, and alternatives of all the
 provers present in :file:`why3.conf`. Those are the values expected by
 :option:`why3 prove --prover`.
 
+Each configured Coq prover also has an ``AI-assisted`` companion, for example
+``Coq 8.20.1 (AI-assisted)``. The companion inherits its Coq executable, version,
+driver and checking options. The shortcut ``coq-agent`` is separate from ``coq``;
+normal Coq editing is unaffected. Companions do not enter the generated automatic
+strategies. Explicit selection generates or repairs a proof using Codex; replay
+checks the saved proof without invoking Codex. See :ref:`sec.coq-agent`.
+
 .. why3:tool:: config list-supported-provers
 
 Command ``list-supported-provers``
@@ -268,6 +279,41 @@ This command shows the expanded version of the configuration file. In
 particular, all the ``[partial_prover]`` sections are expanded into
 complete ``[prover]`` sections. Automatically generated ``[strategy]``
 sections are also shown.
+
+.. why3:tool:: config show-coq-agent
+
+Command ``show-coq-agent``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This command validates and displays the effective Coq agent configuration as
+native Why3 sections. It does not start Codex, check login state, resolve
+API-key environment variables, or make model calls. Native ``[coq_agent]`` and
+named ``[coq_agent_profile proof]`` sections in the normal Why3 configuration are
+the only supported configuration format. ``--extra-config`` merges overrides
+field by field, including individual profile fields. Missing agent settings
+produce an error when generation is requested; there is no JSON fallback or
+separate agent configuration file. Use :option:`--coq-agent-profile` to choose
+a named model profile.
+
+Append the distributed :file:`coqagent.conf.example` to your Why3 configuration and
+replace its model placeholder with a model available to your Codex account.
+The default authentication mode is ``chatgpt``; no API key belongs in this mode.
+Use ``codex login`` separately when setting up Codex. Optional ``api_key`` mode
+uses ``api_key_env``; literal keys are refused. Keys are never included in
+Why3 configuration, ordinary prover records, or sessions.
+
+For example::
+
+    why3 config show-coq-agent
+    why3 config show-coq-agent --coq-agent-profile=quick
+
+The loader rejects unknown or duplicate fields, unsupported authentication modes,
+empty/placeholder model IDs or keys, undefined profiles and nonpositive budgets.
+Relative executable paths containing a directory are resolved against the file
+defining them; a bare ``codex`` is resolved through the executable search path.
+Codex capabilities and login mode are checked before generation. Model and
+reasoning-effort availability are checked by Codex when the request is made;
+there is no automatic model or authentication fallback.
 
 .. why3:tool:: prove
 .. _sec.why3prove:
@@ -330,6 +376,37 @@ The :why3:tool:`prove` command executes the following steps:
 #. Derive a validated counterexample using runtime-assertion checking, if option
    :option:`--check-ce` is given and the selected prover generated a
    counterexample.
+
+Coq-agent proofs
+~~~~~~~~~~~~~~~
+
+Selecting ``-P coq-agent`` requests generation and independent Coq validation.
+The configured agent profile supplies the generation budget; the usual default
+automatic-prover time limit is not applied to agent jobs. An explicit ``-t``
+can shorten the total elapsed deadline, and ``-m`` can lower the configured
+Coq-check memory bound. Steps limits are unsupported for this backend.
+Option ``-o`` still only prints proof skeletons, without contacting a model.
+
+.. option:: --coq-agent-output=<dir>
+
+   Save independently checked Coq scripts in this directory. By default, the
+   directory is named after the input path without its extension, followed by
+   ``_coq_agent``. File names use the normal Coq driver's task naming convention.
+   An accepted script has a nonsecret ``.coqagent.json`` provenance sidecar.
+
+.. option:: --coq-agent-check
+
+   Check scripts at the same output location without generation, login, model
+   access, or loading agent settings. This is also the behavior of session
+   replay. Missing or invalid proofs never trigger an automatic repair.
+
+For example::
+
+    why3 prove -P coq-agent --coq-agent-output=proofs program.mlw
+    why3 prove -P coq-agent --coq-agent-output=proofs --coq-agent-check program.mlw
+
+Both options require an agent-backed prover. Detailed setup, checking policy,
+and limitations are described in :ref:`sec.coq-agent`.
 
 Prover Results
 ~~~~~~~~~~~~~~

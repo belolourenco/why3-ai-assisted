@@ -192,6 +192,7 @@ pvsbin/
 /tests/python/*/why3shapes.gz
 /tests/microc/*/why3session.xml
 /tests/microc/*/why3shapes.gz
+/tests/coq_agent/_build/
 
 # /examples/
 /examples/use_api/results
@@ -287,3 +288,6 @@ trywhy3.tar.gz
 # Opam
 
 /_opam
+
+# Local Dune invocations in the Coq agent tests
+/tests/coq_agent/_build/

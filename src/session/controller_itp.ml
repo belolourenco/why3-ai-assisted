@@ -300,6 +300,8 @@ type sched_pa_rec =
     spa_pr       : Whyconf.prover;
     spa_limits   : Call_provers.resource_limits;
     spa_pr_scr   : string option;
+    spa_agent_mode : Coq_agent.mode;
+    spa_is_current : unit -> bool;
     spa_callback : (proof_attempt_status -> unit);
     spa_ores     : Call_provers.prover_result option
   }
@@ -419,8 +421,6 @@ let build_prover_call spa =
   let (config_pr,driver) = Hprover.find c.controller_provers spa.spa_pr in
   let with_steps =
     Call_provers.(limits.limit_steps > empty_limits.limit_steps) in
-  let command =
-    Whyconf.get_complete_command config_pr ~with_steps in
   match Session_itp.get_task c.controller_session spa.spa_id with
   | exception Not_found (* goal has no task, it is detached *) ->
     spa.spa_callback Detached
@@ -431,8 +431,15 @@ let build_prover_call spa =
     let interactive = config_pr.Whyconf.interactive in
     let main = Whyconf.get_main c.controller_config in
     try
-      let call = Driver.prove_task ?old:spa.spa_pr_scr ~inplace ~command
-          ~limits ~interactive ~config:main driver task in
+      let call = match config_pr.Whyconf.agent with
+        | Some _ ->
+            let script = Option.get spa.spa_pr_scr in
+            Coq_agent.prove_task ~mode:spa.spa_agent_mode ~main ~prover:config_pr
+              ~driver ~script ~is_current:spa.spa_is_current task
+        | None ->
+            let command = Whyconf.get_complete_command config_pr ~with_steps in
+            Driver.prove_task ?old:spa.spa_pr_scr ~inplace ~command
+              ~limits ~interactive ~config:main driver task in
       let pa =
         { tp_id       = spa.spa_id;
           tp_callback = spa.spa_callback;
@@ -440,7 +447,7 @@ let build_prover_call spa =
           tp_call     = call;
           tp_ores     = spa.spa_ores } in
       Hashtbl.replace prover_tasks_in_progress call pa
-    with Sys_error _ as e ->
+    with (Sys_error _ | Unix.Unix_error _ | Coq_agent_config.Error _ | Coq_agent_validation.Rejected _) as e ->
       spa.spa_callback (InternalFailure e)
 
 let update_observer () =
@@ -608,7 +615,9 @@ let run_idle_handler () =
       S.timeout ~ms:default_delay_ms timeout_handler;
     end
 
-let schedule_proof_attempt ?(adjust_limits = true) ?proof_script_filename c id pr
+
+let schedule_proof_attempt ?(adjust_limits = true) ?proof_script_filename
+    ?(agent_mode=Coq_agent.Check) c id pr
     ~limits ~callback ~notification =
   let ses = c.controller_session in
   Debug.dprintf debug_sched "schedule_proof_attempt called@.";
@@ -666,13 +675,26 @@ let schedule_proof_attempt ?(adjust_limits = true) ?proof_script_filename c id p
       limits, old_res, script
     with Not_found | Session_itp.BadID -> limits,None,proof_script_filename
   in
-  let panid = graft_proof_attempt ~limits ses id pr in
+  let config_pr,_ = Hprover.find c.controller_provers pr in
+  let file = if config_pr.Whyconf.agent = None then None else
+    Option.map (Sysutil.relativize_filename (get_dir ses)) proof_script in
+  let panid = graft_proof_attempt ?file ~limits ses id pr in
+  let proof_script = if config_pr.Whyconf.agent = None then proof_script else
+    let driver = snd (Hprover.find c.controller_provers pr) in
+    let filename = Coq_agent_session.prepare ~mode:agent_mode ~session:ses ~driver ?file id pr in
+    if agent_mode = Coq_agent.Generate then update_goal_node notification ses id;
+    Some filename in
+  let is_current = if config_pr.Whyconf.agent = None then (fun () -> true) else
+    Coq_agent_session.guard ~session:ses ~current_session:(fun () -> c.controller_session)
+      ~goal:id ~attempt:panid ~prover:pr in
   let spa =
     { spa_contr    = c;
       spa_id       = id;
       spa_pr       = pr;
       spa_limits   = adaptlimits;
       spa_pr_scr   = proof_script;
+      spa_agent_mode = agent_mode;
+      spa_is_current = is_current;
       spa_callback = callback panid;
       spa_ores     = ores } in
   Queue.add spa scheduled_proof_attempts;
@@ -684,74 +706,12 @@ let schedule_proof_attempt ?(adjust_limits = true) ?proof_script_filename c id p
 
 (*** { 2 edition of proof scripts} *)
 
-(* create the path to a file for saving the external proof script *)
-let create_file_rel_path c pr pn =
-  let session = c.controller_session in
-  let driver = snd (Hprover.find c.controller_provers pr) in
-  let task = Session_itp.get_task session pn in
-  let session_dir = Session_itp.get_dir session in
-  let th = get_encapsulating_theory session (APn pn) in
-  let th_name = (Session_itp.theory_name th).Ident.id_string in
-  let f = get_encapsulating_file session (ATh th) in
-  let fn = Filename.chop_extension (Sysutil.basename (file_path f)) in
-  let file = Driver.file_of_task driver fn th_name task in
-  let file = Filename.concat session_dir file in
-  let file = Sysutil.uniquify file in
-  Sysutil.relativize_filename session_dir file
-
 let prepare_edition c ?file pn pr ~notification =
   let session = c.controller_session in
-  let proof_attempts_id = get_proof_attempt_ids session pn in
-  let panid =
-    try
-      let panid = Hprover.find proof_attempts_id pr in
-      (* if no proof script yet, we need to add one
-         it happens e.g when editing a file for an automatic prover
-       *)
-      let pa = get_proof_attempt_node session panid in
-      match pa.proof_script with
-      | None ->
-         let file = match file with
-           | Some f -> f
-           | None -> create_file_rel_path c pr pn
-         in
-         set_proof_script pa file;
-         panid
-      | Some _ -> panid
-    with Not_found ->
-      let file = match file with
-        | Some f -> f
-        | None -> create_file_rel_path c pr pn
-      in
-      let limits = Call_provers.empty_limits in
-      graft_proof_attempt session pn pr ~file ~limits
-  in
-  update_goal_node notification session pn;
-  let pa = get_proof_attempt_node session panid in
-  let file = Option.get pa.proof_script in
-  let old_res = pa.proof_state in
-  let session_dir = Session_itp.get_dir session in
-  let file = Sysutil.system_dependent_absolute_path session_dir file in
-  let old =
-    if Sys.file_exists file
-    then
-      begin
-        let backup = file ^ ".bak" in
-        if Sys.file_exists backup
-        then Sys.remove backup;
-        Sys.rename file backup;
-        Some(open_in backup)
-      end
-    else None
-  in
-  let ch = open_out file in
-  let fmt = formatter_of_out_channel ch in
-  let task = Session_itp.get_task session pn in
   let driver = snd (Hprover.find c.controller_provers pr) in
-  Driver.print_task ?old driver fmt task;
-  Option.iter close_in old;
-  close_out ch;
-  panid,file,old_res
+  let result = Session_script.prepare ~session ~driver ?file ~keep_existing:false pn pr in
+  update_goal_node notification session pn;
+  result
 
 exception Editor_not_found
 

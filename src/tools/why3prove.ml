@@ -131,6 +131,9 @@ let opt_timelimit = ref None
 let opt_stepslimit = ref None
 let opt_memlimit = ref None
 let opt_command = ref None
+let opt_agent = ref None
+let opt_agent_output = ref None
+let opt_agent_check = ref false
 let opt_task = ref None
 
 let opt_print_theory = ref false
@@ -141,6 +144,10 @@ let option_list =
   let open Getopt in
   [ Key ('T', "theory"), Hnd1 (AString, add_opt_theory),
     "<theory> select <theory> in the input file or in the library";
+    KLong "coq-agent-output", Hnd1 (AString, fun dir -> opt_agent_output := Some dir),
+    "<dir> retain checked agent proofs in <dir> (default: <input>_coq_agent)";
+    KLong "coq-agent-check", Hnd0 (fun () -> opt_agent_check := true),
+    " check retained agent proofs without starting Codex";
     Key ('G', "goal"), Hnd1 (AString, add_opt_goal),
     "<goal> select <goal> in the last selected theory";
     Key ('a', "apply-transform"), Hnd1 (AString, add_opt_trans),
@@ -225,11 +232,16 @@ let () = try
     let filter_prover = Whyconf.parse_filter_prover s in
     let prover = Whyconf.filter_one_prover config filter_prover in
     let with_steps = !opt_stepslimit <> None in
-    opt_command := Some (Whyconf.get_complete_command prover ~with_steps);
+    begin match prover.Whyconf.agent with
+    | None -> opt_command := Some (Whyconf.get_complete_command prover ~with_steps)
+    | Some _ -> opt_agent := Some prover; opt_command := Some "";
+        if with_steps then fail "Agent generation does not support a steps limit.@."
+    end;
     let (d,f) = prover.driver in
     opt_driver := Some(d,f,prover.extra_drivers);
     if !opt_timelimit = None then
-      opt_timelimit := Some (if prover.interactive then 0. else Whyconf.timelimit main);
+      opt_timelimit := Some (if prover.interactive || prover.agent <> None then 0.
+                            else Whyconf.timelimit main);
     if !opt_memlimit = None then
       opt_memlimit := Some (if prover.interactive then 0 else Whyconf.memlimit main);
   | None ->
@@ -242,6 +254,9 @@ let () = try
     if !opt_driver = None && not !opt_print_namespace then
       opt_print_theory := true
   end;
+
+  if !opt_agent = None && (!opt_agent_output <> None || !opt_agent_check) then
+    fail "Options --coq-agent-output and --coq-agent-check require an agent prover.@.";
 
   let add_meta task (meta,s) =
     let meta = lookup_meta meta in
@@ -425,10 +440,24 @@ let do_task config env drv fname tname (th : Theory.theory) (task : Task.task) =
       limit_steps = stepslimit } in
   match !opt_output, !opt_command with
     | None, Some command ->
-        let call =
-          Driver.prove_task ~command ~config ~limits drv task
+        let call = match !opt_agent with
+          | None -> Driver.prove_task ~command ~config ~limits drv task
+          | Some prover ->
+              let stem = try Filename.chop_extension fname with Invalid_argument _ -> fname in
+              let dir = Option.value ~default:(stem ^ "_coq_agent") !opt_agent_output in
+              if not (Sys.file_exists dir) then Unix.mkdir dir 0o700;
+              let file = Driver.file_of_task drv (Filename.basename stem) tname task in
+              let script = Filename.concat dir file in
+              let fingerprint () = if Sys.file_exists fname then Some (Digest.file fname) else None in
+              let original = fingerprint () in
+              Coq_agent.prove_task
+                ~mode:(if !opt_agent_check then Coq_agent.Check else Coq_agent.Generate)
+                ~main:config ~prover ~driver:drv ~script ~wall_time:timelimit ~check_memory:memlimit
+                ~is_current:(fun () -> fingerprint () = original) task
         in
         let res = wait_on_call call in
+        if !opt_agent <> None && res.pr_answer <> Valid then
+          eprintf "%s@." res.pr_output;
         let t = task_goal_fmla task in
         let expls = Termcode.get_expls_fmla t in
         let known_map = th.th_known in

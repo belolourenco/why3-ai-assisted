@@ -28,6 +28,11 @@ the following order:
 
 If none of these files exist, a built-in default configuration is used.
 
+AI-assisted Coq settings are stored in this same file, using ``[coq_agent]``
+and named ``[coq_agent_profile proof]`` sections. See :ref:`sec.coq-agent` for
+the schema, credential policy, and overlay precedence. Separate JSON agent
+configuration files are not supported.
+
 A section begins with a header inside square brackets and ends at the
 beginning of the next section. The header of a section can be a single
 identifier, e.g., ``[main]``, or it can be composed by a family name and a

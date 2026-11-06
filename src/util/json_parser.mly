@@ -21,6 +21,7 @@ Ocaml by Yaron Minsky, Anil Madhavapeddy, and Jason Hickey. Their
 (* A JSON text can actually be any JSON value *)
 
 %start <Json_base.json> value
+%start <Json_base.json> document
 %token <int> INT
 %token <float> FLOAT
 %token <string> STRING
@@ -34,6 +35,31 @@ Ocaml by Yaron Minsky, Anil Madhavapeddy, and Jason Hickey. Their
 %token COMMA
 %token EOF
 %%
+
+/* Complete documents distinguish empty objects from null and require EOF.
+   Keep the legacy value entry point unchanged for existing protocol users. */
+document:
+| document_value EOF { $1 }
+
+document_value:
+| STRING { Json_base.String $1 }
+| INT { Json_base.Int $1 }
+| FLOAT { Json_base.Float $1 }
+| TRUE { Json_base.Bool true }
+| FALSE { Json_base.Bool false }
+| NULL { Json_base.Null }
+| LEFTBRC RIGHTBRC { Json_base.Record [] }
+| LEFTBRC document_members RIGHTBRC { Json_base.Record (List.rev $2) }
+| LEFTSQ RIGHTSQ { Json_base.List [] }
+| LEFTSQ document_elements RIGHTSQ { Json_base.List (List.rev $2) }
+
+document_members:
+| STRING COLON document_value { [($1, $3)] }
+| document_members COMMA STRING COLON document_value { ($3, $5) :: $1 }
+
+document_elements:
+| document_value { [$1] }
+| document_elements COMMA document_value { $3 :: $1 }
 
 json_object:
 | EOF { Json_base.Null }

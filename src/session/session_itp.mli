@@ -223,7 +223,8 @@ val graft_proof_attempt : ?file:Sysutil.file_path -> session -> proofNodeID ->
     updates it with the limits. It returns the id of the
     generated proof attempt.
     For manual proofs, it has the same behaviour except that it adds a
-    proof_script field equal to [file].
+    proof_script field equal to [file] when supplied, including when updating an
+    existing attempt. Omitting [file] preserves an existing script association.
 *)
 
 exception NoProgress

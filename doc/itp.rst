@@ -22,6 +22,154 @@ between the use of a dedicated editor and the use of the Emacs editor
 and the ProofGeneral mode. Selection of the preferred mode can be made
 in :menuselection:`File --> Preferences`, under the :guilabel:`Editors` tab.
 
+.. _sec.coq-agent:
+
+AI-assisted Coq proofs
+----------------------
+
+Each usable Coq installation has an additional ``AI-assisted`` alternative.
+For example, ``Coq 8.20.1 (AI-assisted)`` uses the executable, driver, checking
+options, and support library of ``Coq 8.20.1``. No version is hardcoded.
+The ordinary ``coq`` shortcut remains unchanged; ``coq-agent`` selects the
+companion. Agents are excluded from generated automatic strategies.
+
+Setup
+~~~~~
+
+Install a Codex CLI supporting non-interactive execution, strict configuration,
+permission profiles, ``--ignore-user-config``, and ``--ignore-rules``. The tested
+interface is Codex CLI 0.163.0 on Linux. Authenticate outside Why3 using
+``codex login`` and confirm ``codex login status`` reports ChatGPT login.
+Why3 never opens a login prompt, reads the login cache, or changes the login.
+
+Agent settings belong in the normal Why3 configuration: :file:`why3.conf` for
+a local checkout or :file:`~/.why3.conf` for an installed Why3. Append the sections
+from :file:`coqagent.conf.example`, replacing the model placeholder with a model
+available to your account. For example::
+
+    [coq_agent]
+    auth = "chatgpt"
+    executable = "codex"
+    default_profile = "proof"
+
+    [coq_agent_profile proof]
+    model = "YOUR_MODEL_ID"
+    reasoning_effort = "high"
+    wall_time_seconds = 600
+    max_generation_attempts = 2
+
+Use an absolute executable path if ``codex`` is not on ``PATH``. Directory-bearing
+relative paths are relative to the configuration file containing the setting.
+``--extra-config`` can override individual agent settings and profile fields.
+The default ``chatgpt`` mode requires no API key. Optional API authentication uses
+``auth = "api_key"`` and ``api_key_env = "OPENAI_API_KEY"``; literal keys are not
+allowed in the native Why3 configuration. Codex still owns its ChatGPT login.
+There is no fallback between authentication modes or models.
+
+Both discovery and saving IDE preferences preserve the native agent sections.
+These sections are the only supported configuration format: JSON configuration
+files, their override flag, and the former import command are not supported.
+Use ``-C``/``--config`` or ``--extra-config`` to select Why3 configuration files.
+``--coq-agent-profile``
+overrides per-prover ``agent_profile``, which overrides the configured default.
+The common flags also apply when starting the IDE. ``why3 config show-coq-agent``
+validates and prints effective settings as native sections without starting Codex.
+
+Generation and replay
+~~~~~~~~~~~~~~~~~~~~~
+
+Explicitly select the companion to generate or repair a proof. A saved proof
+that still passes validation is reused without a model call. Successful proofs
+are stored at the session-relative ``proof_script`` path and may be inspected
+or edited normally. Generic scheduling, proof copying and session replay only
+check existing scripts; repair always requires explicit generation.
+
+``why3 prove -P coq-agent`` uses the same service and saves proofs in
+:file:`<input-without-extension>_coq_agent/`. Override this with
+``--coq-agent-output``. Add ``--coq-agent-check`` for offline checking. As with
+other provers, ``-o`` is output-only and never invokes the agent.
+
+Each accepted proof has a :file:`.coqagent.json` sidecar recording the Coq/model
+versions, profile, elapsed/check time, invocation count, and available numerical
+token-usage events. It contains no credentials. Replay does not depend on this
+sidecar, Codex installation, agent settings, or login.
+
+Validation and isolation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+A zero Coq exit status is insufficient: both ``Admitted`` and ``Abort`` can
+succeed. A separate, restricted-script gate requires the generated context and
+theorem declaration to remain unchanged, apart from comments and whitespace.
+Additional imports before the goal are moved inside ``Proof``, so Coq elaborates
+the original VC before any agent-supplied command. The proof must end with
+``Qed`` or ``Defined``, with no trailing commands. Sentence heads are restricted
+to supported Ltac1 tactics, imports and scope commands. Other vernacular,
+including ``Reset``, declarations, notations, ML loading and checking options,
+is rejected. Helpers must be local facts proved using ``assert`` or similar
+tactics, not top-level lemmas; existing scripts with global helpers need to be
+migrated before agent replay.
+
+Why3 then uses ordinary Coq regeneration and the configured original Coq
+checking command on the approved standalone script. A small compiled-result
+audit verifies the expected theorem exists and uses ``coqchk`` to check the
+compiled proof, reject unsafe declarations and compare assumptions with the
+original generated context. No module-signature mechanism, imported baseline
+proof context or alternative tactic replay is used. Fresh compiled objects are
+required; old objects cannot stand in for a newly checked candidate. Only the
+exact checked standalone bytes are published.
+
+Installed compiled libraries selected by the original Coq configuration remain
+trusted inputs. Their dependencies are not recursively rechecked on every
+attempt. Imports introducing assumptions absent from the baseline are rejected;
+this deliberately conservative policy can also reject otherwise valid scripts.
+The source-preservation parser is not the safety gate. The restricted command
+policy deliberately rejects unsupported syntax rather than accepting arbitrary
+Coq scripts. Coq, its configured environment and installed library/plugin
+artifacts remain trusted inputs; this is not a formal proof of the validator.
+
+Codex tools receive a deny-by-default filesystem profile: common runtime files
+and the selected Coq libraries are readable, and only the candidate workspace
+is writable. The credential file, settings file, protected validation directory,
+original sources and accepted proof are not exposed as writable inputs. The CLI
+itself retains its existing credential store for authentication. Shell tools do
+not inherit API-key overrides. Shell networking is disabled by default, separate
+from Codex's connection to OpenAI. No unattended approval prompts are permitted.
+``codex.ignore_user_config`` must remain true. Project-local Codex settings and
+agent-instruction directories are denied to the agent's tools. Organization
+configuration must not select the older ``sandbox_mode`` or
+``sandbox_workspace_write`` settings, which Codex prioritizes over permission
+profiles; such installations need to be migrated to permission profiles before
+using this backend. Organization-managed restrictions may further restrict it.
+
+Limits and current scope
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Generation defaults to 600 elapsed seconds, at most two Codex invocations, and
+one concurrent agent job, also bounded by Why3's prover concurrency setting.
+Each independent Coq check defaults to 20 seconds and 1000 MiB. The supplied
+feedback command has CPU/memory bounds; arbitrary agent tool calls are bounded
+by the job deadline, not a per-edit or per-tool-call count. Offline replay uses
+the fixed checking defaults and a 140-second total deadline. There is no hard
+token/dollar cap; reported usage is observational.
+
+Cancellation and timeout kill the worker process group. Failures, stale goals,
+changed scripts and conflicting publications cannot replace an accepted proof;
+successful replacement keeps the previous script as :file:`.bak`. Failed job
+directories are reported in prover output and retained by default for seven
+days. Expired finished-job directories are removed on the next generation
+request. Successful directories are removed immediately. Disabling failed-job
+retention also removes interrupted-job directories.
+
+The implementation currently requires a Unix host and a direct ``coqtop``
+command with matching sibling ``coqc`` and ``coqchk`` executables. It supports
+the standard Why3 Coq command, ``-R``, ``-Q``, ``-I``, ``-coqlib``, ``-w``,
+``-impredicative-set`` and ``-indices-matter``. Unsupported wrapper commands,
+options, checker output or source-side-effect commands fail closed. Private
+validation directories must not overlap a configured Coq library path.
+The validator has been exercised with Coq 8.16.1 and 8.20.1 and freshly compiled,
+matching support files. This is not a claim that untested future releases work
+without compatibility testing. Theory realization is outside the initial scope.
+
 .. _sec.realizations:
 
 Theory Realizations

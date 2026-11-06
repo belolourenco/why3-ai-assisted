@@ -1,0 +1,72 @@
+# Append these sections to your Why3 configuration, or use --extra-config.
+# Keep Codex credentials in Codex's login store, not in this file.
+# The values below are the defaults, except that a model must be chosen.
+[coq_agent]
+# Authentication mode: "chatgpt" reuses an existing Codex ChatGPT login.
+# Alternatively, use "api_key" and set api_key_env to an environment variable
+# containing the key (for example: api_key_env = "OPENAI_API_KEY").
+# Never put a literal API key in this file; authentication has no fallback.
+auth = "chatgpt"
+
+# Codex CLI executable: a bare name is found on PATH. A path containing a
+# directory is resolved relative to this configuration file unless absolute.
+executable = "codex"
+
+# Name of the profile used unless agent_profile or --coq-agent-profile overrides
+# it. It must match a [coq_agent_profile NAME] section below.
+default_profile = "proof"
+
+# Do not persist Codex session history. Why3 still saves accepted proof scripts.
+ephemeral = true
+
+# Ignore personal Codex settings and instruction rules during proof generation.
+# Must remain true: isolation from the user's Codex configuration is required.
+ignore_user_config = true
+
+# Positive per-check time limit in seconds for generation-time Coq validation
+# and the feedback command supplied to the agent. Offline replay uses fixed
+# checking limits and does not load these agent settings.
+check_timeout_seconds = 20
+
+# Positive memory limit in MiB for those Coq checks, not for the Codex process.
+check_memory_mb = 1000
+
+# Positive cap on simultaneous agent jobs in this Why3 process, also bounded
+# by Why3's main running_provers_max setting.
+max_parallel_jobs = 1
+
+# Permit network access from the agent's sandboxed shell tools. This does not
+# control Codex's connection to the model service; web search stays disabled.
+shell_network_access = false
+
+# Diagnostic log policy: "error", "info", or "debug". "error" saves Codex
+# event logs only when Codex fails; "info" and "debug" currently behave alike
+# and save logs for every invocation. Retention is controlled below.
+log_level = "info"
+
+# Keep failed-attempt workspaces and diagnostics for inspection. Successful
+# attempts always remove temporary artifacts; accepted proof files are kept.
+retain_failed_attempts = true
+
+# Positive number of days to retain failed workspaces. Expired workspaces are
+# cleaned up when a subsequent proof-generation job starts, not by a timer.
+retention_days = 7
+
+# A named profile; add more sections with distinct names to offer other model,
+# effort, or budget choices without creating additional prover identities.
+[coq_agent_profile proof]
+# Required model identifier available to your Codex account. Replace this
+# placeholder before use; Why3 never silently falls back to another model.
+model = "REPLACE_WITH_YOUR_MODEL_ID"
+
+# Reasoning level: "none", "minimal", "low", "medium", "high", "xhigh", "max",
+# or "ultra". The selected model must support the chosen level; Codex checks it.
+reasoning_effort = "high"
+
+# Positive total elapsed-time budget in seconds for one proof-generation job,
+# including Coq checks and all Codex invocations, not a separate budget per retry.
+wall_time_seconds = 600
+
+# Positive maximum number of Codex invocations, including the first attempt.
+# Each invocation may edit the proof and run Coq multiple times.
+max_generation_attempts = 2

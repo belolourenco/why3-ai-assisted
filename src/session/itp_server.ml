@@ -1240,7 +1240,7 @@ match pa.proof_state with
     | None -> P.notify (Message (Error "Please select a node id"))
     | Some any ->
         let unproven_goals = unproven_goals_below_id d.cont any in
-        List.iter (fun id -> C.schedule_proof_attempt d.cont id
+        List.iter (fun id -> C.schedule_proof_attempt ~agent_mode:Coq_agent.Generate d.cont id
             prover ~limits ~callback ~notification:(notify_change_proved d.cont))
           unproven_goals
 

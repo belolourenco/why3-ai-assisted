@@ -665,7 +665,8 @@ let graft_proof_attempt ?file (s : session) (id : proofNodeID) (pr : Whyconf.pro
     let pa = Hint.find s.proofAttempt_table id in
     let pa = { pa with limits;
                proof_state = None;
-               proof_obsolete = false} in
+               proof_obsolete = false;
+               proof_script = (match file with None -> pa.proof_script | Some file -> Some file)} in
     (* Hprover.replace pn.proofn_attempts pr id; useless *)
     Hint.replace s.proofAttempt_table id pa;
     id

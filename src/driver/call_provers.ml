@@ -501,6 +501,7 @@ let wait_for_server_result ~blocking =
 type prover_call =
   | ServerCall of server_id
   | EditorCall of int
+  | WorkerCall of int
 
 let call_on_file
       ~config ~command ~limits ~res_parser ~get_model ?(inplace=false) fin =
@@ -536,6 +537,29 @@ type prover_update =
   | ProverStarted
   | ProverFinished of prover_result
 
+let worker_result answer output time = {
+  pr_answer = answer; pr_status = Unix.WEXITED 1; pr_output = output;
+  pr_time = time; pr_steps = -1; pr_models = [];
+}
+
+let workers = Local_worker.create ~on_failure:(function
+  | Local_worker.Timeout time -> worker_result Timeout "Local worker elapsed-time limit exceeded" time
+  | Local_worker.Work_failed (exn, time) ->
+      worker_result (Failure "Local worker failed") (Format.asprintf "%a" Exn_printer.exn_printer exn) time
+  | Local_worker.Terminated -> worker_result (Failure "Local worker terminated") "Local worker terminated" 0.
+  | Local_worker.Missing_result -> worker_result (Failure "Missing worker result") "Missing worker result" 0.
+  | Local_worker.Finish_failed (exn, result) ->
+      worker_result (Failure "Worker finalization failed") (Format.asprintf "%a" Exn_printer.exn_printer exn) result.pr_time)
+
+let call_worker ~timeout ~max_parallel ?on_finish ?on_interrupt work =
+  WorkerCall (Local_worker.submit workers ~timeout ~max_parallel ?on_finish ?on_interrupt work)
+
+let worker_update = function
+  | Local_worker.No_updates -> NoUpdates
+  | Local_worker.Started -> ProverStarted
+  | Local_worker.Finished result -> ProverFinished result
+  | Local_worker.Interrupted -> ProverInterrupted
+
 let result_buffer : (server_id, prover_update) Hashtbl.t = Hashtbl.create 17
 
 let fetch_new_results ~blocking = (* TODO: handle ProverStarted events *)
@@ -546,8 +570,10 @@ let fetch_new_results ~blocking = (* TODO: handle ProverStarted events *)
     Hashtbl.add result_buffer id x)
     (wait_for_server_result ~blocking)
 
-let get_new_results ~blocking =
-  fetch_new_results ~blocking;
+let rec get_new_results ~blocking =
+  if Prove_client.is_connected () then
+    fetch_new_results ~blocking:(blocking && not (Local_worker.has_pending workers));
+  Local_worker.poll workers;
   let q = ref [] in
   Hashtbl.iter (fun key element ->
     if element = ProverStarted && blocking then
@@ -555,7 +581,12 @@ let get_new_results ~blocking =
     else
       q := (ServerCall key, element) :: !q) result_buffer;
   Hashtbl.clear result_buffer;
-  !q
+  List.iter (fun (id, update) -> q := (WorkerCall id, worker_update update) :: !q)
+    (Local_worker.take_updates workers);
+  if !q = [] && blocking && Local_worker.has_pending workers then begin
+    ignore (Unix.select [] [] [] 0.05);
+    get_new_results ~blocking
+  end else !q
 
 let query_result_buffer id =
   try let r = Hashtbl.find result_buffer id in
@@ -579,6 +610,8 @@ let query_call = function
       let pid, ret = Unix.waitpid [Unix.WNOHANG] pid in
       if pid = 0 then NoUpdates else
       ProverFinished (editor_result ret)
+  | WorkerCall id ->
+      worker_update (Local_worker.query workers id)
 
 let interrupt_call ~config = function
   | ServerCall id ->
@@ -586,6 +619,8 @@ let interrupt_call ~config = function
      Prove_client.send_interrupt ~id ~libdir
   | EditorCall pid ->
      (try Unix.kill pid Sys.sigkill with Unix.Unix_error _ -> ())
+  | WorkerCall id ->
+      Local_worker.interrupt workers id
 
 let rec wait_on_call = function
   | ServerCall id as pc ->
@@ -598,6 +633,11 @@ let rec wait_on_call = function
   | EditorCall pid ->
       let _, ret = Unix.waitpid [] pid in
       editor_result ret
+  | WorkerCall _ as call ->
+      match query_call call with
+      | ProverFinished result -> result
+      | ProverInterrupted -> worker_result (Unknown "interrupted") "Local worker interrupted" 0.
+      | _ -> ignore (Unix.select [] [] [] 0.05); wait_on_call call
 
 let call_on_buffer ~command ~config ~limits ~res_parser ~filename ~get_model
     ~gen_new_file ?(inplace=false) buffer =

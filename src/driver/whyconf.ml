@@ -128,6 +128,11 @@ let print_prover_upgrade_policy fmt p =
 
 
 
+type config_agent = {
+  base_prover : prover;
+  profile : string option;
+}
+
 type config_prover = {
   prover  : prover;
   command : string;
@@ -136,6 +141,7 @@ type config_prover = {
   in_place: bool;
   editor  : string;
   interactive : bool;
+  agent : config_agent option;
   extra_options : string list;
   extra_drivers : (string * string list) list;
 }
@@ -173,6 +179,7 @@ let set_strategies rc strategies =
 (** Main record *)
 
 type main = {
+  config_sources : (string * Rc.t) list;
   libdir   : string;
   (* arch-dependent data, say "/usr/local/lib/why3/" *)
   datadir  : string;
@@ -236,9 +243,16 @@ let memlimit m = m.memlimit
 let running_provers_max m = m.running_provers_max
 let default_editor m = m.default_editor
 
+let config_sources m = m.config_sources
+let config_source filename rc =
+  (if filename = "" then "" else Sysutil.concat (Sys.getcwd ()) filename), rc
+
 exception StepsCommandNotSpecified of string
 
+exception AgentExecutionUnavailable
+
 let get_complete_command pc ~with_steps =
+  if pc.agent <> None then raise AgentExecutionUnavailable;
   let comm = if not with_steps then pc.command
     else
       match pc.command_steps with
@@ -300,6 +314,7 @@ type config = {
 
 let empty_main =
   {
+    config_sources = [];
     libdir = Config.libdir;
     datadir = Config.datadir;
     loadpath = [];
@@ -337,6 +352,28 @@ module RC_load = struct
     in
     prover
 
+  let load_agent ?(default=None) section =
+    if get_stringo section "agent_config" <> None then
+      invalid_arg "agent_config is no longer supported; use [coq_agent] and [coq_agent_profile] in the Why3 configuration";
+    match get_stringo section "agent_base_name", default with
+    | None, None -> None
+    | name, previous ->
+        let base_prover = match name, previous with
+          | None, Some previous -> previous.base_prover
+          | Some name, _ -> {
+              prover_name = name;
+              prover_version = get_string section "agent_base_version";
+              prover_altern = get_string ~default:"" section "agent_base_alternative";
+            }
+          | _ -> assert false
+        in
+        let old f = Option.bind previous f in
+        let profile = match get_stringo section "agent_profile" with
+          | None -> old (fun a -> a.profile)
+          | value -> value
+        in
+        Some { base_prover; profile }
+
   let load_prover ~config_dir (provers,shortcuts) section =
     try
       let prover = load_prover_id section in
@@ -353,6 +390,7 @@ module RC_load = struct
             in_place = get_bool ~default:false section "in_place";
             editor  = get_string ~default:"" section "editor";
             interactive = get_bool ~default:false section "interactive";
+            agent = load_agent section;
             extra_options = [];
             extra_drivers = [];
           }
@@ -374,6 +412,7 @@ module RC_load = struct
             in_place = get_bool ~default:info.in_place section "in_place";
             editor  = get_string ~default:info.editor section "editor";
             interactive = get_bool ~default:info.interactive section "interactive";
+            agent = load_agent ~default:info.agent section;
             extra_options = info.extra_options;
             extra_drivers = info.extra_drivers;
           }
@@ -484,7 +523,8 @@ module RC_load = struct
   let load_main old dirname section =
     if get_int ~default:0 section "magic" <> magicnumber then
       raise WrongMagicNumber;
-    { libdir    = get_string ~default:old.libdir section "libdir";
+    { config_sources = old.config_sources;
+      libdir    = get_string ~default:old.libdir section "libdir";
       datadir   = get_string ~default:old.datadir section "datadir";
       loadpath  =
         begin match get_stringl section "loadpath" with
@@ -515,7 +555,8 @@ module RC_load = struct
       | Some main -> load_main config.main dirname main
     in
     let provers = get_simple_family rc "prover" in
-    let provers,shortcuts = List.fold_left (load_prover ~config_dir:None)
+    let provers,shortcuts = List.fold_left
+        (load_prover ~config_dir:None)
         (config.provers,config.prover_shortcuts) provers in
     let fam_shortcuts = get_simple_family rc "shortcut" in
     let shortcuts = List.fold_left load_shortcut shortcuts fam_shortcuts in
@@ -529,7 +570,7 @@ module RC_load = struct
     let strategies = List.fold_left load_strategy config.strategies strategies in
     { conf_file = filename;
       user_rc    = rc;
-      main      = main;
+      main      = {main with config_sources = [config_source filename rc]};
       provers   = provers;
       prover_shortcuts = shortcuts;
       prover_editors = prover_editors;
@@ -593,6 +634,16 @@ module RC_save = struct
     let section = set_string section "editor" prover.editor in
     let section = set_bool section "interactive" prover.interactive in
     let section = set_bool section "in_place" prover.in_place in
+    let section = match prover.agent with
+      | None -> section
+      | Some agent ->
+          let base = agent.base_prover in
+          let section = set_string section "agent_base_name" base.prover_name in
+          let section = set_string section "agent_base_version" base.prover_version in
+          let section = set_string ~default:"" section "agent_base_alternative"
+              base.prover_altern in
+          set_stringo section "agent_profile" agent.profile
+    in
     let section = set_stringl section "shortcut" shortcuts in
     section::family
 
@@ -891,6 +942,7 @@ let add_extra_config config filename =
     ) config.editors editor_modifiers in
   (* add editors *)
   let editors = List.fold_left RC_load.load_editor editors (get_family rc "editor") in
+  let main = {main with config_sources = main.config_sources @ [config_source filename rc]} in
   { config with main = main; provers = provers; strategies = strategies;
     prover_shortcuts = shortcuts; editors = editors }
 
@@ -977,14 +1029,19 @@ module User = struct
   let get_family config name =
     get_family config.user_rc name
 
+  let update_sources config user_rc =
+    let extras = match config.main.config_sources with [] -> [] | _ :: extras -> extras in
+    let main = {config.main with config_sources = config_source config.conf_file user_rc :: extras} in
+    {config with user_rc; main}
+
   let set_section config name section =
-    {config with user_rc = set_section config.user_rc name section}
+    update_sources config (set_section config.user_rc name section)
 
   let set_simple_family config name section =
-    {config with user_rc = set_simple_family config.user_rc name section}
+    update_sources config (set_simple_family config.user_rc name section)
 
   let set_family config name section =
-    {config with user_rc = set_family config.user_rc name section}
+    update_sources config (set_family config.user_rc name section)
 
 end
 
@@ -1003,6 +1060,42 @@ let add_provers config provers shortcuts =
   let prover_shortcuts =
     (* we keep existing shortcuts when already present, as said in the interface *)
     Mstr.union (fun _key x _y -> Some x) config.prover_shortcuts shortcuts
+  in
+  { config with provers; prover_shortcuts }
+
+let coq_agent_id base =
+  { base with prover_altern =
+      if base.prover_altern = "" then "AI-assisted"
+      else base.prover_altern ^ "+AI-assisted" }
+
+let coq_agent_provers provers =
+  Mprover.fold (fun base original acc ->
+    if base.prover_name <> "Coq" || original.agent <> None ||
+       base.prover_altern = "AI-assisted" ||
+       Strings.has_suffix ~suffix:"+AI-assisted" base.prover_altern then acc
+    else
+      let prover = coq_agent_id base in
+      if Mprover.mem prover acc then acc
+      else Mprover.add prover
+          { original with prover; interactive = false;
+            agent = Some { base_prover = base; profile = None } }
+          acc) provers provers
+
+let add_coq_agent_provers config =
+  let provers = coq_agent_provers config.provers in
+  let base = match Mstr.find_opt "coq" config.prover_shortcuts with
+    | Some base when base.prover_name = "Coq" &&
+                     Mprover.mem (coq_agent_id base) provers -> Some base
+    | _ -> Mprover.fold (fun base original found ->
+        if original.agent = None && base.prover_name = "Coq" &&
+           Mprover.mem (coq_agent_id base) provers then
+          match found with None -> Some base | _ -> found
+        else found) config.provers None
+  in
+  let prover_shortcuts = match base with
+    | Some base when not (Mstr.mem "coq-agent" config.prover_shortcuts) ->
+        Mstr.add "coq-agent" (coq_agent_id base) config.prover_shortcuts
+    | _ -> config.prover_shortcuts
   in
   { config with provers; prover_shortcuts }
 
@@ -1087,6 +1180,8 @@ let () = Exn_printer.register (fun fmt e -> match e with
   | DuplicateShortcut s ->
     fprintf fmt
       "Shortcut %s appears twice in the configuration file" s
+  | AgentExecutionUnavailable ->
+    fprintf fmt "Agent-backed provers require the Coq_agent service, not a raw prover command."
   | _ -> raise e)
 
 let provers_from_detected_provers :
@@ -1108,7 +1203,7 @@ let init_config ?(extra_config=[]) ofile =
   Debug.dprintf debug "@[[Whyconf.init_config] calling extra_configs on@ @[%a@]@]@."
     (Pp.print_list Pp.semi Pp.print_string) extra_config;
   let config = List.fold_left add_extra_config config extra_config in
-  config
+  add_coq_agent_provers config
 
 module type Command = functor () -> sig end
 
@@ -1134,6 +1229,7 @@ module Args = struct
       "<file> read configuration from <file>";
       KLong "extra-config", Hnd1 (AString, fun s -> opt_extra := !opt_extra @ [s]),
       "<file> read additional configuration from <file>";
+      Coq_agent_options.profile_option;
       Key ('L', "library"), Hnd1 (AString, fun s ->
           let s = Sysutil.concat (Sys.getcwd ()) s in
           opt_loadpath := s :: !opt_loadpath),

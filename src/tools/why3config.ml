@@ -135,11 +135,28 @@ module ListSupportedProvers = struct
 
 end
 
+module ShowCoqAgent = struct
+
+  let run () =
+    let whyconf, _ = Whyconf.Args.complete_initialization () in
+    let config = Coq_agent_settings.load ~main:(Whyconf.get_main whyconf) () in
+    Rc.to_channel stdout (Coq_agent_config.to_rc config Rc.empty)
+
+  let cmd = {
+    cmd_desc = "validate and show Coq agent settings as native Why3 sections";
+    cmd_usage = "\nValidate the Coq agent configuration without starting Codex.";
+    cmd_name = "show-coq-agent";
+    cmd_run = run;
+    cmd_anon_fun = None;
+  }
+
+end
+
 module ShowConfig = struct
 
   let run () =
     let config, _ = Whyconf.Args.complete_initialization () in
-    let rc = Whyconf.rc_of_config config in
+    let rc = Coq_agent_settings.rc_of_config config in
     Rc.to_channel stdout rc
 
   let cmd = {
@@ -158,6 +175,7 @@ let cmds = [
     ListProvers.cmd;
     ListSupportedProvers.cmd;
     ShowConfig.cmd;
+    ShowCoqAgent.cmd;
   ]
 
 let print_commands fmt =

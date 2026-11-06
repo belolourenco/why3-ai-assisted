@@ -535,6 +535,7 @@ let expand_partial env main (data:Prover_autodetection_data.data) provers (p:Par
             editor = data.prover_editor;
             in_place = data.prover_in_place;
             interactive = (match data.kind with ITP -> true | ATP -> false);
+            agent = None;
             extra_options = [];
             extra_drivers = [];
           } in
@@ -634,7 +635,11 @@ let run_auto_detection env main skeletons =
       length_detected (length_detected - length_recognized)
   else
     print_info "%d prover(s) added@." length_detected;
-  detected
+  let expanded = coq_agent_provers detected in
+  let companions = Mprover.cardinal expanded - length_detected in
+  if companions > 0 then
+    print_info "%d Coq agent companion(s) added@." companions;
+  expanded
 
 let generate_builtin_config env datas detected config =
   let shortcuts = convert_shortcuts env in
@@ -643,8 +648,10 @@ let generate_builtin_config env datas detected config =
       (generate_auto_strategies env)
   in
   let config = set_editors config datas.Prover_autodetection_data.editors in
-  let config = add_provers config detected shortcuts in
-  config
+  (* Derive companions after user overrides have been applied by init_config.
+     They must inherit the effective original checking environment. *)
+  let detected = Mprover.filter (fun _ p -> p.agent = None) detected in
+  add_provers config detected shortcuts
 
 let read_auto_detection_data config =
   let main = get_main config in

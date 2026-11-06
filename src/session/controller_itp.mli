@@ -220,6 +220,7 @@ val interrupt_proof_attempts_for_goal : controller -> proofNodeID -> unit
 val schedule_proof_attempt :
   ?adjust_limits:bool ->
   ?proof_script_filename:string ->
+  ?agent_mode:Coq_agent.mode ->
   controller ->
   proofNodeID ->
   Whyconf.prover ->
@@ -233,6 +234,11 @@ val schedule_proof_attempt :
    time the proof attempt status changes. Typically at Scheduled, then
    Running, then Done. If there is already a proof attempt with [p] it
    is updated.
+   [agent_mode] defaults to [Coq_agent.Check]: generic scheduling and replay
+   never start a model. Explicit user requests can select [Coq_agent.Generate].
+   Generation prepares new scripts before queueing, preserving existing proof
+   files. Legacy shared-script associations are relocated to private paths when
+   generating; replay does not create or relocate files.
    [adjust_limits] increases resource limits from the previous proof attempt
    when one exists. It defaults to true.
    [proof_script_filename] is used to give a location for the files

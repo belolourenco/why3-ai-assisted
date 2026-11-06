@@ -1,0 +1,20 @@
+{"auth_mode": "chatgpt",
+ "codex_invocations": 1,
+ "codex_reports":
+  [{"turn_usage":
+     [{"cached_input_tokens": 37760,
+       "input_tokens": 45028,
+       "output_tokens": 916}],
+    "version": "codex-cli 0.163.0"}],
+ "coq_check_seconds": 3.71722,
+ "coq_version": "8.20.1",
+ "elapsed_seconds": 25.8433,
+ "mode": "generate",
+ "model": "gpt-6.1-sol",
+ "profile": "proof",
+ "prompt_version": 1,
+ "proof_digest": "0c6b653805866a5abad07bcfe566ae96",
+ "reasoning_effort": "medium",
+ "schema_version": 1,
+ "source_digest": "589b79138e9ee19cb02ff36746c54b8c",
+ "validation_policy": "frozen-signature-coqchk-v1"}

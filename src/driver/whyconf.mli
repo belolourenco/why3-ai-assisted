@@ -85,6 +85,11 @@ val get_main : config -> main
 val set_main : config -> main -> config
 (** [set_main config main] replace the main section by the given one *)
 
+val config_sources : main -> (string * Rc.t) list
+(** Uninterpreted configuration layers, primary file first, with absolute
+    filenames (or an empty filename for in-memory configuration). Extensions
+    can interpret their own sections without changing the core schema. *)
+
 val set_stdlib: bool -> config -> config
 (** Set if the standard library should be added to loadpath *)
 
@@ -139,6 +144,12 @@ module Hprover  : Exthtbl.S with type key = prover
 
 (** {3 Prover configuration} *)
 
+type config_agent = {
+  base_prover : prover;
+  profile : string option;
+}
+(** Association with the original Coq prover and optional, nonsecret settings. *)
+
 type config_prover = {
   prover       : prover;   (* unique name for session *)
   command      : string;   (* "exec why-limit %t %m alt-ergo %f" *)
@@ -147,12 +158,23 @@ type config_prover = {
   in_place     : bool;     (* verification should be performed in-place *)
   editor       : string;   (* Dedicated editor *)
   interactive  : bool; (* Interactive theorem prover *)
+  agent        : config_agent option;
   extra_options: string list;
   extra_drivers: (string * string list) list;  (* dirname of extra config file, driver name *)
 }
 
 val get_complete_command : config_prover -> with_steps:bool -> string
 (** add the extra_options to the command *)
+
+exception AgentExecutionUnavailable
+(** Agent-backed provers cannot be reduced to a raw command. Use [Coq_agent]
+    so execution cannot bypass independent validation. *)
+
+val coq_agent_provers : config_prover Mprover.t -> config_prover Mprover.t
+(** Add a companion for every Coq entry, preserving existing entries. *)
+
+val add_coq_agent_provers : config -> config
+(** Also add a separate [coq-agent] shortcut without changing [coq]. *)
 
 val get_provers : config -> config_prover Mprover.t
 (** [get_provers config] get the prover family stored in the Rc file. The

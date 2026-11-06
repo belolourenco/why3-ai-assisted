@@ -241,8 +241,8 @@ let p1 = relativize_filename "test"
   "/home/cmarche/recherche/why3/src/ide/f.why"
 *)
 
-let uniquify file =
-  (* Uniquify the filename if it exists on disk *)
+let uniquify ?(reserved=(fun _ -> false)) file =
+  (* Uniquify filenames that exist on disk or are reserved by the caller. *)
   let i =
     try String.rindex file '.'
     with _ -> String.length file
@@ -250,8 +250,8 @@ let uniquify file =
   let name = String.sub file 0 i in
   let ext = String.sub file i (String.length file - i) in
   let i = ref 1 in
-  while Sys.file_exists
-    (name ^ "_" ^ (string_of_int !i) ^ ext) do
+  while let candidate = name ^ "_" ^ (string_of_int !i) ^ ext in
+    Sys.file_exists candidate || reserved candidate do
     incr i
   done;
   let file = name ^ "_" ^ (string_of_int !i) ^ ext in

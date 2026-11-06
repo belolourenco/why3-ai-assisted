@@ -94,8 +94,9 @@ val relativize_filename : string -> string -> file_path
  *)
 
 
-val uniquify : string -> string
+val uniquify : ?reserved:(string -> bool) -> string -> string
 (** find filename that doesn't exist based on the given filename.
+    [reserved] can additionally exclude names already assigned by the caller.
     Be careful the file can be taken after the return of this function.
 *)
 
